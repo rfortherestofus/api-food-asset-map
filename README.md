@@ -1,6 +1,6 @@
 # API Community Food Asset Mapping Project
 
-This repository holds the code for a project developing a map of food assets for the San Francisco Bay Area Asian Pacific Islander (API) community. 
+This repository holds the code for a project developing a map of food assets for the Area Asian Pacific Islander (API) community in the City of San Francisco. 
 
 # Process
 
@@ -13,6 +13,33 @@ I've created three milestones:
 ## Import Data
 
 For this part of the work, I imagine us using an R script file that brings in all data, cleans it, geocodes it (where appropriate), and then saves it to an RDS file. I tend to use the structure of packages in projects as well, with data-raw and data folders. I'm not sure how much we'll need to use the data-raw for this project but it's there.
+
+### Food Resources
+
+In consultation with the client, here are the categories of food resources we're working with: 
+
+- Providers that offer a food bank/pantry 
+- Providers that offer prepared food
+- Food pharmacies ([read more about them here](https://www.sfproduce.org/food-pharmacy))
+- Grocery stores/markets (non SNAP or WIC)
+- Stores that accept SNAP/WIC 
+- Corner stores
+- Restaurants 
+- Farmers markets
+
+### Neighborhoods
+
+We've been asked to focus on these neighborhoods in particular as they are where the API community is concentrated: 
+
+- SOMA
+- Richmond
+- Sunset
+- Chinatown
+- Japantown
+- Bayview Hunters Point
+- Tenderloin
+- Visitacion Valley
+- Excelsior
 
 ## Build Map
 
