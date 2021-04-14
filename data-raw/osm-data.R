@@ -6,7 +6,7 @@ library(tigris) # census geography boundaries
 library(janitor)
 library(sf) # spatial data wrangling
 
-# get the boundary of San Francisco City/County from cropping data
+# get the boundary of San Francisco City/County for cropping data
 
 sf_boundary <- counties(state = "California", cb = TRUE) %>%
   clean_names() %>%
@@ -30,6 +30,8 @@ leaflet() %>%
   addPolygons(data = sf_boundary, fillOpacity = 0, opacity = 1, color = "#FFB55F", weight = 2) %>%
   addCircleMarkers(data = supermarkets, fillColor = "#840651", color = "#840651", opacity = 1, fillOpacity = 0.7, weight = 1, radius = 2)
 
+write_rds(supermarkets, "data/supermarkets.rds")
+
 # Convenience store query
 
 convenience_store_q <- getbb("San Francisco") %>%
@@ -47,4 +49,5 @@ leaflet() %>%
   addPolygons(data = sf_boundary, fillOpacity = 0, opacity = 1, color = "#FFB55F", weight = 2) %>%
   addCircleMarkers(data = convenience_stores, fillColor = "#5F9AB6", color = "#5F9AB6", opacity = 1, fillOpacity = 0.7, weight = 1, radius = 2, label = ~htmlEscape(name))
 
-write_rds(convenience_stores)
+write_rds(convenience_stores, "data/convenience_stores_osm.rds")
+
