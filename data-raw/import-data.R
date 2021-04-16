@@ -69,4 +69,29 @@ pantries_urls <- food_pantries_html %>%
 pantries_data <- map_df(pantries_urls, import_food_pantry_data)
 
 
+# Food Pharmacies ---------------------------------------------------------
+
+# Kathleen put these together manually
+# Original here: https://docs.google.com/spreadsheets/d/1O0y0pgZgwJ8qW2Xesb2xxWazraB3qePIG7RIIcx52RM/edit?pli=1#gid=0
+
+food_pharmacies <- tibble::tribble(
+  ~Food.Pharmacy.Name,                                       ~Address,                                                ~Notes,
+  "3rd Street Youth Center and Clinic",   "1728 Bancroft Ave, San Francisco, CA 94124",                                                    NA,
+  "Bayview Hunters Point Clinic",         "6301 3rd St, San Francisco, CA 94124",                                                    NA,
+  "Clinic by the Bay",     "4877 Mission St, San Francisco, CA 94112", "not a food pharmacy but gives out $10 food vouchers",
+  "Curry Senior Center",         "333 Turk St, San Francisco, CA 94102",                                                    NA,
+  "HealthRIGHT 360",     "1563 Mission St, San Francisco, CA 94103",                                                    NA,
+  "UCSF Mount Zion",  "1600 Divisadero St, San Francisco, CA 94115",                                                    NA,
+  "Potrero Hill Health Center",   "1050 Wisconsin St, San Francisco, CA 94107",                                                    NA,
+  "Silver Avenue Family Health Center",     "1525 Silver Ave, San Francisco, CA 94134",                                                    NA,
+  "Southeast Health Center",       "2401 Keith St, San Francisco, CA 94124",                                                    NA,
+  "Tom Waddell Urban Health Center", "230 Golden Gate Ave, San Francisco, CA 94102", "not a food pharmacy but gives out $10 food vouchers"
+) %>%
+  set_names("name", "address", "notes") %>%
+  separate(address,
+           into = c("street_address", "city", "state"),
+           sep = ", ") %>%
+  separate(state,
+           into = c("state", "zip_code"),
+           sep = " ")
 
