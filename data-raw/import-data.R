@@ -11,11 +11,10 @@ library(stringr.plus)
 
 # Data from https://www.foodpantries.org/ci/ca-san_francisco
 
-# Get HTML from main page
-food_pantries_html <- read_html("https://www.foodpantries.org/ci/ca-san_francisco")
-
+# Creat function to import data from singe listing
 
 import_food_pantry_data <- function(pantry_url) {
+
   # Import info for each food pantry
   pantries_page_html <- read_html(pantry_url)
 
@@ -45,12 +44,17 @@ import_food_pantry_data <- function(pantry_url) {
   pantry_data <- tribble(
     ~name, ~street_address, ~zip_code,
     pantry_name, pantry_street_address, pantry_zip_code
-  )
+  ) %>%
+    mutate(city = "San Francisco",
+           state = "CA")
 
   pantry_data
 
 }
 
+
+# Get HTML from main page
+food_pantries_html <- read_html("https://www.foodpantries.org/ci/ca-san_francisco")
 
 # Create vector of all URLs of food pantry pages
 pantries_urls <- food_pantries_html %>%
@@ -61,4 +65,8 @@ pantries_urls <- food_pantries_html %>%
   distinct() %>%
   pull(value)
 
+# Read in and combine all data
 pantries_data <- map_df(pantries_urls, import_food_pantry_data)
+
+
+
