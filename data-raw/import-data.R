@@ -5,6 +5,7 @@ library(tidyverse)
 library(rvest)
 library(janitor)
 library(stringr.plus)
+library(sf)
 
 
 # foodpantries.org --------------------------------------------------------
@@ -95,3 +96,24 @@ food_pharmacies <- tibble::tribble(
            into = c("state", "zip_code"),
            sep = " ")
 
+# Food-related registered businesses ---------------------------------------------------------
+
+# We can look at the registered business in San Francisco and pull out the food related ones
+
+# from https://data.sfgov.org/Economy-and-Community/Registered-Business-Locations-San-Francisco/g8m3-pdis
+
+businesses <- read_csv("https://data.sfgov.org/api/views/g8m3-pdis/rows.csv?accessType=DOWNLOAD") %>%
+  clean_names()
+
+businesses %>% group_by(naics_code_description) %>% count()
+
+
+food_services <- businesses %>%
+  filter(naics_code_description == "Food Services",
+         is.na(business_end_date), # business has not ended
+         is.na(location_end_date), # current location
+         city == "San Francisco")
+
+# look at the different categories of food services
+
+food_services %>% count(lic_code_description) %>% View()
