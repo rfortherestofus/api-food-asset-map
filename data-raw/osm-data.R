@@ -1,3 +1,8 @@
+# TODO: clean the data that exists here: name, address, and supporting info
+
+# what to do about places where all fields are NA? Drop?
+
+
 library(tidyverse)
 library(osmdata) # OSM overpass API
 library(leaflet)
