@@ -23,6 +23,9 @@ supermarket_q <- getbb("San Francisco") %>%
 supermarkets <- supermarket_q$osm_points %>%
   st_intersection(sf_boundary) # the supermarket query includes some from outside of the city, so this limits the data to only supermarkets in SF
 
+supermarkets_clean <- supermarkets %>%
+  transmute(osm_id, name, housenumber = addr.housenumber, street = addr.street, zip = addr.postcode, city = "San Francisco", state = "CA")
+
 # visually check data
 
 leaflet() %>%
