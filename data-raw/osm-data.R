@@ -51,3 +51,24 @@ leaflet() %>%
 
 write_rds(convenience_stores, "data/convenience_stores_osm.rds")
 
+# Restaurants query
+
+# Convenience store query
+
+restaurant_q <- getbb("San Francisco") %>%
+  opq() %>%
+  add_osm_feature("amenity", "restaurant") %>%
+  osmdata_sf()
+
+restaurants <- restaurant_q$osm_points %>%
+  st_intersection(sf_boundary) # the convenience store query includes some from outside of the city, so this limits the data to only places in SF
+
+# visually check data
+
+leaflet() %>%
+  addProviderTiles(providers$CartoDB.Positron) %>%
+  addPolygons(data = sf_boundary, fillOpacity = 0, opacity = 1, color = "#FFB55F", weight = 2) %>%
+  addCircleMarkers(data = restaurants, fillColor = "#5F9AB6", color = "#5F9AB6", opacity = 1, fillOpacity = 0.7, weight = 1, radius = 2, label = ~htmlEscape(name))
+
+write_rds(convenience_stores, "data/convenience_stores_osm.rds")
+

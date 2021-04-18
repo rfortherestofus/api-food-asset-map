@@ -50,13 +50,14 @@ api_summary_nb <- race_ethnicity_nb_join %>%
 
 # leaflet for basic analysis
 
-qpal <- colorQuantile("Blues", api_summary_nb$pct_api_clean, n = 5)
+qpal <- colorQuantile("Blues", api_summary_nb$pct_api_clean, n = 5, na.color = "#cdced1")
 
 leaflet(api_summary_nb) %>%
   addProviderTiles(providers$CartoDB.Positron) %>%
   addPolygons(stroke = TRUE, fillOpacity = 0.8,
-              weight = 1, color = "black",
+              weight = 1, color = "#424242",
               fillColor = ~qpal(pct_api_clean),
+              label = ~nhood
               ) %>%
   addLegend(pal = qpal, values = ~pct_api_clean, opacity = 0.7, title = "% API",
             position = "bottomright")
