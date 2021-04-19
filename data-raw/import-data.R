@@ -164,3 +164,39 @@ snap_stores %>%
   separate(store_info, into = c("name", "street_address"),
            sep = "")
 
+
+
+# WIC Stores --------------------------------------------------------------
+
+wic_stores_html <- read_html("https://www.wicstorelocator.com/ci/ca-san_francisco")
+
+wic_stores_names <-
+  wic_stores_html %>%
+  html_elements("h3") %>%
+  html_text2() %>%
+    as_tibble() %>%
+    # Keep only all uppercase text
+    # https://stackoverflow.com/questions/2323988/determine-if-string-is-all-caps-with-regular-expression
+    filter(str_detect(value, "^[^a-z]*$")) %>%
+  pull(value)
+
+
+wic_stores <- wic_stores_html %>%
+  html_elements("p") %>%
+  html_text2() %>%
+  as_tibble() %>%
+  filter(str_detect(value, "FRANCISCO")) %>%
+  mutate(street_address = str_replace_all(value, "[\r\n]" , "")) %>%
+  separate(street_address,
+           into = c("street_address", "drop"),
+           sep = " SAN FRANCISCO") %>%
+  mutate(street_address = str_trim(street_address)) %>%
+  mutate(zip_code = str_extract(value, "[0-9]{5}(?:-[0-9]{4})?")) %>%
+  select(street_address, zip_code) %>%
+  mutate(name = wic_stores_names) %>%
+  select(name, street_address, zip_code) %>%
+  mutate(city = "San Francisco",
+         state = "CA")
+
+
+
