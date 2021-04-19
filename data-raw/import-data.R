@@ -96,6 +96,25 @@ food_pharmacies <- tibble::tribble(
            into = c("state", "zip_code"),
            sep = " ")
 
+
+# SF Marin Food Bank ------------------------------------------------------
+
+# https://www.sfmfoodbank.org/find-food/
+# These are pop-up pantries
+
+# pop_up_pantries <-
+
+pop_up_pantry_html <- read_html("https://foodlocator.sfmfoodbank.org/en/site/SPUP")
+
+pop_up_pantry_html %>%
+  # html_element("h2") %>%
+  html_text2() %>%
+  as_tibble() %>%
+  filter(str_detect(value, "Ellis"))
+  view()
+  str()
+
+
 # Food-related registered businesses ---------------------------------------------------------
 
 # We can look at the registered business in San Francisco and pull out the food related ones
