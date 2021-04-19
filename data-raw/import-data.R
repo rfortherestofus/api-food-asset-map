@@ -200,3 +200,44 @@ wic_stores <- wic_stores_html %>%
 
 
 
+# Farmers Markets ---------------------------------------------------------
+
+# https://sfenvironment.org/farmers-markets-in-sf
+
+farmers_markets_html <- read_html("https://sfenvironment.org/farmers-markets-in-sf")
+
+
+farmers_markets_names <- farmers_markets_html %>%
+  html_elements("strong") %>%
+  html_text() %>%
+  as_tibble() %>%
+  filter(str_detect(value, "Farmers Market\\b") | str_detect(value, "Mercantile") | str_detect(value, "Community Market")) %>%
+  pull(value)
+
+farmers_market_zips <- farmers_markets_html %>%
+  html_elements("p") %>%
+  html_text() %>%
+  as_tibble() %>%
+  # Keep only rows with zip codes
+  filter(str_detect(value, "[0-9]{5}(?:-[0-9]{4})?")) %>%
+  mutate(zip_code = str_extract(value, "[0-9]{5}(?:-[0-9]{4})?")) %>%
+  pull(zip_code)
+
+farmers_market_addresses <- farmers_markets_html %>%
+  html_elements("p") %>%
+  html_text() %>%
+  as_tibble() %>%
+  mutate(street_address = str_replace_all(value, "[\r\n]" , "")) %>%
+  # Keep only rows with zip codes
+  filter(str_detect(value, "[0-9]{5}(?:-[0-9]{4})?")) %>%
+  separate(street_address,
+           into = c("name", "street_address"),
+           sep = "\t") %>%
+  pull(street_address)
+
+
+farmers_markets <- tibble(
+  name = farmers_markets_names,
+  street_address = farmers_market_addresses,
+  zip_code = farmers_market_zips
+)
