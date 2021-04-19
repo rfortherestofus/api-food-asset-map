@@ -121,6 +121,10 @@ pop_up_pantry_html %>%
 
 # Problem is the links are javascript
 
+bay_area_211_html <- read_html("https://www.211bayarea.org/sanfrancisco/food/food-programs/brown-bag-programs/")
+
+bay_area_211_html %>%
+  html_text()
 
 # Food-related registered businesses ---------------------------------------------------------
 
@@ -133,7 +137,6 @@ businesses <- read_csv("https://data.sfgov.org/api/views/g8m3-pdis/rows.csv?acce
 
 businesses %>% group_by(naics_code_description) %>% count()
 
-
 food_services <- businesses %>%
   filter(naics_code_description == "Food Services",
          is.na(business_end_date), # business has not ended
@@ -143,3 +146,21 @@ food_services <- businesses %>%
 # look at the different categories of food services
 
 food_services %>% count(lic_code_description) %>% View()
+
+
+# Stores that accept EBT/SNAP ---------------------------------------------
+
+# https://www.ebt.ca.gov/locator/index.html#/locator.page
+# I downloaded Location-Details-20210419213426948.txt from the website above
+# I don't know how to read in the crazy txt file it gives me
+
+snap_stores <- read_tsv("data-raw/Location-Details-20210419213426948.txt")
+
+snap_stores %>%
+  # Drop extra variable name rows
+  slice(-(1:2)) %>%
+  set_names("store_info") %>%
+  filter(str_detect(store_info, "Francisco"))
+  separate(store_info, into = c("name", "street_address"),
+           sep = "")
+
