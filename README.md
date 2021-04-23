@@ -14,6 +14,16 @@ I've created three milestones:
 
 For this part of the work, I imagine us using an R script file that brings in all data, cleans it, geocodes it (where appropriate), and then saves it to an RDS file. I tend to use the structure of packages in projects as well, with data-raw and data folders. I'm not sure how much we'll need to use the data-raw for this project but it's there.
 
+Each object should be saved as an RDS file with the following variables:
+
+- name
+- street_address
+- city
+- state
+- zip_code
+- lon
+- lat
+
 ### Food Resources
 
 In consultation with the client, here are the categories of food resources we're working with: 
