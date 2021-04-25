@@ -96,6 +96,36 @@ food_pharmacies <- tibble::tribble(
            into = c("state", "zip_code"),
            sep = " ")
 
+
+# SF Marin Food Bank ------------------------------------------------------
+
+# https://www.sfmfoodbank.org/find-food/
+# These are pop-up pantries
+
+# pop_up_pantries <-
+
+pop_up_pantry_html <- read_html("https://foodlocator.sfmfoodbank.org/en/site/SPUP")
+
+pop_up_pantry_html %>%
+  # html_element("h2") %>%
+  html_text2() %>%
+  as_tibble() %>%
+  filter(str_detect(value, "Ellis"))
+  view()
+  str()
+
+
+# Bay Area 211 ------------------------------------------------------------
+
+# https://www.211bayarea.org/sanfrancisco/food/food-programs/brown-bag-programs/
+
+# Problem is the links are javascript
+
+bay_area_211_html <- read_html("https://www.211bayarea.org/sanfrancisco/food/food-programs/brown-bag-programs/")
+
+bay_area_211_html %>%
+  html_text()
+
 # Food-related registered businesses ---------------------------------------------------------
 
 # We can look at the registered business in San Francisco and pull out the food related ones
@@ -107,7 +137,6 @@ businesses <- read_csv("https://data.sfgov.org/api/views/g8m3-pdis/rows.csv?acce
 
 businesses %>% group_by(naics_code_description) %>% count()
 
-
 food_services <- businesses %>%
   filter(naics_code_description == "Food Services",
          is.na(business_end_date), # business has not ended
@@ -117,3 +146,98 @@ food_services <- businesses %>%
 # look at the different categories of food services
 
 food_services %>% count(lic_code_description) %>% View()
+
+
+# Stores that accept EBT/SNAP ---------------------------------------------
+
+# https://www.ebt.ca.gov/locator/index.html#/locator.page
+# I downloaded Location-Details-20210419213426948.txt from the website above
+# I don't know how to read in the crazy txt file it gives me
+
+snap_stores <- read_tsv("data-raw/Location-Details-20210419213426948.txt")
+
+snap_stores %>%
+  # Drop extra variable name rows
+  slice(-(1:2)) %>%
+  set_names("store_info") %>%
+  filter(str_detect(store_info, "Francisco"))
+  separate(store_info, into = c("name", "street_address"),
+           sep = "")
+
+
+
+# WIC Stores --------------------------------------------------------------
+
+wic_stores_html <- read_html("https://www.wicstorelocator.com/ci/ca-san_francisco")
+
+wic_stores_names <-
+  wic_stores_html %>%
+  html_elements("h3") %>%
+  html_text2() %>%
+    as_tibble() %>%
+    # Keep only all uppercase text
+    # https://stackoverflow.com/questions/2323988/determine-if-string-is-all-caps-with-regular-expression
+    filter(str_detect(value, "^[^a-z]*$")) %>%
+  pull(value)
+
+
+wic_stores <- wic_stores_html %>%
+  html_elements("p") %>%
+  html_text2() %>%
+  as_tibble() %>%
+  filter(str_detect(value, "FRANCISCO")) %>%
+  mutate(street_address = str_replace_all(value, "[\r\n]" , "")) %>%
+  separate(street_address,
+           into = c("street_address", "drop"),
+           sep = " SAN FRANCISCO") %>%
+  mutate(street_address = str_trim(street_address)) %>%
+  mutate(zip_code = str_extract(value, "[0-9]{5}(?:-[0-9]{4})?")) %>%
+  select(street_address, zip_code) %>%
+  mutate(name = wic_stores_names) %>%
+  select(name, street_address, zip_code) %>%
+  mutate(city = "San Francisco",
+         state = "CA")
+
+
+
+# Farmers Markets ---------------------------------------------------------
+
+# https://sfenvironment.org/farmers-markets-in-sf
+
+farmers_markets_html <- read_html("https://sfenvironment.org/farmers-markets-in-sf")
+
+
+farmers_markets_names <- farmers_markets_html %>%
+  html_elements("strong") %>%
+  html_text() %>%
+  as_tibble() %>%
+  filter(str_detect(value, "Farmers Market\\b") | str_detect(value, "Mercantile") | str_detect(value, "Community Market")) %>%
+  pull(value)
+
+farmers_market_zips <- farmers_markets_html %>%
+  html_elements("p") %>%
+  html_text() %>%
+  as_tibble() %>%
+  # Keep only rows with zip codes
+  filter(str_detect(value, "[0-9]{5}(?:-[0-9]{4})?")) %>%
+  mutate(zip_code = str_extract(value, "[0-9]{5}(?:-[0-9]{4})?")) %>%
+  pull(zip_code)
+
+farmers_market_addresses <- farmers_markets_html %>%
+  html_elements("p") %>%
+  html_text() %>%
+  as_tibble() %>%
+  mutate(street_address = str_replace_all(value, "[\r\n]" , "")) %>%
+  # Keep only rows with zip codes
+  filter(str_detect(value, "[0-9]{5}(?:-[0-9]{4})?")) %>%
+  separate(street_address,
+           into = c("name", "street_address"),
+           sep = "\t") %>%
+  pull(street_address)
+
+
+farmers_markets <- tibble(
+  name = farmers_markets_names,
+  street_address = farmers_market_addresses,
+  zip_code = farmers_market_zips
+)
