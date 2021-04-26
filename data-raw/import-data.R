@@ -76,8 +76,8 @@ pantries_data <- map_df(pantries_urls, import_food_pantry_data)
 
 pantries_data_geocoded <- pantries_data %>%
   mutate(address = glue("{street_address}, {city}, {state} {zip_code}")) %>%
-  geocode(address, method = "arcgis", lat = latitude, long = longitude) #osm misses 3 addresses
-
+  geocode(address, method = "arcgis", lat = latitude, long = longitude) %>%  #osm misses 3 addresses
+  select(-address)
 pantries_data_sf <- pantries_data_geocoded %>%
   mutate(category = "food bank/pantry") %>%
   st_as_sf(coords = c("longitude", "latitude"), crs = 4326)
@@ -138,34 +138,74 @@ pop_up_pantry_html %>%
   view()
   str()
 
+# prepare links
+
 pop_up_pantry_html <- read_html("https://www.sfmfoodbank.org/find-food/")
 
 pop_up_pantry_links <- pop_up_pantry_html %>%
   html_elements(".link") %>%
   html_attr("href") %>%
-  as_tibble()
-#
-# pop_up_pantry_link_html <- read_html(pop_up_pantry_links$value[1])
-#
-# # data is stored as javascript, need to use selenium to extract it
-# rsDriver(browser = "chrome",
-#          chromever = "90.0.4430.24")
-# remDr <- remoteDriver(
-#   remoteServerAddr = "localhost",
-#   port = 4567L,
-#   browserName = "chrome",
-#
-# )
-#
-# remDr$open()
-# remDr$getStatus()
-#
-# remDr$navigate("https://www.google.com/")
-#
-# pop_up_pantry_link_html %>%
-#   html_elements(".text-nowrap") %>%
-#   html_text2() %>%
-#   as_tibble()
+  as_tibble() %>%
+  filter(value != "https://panda.sfmfoodbank.org/application") # doesn't contain address info
+
+# data is stored as javascript, need to use selenium to extract it
+rD <- rsDriver(browser = "chrome",
+         chromever = "90.0.4430.24")
+remDr <- remoteDriver(
+  remoteServerAddr = "localhost",
+  port = 4567L,
+  browserName = "chrome",
+)
+
+remDr$open()
+remDr$getStatus()
+
+pop_up_get_addr <- function(url) {
+  remDr$navigate(url)
+  Sys.sleep(3) # give selenium time to load all elements
+  siteElements <- remDr$findElements(using = "class", "text-nowrap")
+  street_address <- siteElements[[1]]$getElementText()
+  city_zip <- siteElements[[2]]$getElementText()
+  siteElements <- remDr$findElement(using = "css selector", "h2:not(.text-nowrap")
+  name <- siteElements$getElementText()
+
+  tibble(name = name, street_address = street_address, city_zip = city_zip)
+}
+
+siteElements <- remDr$findElement(using = "css selector", "h2:not(.text-nowrap")
+
+# grab data
+pop_up_addr <- map_df(pop_up_pantry_links$value, pop_up_get_addr)
+
+pop_up_data <- pop_up_addr %>%
+  unnest(cols = c(name, street_address, city_zip)) %>%
+  mutate(zip_code = str_trim(str_extract(city_zip, "[0-9]{5}")),
+         city = str_trim(str_extract(city_zip, "[^0-9]+"))) %>%
+  mutate(name = str_extract(name, "\\D+") %>%
+           str_sub(start = 3L)) %>%
+  mutate(category = "food bank/pantry") %>%
+  select(-city_zip) %>%
+  mutate(state = "CA")
+
+# geocode the addresses
+pop_up_data_geocoded <- pop_up_data %>%
+  mutate(address = glue("{street_address}, {city}, {state} {zip_code}")) %>%
+  geocode(address, method = "arcgis", lat = latitude, long = longitude) %>%  #osm misses 3 addresses
+  select(-address)
+
+pop_up_data_sf <- pop_up_data_geocoded %>%
+  mutate(category = "food bank/pantry") %>%
+  st_as_sf(coords = c("longitude", "latitude"), crs = 4326)
+
+# Do visual check
+# pop_up_data_sf %>%
+#   leaflet() %>%
+#   addTiles() %>%
+#   addCircleMarkers()
+
+# includes 5 sites outside of sf proper
+write_rds(pop_up_data_sf, "data/pop_up_pantries.rds")
+
 # Bay Area 211 ------------------------------------------------------------
 
 # https://www.211bayarea.org/sanfrancisco/food/food-programs/brown-bag-programs/
