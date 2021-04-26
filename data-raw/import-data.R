@@ -6,8 +6,10 @@ library(rvest)
 library(janitor)
 library(stringr.plus)
 library(sf)
-
-
+library(tidygeocoder)
+library(glue)
+library(leaflet)
+library(RSelenium)
 # foodpantries.org --------------------------------------------------------
 
 # Data from https://www.foodpantries.org/ci/ca-san_francisco
@@ -64,10 +66,32 @@ pantries_urls <- food_pantries_html %>%
   as_tibble() %>%
   filter(str_detect(value, "/li/")) %>%
   distinct() %>%
+  mutate(value = str_replace(value, " ", "%20")) %>%
   pull(value)
 
 # Read in and combine all data
 pantries_data <- map_df(pantries_urls, import_food_pantry_data)
+
+# Geocode Data
+
+pantries_data_geocoded <- pantries_data %>%
+  mutate(address = glue("{street_address}, {city}, {state} {zip_code}")) %>%
+  geocode(address, method = "arcgis", lat = latitude, long = longitude) #osm misses 3 addresses
+
+pantries_data_sf <- pantries_data_geocoded %>%
+  mutate(category = "food bank/pantry") %>%
+  st_as_sf(coords = c("longitude", "latitude"), crs = 4326)
+
+# Do visual check
+# pantries_data_sf %>%
+#   leaflet() %>%
+#   addTiles() %>%
+#   addCircleMarkers()
+
+# Save files
+
+write_rds(pantries_data_sf, "data/food_pantries.rds")
+
 
 
 # Food Pharmacies ---------------------------------------------------------
@@ -107,14 +131,41 @@ food_pharmacies <- tibble::tribble(
 pop_up_pantry_html <- read_html("https://foodlocator.sfmfoodbank.org/en/site/SPUP")
 
 pop_up_pantry_html %>%
-  # html_element("h2") %>%
+  html_element("h2") %>%
   html_text2() %>%
   as_tibble() %>%
   filter(str_detect(value, "Ellis"))
   view()
   str()
 
+pop_up_pantry_html <- read_html("https://www.sfmfoodbank.org/find-food/")
 
+pop_up_pantry_links <- pop_up_pantry_html %>%
+  html_elements(".link") %>%
+  html_attr("href") %>%
+  as_tibble()
+#
+# pop_up_pantry_link_html <- read_html(pop_up_pantry_links$value[1])
+#
+# # data is stored as javascript, need to use selenium to extract it
+# rsDriver(browser = "chrome",
+#          chromever = "90.0.4430.24")
+# remDr <- remoteDriver(
+#   remoteServerAddr = "localhost",
+#   port = 4567L,
+#   browserName = "chrome",
+#
+# )
+#
+# remDr$open()
+# remDr$getStatus()
+#
+# remDr$navigate("https://www.google.com/")
+#
+# pop_up_pantry_link_html %>%
+#   html_elements(".text-nowrap") %>%
+#   html_text2() %>%
+#   as_tibble()
 # Bay Area 211 ------------------------------------------------------------
 
 # https://www.211bayarea.org/sanfrancisco/food/food-programs/brown-bag-programs/
