@@ -212,10 +212,116 @@ write_rds(pop_up_data_sf, "data/pop_up_pantries.rds")
 
 # Problem is the links are javascript
 
-bay_area_211_html <- read_html("https://www.211bayarea.org/sanfrancisco/food/food-programs/brown-bag-programs/")
+# can get links by going to the iframe's page
+bay_area_iframe_html <- read_html("https://www.icarol.info/Search.aspx?org=2339&Count=21&Search=Brown+Bag+Food+Programs&NameOnly=True&pst=All&sort=Proximity&TaxExact=False&Country=United%20States&StateProvince=CA&County=San%20Francisco")
 
-bay_area_211_html %>%
-  html_text()
+# extract links to each site
+bay_area_secondary_links <- bay_area_iframe_html %>%
+  html_elements(".DetailsHeaderBackground") %>%
+  html_children() %>%
+  html_attr("onclick") %>%
+  str_extract_between("open", "return") %>%
+  str_sub(start = 3L, end = -4L) %>%
+  str_replace_all(" ", "%20")
+
+# crawl across each top level link
+bay_area_crawl_agency <- function(url) {
+  print(url)
+  Sys.sleep(1)
+  agency_site <- tryCatch(
+    read_html(url),
+    error = function(e) e
+  )
+
+  if(!inherits(agency_site, "error")) {
+
+    agency_nums <- bay_area_sec_html_test %>%
+      html_elements("#Sites a") %>%
+      html_attr("id") %>%
+      str_extract("[0-9]+")
+
+    agency_resource_urls <- map_chr(agency_nums, ~glue("{url}&SiteResourceAgencyNum={.x}"))
+
+
+    map_df(agency_resource_urls, bay_area_get_addr)
+  } else {
+    tibble(name = NA,
+           street_address = NA,
+           city = NA,
+           zip_code = NA,
+           state = NA)
+  }
+}
+
+
+# extract data for site
+bay_area_get_addr <- function(url) {
+
+  site <- tryCatch(
+    read_html(url),
+    error = function(e) e
+  )
+
+  if(!inherits(site, "error")) {
+    address <- site %>%
+      html_elements("#lblAgencyPhysicalAddress") %>%
+      html_text2()
+
+
+    street_address <- address %>%
+      str_extract_before("\\n")
+
+
+    city <- address %>%
+      str_extract_after("\\n\\n") %>%
+      str_extract_before(",") %>%
+      str_trim()
+
+    zip_code <- address %>%
+      str_extract("[0-9]{5}")
+
+    state <- "CA"
+
+    name <- site %>%
+      html_elements("#hlLinkToParentAgency") %>%
+      html_text() %>%
+      str_extract_after("Agency: ") %>%
+      str_to_title()
+
+    tibble(name = name,
+           street_address = street_address,
+           city = city,
+           zip_code = zip_code,
+           state = state)
+
+  } else {
+    tibble(name = NA,
+           street_address = NA,
+           city = NA,
+           zip_code = NA,
+           state = NA)
+  }
+}
+
+full_bay_area_data <- map_df(bay_area_secondary_links, bay_area_crawl_agency)
+
+# geocode
+full_bay_area_data_geocoded <- full_bay_area_data %>%
+  distinct() %>%
+  mutate(address = glue("{street_address}, {city}, {state} {zip_code}")) %>%
+  geocode(address, method = "arcgis", lat = latitude, long = longitude) %>%  #osm misses 3 addresses
+  select(-address)
+
+full_bay_area_data_sf <- full_bay_area_data_geocoded %>%
+  mutate(category = NA) %>%
+  st_as_sf(coords = c("longitude", "latitude"), crs = 4326)
+
+# Do a visual check
+# full_bay_area_data_sf %>%
+#   leaflet() %>%
+#   addTiles() %>%
+#   addCircleMarkers(label = ~name)
+
 
 # Food-related registered businesses ---------------------------------------------------------
 
