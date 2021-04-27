@@ -6,13 +6,13 @@ library(rvest)
 library(janitor)
 library(stringr.plus)
 library(sf)
-
+library(tidygeocoder)
 
 # foodpantries.org --------------------------------------------------------
 
 # Data from https://www.foodpantries.org/ci/ca-san_francisco
 
-# Creat function to import data from singe listing
+# Create function to import data from singe listing
 
 import_food_pantry_data <- function(pantry_url) {
 
@@ -70,6 +70,7 @@ pantries_urls <- food_pantries_html %>%
 pantries_data <- map_df(pantries_urls, import_food_pantry_data)
 
 
+
 # Food Pharmacies ---------------------------------------------------------
 
 # Kathleen put these together manually
@@ -107,8 +108,9 @@ food_pharmacies <- tibble::tribble(
 pop_up_pantry_html <- read_html("https://foodlocator.sfmfoodbank.org/en/site/SPUP")
 
 pop_up_pantry_html %>%
-  # html_element("h2") %>%
-  html_text2() %>%
+  html_element("h2") %>%
+  html_text2()
+%>%
   as_tibble() %>%
   filter(str_detect(value, "Ellis"))
   view()

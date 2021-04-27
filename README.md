@@ -17,6 +17,7 @@ For this part of the work, I imagine us using an R script file that brings in al
 Each object should be saved as an RDS file with the following variables:
 
 - name
+- category
 - street_address
 - city
 - state
