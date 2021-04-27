@@ -10,6 +10,14 @@ library(tidygeocoder)
 library(glue)
 library(leaflet)
 library(RSelenium)
+library(tigris)
+
+# load San Francisco boundary
+sf_boundary <- counties(state = "California", cb = TRUE) %>%
+  clean_names() %>%
+  filter(name == "San Francisco") %>%
+  st_transform(4326)
+
 # foodpantries.org --------------------------------------------------------
 
 # Data from https://www.foodpantries.org/ci/ca-san_francisco
@@ -322,6 +330,7 @@ full_bay_area_data_sf <- full_bay_area_data_geocoded %>%
 #   addTiles() %>%
 #   addCircleMarkers(label = ~name)
 
+write_rds(full_bay_area_data_sf, "data/bay-area-211.rds")
 
 # Food-related registered businesses ---------------------------------------------------------
 
@@ -351,17 +360,37 @@ food_services %>% count(lic_code_description) %>% View()
 # I downloaded Location-Details-20210419213426948.txt from the website above
 # I don't know how to read in the crazy txt file it gives me
 
-snap_stores <- read_tsv("data-raw/Location-Details-20210419213426948.txt")
+# pulled data from https://www.fns.usda.gov/snap/retailer-locator, it's much cleaner
 
-snap_stores %>%
-  # Drop extra variable name rows
-  slice(-(1:2)) %>%
-  set_names("store_info") %>%
-  filter(str_detect(store_info, "Francisco"))
-  separate(store_info, into = c("name", "street_address"),
-           sep = "")
+snap_stores_usda <- vroom::vroom("data-raw/SNAP_Store_Locations.csv")
+
+snap_stores_usda_sf <- snap_stores_usda %>%
+  filter(Latitude > 37.613902, # do a quick filter before clipping
+         Latitude < 38.678556,
+         Longitude < -122.069397) %>%
+  rename(name = Store_Name,
+         street_address = Address,
+         city = City,
+         state = State,
+         zip_code = Zip5,
+         lon = Longitude,
+         lat = Latitude) %>%
+  select(-County, -X, -Y, -Zip4, -ObjectId, -Address_Line__2) %>%
+  st_as_sf(coords = c("lon", "lat"), crs = 4326) %>%
+  st_intersection(sf_boundary)
+
+write_rds(snap_stores_usda_sf, "data/snap_stores.rds")
 
 
+# quick visual check
+# leaflet() %>%
+#   addProviderTiles(providers$CartoDB.Positron) %>%
+#   addPolygons(data = sf_boundary, fillOpacity = 0, opacity = 1, color = "#FFB55F", weight = 2) %>%
+#   addCircleMarkers(data = snap_stores_usda_sf, fillColor = "#5F9AB6", color = "#5F9AB6", opacity = 1, fillOpacity = 0.7, weight = 1, radius = 2, label = ~name)
+
+
+
+snap_stores_usda
 
 # WIC Stores --------------------------------------------------------------
 
