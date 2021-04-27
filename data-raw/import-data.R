@@ -88,13 +88,15 @@ pantries_data_geocoded <- pantries_data %>%
   select(-address)
 pantries_data_sf <- pantries_data_geocoded %>%
   mutate(category = "food bank/pantry") %>%
-  st_as_sf(coords = c("longitude", "latitude"), crs = 4326)
+  st_as_sf(coords = c("longitude", "latitude"), crs = 4326) %>%
+  st_intersection(sf_boundary) # restrict to just sf county
 
 # Do visual check
-# pantries_data_sf %>%
-#   leaflet() %>%
-#   addTiles() %>%
-#   addCircleMarkers()
+# leaflet() %>%
+#   addProviderTiles(providers$CartoDB.Positron) %>%
+#   addPolygons(data = sf_boundary, fillOpacity = 0, opacity = 1, color = "#FFB55F", weight = 2) %>%
+#   addCircleMarkers(data = pantries_data_sf, fillColor = "#5F9AB6", color = "#5F9AB6", opacity = 1, fillOpacity = 0.7, weight = 1, radius = 2, label = ~name)
+
 
 # Save files
 
@@ -203,15 +205,16 @@ pop_up_data_geocoded <- pop_up_data %>%
 
 pop_up_data_sf <- pop_up_data_geocoded %>%
   mutate(category = "food bank/pantry") %>%
-  st_as_sf(coords = c("longitude", "latitude"), crs = 4326)
+  st_as_sf(coords = c("longitude", "latitude"), crs = 4326) %>%
+  st_intersection(sf_boundary) # restrict to just sf county
 
-# Do visual check
-# pop_up_data_sf %>%
-#   leaflet() %>%
-#   addTiles() %>%
-#   addCircleMarkers()
+# quick visual check
+# leaflet() %>%
+#   addProviderTiles(providers$CartoDB.Positron) %>%
+#   addPolygons(data = sf_boundary, fillOpacity = 0, opacity = 1, color = "#FFB55F", weight = 2) %>%
+#   addCircleMarkers(data = pop_up_data_sf, fillColor = "#5F9AB6", color = "#5F9AB6", opacity = 1, fillOpacity = 0.7, weight = 1, radius = 2, label = ~name)
 
-# includes 5 sites outside of sf proper
+
 write_rds(pop_up_data_sf, "data/pop_up_pantries.rds")
 
 # Bay Area 211 ------------------------------------------------------------
@@ -322,13 +325,15 @@ full_bay_area_data_geocoded <- full_bay_area_data %>%
 
 full_bay_area_data_sf <- full_bay_area_data_geocoded %>%
   mutate(category = NA) %>%
-  st_as_sf(coords = c("longitude", "latitude"), crs = 4326)
+  st_as_sf(coords = c("longitude", "latitude"), crs = 4326) #%>%
+  #st_intersection(sf_boundary) none of locations actually in sf county
 
 # Do a visual check
-# full_bay_area_data_sf %>%
-#   leaflet() %>%
-#   addTiles() %>%
-#   addCircleMarkers(label = ~name)
+# leaflet() %>%
+#   addProviderTiles(providers$CartoDB.Positron) %>%
+#   addPolygons(data = sf_boundary, fillOpacity = 0, opacity = 1, color = "#FFB55F", weight = 2) %>%
+#   addCircleMarkers(data = full_bay_area_data_sf, fillColor = "#5F9AB6", color = "#5F9AB6", opacity = 1, fillOpacity = 0.7, weight = 1, radius = 2, label = ~name)
+
 
 write_rds(full_bay_area_data_sf, "data/bay-area-211.rds")
 
@@ -375,6 +380,7 @@ snap_stores_usda_sf <- snap_stores_usda %>%
          zip_code = Zip5,
          lon = Longitude,
          lat = Latitude) %>%
+  mutate(category = NA) %>%
   select(-County, -X, -Y, -Zip4, -ObjectId, -Address_Line__2) %>%
   st_as_sf(coords = c("lon", "lat"), crs = 4326) %>%
   st_intersection(sf_boundary)
