@@ -61,3 +61,6 @@ leaflet(api_summary_nb) %>%
               ) %>%
   addLegend(pal = qpal, values = ~pct_api_clean, opacity = 0.7, title = "% API",
             position = "bottomright")
+
+
+write_rds(api_summary_nb, "data/api_neighborhood_data.rds")

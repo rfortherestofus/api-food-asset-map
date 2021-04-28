@@ -7,6 +7,16 @@ library(janitor)
 library(stringr.plus)
 library(sf)
 library(tidygeocoder)
+library(glue)
+library(leaflet)
+library(RSelenium)
+library(tigris)
+
+# load San Francisco boundary
+sf_boundary <- counties(state = "California", cb = TRUE) %>%
+  clean_names() %>%
+  filter(name == "San Francisco") %>%
+  st_transform(4326)
 
 # foodpantries.org --------------------------------------------------------
 
@@ -64,10 +74,34 @@ pantries_urls <- food_pantries_html %>%
   as_tibble() %>%
   filter(str_detect(value, "/li/")) %>%
   distinct() %>%
+  mutate(value = str_replace(value, " ", "%20")) %>%
   pull(value)
 
 # Read in and combine all data
 pantries_data <- map_df(pantries_urls, import_food_pantry_data)
+
+# Geocode Data
+
+pantries_data_geocoded <- pantries_data %>%
+  mutate(address = glue("{street_address}, {city}, {state} {zip_code}")) %>%
+  geocode(address, method = "arcgis", lat = latitude, long = longitude) %>%  #osm misses 3 addresses
+  select(-address)
+pantries_data_sf <- pantries_data_geocoded %>%
+  mutate(category = "food bank/pantry") %>%
+  st_as_sf(coords = c("longitude", "latitude"), crs = 4326) %>%
+  st_intersection(sf_boundary) # restrict to just sf county
+
+# Do visual check
+# leaflet() %>%
+#   addProviderTiles(providers$CartoDB.Positron) %>%
+#   addPolygons(data = sf_boundary, fillOpacity = 0, opacity = 1, color = "#FFB55F", weight = 2) %>%
+#   addCircleMarkers(data = pantries_data_sf, fillColor = "#5F9AB6", color = "#5F9AB6", opacity = 1, fillOpacity = 0.7, weight = 1, radius = 2, label = ~name)
+
+
+# Save files
+
+write_rds(pantries_data_sf, "data/food_pantries.rds")
+
 
 
 
@@ -103,19 +137,74 @@ food_pharmacies <- tibble::tribble(
 # https://www.sfmfoodbank.org/find-food/
 # These are pop-up pantries
 
-# pop_up_pantries <-
+# prepare links
 
-pop_up_pantry_html <- read_html("https://foodlocator.sfmfoodbank.org/en/site/SPUP")
+pop_up_pantry_html <- read_html("https://www.sfmfoodbank.org/find-food/")
 
-pop_up_pantry_html %>%
-  html_element("h2") %>%
-  html_text2()
-%>%
+pop_up_pantry_links <- pop_up_pantry_html %>%
+  html_elements(".link") %>%
+  html_attr("href") %>%
   as_tibble() %>%
-  filter(str_detect(value, "Ellis"))
-  view()
-  str()
+  filter(value != "https://panda.sfmfoodbank.org/application") # doesn't contain address info
 
+# data is stored as javascript, need to use selenium to extract it
+rD <- rsDriver(browser = "chrome",
+         chromever = "90.0.4430.24")
+remDr <- remoteDriver(
+  remoteServerAddr = "localhost",
+  port = 4567L,
+  browserName = "chrome",
+)
+
+remDr$open()
+remDr$getStatus()
+
+pop_up_get_addr <- function(url) {
+  remDr$navigate(url)
+  Sys.sleep(3) # give selenium time to load all elements
+  siteElements <- remDr$findElements(using = "class", "text-nowrap")
+  street_address <- siteElements[[1]]$getElementText()
+  city_zip <- siteElements[[2]]$getElementText()
+  siteElements <- remDr$findElement(using = "css selector", "h2:not(.text-nowrap")
+  name <- siteElements$getElementText()
+
+  tibble(name = name, street_address = street_address, city_zip = city_zip)
+}
+
+siteElements <- remDr$findElement(using = "css selector", "h2:not(.text-nowrap")
+
+# grab data
+pop_up_addr <- map_df(pop_up_pantry_links$value, pop_up_get_addr)
+
+pop_up_data <- pop_up_addr %>%
+  unnest(cols = c(name, street_address, city_zip)) %>%
+  mutate(zip_code = str_trim(str_extract(city_zip, "[0-9]{5}")),
+         city = str_trim(str_extract(city_zip, "[^0-9]+"))) %>%
+  mutate(name = str_extract(name, "\\D+") %>%
+           str_sub(start = 3L)) %>%
+  mutate(category = "food bank/pantry") %>%
+  select(-city_zip) %>%
+  mutate(state = "CA")
+
+# geocode the addresses
+pop_up_data_geocoded <- pop_up_data %>%
+  mutate(address = glue("{street_address}, {city}, {state} {zip_code}")) %>%
+  geocode(address, method = "arcgis", lat = latitude, long = longitude) %>%  #osm misses 3 addresses
+  select(-address)
+
+pop_up_data_sf <- pop_up_data_geocoded %>%
+  mutate(category = "food bank/pantry") %>%
+  st_as_sf(coords = c("longitude", "latitude"), crs = 4326) %>%
+  st_intersection(sf_boundary) # restrict to just sf county
+
+# quick visual check
+# leaflet() %>%
+#   addProviderTiles(providers$CartoDB.Positron) %>%
+#   addPolygons(data = sf_boundary, fillOpacity = 0, opacity = 1, color = "#FFB55F", weight = 2) %>%
+#   addCircleMarkers(data = pop_up_data_sf, fillColor = "#5F9AB6", color = "#5F9AB6", opacity = 1, fillOpacity = 0.7, weight = 1, radius = 2, label = ~name)
+
+
+write_rds(pop_up_data_sf, "data/pop_up_pantries.rds")
 
 # Bay Area 211 ------------------------------------------------------------
 
@@ -123,10 +212,119 @@ pop_up_pantry_html %>%
 
 # Problem is the links are javascript
 
-bay_area_211_html <- read_html("https://www.211bayarea.org/sanfrancisco/food/food-programs/brown-bag-programs/")
+# can get links by going to the iframe's page
+bay_area_iframe_html <- read_html("https://www.icarol.info/Search.aspx?org=2339&Count=21&Search=Brown+Bag+Food+Programs&NameOnly=True&pst=All&sort=Proximity&TaxExact=False&Country=United%20States&StateProvince=CA&County=San%20Francisco")
 
-bay_area_211_html %>%
-  html_text()
+# extract links to each site
+bay_area_secondary_links <- bay_area_iframe_html %>%
+  html_elements(".DetailsHeaderBackground") %>%
+  html_children() %>%
+  html_attr("onclick") %>%
+  str_extract_between("open", "return") %>%
+  str_sub(start = 3L, end = -4L) %>%
+  str_replace_all(" ", "%20")
+
+# crawl across each top level link
+bay_area_crawl_agency <- function(url) {
+  print(url)
+  Sys.sleep(1)
+  agency_site <- tryCatch(
+    read_html(url),
+    error = function(e) e
+  )
+
+  if(!inherits(agency_site, "error")) {
+
+    agency_nums <- bay_area_sec_html_test %>%
+      html_elements("#Sites a") %>%
+      html_attr("id") %>%
+      str_extract("[0-9]+")
+
+    agency_resource_urls <- map_chr(agency_nums, ~glue("{url}&SiteResourceAgencyNum={.x}"))
+
+
+    map_df(agency_resource_urls, bay_area_get_addr)
+  } else {
+    tibble(name = NA,
+           street_address = NA,
+           city = NA,
+           zip_code = NA,
+           state = NA)
+  }
+}
+
+
+# extract data for site
+bay_area_get_addr <- function(url) {
+
+  site <- tryCatch(
+    read_html(url),
+    error = function(e) e
+  )
+
+  if(!inherits(site, "error")) {
+    address <- site %>%
+      html_elements("#lblAgencyPhysicalAddress") %>%
+      html_text2()
+
+
+    street_address <- address %>%
+      str_extract_before("\\n")
+
+
+    city <- address %>%
+      str_extract_after("\\n\\n") %>%
+      str_extract_before(",") %>%
+      str_trim()
+
+    zip_code <- address %>%
+      str_extract("[0-9]{5}")
+
+    state <- "CA"
+
+    name <- site %>%
+      html_elements("#hlLinkToParentAgency") %>%
+      html_text() %>%
+      str_extract_after("Agency: ") %>%
+      str_to_title()
+
+    tibble(name = name,
+           street_address = street_address,
+           city = city,
+           zip_code = zip_code,
+           state = state)
+
+  } else {
+    tibble(name = NA,
+           street_address = NA,
+           city = NA,
+           zip_code = NA,
+           state = NA)
+  }
+}
+
+full_bay_area_data <- map_df(bay_area_secondary_links, bay_area_crawl_agency)
+
+# geocode
+full_bay_area_data_geocoded <- full_bay_area_data %>%
+  distinct() %>%
+  mutate(address = glue("{street_address}, {city}, {state} {zip_code}")) %>%
+  geocode(address, method = "arcgis", lat = latitude, long = longitude) %>%  #osm misses 3 addresses
+  select(-address)
+
+full_bay_area_data_sf <- full_bay_area_data_geocoded %>%
+  mutate(category = NA) %>%
+  st_as_sf(coords = c("longitude", "latitude"), crs = 4326) #%>%
+  #st_intersection(sf_boundary) none of locations actually in sf county
+
+# Do a visual check
+# leaflet() %>%
+#   addProviderTiles(providers$CartoDB.Positron) %>%
+#   addPolygons(data = sf_boundary, fillOpacity = 0, opacity = 1, color = "#FFB55F", weight = 2) %>%
+#   addCircleMarkers(data = full_bay_area_data_sf, fillColor = "#5F9AB6", color = "#5F9AB6", opacity = 1, fillOpacity = 0.7, weight = 1, radius = 2, label = ~name)
+
+
+write_rds(full_bay_area_data_sf, "data/bay-area-211.rds")
 
 # Food-related registered businesses ---------------------------------------------------------
 
@@ -156,17 +354,38 @@ food_services %>% count(lic_code_description) %>% View()
 # I downloaded Location-Details-20210419213426948.txt from the website above
 # I don't know how to read in the crazy txt file it gives me
 
-snap_stores <- read_tsv("data-raw/Location-Details-20210419213426948.txt")
+# pulled data from https://www.fns.usda.gov/snap/retailer-locator, it's much cleaner
 
-snap_stores %>%
-  # Drop extra variable name rows
-  slice(-(1:2)) %>%
-  set_names("store_info") %>%
-  filter(str_detect(store_info, "Francisco"))
-  separate(store_info, into = c("name", "street_address"),
-           sep = "")
+snap_stores_usda <- vroom::vroom("data-raw/SNAP_Store_Locations.csv")
+
+snap_stores_usda_sf <- snap_stores_usda %>%
+  filter(Latitude > 37.613902, # do a quick filter before clipping
+         Latitude < 38.678556,
+         Longitude < -122.069397) %>%
+  rename(name = Store_Name,
+         street_address = Address,
+         city = City,
+         state = State,
+         zip_code = Zip5,
+         lon = Longitude,
+         lat = Latitude) %>%
+  mutate(category = NA) %>%
+  select(-County, -X, -Y, -Zip4, -ObjectId, -Address_Line__2) %>%
+  st_as_sf(coords = c("lon", "lat"), crs = 4326) %>%
+  st_intersection(sf_boundary)
+
+write_rds(snap_stores_usda_sf, "data/snap_stores.rds")
 
 
+# quick visual check
+# leaflet() %>%
+#   addProviderTiles(providers$CartoDB.Positron) %>%
+#   addPolygons(data = sf_boundary, fillOpacity = 0, opacity = 1, color = "#FFB55F", weight = 2) %>%
+#   addCircleMarkers(data = snap_stores_usda_sf, fillColor = "#5F9AB6", color = "#5F9AB6", opacity = 1, fillOpacity = 0.7, weight = 1, radius = 2, label = ~name)
+
+
+
+snap_stores_usda
 
 # WIC Stores --------------------------------------------------------------
 
