@@ -71,7 +71,7 @@ restaurant_q <- getbb("San Francisco") %>%
   add_osm_feature("amenity", "restaurant") %>%
   osmdata_sf()
 
-restaurants <- restaurant_q$osm_points %>%
+restaurants <- restaurant_q$osm_polygons %>%
   st_intersection(sf_boundary) %>%  # the convenience store query includes some from outside of the city, so this limits the data to only places in SF
   st_centroid()
 
@@ -94,7 +94,7 @@ fastfood_q <- getbb("San Francisco") %>%
   add_osm_feature("amenity", "fast_food") %>%
   osmdata_sf()
 
-fast_food <- fastfood_q$osm_points %>%
+fast_food <- fastfood_q$osm_polygons %>%
   st_intersection(sf_boundary) %>%  # the convenience store query includes some from outside of the city, so this limits the data to only places in SF
   st_centroid()
 
@@ -109,3 +109,28 @@ leaflet() %>%
   addCircleMarkers(data = fast_food_clean, fillColor = "#5F9AB6", color = "#5F9AB6", opacity = 1, fillOpacity = 0.7, weight = 1, radius = 2, label = ~htmlEscape(name))
 
 write_rds(fast_food_clean, "data/fast_food_osm.rds")
+
+
+# Farmers market query
+
+market_q <- getbb("San Francisco") %>%
+  opq() %>%
+  add_osm_feature("amenity", "marketplace") %>%
+  osmdata_sf()
+
+markets <- market_q$osm_polygons %>%
+  st_intersection(sf_boundary) %>%  # the convenience store query includes some from outside of the city, so this limits the data to only places in SF
+  st_centroid()
+
+markets_clean <- markets %>%
+  transmute(osm_id, name, housenumber = addr.housenumber, street = addr.street, city = "San Francisco", state = "CA", business_type = "market") %>%
+  drop_na(name)
+
+# visually check data
+
+leaflet() %>%
+  addProviderTiles(providers$CartoDB.Positron) %>%
+  addPolygons(data = sf_boundary, fillOpacity = 0, opacity = 1, color = "#FFB55F", weight = 2) %>%
+  addCircleMarkers(data = markets_clean, fillColor = "#5F9AB6", color = "#5F9AB6", opacity = 1, fillOpacity = 0.7, weight = 1, radius = 2, label = ~htmlEscape(name))
+
+write_rds(markets_clean, "data/markets_osm.rds")
