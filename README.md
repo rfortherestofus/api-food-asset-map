@@ -1,9 +1,3 @@
----
-editor_options: 
-  markdown: 
-    wrap: 72
----
-
 # API Community Food Asset Mapping Project
 
 This repository holds the code for a project developing a map of food
