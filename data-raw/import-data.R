@@ -130,6 +130,25 @@ food_pharmacies <- tibble::tribble(
            into = c("state", "zip_code"),
            sep = " ")
 
+# geocode the data
+food_pharmacies_geocoded <- food_pharmacies %>%
+  mutate(address = glue("{street_address}, {city}, {state} {zip_code}")) %>%
+  geocode(address, method = "arcgis", lat = latitude, long = longitude) %>%
+  select(-address)
+
+food_pharmacies_sf <- food_pharmacies_geocoded %>%
+  st_as_sf(coords = c("longitude", "latitude"), crs = 4326) %>%
+  mutate(category = "food pharmacy") # don't need to clip, already all in sf
+
+
+# quick visual check
+# leaflet() %>%
+#   addProviderTiles(providers$CartoDB.Positron) %>%
+#   addPolygons(data = sf_boundary, fillOpacity = 0, opacity = 1, color = "#FFB55F", weight = 2) %>%
+#   addCircleMarkers(data = food_pharmacies_sf, fillColor = "#5F9AB6", color = "#5F9AB6", opacity = 1, fillOpacity = 0.7, weight = 1, radius = 2, label = ~name)
+
+write_rds(food_pharmacies_sf, "data/food_pharmacies.rds")
+
 
 # SF Marin Food Bank ------------------------------------------------------
 
@@ -380,7 +399,7 @@ snap_stores_usda_sf <- snap_stores_usda %>%
          zip_code = Zip5,
          lon = Longitude,
          lat = Latitude) %>%
-  mutate(category = NA) %>%
+  mutate(category = "snap/wic") %>%
   select(-County, -X, -Y, -Zip4, -ObjectId, -Address_Line__2) %>%
   st_as_sf(coords = c("lon", "lat"), crs = 4326) %>%
   st_intersection(sf_boundary)
@@ -395,8 +414,6 @@ write_rds(snap_stores_usda_sf, "data/snap_stores.rds")
 #   addCircleMarkers(data = snap_stores_usda_sf, fillColor = "#5F9AB6", color = "#5F9AB6", opacity = 1, fillOpacity = 0.7, weight = 1, radius = 2, label = ~name)
 
 
-
-snap_stores_usda
 
 # WIC Stores --------------------------------------------------------------
 
@@ -430,7 +447,23 @@ wic_stores <- wic_stores_html %>%
   mutate(city = "San Francisco",
          state = "CA")
 
+wic_stores_geocoded <- wic_stores %>%
+  mutate(address = glue("{street_address}, {city}, {state} {zip_code}")) %>%
+  geocode(address, method = "arcgis", lat = latitude, long = longitude) %>%  #osm misses 3 addresses
+  select(-address)
 
+wic_stores_sf <- wic_stores_geocoded %>%
+  mutate(category = "snap/wic") %>%
+  st_as_sf(coords = c("longitude", "latitude"), crs = 4326) #%>%
+  #st_intersection(sf_boundary) locations already in sf county
+
+# Do a visual check
+# leaflet() %>%
+#   addProviderTiles(providers$CartoDB.Positron) %>%
+#   addPolygons(data = sf_boundary, fillOpacity = 0, opacity = 1, color = "#FFB55F", weight = 2) %>%
+#   addCircleMarkers(data = wic_stores_sf, fillColor = "#5F9AB6", color = "#5F9AB6", opacity = 1, fillOpacity = 0.7, weight = 1, radius = 2, label = ~name)
+
+write_rds(wic_stores_sf, "data/wic_stores.rds")
 
 # Farmers Markets ---------------------------------------------------------
 
@@ -473,3 +506,5 @@ farmers_markets <- tibble(
   street_address = farmers_market_addresses,
   zip_code = farmers_market_zips
 )
+
+
