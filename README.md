@@ -28,8 +28,8 @@ Each object should be saved as an RDS file with the following variables:
 -   city
 -   state
 -   zip_code
--   lon
--   lat
+
+The object should be geocoded with a geometry column to hold that data. 
 
 ### Food Resources
 
