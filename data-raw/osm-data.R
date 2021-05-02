@@ -29,15 +29,25 @@ supermarkets <- supermarket_q$osm_polygons %>%
   st_intersection(sf_boundary) %>% # the supermarket query includes some from outside of the city, so this limits the data to only supermarkets in SF
   st_centroid()
 
+
+supermarkets_pts <- supermarket_q$osm_points %>%
+  st_intersection(sf_boundary) %>% # the supermarket query includes some from outside of the city, so this limits the data to only supermarkets in SF
+  st_centroid()
+
+
+
 supermarkets_clean <- supermarkets %>%
-  transmute(osm_id, name, housenumber = addr.housenumber, street = addr.street, zip = addr.postcode, city = "San Francisco", state = "CA", business_type = "supermarket")
+  transmute(osm_id, name, housenumber = addr.housenumber, street = addr.street, zip = addr.postcode, city = "San Francisco", state = "CA", business_type = "supermarket") %>%
+  rbind(supermarkets_pts %>%
+          transmute(osm_id, name, housenumber = addr.housenumber, street = addr.street, zip = addr.postcode, city = "San Francisco", state = "CA", business_type = "supermarket")) %>%
+  drop_na(name)
 
 # visually check data
 
 leaflet() %>%
   addProviderTiles(providers$CartoDB.Positron) %>%
   addPolygons(data = sf_boundary, fillOpacity = 0, opacity = 1, color = "#FFB55F", weight = 2) %>%
-  addPolygons(data = supermarkets_clean, fillColor = "#840651", color = "#840651", opacity = 1, fillOpacity = 0.7, weight = 1, label = ~htmlEscape(name))
+  addCircleMarkers(data = supermarkets_clean, fillColor = "#840651", color = "#840651", opacity = 1, fillOpacity = 0.7, weight = 1, label = ~htmlEscape(name), radius = 2)
 
 write_rds(supermarkets_clean, "data/supermarkets.rds")
 
