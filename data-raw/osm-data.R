@@ -92,8 +92,15 @@ restaurants <- restaurant_q$osm_polygons %>%
   st_intersection(sf_boundary) %>%  # the convenience store query includes some from outside of the city, so this limits the data to only places in SF
   st_centroid()
 
+restaurants_pts <- restaurant_q$osm_points %>%
+  st_intersection(sf_boundary) %>%  # the convenience store query includes some from outside of the city, so this limits the data to only places in SF
+  st_centroid()
+
 restaurants_clean <- restaurants %>%
-  transmute(osm_id, name, housenumber = addr.housenumber, street = addr.street, zip = addr.postcode, city = "San Francisco", state = "CA", business_type = "restaurant")
+  transmute(osm_id, name, housenumber = addr.housenumber, street = addr.street, zip = addr.postcode, city = "San Francisco", state = "CA", business_type = "restaurant") %>%
+  rbind(restaurants_pts %>%
+          transmute(osm_id, name, housenumber = addr.housenumber, street = addr.street, zip = addr.postcode, city = "San Francisco", state = "CA", business_type = "restaurant")) %>%
+  drop_na(name)
 
 # visually check data
 
@@ -115,8 +122,15 @@ fast_food <- fastfood_q$osm_polygons %>%
   st_intersection(sf_boundary) %>%  # the convenience store query includes some from outside of the city, so this limits the data to only places in SF
   st_centroid()
 
+fast_food_pts <- fastfood_q$osm_points %>%
+  st_intersection(sf_boundary) %>%  # the convenience store query includes some from outside of the city, so this limits the data to only places in SF
+  st_centroid()
+
 fast_food_clean <- fast_food %>%
-  transmute(osm_id, name, housenumber = addr.housenumber, street = addr.street, zip = addr.postcode, city = "San Francisco", state = "CA", business_type = "fast food")
+  transmute(osm_id, name, housenumber = addr.housenumber, street = addr.street, zip = addr.postcode, city = "San Francisco", state = "CA", business_type = "fast food") %>%
+  rbind(fast_food_pts %>%
+          transmute(osm_id, name, housenumber = addr.housenumber, street = addr.street, zip = addr.postcode, city = "San Francisco", state = "CA", business_type = "fast food")) %>%
+  drop_na(name)
 
 # visually check data
 
@@ -139,8 +153,14 @@ markets <- market_q$osm_polygons %>%
   st_intersection(sf_boundary) %>%  # the convenience store query includes some from outside of the city, so this limits the data to only places in SF
   st_centroid()
 
+markets_pts <- market_q$osm_points %>%
+  st_intersection(sf_boundary) %>%  # the convenience store query includes some from outside of the city, so this limits the data to only places in SF
+  st_centroid()
+
 markets_clean <- markets %>%
   transmute(osm_id, name, housenumber = addr.housenumber, street = addr.street, city = "San Francisco", state = "CA", business_type = "market") %>%
+  rbind(markets_pts %>%
+          transmute(osm_id, name, housenumber = addr.housenumber, street = addr.street, city = "San Francisco", state = "CA", business_type = "market")) %>%
   drop_na(name)
 
 # visually check data
