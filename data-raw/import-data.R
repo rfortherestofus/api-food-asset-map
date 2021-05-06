@@ -532,10 +532,37 @@ prepared_food_sf <- prepared_food_geocoded %>%
   #st_intersection(sf_boundary) locations already in sf county
 
 # Do a visual check
-leaflet() %>%
-  addProviderTiles(providers$CartoDB.Positron) %>%
-  addPolygons(data = sf_boundary, fillOpacity = 0, opacity = 1, color = "#FFB55F", weight = 2) %>%
-  addCircleMarkers(data = prepared_food_sf, fillColor = "#5F9AB6", color = "#5F9AB6", opacity = 1, fillOpacity = 0.7, weight = 1, radius = 2, label = ~name)
+# leaflet() %>%
+#   addProviderTiles(providers$CartoDB.Positron) %>%
+#   addPolygons(data = sf_boundary, fillOpacity = 0, opacity = 1, color = "#FFB55F", weight = 2) %>%
+#   addCircleMarkers(data = prepared_food_sf, fillColor = "#5F9AB6", color = "#5F9AB6", opacity = 1, fillOpacity = 0.7, weight = 1, radius = 2, label = ~name)
 
 write_rds(prepared_food_sf, "data/prepared_food.rds")
+
+# Food Banks ---------------------------------------------------------
+
+# manually enter data
+food_banks <- tibble::tribble(~name, ~street_address, ~city, ~state, ~zip_code,
+                "San Francisco-Marin Food Bank", "900 Pennsylvania Ave", "San Francisco", "CA", "94107",
+                "Food Runners", "2579 Washington St", "San Francisco", "CA", "94115",
+                "Free the Need", "827 Joost Ave", "San Francisco", "CA", "94127",
+                "San Francisco-Marin Food Bank-Illinois Warehouse", "1050 Marin St", "San Francisco", "CA", "94124") %>%
+  mutate(category = "Food Bank")
+
+# geocode
+food_banks_geocoded <- food_banks  %>%
+  mutate(address = glue("{street_address}, {city}, {state} {zip_code}")) %>%
+  geocode(address, method = "arcgis", lat = latitude, long = longitude) %>%
+  select(-address)
+
+food_banks_sf <- food_banks_geocoded %>%
+  st_as_sf(coords = c("longitude", "latitude"), crs = 4326)
+
+# Do a visual check
+# leaflet() %>%
+#   addProviderTiles(providers$CartoDB.Positron) %>%
+#   addPolygons(data = sf_boundary, fillOpacity = 0, opacity = 1, color = "#FFB55F", weight = 2) %>%
+#   addCircleMarkers(data = food_banks_sf, fillColor = "#5F9AB6", color = "#5F9AB6", opacity = 1, fillOpacity = 0.7, weight = 1, radius = 2, label = ~name)
+
+write_rds(food_banks_sf, "data/food_banks.rds")
 
