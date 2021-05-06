@@ -88,8 +88,7 @@ pantries_data_geocoded <- pantries_data %>%
   select(-address)
 pantries_data_sf <- pantries_data_geocoded %>%
   mutate(category = "food bank/pantry") %>%
-  st_as_sf(coords = c("longitude", "latitude"), crs = 4326) %>%
-  st_intersection(sf_boundary) # restrict to just sf county
+  st_as_sf(coords = c("longitude", "latitude"), crs = 4326)
 
 # Do visual check
 # leaflet() %>%
@@ -343,7 +342,7 @@ full_bay_area_data_sf <- full_bay_area_data_geocoded %>%
 #   addCircleMarkers(data = full_bay_area_data_sf, fillColor = "#5F9AB6", color = "#5F9AB6", opacity = 1, fillOpacity = 0.7, weight = 1, radius = 2, label = ~name)
 
 
-write_rds(full_bay_area_data_sf, "data/bay-area-211.rds")
+write_rds(full_bay_area_data_sf, "data/bay_area_211.rds")
 
 # Food-related registered businesses ---------------------------------------------------------
 
