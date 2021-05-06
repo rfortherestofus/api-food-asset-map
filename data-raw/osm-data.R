@@ -171,3 +171,17 @@ leaflet() %>%
   addCircleMarkers(data = markets_clean, fillColor = "#5F9AB6", color = "#5F9AB6", opacity = 1, fillOpacity = 0.7, weight = 1, radius = 2, label = ~htmlEscape(name))
 
 write_rds(markets_clean, "data/markets_osm.rds")
+
+
+## Ethnic food markets
+
+japan_q <- getbb("San Francisco") %>%
+  opq() %>%
+  add_osm_feature("cuisine", "japanese") %>%
+  osmdata_sf()
+
+japanese_pts <- japan_q$osm_points
+
+supermarkets %>%
+  st_set_geometry(NULL) %>%
+  semi_join(japanese_pts %>% st_set_geometry(NULL), by = "osm_id")
