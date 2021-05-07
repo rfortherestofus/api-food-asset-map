@@ -172,6 +172,35 @@ leaflet() %>%
 
 write_rds(markets_clean, "data/markets_osm.rds")
 
+# Drugstore query
+
+drugstore_q <- getbb("San Francisco") %>%
+  opq() %>%
+  add_osm_feature("amenity", "pharmacy") %>% # drugstore is deprecated, chemist returns subset of these results
+  osmdata_sf()
+
+drugstores <- drugstore_q$osm_polygons %>%
+  st_intersection(sf_boundary) %>%  # the convenience store query includes some from outside of the city, so this limits the data to only places in SF
+  st_centroid()
+
+drugstores_pts <- drugstore_q$osm_points %>%
+  st_intersection(sf_boundary) %>%  # the convenience store query includes some from outside of the city, so this limits the data to only places in SF
+  st_centroid()
+
+drugstores_clean <- drugstores %>%
+  transmute(osm_id, name, housenumber = addr.housenumber, street = addr.street, city = "San Francisco", state = "CA", business_type = "drugstore") %>%
+  rbind(drugstores_pts %>%
+          transmute(osm_id, name, housenumber = addr.housenumber, street = addr.street, city = "San Francisco", state = "CA", business_type = "drugstore")) %>%
+  drop_na(name)
+
+leaflet() %>%
+  addProviderTiles(providers$CartoDB.Positron) %>%
+  addPolygons(data = sf_boundary, fillOpacity = 0, opacity = 1, color = "#FFB55F", weight = 2) %>%
+  addCircleMarkers(data = drugstores_clean, fillColor = "#5F9AB6", color = "#5F9AB6", opacity = 1, fillOpacity = 0.7, weight = 1, radius = 2, label = ~htmlEscape(name))
+
+write_rds(drugstores_clean, "data/drugstores_clean.rds")
+
+
 
 ## Ethnic food markets
 

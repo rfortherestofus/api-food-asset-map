@@ -3,6 +3,8 @@ library(leaflet)
 library(leafem)
 library(tigris)
 library(here)
+library(sf)
+library(janitor)
 
 ## Colorscheme
 
