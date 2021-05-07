@@ -1,4 +1,4 @@
-data_files <- list.files(path = "data/")
+
 
 # is there a difference between food banks and food pantries?
 
@@ -19,3 +19,12 @@ data_files <- list.files(path = "data/")
 
 
 # updates by the end of the week
+
+demographics <- read_rds(("data/api_neighborhood_data.rds"))
+
+convenience_stores <- read_rds("data/convenience_stores_osm.rds") %>%
+  st_join(demographics %>% select(nhood)) %>%
+  mutate(type = "Convenience store")
+food_pantries <- read_rds("data/food_pantries.rds") %>%
+  st_join(demographics %>% select(nhood)) %>%
+  mutate(type = "Food pantry")
