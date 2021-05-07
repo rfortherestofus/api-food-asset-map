@@ -198,4 +198,4 @@ leaflet() %>%
   addPolygons(data = sf_boundary, fillOpacity = 0, opacity = 1, color = "#FFB55F", weight = 2) %>%
   addCircleMarkers(data = drugstores_clean, fillColor = "#5F9AB6", color = "#5F9AB6", opacity = 1, fillOpacity = 0.7, weight = 1, radius = 2, label = ~htmlEscape(name))
 
-write_rds(drugstores_clean, "data/drugstores_clean.rds")
+write_rds(drugstores_clean, "data/drugstores_osm.rds")
