@@ -15,5 +15,4 @@ LaTeX: pdfLaTeX
 AutoAppendNewline: Yes
 StripTrailingWhitespace: Yes
 
-BuildType: Website
-WebsitePath: website
+BuildType: None
