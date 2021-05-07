@@ -33,11 +33,11 @@ file_category_map <- tribble(~name, ~category,
         "food_banks", "Food Bank",
         "food_pantries", "Food Pantry",
         "food_pharmacies", "Food Pharmacy",
-        "pop_up_pantries", "Food Pantries",
-        "prepared_food", "Offers Free, Prepared Food/Hot Meal",
-        "restaurants_osm", "Restaurants",
+        "pop_up_pantries", "Food Pantry",
+        "prepared_food", "Offers Free, Prepared Food or Hot Meals",
+        "restaurants_osm", "Restaurant",
         "snap_stores", "Accepts SNAP",
-        "supermarkets", "Supermarkets",
+        "supermarkets", "Supermarket",
         "wic_stores", "Accepts WIC") %>%
   mutate(full_path = glue("data/{name}.rds"))
 
@@ -55,8 +55,7 @@ data_files_fixed <- data_files %>%
 
 Encoding(data_files_fixed$name) <- "UTF-8"
 data_enc <- data_files_fixed %>%
-  mutate(name = iconv(data_files_fixed$name, "UTF-8", "UTF-8",sub='')) %>%
-  distinct() # remove easy duplicates
+  mutate(name = iconv(data_files_fixed$name, "UTF-8", "UTF-8",sub=''))# remove easy duplicates
 
 
 
@@ -67,8 +66,6 @@ data_enc <- data_files_fixed %>%
 #   addCircleMarkers(data = data_enc, fillColor = "#5F9AB6", color = "#5F9AB6", opacity = 1, fillOpacity = 0.7, weight = 1, radius = 2, label = ~htmlEscape(name))
 
 write_rds(data_enc, "data/full_dataset.rds")
-
-write_rds(data_enc)
 
 # # reverse geocoding
 # convenience_stores_osm <- readRDS("data/convenience_stores_osm.rds")
