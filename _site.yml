@@ -1,0 +1,35 @@
+name: "website"
+title: "API Food Assets Map"
+theme: api-theme.css
+description: |
+  API Food Assets Map
+output_dir: "website"
+navbar:
+  logo: assets/api_logo.png
+  right:
+    - text: "Home"
+      href: index.html
+    - text: "Neighborhoods"
+      href: #
+      menu:
+        - text: "Bayview Hunters Point"
+          href: #
+        - text: "Chinatown"
+          href: #
+        - text: "Excelsior"
+          href: #
+        - text: "Japantown"
+          href: #
+        - text: "Richmond"
+          href: #
+        - text: "SOMA"
+          href: #
+        - text: "Sunset"
+          href: #
+        - text: "Tenderloin"
+          href: #
+        - text: "Visitacion Valley"
+          href: #
+    - text: "Contact"
+      href: #
+output: distill::distill_article

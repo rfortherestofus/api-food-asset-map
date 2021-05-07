@@ -198,4 +198,19 @@ leaflet() %>%
   addPolygons(data = sf_boundary, fillOpacity = 0, opacity = 1, color = "#FFB55F", weight = 2) %>%
   addCircleMarkers(data = drugstores_clean, fillColor = "#5F9AB6", color = "#5F9AB6", opacity = 1, fillOpacity = 0.7, weight = 1, radius = 2, label = ~htmlEscape(name))
 
-write_rds(drugstores_clean, "data/drugstores_osm.rds")
+write_rds(drugstores_clean, "data/drugstores_clean.rds")
+
+
+
+## Ethnic food markets
+
+japan_q <- getbb("San Francisco") %>%
+  opq() %>%
+  add_osm_feature("cuisine", "japanese") %>%
+  osmdata_sf()
+
+japanese_pts <- japan_q$osm_points
+
+supermarkets %>%
+  st_set_geometry(NULL) %>%
+  semi_join(japanese_pts %>% st_set_geometry(NULL), by = "osm_id")

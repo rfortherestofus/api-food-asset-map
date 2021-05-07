@@ -1,0 +1,1428 @@
+LOCATION     ADDRESS         LOCATION Daily     Cashback   SURCHARG          DISTANCE               
+NAME                         TYPE     Cash      Limit      E                                        
+--------     --------------- -------- -------------------- ----------        --------               
+Castro       Redwood Rd      FM       -         -          -                     1.02               
+Valley       Castro Valley,                                                      Miles              
+Farmers'     CA 94546                                                                               
+                                                                                                    
+Annas Nail   19172 Redwood   ATM      $300.00   -          $1.00                 2.24               
+             Rd Castro                                                           Miles              
+             Valley, CA                                                                             
+                                                                                                    
+Bonfare      19125 Redwood   ATM      $300.00   -          $3.00                 2.25               
+Mark-173     Rd Castro                                                           Miles              
+             Valley, CA                                                                             
+Bonfare      19125 Redwood   FOOD     -         -          -                     2.25               
+Market #8    Rd Castro                                                           Miles              
+             Valley, CA                                                                             
+                                                                                                    
+Al's Food    3550 Somerset   FOOD     -         -          -                     2.61               
+Market       Ave Castro                                                          Miles              
+             Valley, CA                                                                             
+                                                                                                    
+Dig Deep     2700 Fairmont   FOOD     -         -          -                     2.77               
+Farms Food   Dr San Leandro,                                                     Miles              
+Hub          CA 94578                                                                               
+                                                                                                    
+Cardtronics  2500 Fairmont   ATM      $300.00   -          $3.00                 2.83               
+C2st         Dr San Leandro,                                                     Miles              
+             CA 94578                                                                               
+                             ATM                           $3.00                                    
+Pai Iso      3501 Village Dr          $300.00   -                                2.94               
+             Castro Valley,                                                      Miles              
+             CA 94546                                                                               
+Fremont Bank 20103 Lake      ATM      $600.00   -          Free                  2.94               
+             Chabot Rd                                                           Miles              
+             Castro Valley,                                                                         
+                                                                                                    
+Loards Ice   3389 Village Dr ATM      $300.00   -          $2.50                 2.97               
+             Castro Valley,                                                      Miles              
+             CA 94546                                                                               
+
+
+             3389 Village Dr ATM                                                                    
+             Castro Valley,                                                                         
+             CA 94546                                                                               
+                                                                                                    
+Safeway      20629 Redwood   FOOD     -         $200.00    Free                  2.97               
+             Rd Castro                                                           Miles              
+             Valley, CA                                                                             
+                                                                                                    
+U.S. Bank    20629 Redwood   ATM      $1,000.0  -          Free                  2.97               
+             Rd Castro                0                                          Miles              
+             Valley, CA                                                                             
+Dollar Tree  3180 Castro     FOOD     -         -          -                     2.99               
+#7980        Valley Blvd                                                         Miles              
+             Castro Valley,                                                                         
+                                                                                                    
+Dollar Tree  3180 Castro     CASHONLY -         $50.00     Free                  2.99               
+#7980        Valley Blvd                                                         Miles              
+             Castro Valley,                                                                         
+                                                                                                    
+Bank Of The  3396 Castro     ATM      $1,200.0  -          Free                  3.0                
+West         Valley Blvd              0                                          Miles              
+             Castro Valley,                                                                         
+                                                                                                    
+Wells Fargo  20650 Redwood   ATM      $1,000.0  -          Free                  3.0                
+Bank         Rd Castro                0                                          Miles              
+             Valley, CA                                                                             
+                                                                                                    
+Walgreens    3382 Castro     ATM      $300.00   -          $3.25                 3.0                
+             Valley Blvd                                                         Miles              
+             Castro Valley,                                                                         
+Walgreens    3382 Castro     FOOD     -         $100.00    Free                  3.0                
+             Valley Blvd                                                         Miles              
+             Castro Valley,                                                                         
+                                                                                                    
+Valley       5285 Crow       FOOD     -         -          -                     3.0                
+Convenient   Canyon Rd                                                           Miles              
+Mini Mart    Castro Valley,                                                                         
+                                                                                                    
+                                                           Free                  3.01               
+                                                                                 Miles              
+
+
+Citibank     3288 Castro     ATM      $1,000.0  -                                                   
+             Valley Blvd              0                                                             
+             Castro Valley,                                                                         
+                                                                                                    
+Wells Fargo  3500 Castro     ATM      $1,000.0  -          Free                  3.02               
+Bank         Valley Blvd              0                                          Miles              
+             Castro Valley,                                                                         
+                                                                                                    
+Japmun       2920 Castro     ATM      $300.00   -          $3.49                 3.04               
+Servi-197    Valley Blvd                                                         Miles              
+             Castro Valley,                                                                         
+1st United   3365 Castro     ATM      $500.00   -          $3.00                 3.04               
+Credit Union Valley Blvd                                                         Miles              
+             Castro Valley,                                                                         
+                                                                                                    
+Chase        3449 Castro     ATM      $1,000.0  -          Free                  3.04               
+             Valley Blvd              0                                          Miles              
+             Castro Valley,                                                                         
+                                                                                                    
+Chevron      3495 Castro     ATM      $300.00   -          $2.00                 3.05               
+Extr-165     Valley Blvd                                                         Miles              
+             Castro Valley,                                                                         
+                                                                                                    
+Mei Mei      3223 Castro     FOOD     -         -          -                     3.05               
+Chinese      Valley Blvd                                                         Miles              
+Market       Castro Valley,                                                                         
+                                                                                                    
+Castro       3295 Castro     FOOD     -         -          -                     3.05               
+Valley       Valley Blvd                                                         Miles              
+Natural      Castro Valley,                                                                         
+Fremont Bank 3549 Castro     ATM      $600.00   -          Free                  3.06               
+             Valley Blvd                                                         Miles              
+             Castro Valley,                                                                         
+                                                                                                    
+Castro       3519 Castro     ATM      $300.00   -          $3.00                 3.06               
+Valle-181    Valley Blvd                                                         Miles              
+             Castro Valley,                                                                         
+                                                                                                    
+                                                           $2.00                 3.07               
+                                                                                 Miles              
+
+
+Anna Nails   2872 Castro     ATM      $300.00   -                                                   
+             Valley Blvd                                                                            
+             Castro Valley,                                                                         
+                                                                                                    
+Bank Of      3067 Castro     ATM      $1,000.0  -          Free                  3.07               
+America      Valley Blvd              0                                          Miles              
+             Castro Valley,                                                                         
+                                                                                                    
+Lucky        3443 Castro     FOOD     -         $200.00    Free                  3.09               
+             Valley Blvd                                                         Miles              
+             Castro Valley,                                                                         
+Bank Of      3443 Castro     ATM      $1,000.0  -          Free                  3.09               
+America      Valley Blvd              0                                          Miles              
+             Castro Valley,                                                                         
+                                                                                                    
+King Market  20892 Redwood   ATM      $300.00   -          $2.50                 3.09               
+-358         Rd Castro                                                           Miles              
+             Valley, CA                                                                             
+                                                                                                    
+Arco Ampm    2770 Castro     ATM      $300.00   -          $3.00                 3.11               
+             Valley Blvd                                                         Miles              
+             Castro Valley,                                                                         
+                                                                                                    
+Papa         20895 Redwood   FOOD     -         -          -                     3.11               
+Murphy's     Rd Castro                                                           Miles              
+#234         Valley, CA                                                                             
+                                                                                                    
+European     20912 Redwood   FOOD     -         -          -                     3.12               
+Market Deli  Rd Castro                                                           Miles              
+And Cafe     Valley, CA                                                                             
+CVS          3667 Castro     ATM      $300.00   -          $3.00                 3.14               
+             Valley Blvd                                                         Miles              
+             Castro Valley,                                                                         
+                                                                                                    
+CVS Pharmacy 3667 Castro     FOOD     -         $35.00     Free                  3.14               
+             Valley Blvd                                                         Miles              
+             Castro Valley,                                                                         
+                                                                                                    
+                                                           $3.25                 3.14               
+                                                                                 Miles              
+
+
+Rite Aid     3848 Castro     ATM      $300.00   -                                                   
+#5922        Valley Blvd                                                                            
+             Castro Valley,                                                                         
+                                                                                                    
+Rite Aid     3848 Castro     FOOD     -         $100.00    Free                  3.14               
+             Valley Blvd                                                         Miles              
+             Castro Valley,                                                                         
+                                                                                                    
+Pai Iso      3848 Castro     ATM      $300.00   -          $3.25                 3.14               
+             Valley Blvd                                                         Miles              
+             Castro Valley,                                                                         
+Kroger       20757 Lake      ATM      $300.00   -          $3.00                 3.15               
+             Chabot Rd                                                           Miles              
+             Castro Valley,                                                                         
+                                                                                                    
+Quik Stop    20757 Lake      FOOD     -         $40.00     Free                  3.15               
+Market       Chabot Rd                                                           Miles              
+             Castro Valley,                                                                         
+                                                                                                    
+Mediterranea 16254 Foothill  FOOD     -         -          -                     3.16               
+n  Market    Blvd San                                                            Miles              
+#16254       Leandro, CA                                                                            
+                                                                                                    
+Terrace Ma   16250 Foothill  ATM      $300.00   -          $2.50                 3.16               
+             Blvd San                                                            Miles              
+             Leandro, CA                                                                            
+                                                                                                    
+Terrace      16250 Foothill  FOOD     -         -          -                     3.16               
+Market       Blvd San                                                            Miles              
+             Leandro, CA                                                                            
+Lucas Mini   16258 Foothill  ATM      $300.00   -          $3.00                 3.16               
+             Blvd San                                                            Miles              
+             Leandro, CA                                                                            
+                                                                                                    
+Lucas        16258 Foothill  FOOD     -         -          -                     3.16               
+Liquors      Blvd San                                                            Miles              
+             Leandro, CA                                                                            
+                                                                                                    
+                                                           $3.50                 3.17               
+                                                                                 Miles              
+
+
+National P   16210 Foothill  ATM      $300.00   -                                                   
+             Blvd San                                                                               
+             Leandro, CA                                                                            
+                                                                                                    
+Chevron Fo   16304 Foothill  ATM      $300.00   -          $2.99                 3.18               
+             Blvd San                                                            Miles              
+             Leandro, CA                                                                            
+                                                                                                    
+Pai Iso      16304 Foothill  ATM      $300.00   -          $2.99                 3.18               
+             Blvd San                                                            Miles              
+             Leandro, CA                                                                            
+Dell Cafe    2637 Castro     ATM      $300.00   -          $2.00                 3.22               
+             Valley Blvd                                                         Miles              
+             Castro Valley,                                                                         
+                                                                                                    
+Pai Iso      2584 Castro     ATM      $300.00   -          $3.50                 3.22               
+             Valley Blvd                                                         Miles              
+             Castro Valley,                                                                         
+                                                                                                    
+Stop N Save  20570 Stanton   ATM      $300.00   -          $3.00                 3.23               
+-135         Ave Castro                                                          Miles              
+             Valley, CA                                                                             
+                                                                                                    
+Stop N Save  20570 Stanton   FOOD     -         -          -                     3.23               
+#108         Ave Castro                                                          Miles              
+             Valley, CA                                                                             
+                                                                                                    
+Union 76     2504 Castro     ATM      $300.00   -          $3.25                 3.28               
+             Valley Blvd                                                         Miles              
+             Castro Valley,                                                                         
+7 Eleven     1711 159th Ave  FOOD     -         -          -                     3.3                
+14184a       San Leandro, CA                                                     Miles              
+             94578                                                                                  
+                                                                                                    
+7-Eleven     1711 159th Ave  ATM      $300.00   -          Free                  3.3                
+             San Leandro, CA                                                     Miles              
+             94578                                                                                  
+                                                                                                    
+                                                           $2.00                 3.32               
+                                                                                 Miles              
+
+
+United       3895 E Castro   ATM      $500.00   -                                                   
+Business     Valley Blvd                                                                            
+Bank         Castro Valley,                                                                         
+                                                                                                    
+Plaza Bottle 15292 Liberty   ATM      $300.00   -          $2.00                 3.37               
+Shop         St San Leandro,                                                     Miles              
+             CA 94578                                                                               
+                                                                                                    
+Plaza Bottle 15292 Liberty   FOOD     -         -          -                     3.37               
+Shop And     St San Leandro,                                                     Miles              
+Market, Inc. CA 94578                                                                               
+Castro       2445 Castro     ATM      $300.00   -          $2.00                 3.37               
+Valle-312    Valley Blvd                                                         Miles              
+             Castro Valley,                                                                         
+                                                                                                    
+Safeway      4015 E Castro   ATM      $300.00   -          Free                  3.38               
+             Valley Blvd                                                         Miles              
+             Castro Valley,                                                                         
+                                                                                                    
+Safeway      4015 E Castro   FOOD     -         $200.00    Free                  3.38               
+             Valley Blvd                                                         Miles              
+             Castro Valley,                                                                         
+                                                                                                    
+7 Eleven     1988 167th Ave  FOOD     -         -          -                     3.38               
+2369 #14191g San Leandro, CA                                                     Miles              
+             94578                                                                                  
+                                                                                                    
+7-Eleven     1988 167th Ave  ATM      $300.00   -          Free                  3.38               
+             San Leandro, CA                                                     Miles              
+             94578                                                                                  
+Bayfair      1784 150th Ave  ATM      $300.00   -          $3.50                 3.39               
+Shel-371     San Leandro, CA                                                     Miles              
+             94578                                                                                  
+                                                                                                    
+Chevron      3005 Grove Way  ATM      $300.00   -          $3.25                 3.5                
+             Castro Valley,                                                      Miles              
+             CA 94546                                                                               
+                                                                                                    
+                                                           $3.00                 3.52               
+                                                                                 Miles              
+
+
+Grand Gas    1401 Grand Ave  ATM      $300.00   -                                                   
+-358         San Leandro, CA                                                                        
+             94577                                                                                  
+                                                                                                    
+Cardtronics  22141 Center St ATM      $300.00   -          $3.00                 3.53               
+C2st         Castro Valley,                                                      Miles              
+             CA 94546                                                                               
+                                                                                                    
+Kroger       2881 Grove Way  ATM      $300.00   -          $3.00                 3.54               
+             Castro Valley,                                                      Miles              
+             CA 94546                                                                               
+Quik Stop    2881 Grove Way  FOOD     -         $40.00     Free                  3.54               
+Market       Castro Valley,                                                      Miles              
+             CA 94546                                                                               
+                                                                                                    
+Kroger       1001 MacArthur  ATM      $300.00   -          $3.00                 3.55               
+             Blvd San                                                            Miles              
+             Leandro, CA                                                                            
+                                                                                                    
+Quik Stop    1001 MacArthur  FOOD     -         $40.00     Free                  3.55               
+Market       Blvd San                                                            Miles              
+             Leandro, CA                                                                            
+                                                                                                    
+Pai Iso      1355 MacArthur  ATM      $300.00   -          $3.25                 3.56               
+             Blvd San                                                            Miles              
+             Leandro, CA                                                                            
+                                                                                                    
+Rite Aid     1355 MacArthur  FOOD     -         $100.00    Free                  3.56               
+             Blvd San                                                            Miles              
+             Leandro, CA                                                                            
+Mi Rancho    15850 E 14th St FOOD     -         -          -                     3.65               
+Supermarket  San Leandro, CA                                                     Miles              
+#5           94578                                                                                  
+                                                                                                    
+Dollar Tree  16160 E 14th St FOOD     -         $50.00     Free                  3.65               
+#1387        San Leandro, CA                                                     Miles              
+             94578                                                                                  
+                                                                                                    
+                                                           $2.75                 3.66               
+                                                                                 Miles              
+
+
+Market For   16104 E 14th St ATM      $300.00   -                                                   
+Less         San Leandro, CA                                                                        
+             94578                                                                                  
+                                                                                                    
+Primetime    15964 E 14th St FOOD     -         -          -                     3.66               
+#556         San Leandro, CA                                                     Miles              
+             94578                                                                                  
+                                                                                                    
+Magic        16304 E 14th St ATM      $300.00   -          $2.75                 3.67               
+Dulcer-358   San Leandro, CA                                                     Miles              
+             94578                                                                                  
+7-Eleven     15350 E 14th St ATM      $300.00   -          Free                  3.67               
+             San Leandro, CA                                                     Miles              
+             94578                                                                                  
+                                                                                                    
+7-Eleven     15350 E 14th St FOOD     -         -          -                     3.67               
+#35518a      San Leandro, CA                                                     Miles              
+             94578                                                                                  
+                                                                                                    
+City Market  1411 165th Ave  ATM      $300.00   -          $3.00                 3.68               
+             San Leandro, CA                                                     Miles              
+             94578                                                                                  
+                                                                                                    
+City Liquor  1411 165th Ave  FOOD     -         -          -                     3.68               
+             San Leandro, CA                                                     Miles              
+             94578                                                                                  
+                                                                                                    
+E-Z Shop -   650 MacArthur   ATM      $300.00   -          $2.95                 3.68               
+             Blvd San                                                            Miles              
+             Leandro, CA                                                                            
+E-Z Shop     650 MacArthur   FOOD     -         -          -                     3.68               
+Food &       Blvd San                                                            Miles              
+Liquor       Leandro, CA                                                                            
+                                                                                                    
+Bayfair      15803 E 14th St ATM      $300.00   -          $3.50                 3.69               
+Unoc-359     San Leandro, CA                                                     Miles              
+             94578                                                                                  
+                                                                                                    
+                                                           $2.95                 3.69               
+                                                                                 Miles              
+
+
+Burger Kin   15050 E 14th St ATM      $300.00   -                                                   
+             San Leandro, CA                                                                        
+             94578                                                                                  
+                                                                                                    
+3 Ring Wine  15100 E 14th St ATM      $300.00   -          $2.75                 3.7                
+& Spir       San Leandro, CA                                                     Miles              
+             94578                                                                                  
+                                                                                                    
+3 Ring Wine  15100 E 14th St FOOD     -         -          -                     3.7                
+& Spirit #2  San Leandro, CA                                                     Miles              
+             94578                                                                                  
+Cardtronics  16552 E 14th St ATM      $300.00   -          $2.25                 3.7                
+Ccsm         San Leandro, CA                                                     Miles              
+             94578                                                                                  
+                                                                                                    
+Sohal Oil    16552 E 14th St ATM      $300.00   -          $2.25                 3.7                
+             San Leandro, CA                                                     Miles              
+             94578                                                                                  
+                                                                                                    
+Pai Iso      16211 E 14th St ATM      $300.00   -          $3.17                 3.71               
+             San Leandro, CA                                                     Miles              
+             94578                                                                                  
+                                                                                                    
+Town And     16211 E 14th St FOOD     -         -          -                     3.71               
+Country      San Leandro, CA                                                     Miles              
+Liquors      94578                                                                                  
+                                                                                                    
+National     16690 E 14th St ATM      $300.00   -          $2.50                 3.71               
+Pet-374      San Leandro, CA                                                     Miles              
+             94578                                                                                  
+National     16684 E 14th St FOOD     -         -          -                     3.71               
+Petroleum -  San Leandro, CA                                                     Miles              
+San Leandro  94578                                                                                  
+                                                                                                    
+U.S. Bank    15399 E 14th St ATM      $1,000.0  -          Free                  3.72               
+             San Leandro, CA          0                                          Miles              
+             94578                                                                                  
+                                                                                                    
+                                                           -                     3.72               
+                                                                                 Miles              
+
+
+La Raza      16411 E 14th St FOOD     -         -                                                   
+Market       San Leandro, CA                                                                        
+             94578                                                                                  
+                                                                                                    
+Super La     16411 E 14th St ATM      $300.00   -          $2.50                 3.72               
+Raz-335      San Leandro, CA                                                     Miles              
+             94578                                                                                  
+                                                                                                    
+Nmso         14880 E 14th St ATM      $300.00   -          $3.00                 3.73               
+             San Leandro, CA                                                     Miles              
+             94578                                                                                  
+Speedway     14880 E 14th St ATM      $300.00   -          $3.25                 3.73               
+             San Leandro, CA                                                     Miles              
+             94578                                                                                  
+                                                                                                    
+Trader Joe's 22224 Redwood   FOOD     -         $50.00     Free                  3.73               
+             Rd Castro                                                           Miles              
+             Valley, CA                                                                             
+                                                                                                    
+Splash       15018 Hesperian ATM      $300.00   -          $2.25                 3.78               
+Broth-358    Blvd San                                                            Miles              
+             Leandro, CA                                                                            
+                                                                                                    
+Lucky        1300 Fairmont   FOOD     -         $200.00    Free                  3.79               
+             Dr San Leandro,                                                     Miles              
+             CA 94578                                                                               
+                                                                                                    
+El Rancho    22291 Redwood   FOOD     -         -          -                     3.79               
+Supermercado Rd Castro                                                           Miles              
+             Valley, CA                                                                             
+CVS          14869 E 14th St ATM      $300.00   -          $3.00                 3.8                
+             San Leandro, CA                                                     Miles              
+             94578                                                                                  
+                                                                                                    
+CVS Pharmacy 14869 E 14th St FOOD     -         $35.00     Free                  3.8                
+             San Leandro, CA                                                     Miles              
+             94578                                                                                  
+                                                                                                    
+                                                           Free                  3.8                
+                                                                                 Miles              
+
+
+Chase        1320 Fairmont   ATM      $1,000.0  -                                                   
+             Dr San Leandro,          0                                                             
+             CA 94578                                                                               
+                                                                                                    
+Joes Pho I   15070 Hesperian ATM      $300.00   -          $1.00                 3.8                
+             Blvd San                                                            Miles              
+             Leandro, CA                                                                            
+                                                                                                    
+Pop Top      14817 E 14th St FOOD     -         -          -                     3.8                
+Liquor &     San Leandro, CA                                                     Miles              
+Market       94578                                                                                  
+Gold         14811 E 14th St ATM      $300.00   -          $2.59                 3.81               
+Fashion-268  San Leandro, CA                                                     Miles              
+             94578                                                                                  
+                                                                                                    
+7-Eleven     22317 Redwood   ATM      $300.00   -          Free                  3.83               
+             Rd Castro                                                           Miles              
+             Valley, CA                                                                             
+                                                                                                    
+7-Eleven     22317 Redwood   FOOD     -         -          -                     3.83               
+#29519c      Rd Castro                                                           Miles              
+             Valley, CA                                                                             
+                                                                                                    
+Bayfair Ce   15555 E 14th St ATM      $300.00   -          $2.99                 3.85               
+             San Leandro, CA                                                     Miles              
+             94578                                                                                  
+                                                                                                    
+Target       15555 E 14th St ATM      $300.00   -          $3.00                 3.85               
+             #400 San                                                            Miles              
+             Leandro, CA                                                                            
+Wells Fargo  15555 E 14th St ATM      $1,000.0  -          Free                  3.85               
+Bank         San Leandro, CA          0                                          Miles              
+             94578                                                                                  
+                                                                                                    
+7 Eleven     22596 Center St FOOD     -         -          -                     3.86               
+2369 #37768a Hayward, CA                                                         Miles              
+             94541                                                                                  
+                                                                                                    
+                                                           Free                  3.86               
+                                                                                 Miles              
+
+
+7-Eleven     22596 Center St ATM      $300.00   -                                                   
+             Hayward, CA                                                                            
+             94541                                                                                  
+                                                                                                    
+Supermercado 14340 E 14th St FOOD     -         -          -                     3.86               
+Mi Tierra #7 San Leandro, CA                                                     Miles              
+             94578                                                                                  
+                                                                                                    
+88 Food      14405 E 14th St FOOD     -         -          -                     3.87               
+Market       San Leandro, CA                                                     Miles              
+             94578                                                                                  
+Foothill     21460 Foothill  ATM      $300.00   -          $2.50                 3.88               
+Food &  L    Blvd Hayward,                                                       Miles              
+             CA 94541                                                                               
+                                                                                                    
+Foothill     21460 Foothill  FOOD     -         -          -                     3.88               
+Food &       Blvd Hayward,                                                       Miles              
+Liquor       CA 94541                                                                               
+                                                                                                    
+Acapulco     14399 E 14th St ATM      $300.00   -          $2.75                 3.89               
+Record       San Leandro, CA                                                     Miles              
+             94578                                                                                  
+                                                                                                    
+Foothill 76  21494 Foothill  ATM      $300.00   -          $3.50                 3.89               
+-359         Blvd Hayward,                                                       Miles              
+             CA 94541                                                                               
+                                                                                                    
+Bank Of      1200 Fairmont   ATM      $1,000.0  -          Free                  3.89               
+America      Dr San Leandro,          0                                          Miles              
+             CA 94578                                                                               
+B Street     1984 B St       ATM      $300.00   -          $2.50                 3.9                
+Market       Hayward, CA                                                         Miles              
+             94541                                                                                  
+                                                                                                    
+Infant       1984 B St       FOOD     -         -          -                     3.9                
+Nutrition    Hayward, CA                                                         Miles              
+Plus         94541                                                                                  
+                                                                                                    
+                                                           -                     3.91               
+                                                                                 Miles              
+
+
+Guadalajara  14327 E 14th St FOOD     -         -                                                   
+Market       San Leandro, CA                                                                        
+             94578                                                                                  
+                                                                                                    
+Middle Eas   1952 B St       ATM      $300.00   -          $3.00                 3.91               
+             Hayward, CA                                                         Miles              
+             94541                                                                                  
+                                                                                                    
+Middle East  1952 B St       FOOD     -         -          -                     3.91               
+Trade Center Hayward, CA                                                         Miles              
+#N/A         94541                                                                                  
+Guadalajara  14327A E 14th   ATM      $300.00   -          $3.25                 3.91               
+Taqu         St San Leandro,                                                     Miles              
+             CA 94578                                                                               
+                                                                                                    
+Walgreens    1456 136th Ave  ATM      $300.00   -          $3.25                 3.92               
+             San Leandro, CA                                                     Miles              
+             94578                                                                                  
+                                                                                                    
+Walgreens    1456 136th Ave  FOOD     -         $100.00    Free                  3.92               
+             San Leandro, CA                                                     Miles              
+             94578                                                                                  
+                                                                                                    
+Fruit Basket 1975 B St       FOOD     -         -          -                     3.93               
+#3           Hayward, CA                                                         Miles              
+             94541                                                                                  
+                                                                                                    
+Big Lots     20800 Mission   FOOD     -         -          -                     3.93               
+#4468        Blvd Hayward,                                                       Miles              
+             CA 94541                                                                               
+Walgreens    21463 Foothill  ATM      $300.00   -          $3.25                 3.94               
+             Blvd Hayward,                                                       Miles              
+             CA 94541                                                                               
+                                                                                                    
+Walgreens    21463 Foothill  FOOD     -         $100.00    Free                  3.94               
+             Blvd Hayward,                                                       Miles              
+             CA 94541                                                                               
+                                                                                                    
+                                                           -                     3.95               
+                                                                                 Miles              
+
+
+99 Cents     20882 Mission   FOOD     -         -                                                   
+Only Store   Blvd Hayward,                                                                          
+#217         CA 94541                                                                               
+                                                                                                    
+Lee S Donuts 21471 Foothill  ATM      $300.00   -          $2.00                 3.95               
+8            Blvd Hayward,                                                       Miles              
+             CA 94541                                                                               
+                                                                                                    
+L & M        22610 Vermont   FOOD     -         -          -                     3.96               
+Liquors      St Hayward, CA                                                      Miles              
+             94541                                                                                  
+Foothill     21501 Foothill  ATM      $300.00   -          $3.75                 3.96               
+Che-269      Blvd Hayward,                                                       Miles              
+             CA 94541                                                                               
+                                                                                                    
+7 Eleven     15101 Hesperian FOOD     -         -          -                     3.96               
+2369 #20364f Blvd San                                                            Miles              
+             Leandro, CA                                                                            
+                                                                                                    
+7-Eleven     15101 Hesperian ATM      $300.00   -          Free                  3.96               
+             Blvd San                                                            Miles              
+             Leandro, CA                                                                            
+                                                                                                    
+7-Eleven     13792 E 14th St ATM      $300.00   -          Free                  3.98               
+             San Leandro, CA                                                     Miles              
+             94578                                                                                  
+                                                                                                    
+7-Eleven     13792 E 14th St FOOD     -         -          -                     3.98               
+19250e       San Leandro, CA                                                     Miles              
+             94578                                                                                  
+Bancroft     1786 Bancroft   ATM      $300.00   -          $2.75                 3.99               
+Food Mart    Ave San                                                             Miles              
+             Leandro, CA                                                                            
+                                                                                                    
+Himalayan    1786 Bancroft   FOOD     -         -          -                     3.99               
+Food Mart &  Ave San                                                             Miles              
+Liquor       Leandro, CA                                                                            
+                                                                                                    
+                                                           Free                  3.99               
+                                                                                 Miles              
+
+
+Foods Co     10790 MacArthur FOOD     -         $200.00                                             
+             Blvd Oakland,                                                                          
+             CA 94605                                                                               
+                                                                                                    
+Kroger       10790 MacArthur ATM      $300.00   -          $3.25                 3.99               
+             Blvd Oakland,                                                       Miles              
+             CA 94605                                                                               
+                                                                                                    
+Hayward Ma   20930 Mission   ATM      $300.00   -          $2.50                 4.01               
+             Blvd Hayward,                                                       Miles              
+             CA 94541                                                                               
+East Hayward 22660 Vermont   FOOD     -         -          -                     4.01               
+Grocery      St Hayward, CA                                                      Miles              
+Outlet       94541                                                                                  
+                                                                                                    
+Grocery      22660 Vermont   FOOD     -         -          -                     4.01               
+Outlet Of    St Hayward, CA                                                      Miles              
+East Hayward 94541                                                                                  
+                                                                                                    
+CVS Pharmacy 20659 Mission   FOOD     -         -          -                     4.02               
+#10199       Blvd Hayward,                                                       Miles              
+             CA 94541                                                                               
+                                                                                                    
+Shell San    1285 Bancroft   ATM      $300.00   -          $2.75                 4.05               
+Le-247       Ave San                                                             Miles              
+             Leandro, CA                                                                            
+                                                                                                    
+10823        10823 MacArthur ATM      $300.00   -          $2.50                 4.08               
+Macart-300   Blvd Oakland,                                                       Miles              
+             CA 94605                                                                               
+Soons Beauty 10700 MacArthur ATM      $300.00   -          $2.00                 4.08               
+Supply       Blvd Oakland,                                                       Miles              
+             CA 94605                                                                               
+                                                                                                    
+Surety       10700 MacArthur ATM      $300.00   -          $2.95                 4.08               
+Adminstrati  Blvd Oakland,                                                       Miles              
+             CA 94605                                                                               
+                                                                                                    
+                                                           Free                  4.08               
+                                                                                 Miles              
+
+
+Wells Fargo  10700 MacArthur ATM      $1,000.0  -                                                   
+Bank         Blvd #6a                 0                                                             
+             Oakland, CA                                                                            
+                                                                                                    
+Oaks Marke   10501 Foothill  ATM      $300.00   -          $2.95                 4.09               
+             Blvd Oakland,                                                       Miles              
+             CA 94605                                                                               
+                                                                                                    
+Oaks Market  10501 Foothill  FOOD     -         -          -                     4.09               
+Inc          Boulevard                                                           Miles              
+             Oakland, CA                                                                            
+Carls Jr     10770 MacArthur RE       -         -          -                     4.09               
+9077         Blvd Oakland,                                                       Miles              
+             CA 94605                                                                               
+                                                                                                    
+1st United   600 Bancroft    ATM      $500.00   -          $3.00                 4.1                
+Credit Union Ave San                                                             Miles              
+             Leandro, CA                                                                            
+                                                                                                    
+B Street L   1681 B St       ATM      $300.00   -          $3.00                 4.12               
+             Hayward, CA                                                         Miles              
+             94541                                                                                  
+                                                                                                    
+B St Liquor  1681 B St       FOOD     -         -          -                     4.12               
+             Hayward, CA                                                         Miles              
+             94541                                                                                  
+                                                                                                    
+Safeway      22280 Foothill  FOOD     -         $200.00    Free                  4.13               
+             Blvd Hayward,                                                       Miles              
+             CA 94541                                                                               
+San Leandr   13855 E 14th St ATM      $300.00   -          $3.00                 4.14               
+             San Leandro, CA                                                     Miles              
+             94578                                                                                  
+                                                                                                    
+Arco Ampm    10600 MacArthur ATM      $300.00   -          $3.00                 4.17               
+             Blvd Oakland,                                                       Miles              
+             CA 94605                                                                               
+                                                                                                    
+                                                           $3.00                 4.17               
+                                                                                 Miles              
+
+
+Pal Mini     22253 Foothill  ATM      $300.00   -                                                   
+Foo-157      Blvd Hayward,                                                                          
+             CA 94541                                                                               
+                                                                                                    
+San Leandro  2179 E 14th St  FOOD     -         -          -                     4.19               
+Grocery      San Leandro, CA                                                     Miles              
+Outlet       94577                                                                                  
+                                                                                                    
+Oakland Zo   9777 Golf Links ATM      $300.00   -          $3.50                 4.19               
+             Rd Oakland, CA                                                      Miles              
+             94605                                                                                  
+O Fill - Ms  9750 Golf Links ATM      $300.00   -          $2.95                 4.19               
+-118         Rd Oakland, CA                                                      Miles              
+             94605                                                                                  
+                                                                                                    
+Safeway      555 Bancroft    ATM      $300.00   -          Free                  4.2                
+             Ave San                                                             Miles              
+             Leandro, CA                                                                            
+                                                                                                    
+Safeway      555 Bancroft    FOOD     -         $200.00    Free                  4.2                
+             Ave San                                                             Miles              
+             Leandro, CA                                                                            
+                                                                                                    
+Mission La   21608 Mission   ATM      $300.00   -          $2.50                 4.22               
+             Blvd Hayward,                                                       Miles              
+             CA 94541                                                                               
+                                                                                                    
+Circle       593 Victoria Ct FOOD     -         -          -                     4.24               
+Victoria     San Leandro, CA                                                     Miles              
+Liquor       94577                                                                                  
+Chase        22370 Foothill  ATM      $1,000.0  -          Free                  4.28               
+             Blvd Hayward,            0                                          Miles              
+             CA 94541                                                                               
+                                                                                                    
+Model Liqu   275 E Lewelling ATM      $300.00   -          $2.50                 4.29               
+             Blvd San                                                            Miles              
+             Lorenzo, CA                                                                            
+                                                                                                    
+                                                           -                     4.29               
+                                                                                 Miles              
+
+
+Model Liquor 275 E Lewelling FOOD     -         -                                                   
+Ii           Blvd San                                                                               
+             Lorenzo, CA                                                                            
+                                                                                                    
+Huntsberry   10151 Foothill  FOOD     -         -          -                     4.3                
+Liquor       Boulevard                                                           Miles              
+             Oakland, CA                                                                            
+                                                                                                    
+Bbottleneck  3151 98th Ave   FOOD     -         -          -                     4.32               
+Inc          Oakland, CA                                                         Miles              
+             94605                                                                                  
+Bottle Nec   3151 98th Ave   ATM      $300.00   -          $2.75                 4.32               
+             Oakland, CA                                                         Miles              
+             94605                                                                                  
+                                                                                                    
+Kashipur     3151 98th Ave   FOOD     -         -          -                     4.32               
+Bottle Inc   Oakland, CA                                                         Miles              
+             94605                                                                                  
+                                                                                                    
+Oakland Va   2740 98th Ave   ATM      $300.00   -          $3.00                 4.32               
+             Oakland, CA                                                         Miles              
+             94605                                                                                  
+                                                                                                    
+Bank Of      1253 A St       ATM      $1,000.0  -          Free                  4.32               
+America      Hayward, CA              0                                          Miles              
+             94541                                                                                  
+                                                                                                    
+Pai Iso      22126 Mission   ATM      $300.00   -          $2.50                 4.33               
+             Blvd Hayward,                                                       Miles              
+             CA 94541                                                                               
+Stop By      21995 Mission   ATM      $300.00   -          $2.50                 4.33               
+Mark-358     Blvd Hayward,                                                       Miles              
+             CA 94541                                                                               
+                                                                                                    
+Stop By      21995 Mission   FOOD     -         -          -                     4.33               
+Market And   Blvd Hayward,                                                       Miles              
+Liquor       CA 94541                                                                               
+                                                                                                    
+                                                           $2.65                 4.34               
+                                                                                 Miles              
+
+
+O Fill -     3101 98th Ave   ATM      $300.00   -                                                   
+Jas-104      Oakland, CA                                                                            
+             94605                                                                                  
+                                                                                                    
+Mangals      1699 E 14th St  FOOD     -         -          -                     4.35               
+Market &     San Leandro, CA                                                     Miles              
+Produce      94577                                                                                  
+                                                                                                    
+CVS Store    1550 E 14th St  ATM      $300.00   -          $3.00                 4.35               
+             San Leandro, CA                                                     Miles              
+             94577                                                                                  
+Wells Fargo  1172 A St       ATM      $1,000.0  -          Free                  4.36               
+Bank         Hayward, CA              0                                          Miles              
+             94541                                                                                  
+                                                                                                    
+Pai Iso      10808 Bancroft  ATM      $300.00   -          $3.17                 4.36               
+             Ave Oakland, CA                                                     Miles              
+             94603                                                                                  
+                                                                                                    
+Town And     10808 Bancroft  FOOD     -         -          -                     4.36               
+Country      Ave Oakland, CA                                                     Miles              
+Liquors      94603                                                                                  
+                                                                                                    
+Chase        1601 E 14th St  ATM      $1,000.0  -          Free                  4.36               
+             San Leandro, CA          0                                          Miles              
+             94577                                                                                  
+                                                                                                    
+U.S. Bank    1585 E 14th St  ATM      $1,000.0  -          Free                  4.38               
+             San Leandro, CA          0                                          Miles              
+             94577                                                                                  
+Cherryland   688 Blossom Way ATM      $300.00   -          $2.75                 4.38               
+             Hayward, CA                                                         Miles              
+             94541                                                                                  
+                                                                                                    
+Cherryland   688 Blossom Way FOOD     -         -          -                     4.38               
+Grocery      Hayward, CA                                                         Miles              
+             94541                                                                                  
+                                                                                                    
+                                                           Free                  4.39               
+                                                                                 Miles              
+
+
+Capital One  1555 E 14th St  ATM      $750.00   -                                                   
+             San Leandro, CA                                                                        
+             94577                                                                                  
+                                                                                                    
+Target Store 1555 E 14th St  FOOD     -         $40.00     Free                  4.39               
+             San Leandro, CA                                                     Miles              
+             94577                                                                                  
+                                                                                                    
+Village      1577 E 14th St  FOOD     -         -          -                     4.39               
+Bottle Shop  San Leandro, CA                                                     Miles              
+             94577                                                                                  
+Bejing Bowl  14400           ATM      $300.00   -          $0.99                 4.39               
+             Washington Ave                                                      Miles              
+             San Leandro, CA                                                                        
+                                                                                                    
+Ace Center   14410           ATM      $300.00   -          $3.60                 4.39               
+             Washington Ave                                                      Miles              
+             San Leandro, CA                                                                        
+                                                                                                    
+San Leandro  101 Parrott St  FM       -         -          -                     4.4                
+Downtown     San Leandro, CA                                                     Miles              
+Farmers'     94577                                                                                  
+                                                                                                    
+Fremont Bank 1480 E 14th St  ATM      $600.00   -          Free                  4.4                
+             San Leandro, CA                                                     Miles              
+             94577                                                                                  
+                                                                                                    
+Citibank     22548 2nd St    ATM      $1,000.0  -          Free                  4.41               
+             Hayward, CA              0                                          Miles              
+             94541                                                                                  
+Bank Of      1400 E 14th St  ATM      $1,000.0  -          Free                  4.41               
+America      San Leandro, CA          0                                          Miles              
+             94577                                                                                  
+                                                                                                    
+Kroger       206 Marina Blvd ATM      $300.00   -          $3.00                 4.41               
+             San Leandro, CA                                                     Miles              
+             94577                                                                                  
+                                                                                                    
+                                                           Free                  4.41               
+                                                                                 Miles              
+
+
+Quik Stop    206 Marina Blvd FOOD     -         $40.00                                              
+Market       San Leandro, CA                                                                        
+             94577                                                                                  
+                                                                                                    
+Dollar Tree  22487 Foothill  FOOD     -         $50.00     Free                  4.42               
+             Blvd Hayward,                                                       Miles              
+             CA 94541                                                                               
+                                                                                                    
+Keller       4400 Keller Ave FOOD     -         -          -                     4.43               
+Market       Oakland, CA                                                         Miles              
+             94605                                                                                  
+Lucky Stop   9965 MacArthur  ATM      $300.00   -          $2.50                 4.43               
+             Blvd Oakland,                                                       Miles              
+             CA 94605                                                                               
+                                                                                                    
+Pai Iso      1086 A St       ATM      $300.00   -          $3.50                 4.45               
+             Hayward, CA                                                         Miles              
+             94541                                                                                  
+                                                                                                    
+San Leandr   138 W Juana Ave ATM      $300.00   -          $2.50                 4.45               
+             San Leandro, CA                                                     Miles              
+             94577                                                                                  
+                                                                                                    
+Macarthur    9925 MacArthur  ATM      $300.00   -          $2.50                 4.46               
+Grocerie     Blvd Oakland,                                                       Miles              
+             CA 94605                                                                               
+                                                                                                    
+CVS          22501 Foothill  ATM      $300.00   -          $3.00                 4.47               
+             Blvd Hayward,                                                       Miles              
+             CA 94541                                                                               
+CVS Pharmacy 22501 Foothill  FOOD     -         $35.00     Free                  4.47               
+             Blvd Hayward,                                                       Miles              
+             CA 94541                                                                               
+                                                                                                    
+La Grande    22766 3rd St    FOOD     -         -          -                     4.47               
+Market       Hayward, CA                                                         Miles              
+             94541                                                                                  
+                                                                                                    
+                                                           Free                  4.47               
+                                                                                 Miles              
+
+
+Bank Of The  1601 Washington ATM      $1,200.0  -                                                   
+West         Ave San                  0                                                             
+             Leandro, CA                                                                            
+                                                                                                    
+Wells Fargo  1298 E 14th St  ATM      $1,000.0  -          Free                  4.48               
+Bank         1st Fl San               0                                          Miles              
+             Leandro, CA                                                                            
+                                                                                                    
+Pai Iso      466 Blossom Way ATM      $300.00   -          $2.99                 4.48               
+             Hayward, CA                                                         Miles              
+             94541                                                                                  
+A.K. Market  17651 Meekland  FOOD     -         -          -                     4.48               
+& Groceries  Ave Hayward, CA                                                     Miles              
+             94541                                                                                  
+                                                                                                    
+New York     17651 Meekland  ATM      $300.00   -          $3.00                 4.48               
+Gia-341      Ave Hayward, CA                                                     Miles              
+             94541                                                                                  
+                                                                                                    
+Pak N Save   555 Floresta    FOOD     -         $200.00    Free                  4.49               
+             Blvd San                                                            Miles              
+             Leandro, CA                                                                            
+                                                                                                    
+Safeway      555 Floresta    ATM      $300.00   -          Free                  4.49               
+             Blvd San                                                            Miles              
+             Leandro, CA                                                                            
+                                                                                                    
+Comerica     1301 E 14th St  ATM      $500.00   -          Free                  4.49               
+Bank         San Leandro, CA                                                     Miles              
+             94577                                                                                  
+Union 76     44 Lewelling    ATM      $300.00   -          $3.25                 4.5                
+             Blvd San                                                            Miles              
+             Lorenzo, CA                                                                            
+                                                                                                    
+New Handy    446 Blossom Way FOOD     -         -          -                     4.5                
+Corner       Hayward, CA                                                         Miles              
+Market       94541                                                                                  
+                                                                                                    
+                                                           Free                  4.51               
+                                                                                 Miles              
+
+
+CVS Pharmacy 1188 E 14th St  FOOD     -         $35.00                                              
+             San Leandro, CA                                                                        
+             94577                                                                                  
+                                                                                                    
+Primetime    22301 Mission   FOOD     -         -          -                     4.51               
+Nutrition    Blvd Hayward,                                                       Miles              
+#534         CA 94541                                                                               
+                                                                                                    
+Safeway      1499 Washington ATM      $300.00   -          Free                  4.52               
+             Ave San                                                             Miles              
+             Leandro, CA                                                                            
+Safeway      1499 Washington FOOD     -         $200.00    Free                  4.52               
+             Ave San                                                             Miles              
+             Leandro, CA                                                                            
+                                                                                                    
+Sunko Gas    14794           ATM      $300.00   -          $3.00                 4.53               
+             Washington Ave                                                      Miles              
+             San Leandro, CA                                                                        
+                                                                                                    
+CVS          1401 Washington ATM      $300.00   -          $3.00                 4.54               
+             Ave San                                                             Miles              
+             Leandro, CA                                                                            
+                                                                                                    
+CVS Pharmacy 1401 Washington FOOD     -         $35.00     Free                  4.54               
+             Ave San                                                             Miles              
+             Leandro, CA                                                                            
+                                                                                                    
+Bank Of The  1058 B St       ATM      $1,200.0  -          Free                  4.54               
+West         Hayward, CA              0                                          Miles              
+             94541                                                                                  
+Model Food   100 Lewelling   ATM      $300.00   -          $2.75                 4.55               
+             Blvd San                                                            Miles              
+             Lorenzo, CA                                                                            
+                                                                                                    
+Model Food   100 Lewelling   FOOD     -         -          -                     4.55               
+Mart         Blvd San                                                            Miles              
+             Lorenzo, CA                                                                            
+                                                                                                    
+                                                           $3.00                 4.55               
+                                                                                 Miles              
+
+
+Union Bank   1145 E 14th St  ATM      $1,000.0  -                                                   
+             San Leandro, CA          0                                                             
+             94577                                                                                  
+                                                                                                    
+Chevron      1117 E 14th St  ATM      $300.00   -          $3.25                 4.55               
+             San Leandro, CA                                                     Miles              
+             94577                                                                                  
+                                                                                                    
+Pai Iso      22690 Foothill  ATM      $300.00   -          $2.99                 4.57               
+             Blvd Hayward,                                                       Miles              
+             CA 94541                                                                               
+Max Snacks   1285 Hays St    ATM      $300.00   -          $2.99                 4.59               
+             San Leandro, CA                                                     Miles              
+             94577                                                                                  
+                                                                                                    
+D'Gonzales   796 E 14th St   FOOD     -         -          -                     4.6                
+Meat Market  San Leandro, CA                                                     Miles              
+             94577                                                                                  
+                                                                                                    
+Fast & Easy  898 A St        ATM      $300.00   -          $2.50                 4.6                
+Mart H       Hayward, CA                                                         Miles              
+             94541                                                                                  
+                                                                                                    
+Quik Mart    331 Lewelling   ATM      $300.00   -          $2.75                 4.6                
+             Blvd San                                                            Miles              
+             Lorenzo, CA                                                                            
+                                                                                                    
+Neveria      15568 Hesperian ATM      $300.00   -          $3.00                 4.61               
+Coli-345     Blvd San                                                            Miles              
+             Lorenzo, CA                                                                            
+Whj Fruits   21560 Haviland  FM       -         -          -                     4.61               
+And          Ave Hayward, CA                                                     Miles              
+Vegetables   94541                                                                                  
+                                                                                                    
+Dollar Tree  14801           FOOD     -         $50.00     Free                  4.62               
+             Washington Ave                                                      Miles              
+             San Leandro, CA                                                                        
+                                                                                                    
+                                                           -                     4.62               
+                                                                                 Miles              
+
+
+Grocery      15590 Hesperian FOOD     -         -                                                   
+Outlet Of    Blvd San                                                                               
+San Lorenzo  Lorenzo, CA                                                                            
+                                                                                                    
+Jamba Juice  22501 Mission   RE       -         -          -                     4.63               
+495          Blvd Hayward,                                                       Miles              
+             CA 94541                                                                               
+                                                                                                    
+Wells Fargo  14859           ATM      $1,000.0  -          Free                  4.63               
+Bank         Washington Ave           0                                          Miles              
+             San Leandro, CA                                                                        
+Dutton       690 E 14th St   FOOD     -         -          -                     4.63               
+Liquor &     San Leandro, CA                                                     Miles              
+Market       94577                                                                                  
+                                                                                                    
+Panaderia El 688 E 14th St   FOOD     -         -          -                     4.63               
+Pueblo #3    San Leandro, CA                                                     Miles              
+             94577                                                                                  
+                                                                                                    
+U.S. Bank    987 B St        ATM      $1,000.0  -          Free                  4.63               
+             Hayward, CA              0                                          Miles              
+             94541                                                                                  
+                                                                                                    
+Kjs Barber   632 E 14th St   ATM      $300.00   -          $2.50                 4.64               
+             San Leandro, CA                                                     Miles              
+             94577                                                                                  
+                                                                                                    
+Pai Iso      632 E 14th St   ATM      $300.00   -          $2.50                 4.64               
+             San Leandro, CA                                                     Miles              
+             94577                                                                                  
+A - One 76   376 Lewelling   ATM      $300.00   -          $2.50                 4.65               
+-245         Blvd San                                                            Miles              
+             Lorenzo, CA                                                                            
+                                                                                                    
+Walmart      15555 Hesperian ATM      $300.00   -          $2.50                 4.66               
+             Blvd San                                                            Miles              
+             Leandro, CA                                                                            
+                                                                                                    
+                                                           Free                  4.66               
+                                                                                 Miles              
+
+
+Walmart      15555 Hesperian FOOD     -         $100.00                                             
+Supercenter  Blvd San                                                                               
+             Leandro, CA                                                                            
+                                                                                                    
+Grafco       525 Williams St ATM      $300.00   -          $2.75                 4.66               
+-358         San Leandro, CA                                                     Miles              
+             94577                                                                                  
+                                                                                                    
+Grafco       525 Williams St FOOD     -         -          -                     4.66               
+Convenience  San Leandro, CA                                                     Miles              
+Store        94577                                                                                  
+Nv. Scends   635 E 14th St   ATM      $300.00   -          $1.50                 4.67               
+             San Leandro, CA                                                     Miles              
+             94577                                                                                  
+                                                                                                    
+Comerica     858 B St        ATM      $500.00   -          Free                  4.67               
+Bank         Hayward, CA                                                         Miles              
+             94541                                                                                  
+                                                                                                    
+Sonoma       427 Cape Cod Dr ATM      $300.00   -          $2.50                 4.67               
+Vallejo Atm  San Leandro, CA                                                     Miles              
+             94578                                                                                  
+                                                                                                    
+Al Lunardi & 570 Williams St FOOD     -         -          -                     4.68               
+Sons Meat Co San Leandro, CA                                                     Miles              
+Inc          94577                                                                                  
+                                                                                                    
+Lucky #715   22555 Mission   ATM      $300.00   -          $3.00                 4.69               
+             Blvd Hayward,                                                       Miles              
+             CA 94541                                                                               
+Lucky        22555 Mission   FOOD     -         $200.00    Free                  4.69               
+             Blvd Hayward,                                                       Miles              
+             CA 94541                                                                               
+                                                                                                    
+Union Bank   805 B St        ATM      $1,000.0  -          $3.00                 4.71               
+             Hayward, CA              0                                          Miles              
+             94541                                                                                  
+                                                                                                    
+                                                           -                     4.72               
+                                                                                 Miles              
+
+
+Mg El        20008 Meekland  FOOD     -         -                                                   
+Jaliscience  Ave Hayward, CA                                                                        
+Carniceria   94541                                                                                  
+                                                                                                    
+Priyas       20008 Meekland  ATM      $300.00   -          $2.50                 4.72               
+Marke-219    Ave Hayward, CA                                                     Miles              
+             94541                                                                                  
+                                                                                                    
+Priya's      20008 Meekland  FOOD     -         -          -                     4.72               
+Market And   Ave Hayward, CA                                                     Miles              
+Liquors      94541                                                                                  
+Blue Bird    9401 MacArthur  ATM      $300.00   -          $3.00                 4.72               
+Market       Blvd Oakland,                                                       Miles              
+             CA 94605                                                                               
+                                                                                                    
+7 Eleven     15609 Hesperian FOOD     -         -          -                     4.73               
+#36020h      Blvd San                                                            Miles              
+             Lorenzo, CA                                                                            
+                                                                                                    
+7-Eleven     15609 Hesperian ATM      $300.00   -          Free                  4.73               
+             Blvd San                                                            Miles              
+             Lorenzo, CA                                                                            
+                                                                                                    
+Lucky Two    1901 103rd Ave  FOOD     -         -          -                     4.73               
+Market       Oakland, CA                                                         Miles              
+             94603                                                                                  
+                                                                                                    
+Hank S       19989 Meekland  ATM      $300.00   -          $2.00                 4.73               
+Liquo-R01    Ave Hayward, CA                                                     Miles              
+             94541                                                                                  
+Hanks        19989 Meekland  FOOD     -         -          -                     4.73               
+             Ave Hayward, CA                                                     Miles              
+             94541                                                                                  
+                                                                                                    
+Los Pericos  375 E 14th St   FOOD     -         -          -                     4.75               
+Market       San Leandro, CA                                                     Miles              
+             94577                                                                                  
+                                                                                                    
+                                                           -                     4.75               
+                                                                                 Miles              
+
+
+Hayward      777 B St        FM       -         -                                                   
+Farmers      Hayward, CA                                                                            
+Market/Ag    94541                                                                                  
+                                                                                                    
+Foothill S   22810 Foothill  ATM      $300.00   -          $3.00                 4.75               
+             Blvd Hayward,                                                       Miles              
+             CA 94541                                                                               
+                                                                                                    
+Dollar Sto   40 W Blossom    ATM      $300.00   -          $2.59                 4.75               
+             Way Hayward, CA                                                     Miles              
+             94541                                                                                  
+Aim Market   85 Durant Ave   FOOD     -         -          -                     4.76               
+             San Leandro, CA                                                     Miles              
+             94577                                                                                  
+                                                                                                    
+Dollar And   40 Blossom Way  FOOD     -         -          -                     4.76               
+Over Store   Hayward, CA                                                         Miles              
+             94541                                                                                  
+                                                                                                    
+Harrys       9002 MacArthur  ATM      $300.00   -          $3.75                 4.78               
+Mark-355     Blvd Oakland,                                                       Miles              
+             CA 94605                                                                               
+                                                                                                    
+Harrys       9002 MacArthur  FOOD     -         -          -                     4.78               
+Market       Blvd Oakland,                                                       Miles              
+             CA 94605                                                                               
+                                                                                                    
+7-Eleven     333 E 14th St   ATM      $300.00   -          Free                  4.78               
+             San Leandro, CA                                                     Miles              
+             94577                                                                                  
+7-Eleven     333 E 14th St   FOOD     -         -          -                     4.78               
+#14204f      San Leandro, CA                                                     Miles              
+             94577                                                                                  
+                                                                                                    
+Jack In The  780 Marina Blvd RE       -         -          -                     4.79               
+Box Inc #452 San Leandro, CA                                                     Miles              
+             94577                                                                                  
+                                                                                                    
+                                                           Free                  4.81               
+                                                                                 Miles              
+
+
+Food Maxx    10950           FOOD     -         $200.00                                             
+             International                                                                          
+             Blvd Oakland,                                                                          
+                                                                                                    
+Durant       10970           ATM      $300.00   -          $2.50                 4.82               
+Squar-K82    International                                                       Miles              
+             Blvd B46                                                                               
+                                                                                                    
+Bank Of      15840 Hesperian ATM      $1,000.0  -          Free                  4.82               
+America      Blvd San                 0                                          Miles              
+             Lorenzo, CA                                                                            
+Lucky        15840 Hesperian FOOD     -         $200.00    Free                  4.82               
+             Blvd San                                                            Miles              
+             Lorenzo, CA                                                                            
+                                                                                                    
+N-K Quick    111 E 14th St   ATM      $300.00   -          $3.00                 4.82               
+Se-257       San Leandro, CA                                                     Miles              
+             94577                                                                                  
+                                                                                                    
+Mikes Mini   8917 MacArthur  ATM      $300.00   -          $3.00                 4.83               
+             Blvd Oakland,                                                       Miles              
+             CA 94605                                                                               
+                                                                                                    
+Tonys        7980 Mountain   ATM      $300.00   -          $3.00                 4.84               
+Market-216   Blvd Oakland,                                                       Miles              
+             CA 94605                                                                               
+                                                                                                    
+Tony's       7980 Mountain   FOOD     -         -          -                     4.84               
+Market Place Blvd Oakland,                                                       Miles              
+             CA 94605                                                                               
+Mp And P     486 A St        ATM      $300.00   -          $2.99                 4.85               
+Inc-542      Hayward, CA                                                         Miles              
+             94541                                                                                  
+                                                                                                    
+Pizza Hut    22859 Mission   RE       -         -          -                     4.86               
+#011691      Blvd Hayward,                                                       Miles              
+             CA 94541                                                                               
+                                                                                                    
+                                                           $2.50                 4.86               
+                                                                                 Miles              
+
+
+Durant Squ   10800           ATM      $300.00   -                                                   
+             International                                                                          
+             Blvd Oakland,                                                                          
+                                                                                                    
+Meekland M   21726 Meekland  ATM      $300.00   -          $2.25                 4.87               
+             Ave Hayward, CA                                                     Miles              
+             94541                                                                                  
+                                                                                                    
+Kroger       505 A St        ATM      $300.00   -          $3.00                 4.87               
+             Hayward, CA                                                         Miles              
+             94541                                                                                  
+Quik Stop    505 A St        FOOD     -         $40.00     Free                  4.87               
+Market       Hayward, CA                                                         Miles              
+             94541                                                                                  
+                                                                                                    
+99  Cents    699 Lewelling   FOOD     -         -          -                     4.87               
+Only Store   Blvd San                                                            Miles              
+#180         Leandro, CA                                                                            
+                                                                                                    
+Chase        699 Lewelling   ATM      $1,000.0  -          Free                  4.87               
+             Blvd #192 San            0                                          Miles              
+             Leandro, CA                                                                            
+                                                                                                    
+CVS Pharmacy 699 Lewelling   FOOD     -         $35.00     Free                  4.87               
+             Blvd San                                                            Miles              
+             Leandro, CA                                                                            
+                                                                                                    
+Food Maxx    699 Lewelling   FOOD     -         $200.00    Free                  4.87               
+             Blvd San                                                            Miles              
+             Leandro, CA                                                                            
+Papa         699 Lewelling   FOOD     -         -          -                     4.87               
+Murphy's     Blvd San                                                            Miles              
+Pizza #Ca251 Leandro, CA                                                                            
+                                                                                                    
+Perfect Na   699 Lewelling   ATM      $300.00   -          $1.99                 4.87               
+             Blvd San                                                            Miles              
+             Leandro, CA                                                                            
+                                                                                                    
+                                                           Free                  4.87               
+                                                                                 Miles              
+
+
+Safeway      699 Lewelling   ATM      $300.00   -                                                   
+             Blvd San                                                                               
+             Leandro, CA                                                                            
+                                                                                                    
+Wells Fargo  699 Lewelling   ATM      $1,000.0  -          Free                  4.87               
+Bank         Blvd San                 0                                          Miles              
+             Leandro, CA                                                                            
+                                                                                                    
+CVS Pharmacy 20659 Mission   CASHONLY -         $35.00     Free                  4.89               
+#10199       Blvd Hayward,                                                       Miles              
+             CA 94544                                                                               
+Wells Fargo  794 Davis St    ATM      $1,000.0  -          Free                  4.9                
+Bank         San Leandro, CA          0                                          Miles              
+             94577                                                                                  
+                                                                                                    
+The Wash     1849 98th Ave   ATM      $300.00   -          $1.95                 4.92               
+House        Oakland, CA                                                         Miles              
+             94603                                                                                  
+                                                                                                    
+Mini Market  2001 96th Ave   ATM      $300.00   -          $2.50                 4.92               
+-262         Oakland, CA                                                         Miles              
+             94603                                                                                  
+                                                                                                    
+Safeway      600 Lewelling   FOOD     -         $200.00    Free                  4.92               
+             Blvd San                                                            Miles              
+             Leandro, CA                                                                            
+                                                                                                    
+San Leandro  2180 Orchard    ATM      $300.00   -          $3.75                 4.93               
+-249         Ave San                                                             Miles              
+             Leandro, CA                                                                            
+Citibank     429 Paseo       ATM      $1,000.0  -          Free                  4.95               
+             Grande San               0                                          Miles              
+             Lorenzo, CA                                                                            
+                                                                                                    
+Union 76     15199           ATM      $300.00   -          $3.25                 4.95               
+             Washington Ave                                                      Miles              
+             San Leandro, CA                                                                        
+                                                                                                    
+                                                           $2.50                 4.96               
+                                                                                 Miles              
+
+
+Bayhill      2637 East Ave   ATM      $300.00   -                                                   
+Food-196     Hayward, CA                                                                            
+             94541                                                                                  
+                                                                                                    
+Bayhill Food 2637 East Ave   FOOD     -         -          -                     4.96               
+& Liquors    Hayward, CA                                                         Miles              
+             94541                                                                                  
+                                                                                                    
+La Esperanza 340 A St        FOOD     -         -          -                     4.97               
+Tri Color #5 Hayward, CA                                                         Miles              
+             94541                                                                                  
+Wells Fargo  16000 Hesperian ATM      $1,000.0  -          Free                  4.98               
+Bank         Blvd San                 0                                          Miles              
+             Lorenzo, CA                                                                            
+                                                                                                    
+Veer Fuel    15201           ATM      $300.00   -          $2.95                 4.98               
+Ch-358       Washington Ave                                                      Miles              
+             San Leandro, CA                                                                        
+                                                                                                    
+Munch Rite   1839 96th Ave   ATM      $300.00   -          $2.75                 4.99               
+             Oakland, CA                                                         Miles              
+             94603                                                                                  
+                                                                                                    
+Munchrite    1839 96th Ave   FOOD     -         -          -                     4.99               
+Market       Oakland, CA                                                         Miles              
+             94603                                                                                  
+                                                                                                    
+Mission      24086 Mission   FOOD     -         -          -                     4.99               
+Chevron      Blvd Hayward,                                                       Miles              
+             CA 94544                                                                               
+Pai Iso      24086 Mission   ATM      $300.00   -          $2.99                 4.99               
+             Blvd Hayward,                                                       Miles              
+             CA 94544                                                                               
+                                                                                                    
+Super Merc   1011 Williams   ATM      $300.00   -          $2.50                 4.99               
+             St San Leandro,                                                     Miles              
+             CA 94577                                                                               
+                                                                                                    
+                                                           -                     4.99               
+                                                                                 Miles              
+
+
+Supermercado 1011 Williams   FOOD     -         -                                                   
+Plaza        St San Leandro,                                                                        
+             CA 94577                                                                               
+                                                                                                    
+Padgyal Fi   1524 100th Ave  ATM      $300.00   -          $2.75                 4.99               
+             Oakland, CA                                                         Miles              
+             94603                                                                                  
+                                                                                                    
+Q & S Market 1524 100th Ave  FOOD     -         -          -                     4.99               
+             Oakland, CA                                                         Miles              
+             94603                                                                                  
+Teen         2221 90th Ave   FOOD     -         -          -                     5.0                
+Challenge Of Oakland, CA                                                         Miles              
+East Bay     94603                                                                                  
+                                                                                                    
+24-7 Gas And 8930 Bancroft   FOOD     -         -          -                     5.0                
+Food Mart    Ave Oakland, CA                                                     Miles              
+             94605                                                                                  
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+
+
