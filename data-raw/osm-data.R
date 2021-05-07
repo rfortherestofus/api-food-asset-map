@@ -188,9 +188,9 @@ drugstores_pts <- drugstore_q$osm_points %>%
   st_centroid()
 
 drugstores_clean <- drugstores %>%
-  transmute(osm_id, name, housenumber = addr.housenumber, street = addr.street, city = "San Francisco", state = "CA", business_type = "drugstore") %>%
+  transmute(osm_id, name, housenumber = addr.housenumber, street = addr.street, zip = addr.postcode, city = "San Francisco", state = "CA", business_type = "drugstore") %>%
   rbind(drugstores_pts %>%
-          transmute(osm_id, name, housenumber = addr.housenumber, street = addr.street, city = "San Francisco", state = "CA", business_type = "drugstore")) %>%
+          transmute(osm_id, name, housenumber = addr.housenumber, street = addr.street , zip = addr.postcode, city = "San Francisco", state = "CA", business_type = "drugstore")) %>%
   drop_na(name)
 
 leaflet() %>%
@@ -198,7 +198,7 @@ leaflet() %>%
   addPolygons(data = sf_boundary, fillOpacity = 0, opacity = 1, color = "#FFB55F", weight = 2) %>%
   addCircleMarkers(data = drugstores_clean, fillColor = "#5F9AB6", color = "#5F9AB6", opacity = 1, fillOpacity = 0.7, weight = 1, radius = 2, label = ~htmlEscape(name))
 
-write_rds(drugstores_clean, "data/drugstores_clean.rds")
+write_rds(drugstores_clean, "data/drugstores_osm.rds")
 
 
 
