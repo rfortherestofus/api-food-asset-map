@@ -33,11 +33,11 @@ file_category_map <- tribble(~name, ~category,
         "food_banks", "Food Bank",
         "food_pantries", "Food Pantry",
         "food_pharmacies", "Food Pharmacy",
-        "pop_up_pantries", "Food Pantries",
-        "prepared_food", "Offers Free, Prepared Food/Hot Meal",
-        "restaurants_osm", "Restaurants",
+        "pop_up_pantries", "Food Pantry",
+        "prepared_food", "Offers Free, Prepared Food or Hot Meals",
+        "restaurants_osm", "Restaurant",
         "snap_stores", "Accepts SNAP",
-        "supermarkets", "Supermarkets",
+        "supermarkets", "Supermarket",
         "wic_stores", "Accepts WIC") %>%
   mutate(full_path = glue("data/{name}.rds"))
 
