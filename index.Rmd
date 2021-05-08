@@ -29,7 +29,7 @@ gray <- "#806E6E"
 light_gray <- "#ECF0F1"
 ```
 
-```{r import_data}
+```{r import_data, results = 'hide'}
 ## boundary for San Francisco
 
 sf_boundary <- counties(state = "California", cb = TRUE) %>%
@@ -62,12 +62,10 @@ sf_boundary <- counties(state = "California", cb = TRUE) %>%
 
 demographics <- read_rds(("data/api_neighborhood_data.rds"))
 
-convenience_stores <- read_rds("data/convenience_stores_osm.rds") %>%
+food_resources <- read_rds("data/full_dataset.rds") %>%
   st_join(demographics %>% select(nhood)) %>%
-  mutate(type = "Convenience store")
-food_pantries <- read_rds("data/food_pantries.rds") %>%
-  st_join(demographics %>% select(nhood)) %>%
-  mutate(type = "Food pantry")
+  filter(city == "San Francisco") %>%
+  st_intersection(sf_boundary %>% select())
 
 ```
 
@@ -81,66 +79,57 @@ demo_pal <- colorQuantile(
   n = 5,
   na.color = light_gray)
 
-## labels
+## popups
 
-convenience_labels <- sprintf(
-  "<strong>%s</strong><br/>%s in %s</sup>",
-  convenience_stores$name, convenience_stores$business_type, convenience_stores$nhood
-) %>% lapply(htmltools::HTML)
-
-pantry_labels <- sprintf(
-  "<strong>%s</strong><br/>%s in %s</sup>",
-  food_pantries$name, food_pantries$category, food_pantries$nhood
-) %>% lapply(htmltools::HTML)
+# make popup text with name, address, notes, and link to website
+food_resources <- food_resources %>% 
+  mutate(popup = paste("<b>", name,"</b>", "<br/>",
+                       street_address, ', ', city, "<br/><i>", category, " in ", nhood, "</i>", sep=''))
 
 ```
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Purus faucibus ornare suspendisse sed nisi lacus sed viverra tellus. Et ligula ullamcorper malesuada proin libero nunc consequat. Proin libero nunc consequat interdum varius sit. Maecenas pharetra convallis posuere morbi leo. Ipsum dolor sit amet consectetur. Dolor sit amet consectetur adipiscing elit duis tristique. Sit amet cursus sit amet dictum sit. Non sodales neque sodales ut etiam sit amet. Fermentum odio eu feugiat pretium nibh ipsum. Neque aliquam vestibulum morbi blandit cursus risus at ultrices mi. Maecenas pharetra convallis posuere morbi. Bibendum ut tristique et egestas quis ipsum suspendisse.
 
 ```{r map, layout = "l-page", fig.height = 8}
-leaflet(sf_boundary) %>%
+resource_groups <- unique(food_resources$category)
 
-  # basemap
+map <- 
+  leaflet() %>% 
   addProviderTiles(provider = providers$CartoDB.Positron) %>%
-
-  # data layers
-  # addPolygons(fillColor = "transparent", color = "#858585", opacity = 1, weight = 2) %>%
   addPolygons(data = demographics, group = "Demographics", fillColor = ~demo_pal(pct_api_clean), color = gray, weight = 1, fillOpacity = .8) %>%
 
   # legends
 
-  addLegend(position = "bottomright", pal = demo_pal, values = demographics$pct_api_clean, opacity = .8, title = "% Asian or Pacific Islander<br>ACS 2019 (5-year)", group = "Demographics") %>%
+  addLegend(position = "bottomright", pal = demo_pal, values = demographics$pct_api_clean, opacity = .8, title = "% Asian or Pacific Islander<br>ACS 2019 (5-year)", group = "Neighborhood Demographics") 
 
-  addCircles(data = food_pantries,
-             radius = 3,
-             group = "Food pantries",
-             color = gray,
-             opacity = .8,
-             label = pantry_labels,
-             labelOptions = labelOptions(
-               style = list("font-weight" = "normal", padding = "3px 8px", "color" = gray),
-               textsize = "15px",
-               direction = "auto")) %>%
 
-  addCircles(data = convenience_stores,
-             radius = 3,
-             group = "Convenience stores",
-             color = light_red,
-             opacity = 0.8,
-             label = convenience_labels,
-             labelOptions = labelOptions(
-               style = list("font-weight" = "normal", padding = "3px 8px", "color" = dark_red),
-               textsize = "15px",
-               direction = "auto")) %>%
+# use walk from per to return m after adding each layer
+resource_groups %>%                     # get names of resource groups
+  walk(function(x)                         # then walk through vector of names one at a time
+    map <<- 
+      map %>% 
+      addCircles(data = food_resources %>% filter(category == x),
+                 radius = 3,
+                 group = x,
+                 color = gray,
+                 opacity = .8,
+                 popup = ~popup,
+                 labelOptions = labelOptions(
+                   style = list("font-weight" = "normal", padding = "3px 8px", "color" = gray),
+                   textsize = "15px",
+                   direction = "auto")))
 
-  # layer controls
-
+map <- 
+  map %>% 
   addLayersControl(
-    overlayGroups = c("Demographics", "Food pantries", "Convenience stores"),
+    overlayGroups = c("Neighborhood Demographics", resource_groups),
     options = layersControlOptions(collapsed = FALSE)
   ) %>%
-
   hideGroup("Demographics")
+
+
+map
+
 
 ```
 
