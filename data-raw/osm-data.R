@@ -214,3 +214,25 @@ japanese_pts <- japan_q$osm_points
 supermarkets %>%
   st_set_geometry(NULL) %>%
   semi_join(japanese_pts %>% st_set_geometry(NULL), by = "osm_id")
+
+
+## Liquor stores
+
+liquor_q <- getbb("San Francisco") %>%
+  opq() %>%
+  add_osm_feature("shop", "alcohol") %>%
+  osmdata_sf()
+
+liquor_pts <- liquor_q$osm_points
+
+liquor_poly <- liquor_q$osm_polygons %>%
+  st_centroid()
+
+
+liquor_clean <- liquor_poly %>%
+  transmute(osm_id, name, housenumber = addr.housenumber, street = addr.street, zip = addr.postcode, city = "San Francisco", state = "CA", category = "Liquor Store") %>%
+  rbind(liquor_pts %>%
+          transmute(osm_id, name, housenumber = addr.housenumber, street = addr.street , zip = addr.postcode, city = "San Francisco", state = "CA", category = "Liquor Store")) %>%
+  drop_na(name)
+
+write_rds(liquor_clean, "data/liquor_stores_osm.rds")

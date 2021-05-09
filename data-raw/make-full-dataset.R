@@ -38,7 +38,9 @@ file_category_map <- tribble(~name, ~category,
         "restaurants_osm", "Restaurant",
         "snap_stores", "Accepts SNAP",
         "supermarkets", "Supermarket",
-        "wic_stores", "Accepts WIC") %>%
+        "wic_stores", "Accepts WIC",
+        "liquor_stores_osm", "Liquor Store",
+        "ethnic_markets", "Ethnic Market") %>%
   mutate(full_path = glue("data/{name}.rds"))
 
 data_files <- map(file_category_map$full_path, readRDS) %>%
