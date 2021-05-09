@@ -34,11 +34,57 @@ supermarkets_pts <- supermarket_q$osm_points %>%
   st_intersection(sf_boundary) %>% # the supermarket query includes some from outside of the city, so this limits the data to only supermarkets in SF
   st_centroid()
 
+seafood_q <- getbb("San Francisco") %>%
+  opq() %>%
+  add_osm_feature("shop", "seafood") %>%
+  osmdata_sf()
+
+seafood <- seafood_q$osm_polygons %>%
+  st_intersection(sf_boundary) %>% # the supermarket query includes some from outside of the city, so this limits the data to only supermarkets in SF
+  st_centroid()
+
+
+seafood_pts <- seafood_q$osm_points %>%
+  st_intersection(sf_boundary) %>% # the supermarket query includes some from outside of the city, so this limits the data to only supermarkets in SF
+  st_centroid()
+
+grocery_q <- getbb("San Francisco") %>%
+  opq() %>%
+  add_osm_feature("amenity", "grocery") %>%
+  osmdata_sf()
+
+
+grocery_pts <- grocery_q$osm_points %>%
+  st_intersection(sf_boundary) %>% # the supermarket query includes some from outside of the city, so this limits the data to only supermarkets in SF
+  st_centroid()
+
+greengrocery_q <- getbb("San Francisco") %>%
+  opq() %>%
+  add_osm_feature("shop", "greengrocer") %>%
+  osmdata_sf()
+
+
+greengrocery_pts <- greengrocery_q$osm_points %>%
+  st_intersection(sf_boundary) %>% # the supermarket query includes some from outside of the city, so this limits the data to only supermarkets in SF
+  st_centroid()
+
+greengrocery <- greengrocery_q$osm_polygons %>%
+  st_intersection(sf_boundary) %>% # the supermarket query includes some from outside of the city, so this limits the data to only supermarkets in SF
+  st_centroid()
+
 
 
 supermarkets_clean <- supermarkets %>%
   transmute(osm_id, name, housenumber = addr.housenumber, street = addr.street, zip = addr.postcode, city = "San Francisco", state = "CA", business_type = "supermarket") %>%
   rbind(supermarkets_pts %>%
+          transmute(osm_id, name, housenumber = addr.housenumber, street = addr.street, zip = addr.postcode, city = "San Francisco", state = "CA", business_type = "supermarket")) %>%
+  bind_rows(grocery_pts %>%
+          transmute(osm_id, name, city = "San Francisco", state = "CA", business_type = "supermarket")) %>%
+  rbind(greengrocery %>%
+          transmute(osm_id, name, housenumber = addr.housenumber, street = addr.street, zip = addr.postcode, city = "San Francisco", state = "CA", business_type = "supermarket")) %>%
+  rbind(greengrocery_pts %>%
+          transmute(osm_id, name, housenumber = addr.housenumber, street = addr.street, zip = addr.postcode, city = "San Francisco", state = "CA", business_type = "supermarket")) %>%
+  rbind(seafood_pts %>%
           transmute(osm_id, name, housenumber = addr.housenumber, street = addr.street, zip = addr.postcode, city = "San Francisco", state = "CA", business_type = "supermarket")) %>%
   drop_na(name)
 
@@ -63,6 +109,19 @@ convenience_stores <- convenience_store_q$osm_polygons %>%
   st_centroid()
 
 convenience_stores_pts <- convenience_store_q$osm_points %>%
+  st_intersection(sf_boundary) %>% # the convenience store query includes some from outside of the city, so this limits the data to only supermarkets in SF
+  st_centroid()
+
+fuel_q <- getbb("San Francisco") %>%
+  opq() %>%
+  add_osm_feature("amenity", "fuel") %>%
+  osmdata_sf()
+
+fuel <- fuel_q$osm_polygons %>%
+  st_intersection(sf_boundary) %>% # the convenience store query includes some from outside of the city, so this limits the data to only supermarkets in SF
+  st_centroid()
+
+fuel_pts <- fuel_q$osm_points %>%
   st_intersection(sf_boundary) %>% # the convenience store query includes some from outside of the city, so this limits the data to only supermarkets in SF
   st_centroid()
 
@@ -174,6 +233,15 @@ write_rds(markets_clean, "data/markets_osm.rds")
 
 # Drugstore query
 
+chemist_q <- getbb("San Francisco") %>%
+  opq() %>%
+  add_osm_feature("shop", "chemist") %>% # drugstore is deprecated, chemist returns subset of these results
+  osmdata_sf()
+
+chemist_pts <- chemist_q$osm_points %>%
+  st_intersection(sf_boundary) %>%  # the convenience store query includes some from outside of the city, so this limits the data to only places in SF
+  st_centroid()
+
 drugstore_q <- getbb("San Francisco") %>%
   opq() %>%
   add_osm_feature("amenity", "pharmacy") %>% # drugstore is deprecated, chemist returns subset of these results
@@ -190,6 +258,8 @@ drugstores_pts <- drugstore_q$osm_points %>%
 drugstores_clean <- drugstores %>%
   transmute(osm_id, name, housenumber = addr.housenumber, street = addr.street, zip = addr.postcode, city = "San Francisco", state = "CA", business_type = "drugstore") %>%
   rbind(drugstores_pts %>%
+          transmute(osm_id, name, housenumber = addr.housenumber, street = addr.street , zip = addr.postcode, city = "San Francisco", state = "CA", business_type = "drugstore")) %>%
+  rbind(chemist_pts %>%
           transmute(osm_id, name, housenumber = addr.housenumber, street = addr.street , zip = addr.postcode, city = "San Francisco", state = "CA", business_type = "drugstore")) %>%
   drop_na(name)
 
