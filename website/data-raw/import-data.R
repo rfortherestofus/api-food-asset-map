@@ -457,11 +457,12 @@ write_rds(wic_stores_sf, "data/wic_stores.rds")
 
 # https://sfenvironment.org/farmers-markets-in-sf
 
+# website super unstructured, best to do by hand
 farmers_markets_html <- read_html("https://sfenvironment.org/farmers-markets-in-sf")
 
 
 farmers_markets_names <- farmers_markets_html %>%
-  html_elements("strong") %>%
+  html_elements("p :nth-child(1) :nth-child(1)") %>%
   html_text() %>%
   as_tibble() %>%
   filter(str_detect(value, "Farmers Market\\b") | str_detect(value, "Mercantile") | str_detect(value, "Community Market")) %>%
@@ -470,7 +471,7 @@ farmers_markets_names <- farmers_markets_html %>%
 farmers_market_zips <- farmers_markets_html %>%
   html_elements("p") %>%
   html_text() %>%
-  as_tibble() %>%
+  as_tibble() %>% View()
   # Keep only rows with zip codes
   filter(str_detect(value, "[0-9]{5}(?:-[0-9]{4})?")) %>%
   mutate(zip_code = str_extract(value, "[0-9]{5}(?:-[0-9]{4})?")) %>%
@@ -489,11 +490,97 @@ farmers_market_addresses <- farmers_markets_html %>%
   pull(street_address)
 
 
-farmers_markets <- tibble(
-  name = farmers_markets_names,
-  street_address = farmers_market_addresses,
-  zip_code = farmers_market_zips
+
+
+
+# need to fix street address (by hand easiset), gives scrambled results otherwise
+
+fixed_street_address <- c(
+  "100 Alemany Blvd.",
+  "3861 24th St.",
+  "1605 Jerrold Ave",
+  "1730 O'Farrell St",
+  "One Ferry Building #50",
+  "1182 Market St.",
+  "1 Warriors Way",
+  "1315 8th Ave",
+  "200 Clement St",
+  "3251 20th Avenue",
+  "1994 37th Ave",
+  "2 Marina Blvd",
+  "1377 Fell St.",
+  "One Ferry Building #50",
+  "1 United Nations Plaza",
+  "16 Veterans Dr",
+  "288 Noe St",
+  "One Ferry Building #50",
+  "84 Bartlett St",
+  "288 Noe St",
+  "84 Bartlett St",
+  "699 Columbus Ave",
+  "46th and Taraval"
 )
+
+fixed_zips <- c(
+  "94110",
+  "94114",
+  "94124",
+  "94115",
+  "94111",
+  "94102",
+  "94158",
+  "94122",
+  "94118",
+  "94132",
+  "94116",
+  "94109",
+  "94117",
+  "94111",
+  "94102",
+  "94127",
+  "94114",
+  "94111",
+  "94110",
+  "94114",
+  "94110",
+  "94133",
+  "94116"
+)
+
+farmers_markets <- tibble(
+    name = farmers_markets_names,
+    street_address = fixed_street_address,
+    zip_code = fixed_zips
+  ) %>%
+  distinct() %>%
+  mutate(city = "San Francisco",
+       state = "CA")
+
+
+farmers_markets_geocoded <- farmers_markets %>%
+  mutate(address = glue("{street_address}, {city}, {state} {zip_code}")) %>%
+  geocode(address, method = "mapbox", lat = latitude, long = longitude) %>%  #osm misses 3 addresses
+  select(-address)
+
+# manually fix Ferry Plaza Market
+farmers_markets_geocoded$latitude[farmers_markets_geocoded$name == "Ferry Plaza Farmers Market"] <- 37.79782980366289
+farmers_markets_geocoded$longitude[farmers_markets_geocoded$name == "Ferry Plaza Farmers Market"] <-  -122.39378060891158
+
+
+
+farmers_markets_sf <- farmers_markets_geocoded %>%
+  mutate(category = "farmers market") %>%
+  st_as_sf(coords = c("longitude", "latitude"), crs = 4326) #%>%
+#st_intersection(sf_boundary) locations already in sf county
+
+# Do a visual check
+leaflet() %>%
+  addProviderTiles(providers$CartoDB.Positron) %>%
+  addPolygons(data = sf_boundary, fillOpacity = 0, opacity = 1, color = "#FFB55F", weight = 2) %>%
+  addCircleMarkers(data = farmers_markets_sf, fillColor = "#5F9AB6", color = "#5F9AB6", opacity = 1, fillOpacity = 0.7, weight = 1, radius = 2, label = ~name)
+# filmore farmers market is in Canada?
+
+write_rds(farmers_markets_sf, "data/farmers_markets.rds")
 
 
 # Prepared Food ---------------------------------------------------------
@@ -566,3 +653,13 @@ food_banks_sf <- food_banks_geocoded %>%
 
 write_rds(food_banks_sf, "data/food_banks.rds")
 
+# Additonal Farmers Markets ---------------------------------------------------------
+
+# Ethnic food markets
+
+ethnic_markets <- read_csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vSIv3qx7IXACIQFOp6jhyZ1-9LBHkBAdHE4WnS2diosy-hfWk9nF-GDPHqW-pYR1bf1XERgyAZ_L7bs/pub?output=csv") %>%
+  st_as_sf(coords = c("longitude", "latitude"), crs = 4326) %>%
+  mutate(zip_code = as.character(zip_code))
+
+
+write_rds(ethnic_markets, "data/ethnic_markets.rds")
