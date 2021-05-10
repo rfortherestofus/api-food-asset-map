@@ -25,22 +25,22 @@ data_file_names <- tibble(name = list.files("data/"))
 # ignoring markets_osm because I can't tell what it is really
 
 file_category_map <- tribble(~name, ~category,
-        "bay_area_211", "Offers Free, Prepared Food or Hot Meals",
-        "convenience_stores_osm", "Corner Store",
-        "drugstores_osm", "Drug Store",
-        "farmers_markets", "Farmers Market",
-        "fast_food_osm", "Fast Food Restaurant",
-        "food_banks", "Food Bank",
-        "food_pantries", "Food Pantry",
-        "food_pharmacies", "Food Pharmacy",
-        "pop_up_pantries", "Food Pantry",
+        "bay_area_211", "Free, Prepared Food or Hot Meals",
+        "convenience_stores_osm", "Corner Stores",
+        "drugstores_osm", "Drug Stores",
+        "farmers_markets", "Farmers Markets",
+        "fast_food_osm", "Fast Food Restaurants",
+        "food_banks", "Food Banks",
+        "food_pantries", "Food Pantries",
+        "food_pharmacies", "Food Pharmacies",
+        "pop_up_pantries", "Food Pantries",
         "prepared_food", "Offers Free, Prepared Food or Hot Meals",
-        "restaurants_osm", "Restaurant",
-        "snap_stores", "Accepts SNAP",
+        "restaurants_osm", "Restaurants",
+        "snap_stores", "Stores that Accept SNAP/WIC",
         "supermarkets", "Supermarket",
-        "wic_stores", "Accepts WIC",
-        "liquor_stores_osm", "Liquor Store",
-        "ethnic_markets", "Ethnic Market") %>%
+        "wic_stores", "Stores that Accept SNAP/WIC",
+        "liquor_stores_osm", "Liquor Stores",
+        "ethnic_markets", "Ethnic Markets") %>%
   mutate(full_path = glue("data/{name}.rds"))
 
 data_files <- map(file_category_map$full_path, readRDS) %>%
