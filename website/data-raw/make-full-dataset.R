@@ -78,4 +78,3 @@ write_rds(data_enc, "data/full_dataset.rds")
 #   reverse_geocode(lat = lat, long = long,
 #                   method = "arcgis")
 #
-
