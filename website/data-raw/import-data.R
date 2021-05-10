@@ -490,9 +490,6 @@ farmers_market_addresses <- farmers_markets_html %>%
   pull(street_address)
 
 
-
-
-
 # need to fix street address (by hand easiset), gives scrambled results otherwise
 
 fixed_street_address <- c(
@@ -653,9 +650,7 @@ food_banks_sf <- food_banks_geocoded %>%
 
 write_rds(food_banks_sf, "data/food_banks.rds")
 
-# Additonal Farmers Markets ---------------------------------------------------------
-
-# Ethnic food markets
+# Ethnic food markets ---------------------------------------------------------
 
 ethnic_markets <- read_csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vSIv3qx7IXACIQFOp6jhyZ1-9LBHkBAdHE4WnS2diosy-hfWk9nF-GDPHqW-pYR1bf1XERgyAZ_L7bs/pub?output=csv") %>%
   st_as_sf(coords = c("longitude", "latitude"), crs = 4326) %>%

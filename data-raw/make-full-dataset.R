@@ -29,15 +29,15 @@ file_category_map <- tribble(~name, ~category,
         "convenience_stores_osm", "Corner Stores",
         "drugstores_osm", "Drug Stores",
         "farmers_markets", "Farmers Markets",
-        "fast_food_osm", "Fast Food Restaurants",
+        "fast_food_osm", "Restaurants (Fast Food)",
         "food_banks", "Food Banks",
         "food_pantries", "Food Pantries",
         "food_pharmacies", "Food Pharmacies",
         "pop_up_pantries", "Food Pantries",
-        "prepared_food", "Offers Free, Prepared Food or Hot Meals",
+        "prepared_food", "Free, Prepared Food or Hot Meals",
         "restaurants_osm", "Restaurants",
         "snap_stores", "Stores that Accept SNAP/WIC",
-        "supermarkets", "Supermarket",
+        "supermarkets", "Supermarkets",
         "wic_stores", "Stores that Accept SNAP/WIC",
         "liquor_stores_osm", "Liquor Stores",
         "ethnic_markets", "Ethnic Markets") %>%
@@ -57,9 +57,8 @@ data_files_fixed <- data_files %>%
 
 Encoding(data_files_fixed$name) <- "UTF-8"
 data_enc <- data_files_fixed %>%
-  mutate(name = iconv(data_files_fixed$name, "UTF-8", "UTF-8",sub=''))# remove easy duplicates
-
-
+  mutate(name = iconv(data_files_fixed$name, "UTF-8", "UTF-8",sub='')) %>% # remove easy duplicates
+  arrange(category)
 
 # visual check
 # leaflet() %>%

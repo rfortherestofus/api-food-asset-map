@@ -25,22 +25,22 @@ data_file_names <- tibble(name = list.files("data/"))
 # ignoring markets_osm because I can't tell what it is really
 
 file_category_map <- tribble(~name, ~category,
-        "bay_area_211", "Offers Free, Prepared Food or Hot Meals",
-        "convenience_stores_osm", "Corner Store",
-        "drugstores_osm", "Drug Store",
-        "farmers_markets", "Farmers Market",
-        "fast_food_osm", "Fast Food Restaurant",
-        "food_banks", "Food Bank",
-        "food_pantries", "Food Pantry",
-        "food_pharmacies", "Food Pharmacy",
-        "pop_up_pantries", "Food Pantry",
-        "prepared_food", "Offers Free, Prepared Food or Hot Meals",
-        "restaurants_osm", "Restaurant",
-        "snap_stores", "Accepts SNAP",
-        "supermarkets", "Supermarket",
-        "wic_stores", "Accepts WIC",
-        "liquor_stores_osm", "Liquor Store",
-        "ethnic_markets", "Ethnic Market") %>%
+        "bay_area_211", "Free, Prepared Food or Hot Meals",
+        "convenience_stores_osm", "Corner Stores",
+        "drugstores_osm", "Drug Stores",
+        "farmers_markets", "Farmers Markets",
+        "fast_food_osm", "Restaurants (Fast Food)",
+        "food_banks", "Food Banks",
+        "food_pantries", "Food Pantries",
+        "food_pharmacies", "Food Pharmacies",
+        "pop_up_pantries", "Food Pantries",
+        "prepared_food", "Free, Prepared Food or Hot Meals",
+        "restaurants_osm", "Restaurants",
+        "snap_stores", "Stores that Accept SNAP/WIC",
+        "supermarkets", "Supermarkets",
+        "wic_stores", "Stores that Accept SNAP/WIC",
+        "liquor_stores_osm", "Liquor Stores",
+        "ethnic_markets", "Ethnic Markets") %>%
   mutate(full_path = glue("data/{name}.rds"))
 
 data_files <- map(file_category_map$full_path, readRDS) %>%
@@ -57,21 +57,10 @@ data_files_fixed <- data_files %>%
 
 Encoding(data_files_fixed$name) <- "UTF-8"
 data_enc <- data_files_fixed %>%
-  mutate(name = iconv(data_files_fixed$name, "UTF-8", "UTF-8",sub=''))# remove easy duplicates
-
-
+  mutate(name = iconv(data_files_fixed$name, "UTF-8", "UTF-8",sub='')) %>% # remove easy duplicates
+  arrange(category)
 
 # visual check
-# library(leaflet)
-# library(htmltools)
-# library(janitor)
-# library(tigris)
-#
-# sf_boundary <- counties(state = "California", cb = TRUE) %>%
-#   clean_names() %>%
-#   filter(name == "San Francisco") %>%
-#   st_transform(4326)
-#
 # leaflet() %>%
 #   addProviderTiles(providers$CartoDB.Positron) %>%
 #   addPolygons(data = sf_boundary, fillOpacity = 0, opacity = 1, color = "#FFB55F", weight = 2) %>%
