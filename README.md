@@ -29,19 +29,19 @@ The object should be geocoded with a geometry column to hold that data.
 
 In consultation with the client, here are the categories of food resources we're working with:
 
--   Providers that offer food pantries
--   Providers that offer free, prepared food/hot meals
--   Food banks
--   Food pharmacies
--   Drug stores
--   Ethnic food markets
--   Full service grocery stores/supermarkets/markets (non SNAP or WIC)
--   Stores that accept SNAP/WIC (full service grocery stores, supermarkets, markets, ethnic food markets, Target, Walmart)
--   Corner stores
--   Fast food restaurants
--   Restaurants
--   Farmers markets
--   Liquor Stores
+- Corner Stores
+- Drug Stores
+- Ethnic Markets
+- Farmers Markets
+- Food Banks/Pantries
+- Food Pharmacies
+- Free Prepared Food or Hot Meals
+- Liquor Stores
+- Restaurants
+- Restaurants (Fast Food)
+- Stores that Accept SNAP/WIC
+- Supermarkets
+
 
 ### Neighborhoods
 
