@@ -25,18 +25,18 @@ data_file_names <- tibble(name = list.files("data/"))
 # ignoring markets_osm because I can't tell what it is really
 
 file_category_map <- tribble(~name, ~category,
-        "bay_area_211", "Free, Prepared Food or Hot Meals",
+        "bay_area_211", "Free Prepared Food or Hot Meals",
         "convenience_stores_osm", "Corner Stores",
         "drugstores_osm", "Drug Stores",
         "farmers_markets", "Farmers Markets",
         "fast_food_osm", "Restaurants (Fast Food)",
-        "food_banks", "Food Banks",
-        "food_pantries", "Food Pantries",
+        "food_banks", "Food Banks/Pantries",
+        "food_pantries", "Food Banks/Pantries",
         "food_pharmacies", "Food Pharmacies",
-        "pop_up_pantries", "Food Pantries",
-        "prepared_food", "Free, Prepared Food or Hot Meals",
+        "pop_up_pantries", "Food Banks/Pantries",
+        "prepared_food", "Free Prepared Food or Hot Meals",
         "restaurants_osm", "Restaurants",
-        "snap_stores", "Stores that Accept SNAP/WIC",
+        "snap_stores", "Stores that Accept SNAP/WIC", # leaving this in here because we'll add column in another file
         "supermarkets", "Supermarkets",
         "wic_stores", "Stores that Accept SNAP/WIC",
         "liquor_stores_osm", "Liquor Stores",
@@ -75,7 +75,14 @@ full_data <- client_annot_intl %>%
   bind_cols(data_enc) %>%
   filter(international_grocery_store != "CLOSED" | is.na(international_grocery_store)) %>%
   mutate(international_grocery_store = !is.na(international_grocery_store)) %>%
-  relocate(international_grocery_store, .after = zip_code)
+  relocate(international_grocery_store, .after = zip_code) %>%
+  filter(!(name %in% c("Uoki Sakai", "Queen of Sheba", "Gourmet and more"))) %>%
+  filter(name != "Alemany Farmers Market") %>%  # remove duplicate entry %>%
+  mutate(category = ifelse(category == "Ethnic Markets" | international_grocery_store,
+                "International Grocery Stores",
+                category)) %>%
+  select(-international_grocery_store) %>%
+  st_as_sf() # somewhere it lost the sf class
 
 write_rds(full_data, "data/full_dataset.rds")
 
