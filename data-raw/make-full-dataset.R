@@ -66,15 +66,16 @@ data_enc <- data_files_fixed %>%
 #   addPolygons(data = sf_boundary, fillOpacity = 0, opacity = 1, color = "#FFB55F", weight = 2) %>%
 #   addCircleMarkers(data = data_enc, fillColor = "#5F9AB6", color = "#5F9AB6", opacity = 1, fillOpacity = 0.7, weight = 1, radius = 2, label = ~htmlEscape(name))
 
-write_rds(data_enc, "data/full_dataset.rds")
 
-# # reverse geocoding
-# convenience_stores_osm <- readRDS("data/convenience_stores_osm.rds")
-#
-# # need to remove excess variables, do some reverse geocoding, and add category
-# temp_arcgis <- convenience_stores_osm %>%
-#   mutate(long = st_coordinates(.)[,1],
-#          lat = st_coordinates(.)[,2]) %>%
-#   reverse_geocode(lat = lat, long = long,
-#                   method = "arcgis")
-#
+client_annot_intl <- read_csv("data-raw/client_annotated_intl_groc.csv")
+
+full_data <- client_annot_intl %>%
+  rename(international_grocery_store = "ethnic food market") %>%
+  select(international_grocery_store) %>%
+  bind_cols(data_enc) %>%
+  filter(international_grocery_store != "CLOSED" | is.na(international_grocery_store)) %>%
+  mutate(international_grocery_store = !is.na(international_grocery_store)) %>%
+  relocate(international_grocery_store, .after = zip_code)
+
+write_rds(full_data, "data/full_dataset.rds")
+
