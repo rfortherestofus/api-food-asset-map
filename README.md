@@ -39,8 +39,11 @@ In consultation with the client, here are the categories of food resources we're
 - Liquor Stores
 - Restaurants
 - Restaurants (Fast Food)
-- Stores that Accept SNAP/WIC
 - Supermarkets
+
+There is one attribute that can apply across categories:
+
+- Stores that Accept SNAP/WIC
 
 
 ### Neighborhoods
