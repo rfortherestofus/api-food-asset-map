@@ -77,5 +77,5 @@ full_data <- client_annot_intl %>%
   mutate(international_grocery_store = !is.na(international_grocery_store)) %>%
   relocate(international_grocery_store, .after = zip_code)
 
-write_rds(data_enc, "data/full_data.rds")
+write_rds(full_data, "data/full_dataset.rds")
 
