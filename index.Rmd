@@ -125,7 +125,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 
 
 
-```{r map, layout = "l-page", fig.height = 8}
+```{r map, layout = "l-screen-inset", fig.height = 8}
 
 map <-
   leaflet() %>%
