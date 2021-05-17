@@ -48,24 +48,40 @@ food_resources <- read_rds("data/full_dataset.rds") %>%
   st_join(demographics %>% select(nhood)) %>%
   filter(city == "San Francisco") %>%
   st_intersection(sf_boundary %>% select()) %>%
-  mutate(category = factor(category))
+  mutate(category = factor(category),
+         icon_url = case_when(category == "Corner Stores" ~ "assets/corner-stores.svg",
+                      category == "Drug Stores" ~ "assets/drug-stores.svg",
+                      category == "Food Banks/Pantries" ~ "assets/food-banks-pantries.svg",
+                      category == "Food Pharmacies" ~ "assets/food-pharmacy.svg",
+                      category == "Free Prepared Food or Hot Meals" ~ "assets/free-prepared-hot-meals.svg",
+                      category == "Liquor Stores" ~ "assets/liquor-stores.svg",
+                      category == "International Grocery Stores" ~ "assets/international-grocery-stores.svg",
+                      category == "Restaurants (Fast Food)" ~ "assets/restaurants-fast-food.svg",
+                      category == "Restaurants" ~ "assets/restaurants.svg",
+                      category == "Supermarkets" ~ "assets/supermarkets.svg",
+                      category == "Farmers Markets" ~ "assets/farmers-markets.svg",
+                      TRUE ~ NA_character_
+  )
+  )
 
 ```
 
 
 
 ```{r design}
-groups <- c("Corner Stores",
-            "International Grocery Stores",
-            "Drug Stores",
-            "Farmers Markets",
-            "Food Banks/Pantries",
-            "Food Pharmacies",
-            "Free Prepared Food or Hot Meals",
-            "Liquor Stores",
-            "Restaurants",
-            "Restaurants (Fast Food)",
-            "Supermarkets")
+groups <- c(
+  "Corner Stores" <- "Corner Stores",
+  "International Grocery Stores" <- "International Grocery Stores",
+  "Drug Stores" <- "Drug Stores",
+  "Farmers Markets" <- "Farmers Markets",
+  "Food Banks/Pantries" <- "Food Banks/Pantries",
+  "Food Pharmacies" <- "Food Pharmacies",
+  "Free Prepared Food or Hot Meals" <- "Free Prepared Food or Hot Meals",
+  "Liquor Stores" <- "Liquor Stores",
+  "Restaurants" <- "Restaurants",
+  "Restaurants (Fast Food)" <- "Restaurants (Fast Food)",
+  "Supermarkets" <- "Supermarkets"
+)
 
 food_icons <- icons(
   iconUrl = case_when(food_resources$category == "Corner Stores" ~ "assets/corner-stores.svg",
@@ -103,8 +119,6 @@ food_resources <- food_resources %>%
                        sep='')) %>%
   filter(category %in% groups) # for now, filter out the SNAP/WIC category
 
-food_shared <- SharedData$new(food_resources)
-demo_shared <- SharedData$new(demographics)
 
 ```
 
@@ -112,65 +126,38 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 
 
 ```{r map, layout = "l-page", fig.height = 8}
-crosstalk::bscols(widths = c(3,NA),
-  list(filter_checkbox(
-    id = "food_resource",
-    label = "Food resource",
-    sharedData = food_shared,
-    group = ~category
-  )
-  ),
-  leaflet(food_shared) %>% 
-    addProviderTiles(providers$CartoDB.Positron) %>%
-  addMarkers(icon = food_icons,
-             popup = ~popup) 
-)
 
-# map <- 
-#   leaflet() %>% 
-#   addProviderTiles(provider = providers$CartoDB.Positron) %>%
-#   addPolygons(data = demographics, group = "Neighborhood Demographics", fillColor = ~demo_pal(pct_api_clean), color = gray, weight = 1, fillOpacity = .8) %>%
-#   
-#   # legends
-#   
-#   addLegend(position = "bottomright", pal = demo_pal, values = demographics$pct_api_clean, opacity = .8, title = "% Asian or Pacific Islander<br>ACS 2019 (5-year)", group = "Neighborhood Demographics") 
-# 
-# 
-# # use walk from per to return m after adding each layer
-# resource_groups %>%                     # get names of resource groups
-#   walk(function(x)                         # then walk through vector of names one at a time
-#     map <<- 
-#       map %>% 
-#       addMarkers(data = food_resources %>% filter(category == x),
-#                  icon = food_icons,
-#                  popup = ~popup,
-#                  labelOptions = labelOptions(
-#                    style = list("font-weight" = "normal", 
-#                                 padding = "3px 8px", 
-#                                 "color" = gray),
-#                    textsize = "15px",
-#                    direction = "auto")))
-# 
-# map <- 
-#   map %>% 
-#   addLayersControl(
-#     overlayGroups = c(resource_groups, "Neighborhood Demographics"),
-#     options = layersControlOptions(collapsed = FALSE, 
-#                                    postiton = "topright",
-#                                    autoZIndex = TRUE,
-#                                    style = list(
-#         "color" = "red",
-#         "font-family" = "serif",
-#         "font-style" = "italic",
-#         "box-shadow" = "3px 3px rgba(0,0,0,0.25)",
-#         "font-size" = "12px",
-#         "border-color" = "rgba(0,0,0,0.5)"
-#       ))
-#   ) %>%
-#   hideGroup("Neighborhood Demographics") 
-# 
-# 
-# # map
+map <-
+  leaflet() %>%
+  addProviderTiles(provider = providers$CartoDB.Positron) %>%
+  addPolygons(data = demographics, group = "Neighborhood Demographics<hr>", fillColor = ~demo_pal(pct_api_clean), color = gray, weight = 1, fillOpacity = .8) %>%
+  
+  # legends
+  
+  addLegend(position = "bottomright", pal = demo_pal, values = demographics$pct_api_clean, opacity = .8, title = "% Asian or Pacific Islander<br>ACS 2019 (5-year)", group = "Neighborhood Demographics<hr>")
+
+
+# use walk from per to return m after adding each layer
+groups %>%                     # get names of resource groups
+  walk(function(x)                         # then walk through vector of names one at a time
+    map <<-
+      map %>%
+      addMarkers(data = food_resources %>% filter(category == x),
+                 icon = makeIcon(iconUrl = ~icon_url, iconWidth = 10, iconHeight = 30),
+                 popup = ~popup,
+                 group = x,
+                 clusterOptions = markerClusterOptions()))
+
+map <-
+  map %>%
+  addLayersControl(
+    overlayGroups = c("Neighborhood Demographics<hr>",  groups),
+    options = layersControlOptions(collapsed = FALSE,
+                                   postiton = "topright")
+  ) %>%
+  hideGroup("Neighborhood Demographics<hr>")
+
+
 
 
 ```
