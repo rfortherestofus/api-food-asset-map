@@ -152,8 +152,8 @@ map <-
   map %>%
   addLayersControl(
     overlayGroups = c("Show API Population<hr padding:0px;margin:0px;>",  groups),
-    options = layersControlOptions(collapsed = FALSE,
-                                   postiton = "topleft")
+    position = "bottomleft",
+    options = layersControlOptions(collapsed = FALSE)
   ) %>%
   hideGroup("Show API Population<hr padding:0px;margin:0px;>")
 
