@@ -83,22 +83,6 @@ groups <- c(
   "Supermarkets" <- "Supermarkets"
 )
 
-food_icons <- icons(
-  iconUrl = case_when(food_resources$category == "Corner Stores" ~ "assets/corner-stores.svg",
-                      food_resources$category == "Drug Stores" ~ "assets/drug-stores.svg",
-                      food_resources$category == "Food Banks/Pantries" ~ "assets/food-banks-pantries.svg",
-                      food_resources$category == "Food Pharmacies" ~ "assets/food-pharmacy.svg",
-                      food_resources$category == "Free Prepared Food or Hot Meals" ~ "assets/free-prepared-hot-meals.svg",
-                      food_resources$category == "Liquor Stores" ~ "assets/liquor-stores.svg",
-                      food_resources$category == "International Grocery Stores" ~ "assets/international-grocery-stores.svg",
-                      food_resources$category == "Restaurants (Fast Food)" ~ "assets/restaurants-fast-food.svg",
-                      food_resources$category == "Restaurants" ~ "assets/restaurants.svg",
-                      food_resources$category == "Supermarkets" ~ "assets/supermarkets.svg",
-                      food_resources$category == "Farmers Markets" ~ "assets/farmers-markets.svg"
-  ),
-  iconWidth = 10, iconHeight = 30
-)
-
 ## color palettes
 
 demo_pal <- colorQuantile(
@@ -125,6 +109,7 @@ food_resources <- food_resources %>%
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Purus faucibus ornare suspendisse sed nisi lacus sed viverra tellus. Et ligula ullamcorper malesuada proin libero nunc consequat. Proin libero nunc consequat interdum varius sit. Maecenas pharetra convallis posuere morbi leo. Ipsum dolor sit amet consectetur. Dolor sit amet consectetur adipiscing elit duis tristique. Sit amet cursus sit amet dictum sit. Non sodales neque sodales ut etiam sit amet. Fermentum odio eu feugiat pretium nibh ipsum. Neque aliquam vestibulum morbi blandit cursus risus at ultrices mi. Maecenas pharetra convallis posuere morbi. Bibendum ut tristique et egestas quis ipsum suspendisse.
 
 
+
 ```{r map, layout = "l-page", fig.height = 8}
 
 map <-
@@ -143,7 +128,7 @@ groups %>%                     # get names of resource groups
     map <<-
       map %>%
       addMarkers(data = food_resources %>% filter(category == x),
-                 icon = makeIcon(iconUrl = ~icon_url, iconWidth = 10, iconHeight = 30),
+                 icon = makeIcon(iconUrl = ~icon_url, iconWidth = 20, iconHeight = 60),
                  popup = ~popup,
                  group = x,
                  clusterOptions = markerClusterOptions()))
@@ -157,7 +142,7 @@ map <-
   ) %>%
   hideGroup("Neighborhood Demographics<hr>")
 
-
+map
 
 
 ```
