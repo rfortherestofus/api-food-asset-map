@@ -85,10 +85,11 @@ groups <- c(
 
 ## color palettes
 
-demo_pal <- colorNumeric(
-  palette = "PuBuGn",
+demo_pal <- colorQuantile(
+  palette = "Blues",
   domain = demographics$pct_api_clean,
-  na.color = "transparent")
+  n = 5,
+  na.color = light_gray)
 
 ## popups
 
