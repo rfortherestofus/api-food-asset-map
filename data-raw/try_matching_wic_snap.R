@@ -51,7 +51,7 @@ full_dataset <- read_rds("data/full_dataset.rds") %>%
 # Prepare Data Frames ----------------
 
 snap_wic_locations <- full_dataset %>%
-  filter(category == "Stores that Accept SNAP/WIC")
+  filter(accepts_snap_wic)
 
 remaining_locations <- full_dataset %>%
   filter(category != "Stores that Accept SNAP/WIC")
