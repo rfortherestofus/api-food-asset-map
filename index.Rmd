@@ -129,11 +129,11 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 map <-
   leaflet() %>%
   addProviderTiles(provider = providers$CartoDB.Positron) %>%
-  addPolygons(data = demographics, group = "Neighborhood Demographics<hr padding:0px;margin:0px;>", fillColor = ~demo_pal(pct_api_clean), color = gray, weight = 1, fillOpacity = .8, popup = ~popup) %>%
+  addPolygons(data = demographics, group = "Show API Population<hr padding:0px;margin:0px;>", fillColor = ~demo_pal(pct_api_clean), color = gray, weight = 1, fillOpacity = .8, popup = ~popup) %>%
   
   # legends
   
-  addLegend(position = "bottomright", pal = demo_pal, values = demographics$pct_api_clean, opacity = .8, title = "% Asian or Pacific Islander<br>ACS 2019 (5-year)", group = "Neighborhood Demographics<hr padding:0px;margin:0px;>")
+  addLegend(position = "bottomright", pal = demo_pal, values = demographics$pct_api_clean, opacity = .8, title = "API Population", group = "Show API Population<hr padding:0px;margin:0px;>")
 
 
 # use walk from per to return m after adding each layer
@@ -150,11 +150,11 @@ groups %>%                     # get names of resource groups
 map <-
   map %>%
   addLayersControl(
-    overlayGroups = c("Neighborhood Demographics<hr padding:0px;margin:0px;>",  groups),
+    overlayGroups = c("Show API Population<hr padding:0px;margin:0px;>",  groups),
     options = layersControlOptions(collapsed = FALSE,
-                                   postiton = "topright")
+                                   postiton = "topleft")
   ) %>%
-  hideGroup("Neighborhood Demographics<hr padding:0px;margin:0px;>")
+  hideGroup("Show API Population<hr padding:0px;margin:0px;>")
 
 map
 

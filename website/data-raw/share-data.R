@@ -13,3 +13,7 @@ read_rds("data/full_dataset.rds") %>%
   st_drop_geometry() %>%
   write_sheet("https://docs.google.com/spreadsheets/d/1AnOuJMK5HHqe3mDn0aH3Mf3JYfLS61uWnvb_kHp1xFY/edit?usp=sharing",
               sheet = "Full Dataset")
+
+read_rds("data/potential_snap_wic_matches.rds") %>%
+  write_sheet("https://docs.google.com/spreadsheets/d/1AnOuJMK5HHqe3mDn0aH3Mf3JYfLS61uWnvb_kHp1xFY/edit?usp=sharing",
+              sheet = "Potential SNAP/WIC Matches")

@@ -1,5 +1,6 @@
 library(tidyverse)
 library(sf)
+library(glue)
 
 full_dataset <- read_rds("data/full_dataset.rds") %>%
   mutate(global_index = 1:n())# need to add index or rows not identifiable
@@ -184,14 +185,32 @@ remaining_snap_wic_locations <- remaining_snap_wic_locations %>%
 nearest_store <- function(i) {
   match_index <- st_nearest_feature(remaining_snap_wic_locations[i,], remaining_locations)
   distance <- st_distance(remaining_snap_wic_locations[i, ], remaining_locations[match_index, ])
-  potential_match <- remaining_locations %>% slice(match_index) %>%
-    st_set_geometry(NULL) %>%
-    transmute(store_name = name, store_category = category, store_address = street_address, potential_match = match_index, wic_index = i, distance = distance)
+  potential_match <- remaining_locations %>%
+    slice(match_index) %>%
+    st_drop_geometry() %>%
+    rename_with(~glue("{.x}_possible_match"))
 
+  snap_wic_info <- remaining_snap_wic_locations %>%
+    slice(i) %>%
+    st_drop_geometry() %>%
+    rename_with(~glue("{.x}_snap_wic"))
 
-  potential_match
+  bind_cols(potential_match, snap_wic_info) %>%
+    mutate(distance = distance, snap_wic_index = i, possible_match_index = match_index) %>%
+    select(-starts_with("city"),
+           -starts_with("state"),
+           -starts_with("name_simple"),
+           -starts_with("street_address_simple"),
+           -starts_with("global_index")) # remove to shrink table
+
 }
 
 # best guesses based on distance
-test_wic_matches <- map_dfr(1:nrow(remaining_snap_wic_locations), nearest_store) %>%
-  bind_cols(remaining_snap_wic_locations[c(1:nrow(remaining_snap_wic_locations)),])
+potential_snap_wic_matches <- map_dfr(1:nrow(remaining_snap_wic_locations), nearest_store) %>%
+  mutate(is_match = NA, new_category = NA) %>%
+  mutate(distance = as.numeric(distance))
+
+# potential_snap_wic_matches
+
+write_rds(potential_snap_wic_matches,
+          "data/potential_snap_wic_matches.rds")
