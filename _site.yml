@@ -31,5 +31,5 @@ navbar:
         - text: "Visitacion Valley"
           href: #
     - text: "Contact"
-      href: #
+      href: contact.html
 output: distill::distill_article

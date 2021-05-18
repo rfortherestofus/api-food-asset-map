@@ -99,7 +99,7 @@ demo_pal <- colorFactor(
 ## popups
 
 # make popup text with name, address, notes, and link to website
-food_resources <- food_resources %>% 
+food_resources <- food_resources %>%
   mutate(singular_category = singularize(category),
            popup = paste("<span font-family: 'Catamaran'>",
                        "<span style='font-weight:700; font-size:12px; color: #6B7280;'>", singular_category,"</span>", "<br/>",
@@ -117,7 +117,7 @@ demographics <- demographics %>%
                        "<span style='font-weight:700; font-size:12px; color: #111827'>", "2019 5-year ACS","</span>", "<br/>",
                        "</span>",
                        sep=''),
-                       
+
     is.na(pct_api_clean) ~ paste("<span font-family: 'Catamaran'>",
                        "<span style='font-weight:700; font-size:12px; color: #111827'>", nhood,"<br></span>",
                        "</span>",
@@ -126,22 +126,25 @@ demographics <- demographics %>%
 
 ```
 
+
+![](https://images.unsplash.com/photo-1517210067403-d86a5703516f?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1489&q=80)
+
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Purus faucibus ornare suspendisse sed nisi lacus sed viverra tellus. Et ligula ullamcorper malesuada proin libero nunc consequat. Proin libero nunc consequat interdum varius sit. Maecenas pharetra convallis posuere morbi leo. Ipsum dolor sit amet consectetur. Dolor sit amet consectetur adipiscing elit duis tristique. Sit amet cursus sit amet dictum sit. Non sodales neque sodales ut etiam sit amet. Fermentum odio eu feugiat pretium nibh ipsum. Neque aliquam vestibulum morbi blandit cursus risus at ultrices mi. Maecenas pharetra convallis posuere morbi. Bibendum ut tristique et egestas quis ipsum suspendisse.
 
 
 
-```{r map, layout = "l-page", fig.height = 8}
+```{r map, layout = "l-screen-inset", fig.height = 8}
 
 map <leaflet() %>%
   addProviderTiles(provider = providers$CartoDB.Positron) %>%
   addPolygons(data = demographics, group = "Neighborhood Demographics<hr padding:0px;margin:0px;>", fillColor = ~demo_pal(pct_api_category), color = gray, weight = 1, fillOpacity = .8, popup = ~popup) %>%
-  
+
   # legends
-  
+
   addLegend(position = "bottomright", pal = demo_pal, values = demographics$pct_api_category, opacity = .8, title = "% Asian or Pacific Islander<br><span style='font-weight:700; font-size:12px;'>ACS 2019 (5-year), quantile breaks", group = "Neighborhood Demographics<hr padding:0px;margin:0px;>", na.label = "Data not available", labels = c("Less than 16%", "16 to 22%", "22 to 34%", "34 to 44%", "Greater than 44%"))
 
 -
-  
+
 # use walk from per to return m after adding each layer
 groups %>%                     # get names of resource groups
   walk(function(x)                         # then walk through vector of names one at a time
@@ -156,14 +159,13 @@ groups %>%                     # get names of resource groups
 map <-
   map %>%
   addLayersControl(
-    overlayGroups = c("Neighborhood Demographics<hr padding:0px;margin:0px;>",  groups),
-    options = layersControlOptions(collapsed = FALSE,
-                                   postiton = "topright")
+    overlayGroups = c("Show API Population<hr padding:0px;margin:0px;>",  groups),
+    position = "bottomleft",
+    options = layersControlOptions(collapsed = FALSE)
   ) %>%
-  hideGroup("Neighborhood Demographics<hr padding:0px;margin:0px;>")
+  hideGroup("Show API Population<hr padding:0px;margin:0px;>")
 
 map
 
 
 ```
-
