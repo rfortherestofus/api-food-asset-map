@@ -51,7 +51,7 @@ full_dataset <- read_rds("data/full_dataset.rds") %>%
 # Prepare Data Frames ----------------
 
 snap_wic_locations <- full_dataset %>%
-  filter(category == "Stores that Accept SNAP/WIC")
+  filter(accepts_snap_wic)
 
 remaining_locations <- full_dataset %>%
   filter(category != "Stores that Accept SNAP/WIC")
@@ -165,13 +165,21 @@ remaining_locations <- remaining_locations %>%
   mutate(street_address_simple = str_to_lower(street_address) %>%
            str_replace_all("[:punct:]","") %>%
            str_replace_all("  ", " ") %>%
-           str_trim())
+           str_trim() %>%
+           str_replace_all("street", "st") %>%
+           str_replace_all("Boulevard", "blvd") %>%
+           str_replace_all("Avenue", "ave") %>%
+           str_replace_all("Drive", "dr"))
 
 remaining_snap_wic_locations <- remaining_snap_wic_locations %>%
   mutate(street_address_simple = str_to_lower(street_address) %>%
            str_replace_all("[:punct:]","") %>%
            str_replace_all("  ", " ") %>%
-           str_trim())
+           str_trim() %>%
+           str_replace_all("street", "st") %>%
+           str_replace_all("Boulevard", "blvd") %>%
+           str_replace_all("Avenue", "ave") %>%
+           str_replace_all("Drive", "dr"))
 
 simple_address_matches <- semi_join(remaining_locations, remaining_snap_wic_locations %>% st_drop_geometry(), by = "street_address_simple")
 simple_address_matches_snap_wic <- semi_join(remaining_snap_wic_locations, remaining_locations %>% st_drop_geometry(), by = "street_address_simple")
@@ -201,7 +209,8 @@ nearest_store <- function(i) {
            -starts_with("state"),
            -starts_with("name_simple"),
            -starts_with("street_address_simple"),
-           -starts_with("global_index")) # remove to shrink table
+           -starts_with("global_index"),
+           -starts_with("accepts_snap_wic")) # remove to shrink table
 
 }
 

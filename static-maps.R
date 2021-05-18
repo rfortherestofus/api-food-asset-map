@@ -2,6 +2,7 @@ library(tidyverse)
 library(sf)
 library(janitor)
 library(tigris)
+library(ggfx)
 
 sf_boundary <- counties(state = "California", cb = TRUE) %>%
   clean_names() %>%
@@ -10,14 +11,15 @@ sf_boundary <- counties(state = "California", cb = TRUE) %>%
 
 demographics <- read_rds(("data/api_neighborhood_data.rds"))
 
+demographics %>%
+  st_drop_geometry() %>%
+  distinct(nhood) %>%
+  pull(nhood)
+
 neighborhoods <- demographics %>%
   filter(nhood %in% c("SOMA", "Richmond", "Sunset", "Chinatown", "Japantown", "Bayview Hunters Point", "Tenderloin", "Visitacion Valley", "Excelsior")) %>%
   st_drop_geometry() %>%
   pull(nhood)
-
-title_position <- filter(demographics, nhood == "Japantown") %>%
-  st_centroid()
-
 
 
 generate_static_neighborhood_map <- function(neighborhood_name) {
@@ -27,13 +29,21 @@ generate_static_neighborhood_map <- function(neighborhood_name) {
     str_to_lower() %>%
     str_glue(".svg")
 
-  ggplot(data = filter(demographics, nhood == neighborhood_name),) +
-    geom_sf(fill = "#AD1D32",
-            color = "transparent") +
-    geom_sf_text(aes(label = str_wrap(neighborhood_name, 10)),
+  ggplot(data = filter(demographics, nhood == neighborhood_name)) +
+    with_shadow(geom_sf(fill = "#AD1D32",
+                        color = "transparent"),
+                colour = "#806E6E",
+                x_offset = 2,
+                y_offset = 2) +
+    with_shadow(geom_sf_text(aes(label = str_wrap(neighborhood_name, 10)),
                  family = "Oswald",
+                 fontface = "bold",
                  color = "white",
-                 size = 12) +
+                 size = 12),
+                colour = "#806E6E",
+                x_offset = 1,
+                y_offset = 1) +
+
     theme_void()
 
   ggsave(str_glue("assets/{file_name}"))
