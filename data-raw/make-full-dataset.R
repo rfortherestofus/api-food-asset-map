@@ -77,7 +77,8 @@ full_data <- client_annot_intl %>%
   mutate(international_grocery_store = !is.na(international_grocery_store)) %>%
   relocate(international_grocery_store, .after = zip_code) %>%
   filter(!(name %in% c("Uoki Sakai", "Queen of Sheba", "Gourmet and more"))) %>%
-  filter(name != "Alemany Farmers Market") %>%  # remove duplicate entry %>%
+  filter(name != "Alemany Farmers Market") %>%
+  mutate(accepts_snap_wic = category == "Stores that Accept SNAP/WIC") %>%  # remove duplicate entry %>%
   mutate(category = ifelse(category == "Ethnic Markets" | international_grocery_store,
                 "International Grocery Stores",
                 category)) %>%
