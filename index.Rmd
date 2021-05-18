@@ -42,7 +42,13 @@ sf_boundary <- counties(state = "California", cb = TRUE) %>%
 
 ## read in data for map
 
-demographics <- read_rds(("data/api_neighborhood_data.rds"))
+clean_interval <- function(x){
+  str_remove_all(x, "\\[|\\]|\\(|\\)") %>% str_replace(",", " to ") %>% paste0("%")
+}
+
+demographics <- read_rds("data/api_neighborhood_data.rds") %>%
+  mutate(pct_api_interval = cut(pct_api_clean, breaks = c(0, 16, 22, 34, 44, 100), include.lowest = TRUE, ordered = TRUE),
+         pct_api_category = fct_relabel(pct_api_interval, clean_interval))
 
 food_resources <- read_rds("data/full_dataset.rds") %>%
   st_join(demographics %>% select(nhood)) %>%
@@ -85,10 +91,10 @@ groups <- c(
 
 ## color palettes
 
-demo_pal <- colorNumeric(
+demo_pal <- colorFactor(
   palette = "PuBuGn",
-  domain = demographics$pct_api_clean,
-  na.color = "transparent")
+  domain = demographics$pct_api_category,
+  na.color = "#FFFFFF40")
 
 ## popups
 
@@ -126,16 +132,16 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 
 ```{r map, layout = "l-page", fig.height = 8}
 
-map <-
-  leaflet() %>%
+map <leaflet() %>%
   addProviderTiles(provider = providers$CartoDB.Positron) %>%
-  addPolygons(data = demographics, group = "Neighborhood Demographics<hr padding:0px;margin:0px;>", fillColor = ~demo_pal(pct_api_clean), color = gray, weight = 1, fillOpacity = .8, popup = ~popup) %>%
+  addPolygons(data = demographics, group = "Neighborhood Demographics<hr padding:0px;margin:0px;>", fillColor = ~demo_pal(pct_api_category), color = gray, weight = 1, fillOpacity = .8, popup = ~popup) %>%
   
   # legends
   
-  addLegend(position = "bottomright", pal = demo_pal, values = demographics$pct_api_clean, opacity = .8, title = "% Asian or Pacific Islander<br>ACS 2019 (5-year)", group = "Neighborhood Demographics<hr padding:0px;margin:0px;>")
+  addLegend(position = "bottomright", pal = demo_pal, values = demographics$pct_api_category, opacity = .8, title = "% Asian or Pacific Islander<br><span style='font-weight:700; font-size:12px;'>ACS 2019 (5-year), quantile breaks", group = "Neighborhood Demographics<hr padding:0px;margin:0px;>", na.label = "Data not available", labels = c("Less than 16%", "16 to 22%", "22 to 34%", "34 to 44%", "Greater than 44%"))
 
-
+-
+  
 # use walk from per to return m after adding each layer
 groups %>%                     # get names of resource groups
   walk(function(x)                         # then walk through vector of names one at a time
