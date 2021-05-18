@@ -42,7 +42,13 @@ sf_boundary <- counties(state = "California", cb = TRUE) %>%
 
 ## read in data for map
 
-demographics <- read_rds(("data/api_neighborhood_data.rds"))
+clean_interval <- function(x){
+  str_remove_all(x, "\\[|\\]|\\(|\\)") %>% str_replace(",", " to ") %>% paste0("%")
+}
+
+demographics <- read_rds("data/api_neighborhood_data.rds") %>%
+  mutate(pct_api_interval = cut(pct_api_clean, breaks = c(0, 16, 22, 34, 44, 100), include.lowest = TRUE, ordered = TRUE),
+         pct_api_category = fct_relabel(pct_api_interval, clean_interval))
 
 food_resources <- read_rds("data/full_dataset.rds") %>%
   st_join(demographics %>% select(nhood)) %>%
@@ -59,7 +65,7 @@ food_resources <- read_rds("data/full_dataset.rds") %>%
                       category == "Restaurants (Fast Food)" ~ "assets/restaurants-fast-food.svg",
                       category == "Restaurants" ~ "assets/restaurants.svg",
                       category == "Supermarkets" ~ "assets/supermarkets.svg",
-                      category == "Farmers Markets" ~ "assets/farmers-markets.svg",
+                      category == "Farmers Markets" ~ "assets/farmers-market.svg",
                       TRUE ~ NA_character_
   )
   )
@@ -85,15 +91,15 @@ groups <- c(
 
 ## color palettes
 
-demo_pal <- colorNumeric(
+demo_pal <- colorFactor(
   palette = "PuBuGn",
-  domain = demographics$pct_api_clean,
-  na.color = "transparent")
+  domain = demographics$pct_api_category,
+  na.color = "#FFFFFF40")
 
 ## popups
 
 # make popup text with name, address, notes, and link to website
-food_resources <- food_resources %>% 
+food_resources <- food_resources %>%
   mutate(singular_category = singularize(category),
            popup = paste("<span font-family: 'Catamaran'>",
                        "<span style='font-weight:700; font-size:12px; color: #6B7280;'>", singular_category,"</span>", "<br/>",
@@ -111,7 +117,7 @@ demographics <- demographics %>%
                        "<span style='font-weight:700; font-size:12px; color: #111827'>", "2019 5-year ACS","</span>", "<br/>",
                        "</span>",
                        sep=''),
-                       
+
     is.na(pct_api_clean) ~ paste("<span font-family: 'Catamaran'>",
                        "<span style='font-weight:700; font-size:12px; color: #111827'>", nhood,"<br></span>",
                        "</span>",
@@ -120,20 +126,42 @@ demographics <- demographics %>%
 
 ```
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Purus faucibus ornare suspendisse sed nisi lacus sed viverra tellus. Et ligula ullamcorper malesuada proin libero nunc consequat. Proin libero nunc consequat interdum varius sit. Maecenas pharetra convallis posuere morbi leo. Ipsum dolor sit amet consectetur. Dolor sit amet consectetur adipiscing elit duis tristique. Sit amet cursus sit amet dictum sit. Non sodales neque sodales ut etiam sit amet. Fermentum odio eu feugiat pretium nibh ipsum. Neque aliquam vestibulum morbi blandit cursus risus at ultrices mi. Maecenas pharetra convallis posuere morbi. Bibendum ut tristique et egestas quis ipsum suspendisse.
+<link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+
+
+<div class="grid grid-cols-2 gap-16 l-screen-inset my-16 mx-64">
+
+<div>
+
+<h1 class="text-4xl font-bold mb-4">API Food Assets Map</h1>
+
+<p>The following asset map visually depicts various food resources across San Francisco, with a special emphasis on regions with larger concentrations of Asian Pacific Islander (API) residents. The existence of this map aims to expand the understanding of food access and systems within and across API communities in San Francisco, serving as a starting point to explore how API community members access food, interact with various typologies of food (e.g., charitable food, grocery stores/markets, restaurants), and experience their community’s food resources. Potential also exists for better understanding the nexus of cultural preservation, economic health, and transportation/mobility. This map was created with funds from the Stupski Foundation, as  a part of a larger food access and security project in April-June 2021.</p>
+</div>
+
+<div>
+<img class="rounded-md shadow-md mt-8" src="https://images.unsplash.com/photo-1517210067403-d86a5703516f?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1489&q=80">
+</div>
 
 
 
-```{r map, layout = "l-page", fig.height = 8}
 
-map <-
-  leaflet() %>%
+
+</div>
+
+
+
+
+
+
+```{r map, layout = "l-screen-inset", fig.height = 8}
+
+map <- leaflet() %>%
   addProviderTiles(provider = providers$CartoDB.Positron) %>%
-  addPolygons(data = demographics, group = "Neighborhood Demographics<hr padding:0px;margin:0px;>", fillColor = ~demo_pal(pct_api_clean), color = gray, weight = 1, fillOpacity = .8, popup = ~popup) %>%
-  
+  addPolygons(data = demographics, group = "Show API Population<hr padding:0px;margin:0px;>", fillColor = ~demo_pal(pct_api_category), color = gray, weight = 1, fillOpacity = .8, popup = ~popup) %>%
+
   # legends
-  
-  addLegend(position = "bottomright", pal = demo_pal, values = demographics$pct_api_clean, opacity = .8, title = "% Asian or Pacific Islander<br>ACS 2019 (5-year)", group = "Neighborhood Demographics<hr padding:0px;margin:0px;>")
+
+  addLegend(position = "bottomright", pal = demo_pal, values = demographics$pct_api_category, opacity = .8, title = "% Asian or Pacific Islander<br><span style='font-weight:700; font-size:12px;'>ACS 2019 (5-year), quantile breaks", group = "Show API Population<hr padding:0px;margin:0px;>", na.label = "Data not available", labels = c("Less than 16%", "16 to 22%", "22 to 34%", "34 to 44%", "Greater than 44%"))
 
 
 # use walk from per to return m after adding each layer
@@ -150,14 +178,13 @@ groups %>%                     # get names of resource groups
 map <-
   map %>%
   addLayersControl(
-    overlayGroups = c("Neighborhood Demographics<hr padding:0px;margin:0px;>",  groups),
-    options = layersControlOptions(collapsed = FALSE,
-                                   postiton = "topright")
+    overlayGroups = c("Show API Population<hr padding:0px;margin:0px;>",  groups),
+    position = "bottomleft",
+    options = layersControlOptions(collapsed = FALSE)
   ) %>%
-  hideGroup("Neighborhood Demographics<hr padding:0px;margin:0px;>")
+  hideGroup("Show API Population<hr padding:0px;margin:0px;>")
 
 map
 
 
 ```
-
