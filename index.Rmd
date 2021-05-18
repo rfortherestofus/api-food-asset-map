@@ -170,7 +170,7 @@ groups %>%                     # get names of resource groups
     map <<-
       map %>%
       addMarkers(data = food_resources %>% filter(category == x),
-                 icon = makeIcon(iconUrl = ~icon_url, iconWidth = 20, iconHeight = 60),
+                 icon = makeIcon(iconUrl = ~icon_url, iconWidth = 36, iconHeight = 36),
                  popup = ~popup,
                  group = x,
                  clusterOptions = markerClusterOptions()))
