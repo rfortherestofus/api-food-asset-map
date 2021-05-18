@@ -188,3 +188,21 @@ map
 
 
 ```
+
+<h2 class="text-4xl font-bold mb-4">Neighborhoods</h2>
+
+<div class="grid grid-cols-3 gap-16 l-screen-inset my-16 mx-64">
+
+<div>
+<img src="assets/chinatown.svg">
+</div>
+
+<div>
+<img src="assets/excelsior.svg">
+</div>
+
+<div>
+<img src="assets/japantown.svg">
+</div>
+
+</div>

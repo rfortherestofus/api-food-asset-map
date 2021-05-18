@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' class='svglite' width='375.75pt' height='422.25pt' viewBox='0 0 375.75 422.25'>
+<defs>
+  <style type='text/css'><![CDATA[
+    .svglite line, .svglite polyline, .svglite polygon, .svglite path, .svglite rect, .svglite circle {
+      fill: none;
+      stroke: #000000;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-miterlimit: 10.00;
+    }
+  ]]></style>
+</defs>
+<rect width='100%' height='100%' style='stroke: none; fill: #FFFFFF;'/>
+<defs>
+  <clipPath id='cpMC4wMHwzNzUuNzV8MC4wMHw0MjIuMjU='>
+    <rect x='0.00' y='0.00' width='375.75' height='422.25' />
+  </clipPath>
+</defs>
+<g clip-path='url(#cpMC4wMHwzNzUuNzV8MC4wMHw0MjIuMjU=)'>
+</g>
+<defs>
+  <clipPath id='cpMC4wMHwzNzUuNzV8MjIuMTV8NDAwLjEw'>
+    <rect x='0.00' y='22.15' width='375.75' height='377.95' />
+  </clipPath>
+</defs>
+<g clip-path='url(#cpMC4wMHwzNzUuNzV8MjIuMTV8NDAwLjEw)'>
+<path d='M 239.16 331.35 L 244.38 362.73 L 211.29 367.88 L 203.68 369.10 L 182.80 372.45 L 161.52 375.84 L 160.90 375.94 L 146.10 378.31 L 138.73 379.60 L 125.35 381.67 L 117.13 382.92 L 114.80 368.49 L 112.04 351.48 L 108.64 331.66 L 107.36 324.17 L 107.22 321.63 L 102.38 291.64 L 92.98 293.24 L 80.53 295.24 L 58.42 298.76 L 55.52 280.67 L 53.65 268.88 L 51.29 253.90 L 48.91 238.99 L 44.52 211.41 L 44.39 210.50 L 39.41 179.16 L 38.82 175.50 L 33.81 143.96 L 30.47 122.88 L 30.20 121.29 L 28.78 112.24 L 27.20 102.38 L 23.72 80.63 L 21.20 64.88 L 18.66 49.19 L 17.08 39.33 L 26.91 47.90 L 58.10 75.21 L 69.39 85.10 L 89.39 102.65 L 121.33 130.61 L 151.99 157.47 L 173.03 175.94 L 184.14 185.66 L 195.97 196.03 L 215.06 212.77 L 220.28 211.92 L 234.95 209.55 L 254.02 206.50 L 264.24 204.87 L 285.37 201.55 L 308.02 197.86 L 339.55 192.81 L 344.43 222.53 L 349.65 253.09 L 351.60 267.55 L 353.85 282.29 L 356.26 297.13 L 358.67 312.07 L 327.45 317.05 L 304.83 320.68 L 283.49 324.07 L 255.14 328.61 L 239.16 331.35 Z' style='fill-rule: evenodd; fill: #AD1D32; stroke-width: 1.07; stroke: none; stroke-linecap: butt;' />
+<text x='128.72' y='224.79' text-anchor='middle' style='font-size: 34.14px; fill: #FFFFFF; font-family: Oswald;' textLength='130.22px' lengthAdjust='spacingAndGlyphs'>Chinatown</text>
+</g>
+<g clip-path='url(#cpMC4wMHwzNzUuNzV8MC4wMHw0MjIuMjU=)'>
+</g>
+</svg>
