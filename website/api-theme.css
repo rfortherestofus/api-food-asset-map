@@ -62,7 +62,7 @@ d-appendix {
 .distill-site-header {
   --title-size:       18px;
   --text-color:       #000000;
-  --text-size:        15px;
+  --text-size:        18px;
   --hover-color:      #AD1D32;
   --bkgd-color:       #ffffff;
 }
@@ -77,8 +77,18 @@ d-appendix {
 /*-- Additional custom styles --*/
 /* Add any additional CSS rules below                      */
 
-.title {
+.distill-site-header .title, .d-title {
   display: none;
 }
 
+.distill-site-header .logo img {
+  max-height: 60px;
+}
 
+.headroom {
+  top: 20px;
+}
+
+body > header > nav > div.nav-left > a {
+  display: none;
+}

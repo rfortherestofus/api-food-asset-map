@@ -126,10 +126,30 @@ demographics <- demographics %>%
 
 ```
 
+<link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
 
-![](https://images.unsplash.com/photo-1517210067403-d86a5703516f?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1489&q=80)
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Purus faucibus ornare suspendisse sed nisi lacus sed viverra tellus. Et ligula ullamcorper malesuada proin libero nunc consequat. Proin libero nunc consequat interdum varius sit. Maecenas pharetra convallis posuere morbi leo. Ipsum dolor sit amet consectetur. Dolor sit amet consectetur adipiscing elit duis tristique. Sit amet cursus sit amet dictum sit. Non sodales neque sodales ut etiam sit amet. Fermentum odio eu feugiat pretium nibh ipsum. Neque aliquam vestibulum morbi blandit cursus risus at ultrices mi. Maecenas pharetra convallis posuere morbi. Bibendum ut tristique et egestas quis ipsum suspendisse.
+<div class="grid grid-cols-2 gap-16 l-screen-inset my-16 mx-64">
+
+<div>
+
+<h1 class="text-4xl font-bold mb-4">API Food Assets Map</h1>
+
+<p>The following asset map visually depicts various food resources across San Francisco, with a special emphasis on regions with larger concentrations of Asian Pacific Islander (API) residents. The existence of this map aims to expand the understanding of food access and systems within and across API communities in San Francisco, serving as a starting point to explore how API community members access food, interact with various typologies of food (e.g., charitable food, grocery stores/markets, restaurants), and experience their community’s food resources. Potential also exists for better understanding the nexus of cultural preservation, economic health, and transportation/mobility. This map was created with funds from the Stupski Foundation, as  a part of a larger food access and security project in April-June 2021.</p>
+</div>
+
+<div>
+<img class="rounded-md shadow-md mt-8" src="https://images.unsplash.com/photo-1517210067403-d86a5703516f?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1489&q=80">
+</div>
+
+
+
+
+
+</div>
+
+
+
 
 
 
@@ -150,7 +170,7 @@ groups %>%                     # get names of resource groups
     map <<-
       map %>%
       addMarkers(data = food_resources %>% filter(category == x),
-                 icon = makeIcon(iconUrl = ~icon_url, iconWidth = 20, iconHeight = 60),
+                 icon = makeIcon(iconUrl = ~icon_url, iconWidth = 36, iconHeight = 36),
                  popup = ~popup,
                  group = x,
                  clusterOptions = markerClusterOptions()))
@@ -168,3 +188,28 @@ map
 
 
 ```
+
+
+
+
+
+
+<h2 class="text-4xl font-bold mb-4">Neighborhoods</h2>
+
+<div class="grid grid-cols-3 gap-16 l-screen-inset my-16 mx-64">
+
+<div>
+<img src="assets/chinatown.svg">
+</div>
+
+<div>
+<img src="assets/excelsior.svg">
+</div>
+
+<div>
+<img src="assets/japantown.svg">
+</div>
+
+</div>
+
+
