@@ -76,6 +76,6 @@ plot_icon_summary <- function(category) {
   ggsave(glue("assets/{plot_info$store_type}-icon-summary.svg"),
          width = 4, height = 1.5, units = "in")
 }
-
+q
 walk(final_table$category, plot_icon_summary)
 
