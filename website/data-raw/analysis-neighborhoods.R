@@ -2,6 +2,8 @@ library(tidyverse)
 library(tidycensus)
 library(leaflet)
 library(sf)
+library(tigris)
+library(scales)
 
 # from https://data.sfgov.org/Geographic-Locations-and-Boundaries/Analysis-Neighborhoods-2010-census-tracts-assigned/bwbp-wk3r
 tracts <- read_sf("data-raw/analysis_nb_tracts_2010.geojson")
@@ -58,7 +60,7 @@ leaflet(api_summary_nb) %>%
               weight = 1, color = "#424242",
               fillColor = ~qpal(pct_api_clean),
               label = ~nhood
-              ) %>%
+  ) %>%
   addLegend(pal = qpal, values = ~pct_api_clean, opacity = 0.7, title = "% API",
             position = "bottomright")
 
@@ -99,7 +101,8 @@ race_ethnicity_interpolated <- st_interpolate_aw(race_ethnicity_clean_sf %>% sel
   ungroup() %>%
   mutate(pct_api = api/total,
          pct_api_clean = if_else(name %in% c("Lincoln Park", "Golden Gate Park", "McLaren Park"), NA_real_, pct_api),
-         pct_api_clean = round(pct_api_clean * 100, 2)) # make the label NA is the moe is more than 30% of the estimate. This threshold is fairly arbitrary, but we should use *some* threshold
+         pct_api_clean = round(pct_api_clean * 100, 2))  %>%  # make the label NA is the moe is more than 30% of the estimate. This threshold is fairly arbitrary, but we should use *some* threshold
+  mutate(pct_api_display = percent(pct_api_clean / 100, accuracy = 1))
 
 mapview::mapview(race_ethnicity_interpolated, zcol = "pct_api_clean")
 
