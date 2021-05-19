@@ -119,9 +119,7 @@ demographics <- demographics %>%
                                    "<span style='font-family: Oswald; font-weight:700; font-size:20px; color: #111827;'>", pct_api_display, " API Population", "</span>", "<br/>",
                                    # "<span style='font-family: Oswald; font-weight:700; font-size:14px; color: #111827'>", "2019 5-year ACS","</span>", "<br/>",
                                    sep=''),
-    is.na(pct_api_clean) ~ paste("<span font-family: 'Oswald'>",
-                                 "<span style='font-weight:700; font-size:12px; color: #111827'>", nhood,"<br></span>",
-                                 "</span>",
+    is.na(pct_api_clean) ~ paste("<span style='font-family: Oswald; font-weight:700; font-size:20px; color: #111827'>", nhood,"<br></span>",
                                  sep='')))
 
 
@@ -164,7 +162,7 @@ map <- leaflet() %>%
   
   # legends
   
-  addLegend(position = "bottomright", pal = demo_pal, values = demographics$pct_api_category, opacity = .8, title = "% Asian or Pacific Islander<br><span style='font-weight:700; font-size:12px;'>ACS 2019 (5-year), quantile breaks", group = show_api, na.label = "Data not available", labels = c("Less than 16%", "16 to 22%", "22 to 34%", "34 to 44%", "Greater than 44%"))
+  addLegend(position = "bottomright", pal = demo_pal, values = demographics$pct_api_category, opacity = .8, title = "API Population<br><span style='font-weight:700; font-size:12px;'>ACS 2019 (5-year), quantile breaks", group = show_api, na.label = "Data not available", labels = c("Less than 16%", "16 to 22%", "22 to 34%", "34 to 44%", "Greater than 44%"))
 
 
 # use walk from per to return m after adding each layer
@@ -176,7 +174,7 @@ groups %>%                     # get names of resource groups
                  icon = makeIcon(iconUrl = ~icon_url, iconWidth = 24, iconHeight = 24),
                  popup = ~popup,
                  group = x,
-                 clusterOptions = markerClusterOptions()))
+                 clusterOptions = markerClusterOptions(showCoverageOnHover = FALSE)))
 
 map <-
   map %>%
