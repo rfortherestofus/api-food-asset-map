@@ -98,6 +98,9 @@ race_ethnicity_interpolated <- st_interpolate_aw(race_ethnicity_clean_sf %>% sel
             api = sum(asian_alone, pac_is_alone)) %>%
   ungroup() %>%
   mutate(pct_api = api/total,
-         pct_api_clean = if_else(name %in% c("Lincoln Park", "Golden Gate Park", "McLaren Park"), NA_real_, pct_api)) # make the label NA is the moe is more than 30% of the estimate. This threshold is fairly arbitrary, but we should use *some* threshold
+         pct_api_clean = if_else(name %in% c("Lincoln Park", "Golden Gate Park", "McLaren Park"), NA_real_, pct_api),
+         pct_api_clean = round(pct_api_clean * 100, 2)) # make the label NA is the moe is more than 30% of the estimate. This threshold is fairly arbitrary, but we should use *some* threshold
 
 mapview::mapview(race_ethnicity_interpolated, zcol = "pct_api_clean")
+
+write_rds(race_ethnicity_interpolated, "data/api_neighborhood_interpolated.rds")

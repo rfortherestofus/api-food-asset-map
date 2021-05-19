@@ -46,9 +46,11 @@ clean_interval <- function(x){
   str_remove_all(x, "\\[|\\]|\\(|\\)") %>% str_replace(",", " to ") %>% paste0("%")
 }
 
-demographics <- read_rds("data/api_neighborhood_data.rds") %>%
+demographics <- read_rds("data/api_neighborhood_interpolated.rds") %>%
   mutate(pct_api_interval = cut(pct_api_clean, breaks = c(0, 16, 22, 34, 44, 100), include.lowest = TRUE, ordered = TRUE),
-         pct_api_category = fct_relabel(pct_api_interval, clean_interval))
+         pct_api_category = fct_relabel(pct_api_interval, clean_interval)) %>%
+  rename(nhood = name) %>%
+  st_transform(4326)
 
 food_resources <- read_rds("data/full_dataset.rds") %>%
   st_join(demographics %>% select(nhood)) %>%
@@ -92,7 +94,7 @@ groups <- c(
 ## color palettes
 
 demo_pal <- colorFactor(
-  palette = "PuBuGn",
+  palette = c("#F5D0C9", "#E5A6A3", "#D57C7C", "#C45156", "#B4272F"),
   domain = demographics$pct_api_category,
   na.color = "#FFFFFF40")
 
@@ -155,13 +157,15 @@ demographics <- demographics %>%
 
 ```{r map, layout = "l-screen-inset", fig.height = 8}
 
+show_api <- "Show API Population<hr padding:0px;margin:0px;>"
+
 map <- leaflet() %>%
   addProviderTiles(provider = providers$CartoDB.Positron) %>%
-  addPolygons(data = demographics, group = "Show API Population<hr padding:0px;margin:0px;>", fillColor = ~demo_pal(pct_api_category), color = gray, weight = 1, fillOpacity = .8, popup = ~popup) %>%
+  addPolygons(data = demographics, group = show_api, fillColor = ~demo_pal(pct_api_category), color = gray, weight = 1, fillOpacity = .8, popup = ~popup) %>%
 
   # legends
 
-  addLegend(position = "bottomright", pal = demo_pal, values = demographics$pct_api_category, opacity = .8, title = "% Asian or Pacific Islander<br><span style='font-weight:700; font-size:12px;'>ACS 2019 (5-year), quantile breaks", group = "Show API Population<hr padding:0px;margin:0px;>", na.label = "Data not available", labels = c("Less than 16%", "16 to 22%", "22 to 34%", "34 to 44%", "Greater than 44%"))
+  addLegend(position = "bottomright", pal = demo_pal, values = demographics$pct_api_category, opacity = .8, title = "% Asian or Pacific Islander<br><span style='font-weight:700; font-size:12px;'>ACS 2019 (5-year), quantile breaks", group = show_api, na.label = "Data not available", labels = c("Less than 16%", "16 to 22%", "22 to 34%", "34 to 44%", "Greater than 44%"))
 
 
 # use walk from per to return m after adding each layer
@@ -178,11 +182,11 @@ groups %>%                     # get names of resource groups
 map <-
   map %>%
   addLayersControl(
-    overlayGroups = c("Show API Population<hr padding:0px;margin:0px;>",  groups),
+    overlayGroups = c(show_api,  groups),
     position = "bottomleft",
     options = layersControlOptions(collapsed = FALSE)
   ) %>%
-  hideGroup("Show API Population<hr padding:0px;margin:0px;>")
+  hideGroup(show_api)
 
 map
 
