@@ -47,7 +47,7 @@ clean_interval <- function(x){
 }
 
 demographics <- read_rds("data/api_neighborhood_interpolated.rds") %>%
-  mutate(pct_api_interval = cut(pct_api_clean, breaks = c(0, 16, 22, 34, 44, 100), include.lowest = TRUE, ordered = TRUE),
+  mutate(pct_api_interval = cut(pct_api_clean, breaks = c(0, 14, 24, 34, 44, 100), include.lowest = TRUE, ordered = TRUE),
          pct_api_category = fct_relabel(pct_api_interval, clean_interval)) %>%
   rename(nhood = name) %>%
   st_transform(4326)
