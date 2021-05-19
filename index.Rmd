@@ -157,7 +157,7 @@ demographics <- demographics %>%
 
 ```{r map, layout = "l-screen-inset", fig.height = 8}
 
-show_api <- "Show API Population<hr padding:0px;margin:0px;>"
+show_api <- "<span style='border-bottom-width: 2px;border-bottom-style: solid #000;padding-bottom: 10px;'>Show API Population<br></span><br>"
 
 map <- leaflet() %>%
   addProviderTiles(provider = providers$CartoDB.Positron) %>%
