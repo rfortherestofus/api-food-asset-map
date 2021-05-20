@@ -23,6 +23,10 @@ library(pluralize)
 library(crosstalk)
 ```
 
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Catamaran:wght@400;700&family=Oswald:wght@400;700&display=swap');
+</style>
+
 ```{r colors}
 dark_red <- "#AD1D32"
 light_red <- "#E00052"
@@ -46,9 +50,11 @@ clean_interval <- function(x){
   str_remove_all(x, "\\[|\\]|\\(|\\)") %>% str_replace(",", " to ") %>% paste0("%")
 }
 
-demographics <- read_rds("data/api_neighborhood_data.rds") %>%
-  mutate(pct_api_interval = cut(pct_api_clean, breaks = c(0, 16, 22, 34, 44, 100), include.lowest = TRUE, ordered = TRUE),
-         pct_api_category = fct_relabel(pct_api_interval, clean_interval))
+demographics <- read_rds("data/api_neighborhood_interpolated.rds") %>%
+  mutate(pct_api_interval = cut(pct_api_clean, breaks = c(0, 14, 24, 34, 44, 100), include.lowest = TRUE, ordered = TRUE),
+         pct_api_category = fct_relabel(pct_api_interval, clean_interval)) %>%
+  rename(nhood = name) %>%
+  st_transform(4326)
 
 food_resources <- read_rds("data/full_dataset.rds") %>%
   st_join(demographics %>% select(nhood)) %>%
@@ -56,18 +62,18 @@ food_resources <- read_rds("data/full_dataset.rds") %>%
   st_intersection(sf_boundary %>% select()) %>%
   mutate(category = factor(category),
          icon_url = case_when(category == "Corner Stores" ~ "assets/corner-stores.svg",
-                      category == "Drug Stores" ~ "assets/drug-stores.svg",
-                      category == "Food Banks/Pantries" ~ "assets/food-banks-pantries.svg",
-                      category == "Food Pharmacies" ~ "assets/food-pharmacy.svg",
-                      category == "Free Prepared Food or Hot Meals" ~ "assets/free-prepared-hot-meals.svg",
-                      category == "Liquor Stores" ~ "assets/liquor-stores.svg",
-                      category == "International Grocery Stores" ~ "assets/international-grocery-stores.svg",
-                      category == "Restaurants (Fast Food)" ~ "assets/restaurants-fast-food.svg",
-                      category == "Restaurants" ~ "assets/restaurants.svg",
-                      category == "Supermarkets" ~ "assets/supermarkets.svg",
-                      category == "Farmers Markets" ~ "assets/farmers-market.svg",
-                      TRUE ~ NA_character_
-  )
+                              category == "Drug Stores" ~ "assets/drug-stores.svg",
+                              category == "Food Banks/Pantries" ~ "assets/food-banks-pantries.svg",
+                              category == "Food Pharmacies" ~ "assets/food-pharmacy.svg",
+                              category == "Free Prepared Food or Hot Meals" ~ "assets/free-prepared-hot-meals.svg",
+                              category == "Liquor Stores" ~ "assets/liquor-stores.svg",
+                              category == "International Grocery Stores" ~ "assets/international-grocery-stores.svg",
+                              category == "Restaurants (Fast Food)" ~ "assets/restaurants-fast-food.svg",
+                              category == "Restaurants" ~ "assets/restaurants.svg",
+                              category == "Supermarkets" ~ "assets/supermarkets.svg",
+                              category == "Farmers Markets" ~ "assets/farmers-market.svg",
+                              TRUE ~ NA_character_
+         )
   )
 
 ```
@@ -92,7 +98,7 @@ groups <- c(
 ## color palettes
 
 demo_pal <- colorFactor(
-  palette = "PuBuGn",
+  palette = c("#F5D0C9", "#E5A6A3", "#D57C7C", "#C45156", "#B4272F"),
   domain = demographics$pct_api_category,
   na.color = "#FFFFFF40")
 
@@ -101,35 +107,28 @@ demo_pal <- colorFactor(
 # make popup text with name, address, notes, and link to website
 food_resources <- food_resources %>%
   mutate(singular_category = singularize(category),
-           popup = paste("<span font-family: 'Catamaran'>",
-                       "<span style='font-weight:700; font-size:12px; color: #6B7280;'>", singular_category,"</span>", "<br/>",
-                       "<span style='font-weight:700; font-size:16px; color: #111827'>", name,"</span>", "<br/>",
-                       "</span>",
+         popup = paste("<span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>", singular_category,"</span>", "<br/>",
+                       "<span style='font-family: Oswald; font-weight:700; font-size:20px; color: #111827'>", name,"</span>", "<br/>",
                        sep='')) %>%
   filter(category %in% groups) # for now, filter out the SNAP/WIC category
 
 
 demographics <- demographics %>%
   mutate(popup = case_when(
-    !is.na(pct_api_clean) ~  paste("<span font-family: 'Catamaran'>",
-                       "<span style='font-weight:700; font-size:12px; color: #111827'>", nhood,"<br></span>",
-                       "<span style='font-weight:700; font-size:16px; color: #6B7280;'>", pct_api_clean, "% Asian or Pacific Islander alone", "</span>", "<br/>",
-                       "<span style='font-weight:700; font-size:12px; color: #111827'>", "2019 5-year ACS","</span>", "<br/>",
-                       "</span>",
-                       sep=''),
-
-    is.na(pct_api_clean) ~ paste("<span font-family: 'Catamaran'>",
-                       "<span style='font-weight:700; font-size:12px; color: #111827'>", nhood,"<br></span>",
-                       "</span>",
-                       sep='')))
+    !is.na(pct_api_clean) ~  paste("<span style='font-family: Oswald; font-weight:700; font-size:14px; color: #6B7280'>", nhood,"<br></span>",
+                                   "<span style='font-family: Oswald; font-weight:700; font-size:20px; color: #111827;'>", pct_api_display, " API Population", "</span>", "<br/>",
+                                   # "<span style='font-family: Oswald; font-weight:700; font-size:14px; color: #111827'>", "2019 5-year ACS","</span>", "<br/>",
+                                   sep=''),
+    is.na(pct_api_clean) ~ paste("<span style='font-family: Oswald; font-weight:700; font-size:20px; color: #111827'>", nhood,"<br></span>",
+                                 sep='')))
 
 
 ```
 
-<link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+<!-- <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet"> -->
 
 
-<div class="grid grid-cols-2 gap-16 l-screen-inset my-16 mx-64">
+<div class="grid grid-cols-2 gap-16 l-screen-inset mt-24 mb-16 mx-64">
 
 <div>
 
@@ -139,7 +138,7 @@ demographics <- demographics %>%
 </div>
 
 <div>
-<img class="rounded-md shadow-md mt-8" src="https://images.unsplash.com/photo-1517210067403-d86a5703516f?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1489&q=80">
+<img class="rounded-md shadow-md items-center" src="assets/family.jpg">
 </div>
 
 
@@ -155,13 +154,15 @@ demographics <- demographics %>%
 
 ```{r map, layout = "l-screen-inset", fig.height = 8}
 
+show_api <- "<span style='border-bottom-width: 2px;border-bottom-style: solid #000;padding-bottom: 10px;'>Show API Population<br></span><br>"
+
 map <- leaflet() %>%
   addProviderTiles(provider = providers$CartoDB.Positron) %>%
-  addPolygons(data = demographics, group = "Show API Population<hr padding:0px;margin:0px;>", fillColor = ~demo_pal(pct_api_category), color = gray, weight = 1, fillOpacity = .8, popup = ~popup) %>%
-
+  addPolygons(data = demographics, group = show_api, fillColor = ~demo_pal(pct_api_category), color = gray, weight = 1, fillOpacity = .8, popup = ~popup) %>%
+  
   # legends
-
-  addLegend(position = "bottomright", pal = demo_pal, values = demographics$pct_api_category, opacity = .8, title = "% Asian or Pacific Islander<br><span style='font-weight:700; font-size:12px;'>ACS 2019 (5-year), quantile breaks", group = "Show API Population<hr padding:0px;margin:0px;>", na.label = "Data not available", labels = c("Less than 16%", "16 to 22%", "22 to 34%", "34 to 44%", "Greater than 44%"))
+  
+  addLegend(position = "bottomright", pal = demo_pal, values = demographics$pct_api_category, opacity = .8, title = "API Population<br><span style='font-weight:700; font-size:12px;'>ACS 2019 (5-year), quantile breaks", group = show_api, na.label = "Data not available", labels = c("Less than 16%", "16 to 22%", "22 to 34%", "34 to 44%", "Greater than 44%"))
 
 
 # use walk from per to return m after adding each layer
@@ -170,19 +171,19 @@ groups %>%                     # get names of resource groups
     map <<-
       map %>%
       addMarkers(data = food_resources %>% filter(category == x),
-                 icon = makeIcon(iconUrl = ~icon_url, iconWidth = 36, iconHeight = 36),
+                 icon = makeIcon(iconUrl = ~icon_url, iconWidth = 24, iconHeight = 24),
                  popup = ~popup,
                  group = x,
-                 clusterOptions = markerClusterOptions()))
+                 clusterOptions = markerClusterOptions(showCoverageOnHover = FALSE)))
 
 map <-
   map %>%
   addLayersControl(
-    overlayGroups = c("Show API Population<hr padding:0px;margin:0px;>",  groups),
+    overlayGroups = c(show_api,  groups),
     position = "bottomleft",
     options = layersControlOptions(collapsed = FALSE)
   ) %>%
-  hideGroup("Show API Population<hr padding:0px;margin:0px;>")
+  hideGroup(show_api)
 
 map
 
@@ -193,10 +194,65 @@ map
 
 
 
+<div class="grid grid-cols-4 gap-8 l-page my-16">
 
-<h2 class="text-4xl font-bold mb-4">Neighborhoods</h2>
+<div>
+<img src="assets/corner-stores-icon-summary.svg">
+</div>
 
-<div class="grid grid-cols-3 gap-16 l-screen-inset my-16 mx-64">
+<div>
+<img src="assets/drug-stores-icon-summary.svg">
+</div>
+
+<div>
+<img src="assets/farmers-market-icon-summary.svg">
+</div>
+
+<div>
+<img src="assets/food-banks-pantries-icon-summary.svg">
+</div>
+
+<div>
+<img src="assets/food-pharmacy-icon-summary.svg">
+</div>
+
+<div>
+<img src="assets/free-prepared-hot-meals-icon-summary.svg">
+</div>
+
+<div>
+<img src="assets/international-grocery-stores-icon-summary.svg">
+</div>
+
+<div>
+<img src="assets/liquor-stores-icon-summary.svg">
+</div>
+
+<div>
+<img src="assets/restaurants-fast-food-icon-summary.svg">
+</div>
+
+<div>
+<img src="assets/restaurants-icon-summary.svg">
+</div>
+
+
+<div>
+<img src="assets/supermarkets-icon-summary.svg">
+</div></div>
+
+
+
+
+<div class="l-screen-inset my-16">
+
+<h2 class="text-4xl text-center font-bold mb-16">Neighborhoods</h2>
+
+<div class="grid grid-cols-5 gap-16">
+
+<div>
+<img src="assets/bayview-hunters-point.svg">
+</div>
 
 <div>
 <img src="assets/chinatown.svg">
@@ -207,9 +263,44 @@ map
 </div>
 
 <div>
+<img src="assets/inner-sunset.svg">
+</div>
+
+<div>
 <img src="assets/japantown.svg">
 </div>
 
+<div>
+<img src="assets/outer-sunset.svg">
 </div>
+
+<div>
+<img src="assets/richmond.svg">
+</div>
+
+<div>
+<img src="assets/soma.svg">
+</div>
+
+<div>
+<img src="assets/tenderloin.svg">
+</div>
+
+<div>
+<img src="assets/visitacion-valley.svg">
+</div>
+
+</div>
+
+</div>
+
+<div class="mt-24">
+<h2 class="text-4xl font-bold">Data Sources</h2>
+</div>
+
+
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Purus faucibus ornare suspendisse sed nisi lacus sed viverra tellus. Et ligula ullamcorper malesuada proin libero nunc consequat. Proin libero nunc consequat interdum varius sit. Maecenas pharetra convallis posuere morbi leo. Ipsum dolor sit amet consectetur. Dolor sit amet consectetur adipiscing elit duis tristique. Sit amet cursus sit amet dictum sit. Non sodales neque sodales ut etiam sit amet. Fermentum odio eu feugiat pretium nibh ipsum. Neque aliquam vestibulum morbi blandit cursus risus at ultrices mi. Maecenas pharetra convallis posuere morbi. Bibendum ut tristique et egestas quis ipsum suspendisse.</p>
+
+
 
 

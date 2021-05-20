@@ -9,17 +9,14 @@ sf_boundary <- counties(state = "California", cb = TRUE) %>%
   filter(name == "San Francisco") %>%
   st_transform(4326)
 
-demographics <- read_rds(("data/api_neighborhood_data.rds"))
+demographics <- read_rds(("data/api_neighborhood_interpolated.rds"))
 
-demographics %>%
-  st_drop_geometry() %>%
-  distinct(nhood) %>%
-  pull(nhood)
 
 neighborhoods <- demographics %>%
-  filter(nhood %in% c("SOMA", "Richmond", "Sunset", "Chinatown", "Japantown", "Bayview Hunters Point", "Tenderloin", "Visitacion Valley", "Excelsior")) %>%
+  filter(name %in% c("SOMA", "Richmond", "Outer Sunset", "Inner Sunset", "Chinatown", "Japantown", "Bayview Hunters Point", "Tenderloin", "Visitacion Valley", "Excelsior")) %>%
   st_drop_geometry() %>%
-  pull(nhood)
+  pull(name)
+
 
 
 generate_static_neighborhood_map <- function(neighborhood_name) {
@@ -29,7 +26,7 @@ generate_static_neighborhood_map <- function(neighborhood_name) {
     str_to_lower() %>%
     str_glue(".svg")
 
-  ggplot(data = filter(demographics, nhood == neighborhood_name)) +
+  ggplot(data = filter(demographics, name == neighborhood_name)) +
     with_shadow(geom_sf(fill = "#AD1D32",
                         color = "transparent"),
                 colour = "#806E6E",
@@ -39,16 +36,19 @@ generate_static_neighborhood_map <- function(neighborhood_name) {
                  family = "Oswald",
                  fontface = "bold",
                  color = "white",
-                 size = 12),
+                 size = 14),
                 colour = "#806E6E",
                 x_offset = 1,
                 y_offset = 1) +
 
-    theme_void()
+    theme_void() +
+    theme(plot.background = element_rect(fill = "transparent",
+                                         color = "transparent"))
 
   ggsave(str_glue("assets/{file_name}"))
 
 }
+
 
 generate_static_neighborhood_map(neighborhoods[1])
 

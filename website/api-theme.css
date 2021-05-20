@@ -92,3 +92,98 @@ d-appendix {
 body > header > nav > div.nav-left > a {
   display: none;
 }
+
+.grid {
+    display: grid;
+}
+
+.grid-cols-2 {
+    grid-template-columns: repeat(2,minmax(0,1fr));
+}
+
+
+.grid-cols-4 {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.grid-cols-5 {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+}
+
+
+.items-center {
+  	align-items: center;
+}
+
+.gap-8 {
+    gap: 2rem;
+}
+
+.gap-16 {
+    gap: 4rem;
+}
+
+.mx-64 {
+    margin-left: 16rem;
+    margin-right: 16rem;
+}
+
+
+.mt-24 {
+    margin-top: 6rem;
+}
+
+.mb-16 {
+  margin-bottom: 4rem;
+}
+
+.my-16 {
+    margin-top: 4rem;
+    margin-bottom: 4rem;
+}
+
+.mb-4 {
+    margin-bottom: 1rem;
+}
+.text-4xl {
+    font-size: 2.25rem;
+    line-height: 2.5rem;
+}
+.font-bold {
+    font-weight: 700;
+}
+
+.pt-16 {
+  padding-top: 4rem;
+}
+
+.text-center {
+  text-align: center;
+}
+
+
+.shadow-md {
+    --tw-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    box-shadow: var(--tw-ring-offset-shadow,0 0 #0000),var(--tw-ring-shadow,0 0 #0000),var(--tw-shadow);
+}
+
+.rounded-md {
+    border-radius: .375rem;
+}
+
+.mt-16 {
+    margin-top: 4rem;
+}
+
+img {
+  width: 100%;
+}
+
+
+d-article h2 {
+  border-bottom: 0;
+}
+
+.bg-100 {
+  background-color: rgba(243, 244, 246, 1);
+}
