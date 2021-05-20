@@ -70,7 +70,33 @@ write_rds(api_summary_nb, "data/api_neighborhood_data.rds")
 
 ## Alternative neighborhood boundaries
 
-neighborhoods <- read_sf("data-raw/sf_neighborhoods.shp")
+neighborhoods_raw <- read_sf("data-raw/sf_neighborhoods.shp") %>%
+  st_transform(26910)
+
+mapview::mapview(neighborhoods_raw)
+
+st_precision(neighborhoods_raw) <- 10000
+
+
+neighborhoods <- neighborhoods_raw %>%
+  mutate(name_clean = case_when(
+    name %in% c("Inner Richmond", "Outer Richmond") ~ "Richmond",
+    name == "South of Market" ~ "SOMA",
+    TRUE ~ name
+  )) %>%
+  st_snap(x = ., y = ., tolerance = 10) %>% # remove polygon slivers
+  group_by(name_clean) %>%
+  summarise(.groups = "drop") %>%
+  rename(name = name_clean) # switch the name back
+
+
+leaflet(neighborhoods %>% st_transform(4326)) %>%
+  addProviderTiles(providers$CartoDB.Positron) %>%
+  addPolygons(opacity = 0.8,
+              fillOpacity = 0.8,
+              color = "#727375",
+              fillColor = "#b3b5ba",
+              weight = 1, label = ~name_clean)
 
 
 # pull table B03002 with the variable labels instead of numeric codes
@@ -83,6 +109,8 @@ race_ethnicity_clean <- race_ethnicity %>%
   pivot_wider(names_from = variable, values_from = c(estimate, moe)) %>%
   janitor::clean_names()
 
+# Join to tract boundaries
+
 sf_tracts <- tracts(state = "CA", county = "San Francisco", cb = TRUE)
 
 race_ethnicity_clean_sf <- race_ethnicity_clean %>%
@@ -90,6 +118,8 @@ race_ethnicity_clean_sf <- race_ethnicity_clean %>%
   st_as_sf()
 
 mapview::mapview(race_ethnicity_clean_sf)
+
+# interpolate API population across neighborhood boundaries
 
 race_ethnicity_interpolated <- st_interpolate_aw(race_ethnicity_clean_sf %>% select(-geoid, -name) %>% st_transform(26910), neighborhoods %>% st_transform(26910), extensive = TRUE) %>%
   bind_cols(neighborhoods %>% select(name) %>% st_set_geometry(NULL)) %>%
@@ -104,6 +134,9 @@ race_ethnicity_interpolated <- st_interpolate_aw(race_ethnicity_clean_sf %>% sel
          pct_api_clean = round(pct_api_clean * 100, 2))  %>%  # make the label NA is the moe is more than 30% of the estimate. This threshold is fairly arbitrary, but we should use *some* threshold
   mutate(pct_api_display = percent(pct_api_clean / 100, accuracy = 1))
 
-mapview::mapview(race_ethnicity_interpolated, zcol = "pct_api_clean")
+# mapview::mapview(race_ethnicity_interpolated)
 
 write_rds(race_ethnicity_interpolated, "data/api_neighborhood_interpolated.rds")
+
+
+
