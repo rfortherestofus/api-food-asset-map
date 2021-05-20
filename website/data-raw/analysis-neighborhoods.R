@@ -81,6 +81,7 @@ st_precision(neighborhoods_raw) <- 10000
 neighborhoods <- neighborhoods_raw %>%
   mutate(name_clean = case_when(
     name %in% c("Inner Richmond", "Outer Richmond") ~ "Richmond",
+    name %in% c("Bayview", "Hunters Point") ~ "Bayview Hunters Point",
     name == "South of Market" ~ "SOMA",
     TRUE ~ name
   )) %>%
@@ -96,7 +97,7 @@ leaflet(neighborhoods %>% st_transform(4326)) %>%
               fillOpacity = 0.8,
               color = "#727375",
               fillColor = "#b3b5ba",
-              weight = 1, label = ~name_clean)
+              weight = 1, label = ~name)
 
 
 # pull table B03002 with the variable labels instead of numeric codes
