@@ -17,7 +17,7 @@ neighborhoods <- demographics %>%
   st_drop_geometry() %>%
   pull(name)
 
-demographics$name
+
 
 generate_static_neighborhood_map <- function(neighborhood_name) {
 
@@ -36,12 +36,14 @@ generate_static_neighborhood_map <- function(neighborhood_name) {
                  family = "Oswald",
                  fontface = "bold",
                  color = "white",
-                 size = 12),
+                 size = 14),
                 colour = "#806E6E",
                 x_offset = 1,
                 y_offset = 1) +
 
-    theme_void()
+    theme_void() +
+    theme(plot.background = element_rect(fill = "transparent",
+                                         color = "transparent"))
 
   ggsave(str_glue("assets/{file_name}"))
 

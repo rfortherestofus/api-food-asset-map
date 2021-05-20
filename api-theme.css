@@ -101,15 +101,28 @@ body > header > nav > div.nav-left > a {
     grid-template-columns: repeat(2,minmax(0,1fr));
 }
 
-.grid-cols-3 {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+
+.grid-cols-4 {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.grid-cols-5 {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
 }
 
 
+.items-center {
+  	align-items: center;
+}
+
+.gap-8 {
+    gap: 2rem;
+}
 
 .gap-16 {
     gap: 4rem;
 }
+
 .mx-64 {
     margin-left: 16rem;
     margin-right: 16rem;
@@ -130,6 +143,13 @@ body > header > nav > div.nav-left > a {
     font-weight: 700;
 }
 
+.pt-16 {
+  padding-top: 4rem;
+}
+
+.text-center {
+  text-align: center;
+}
 
 
 .shadow-md {
@@ -143,4 +163,17 @@ body > header > nav > div.nav-left > a {
 
 .mt-16 {
     margin-top: 4rem;
+}
+
+img {
+  width: 100%;
+}
+
+
+d-article h2 {
+  border-bottom: 0;
+}
+
+.bg-100 {
+  background-color: rgba(243, 244, 246, 1);
 }

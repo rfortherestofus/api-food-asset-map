@@ -138,7 +138,7 @@ demographics <- demographics %>%
 </div>
 
 <div>
-<img class="rounded-md shadow-md mt-16" width = "500" src="https://images.unsplash.com/photo-1517210067403-d86a5703516f?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1489&q=80">
+<img class="rounded-md shadow-md items-center" src="https://images.unsplash.com/photo-1517210067403-d86a5703516f?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1489&q=80">
 </div>
 
 
@@ -194,10 +194,65 @@ map
 
 
 
+<div class="grid grid-cols-4 gap-8 l-page my-16">
 
-<h2 class="text-4xl font-bold mb-4">Neighborhoods</h2>
+<div>
+<img src="assets/corner-stores-icon-summary.svg">
+</div>
 
-<div class="grid grid-cols-3 gap-16 l-screen-inset my-16 mx-64">
+<div>
+<img src="assets/drug-stores-icon-summary.svg">
+</div>
+
+<div>
+<img src="assets/farmers-market-icon-summary.svg">
+</div>
+
+<div>
+<img src="assets/food-banks-pantries-icon-summary.svg">
+</div>
+
+<div>
+<img src="assets/food-pharmacy-icon-summary.svg">
+</div>
+
+<div>
+<img src="assets/free-prepared-hot-meals-icon-summary.svg">
+</div>
+
+<div>
+<img src="assets/international-grocery-stores-icon-summary.svg">
+</div>
+
+<div>
+<img src="assets/liquor-stores-icon-summary.svg">
+</div>
+
+<div>
+<img src="assets/restaurants-fast-food-icon-summary.svg">
+</div>
+
+<div>
+<img src="assets/restaurants-icon-summary.svg">
+</div>
+
+
+<div>
+<img src="assets/supermarkets-icon-summary.svg">
+</div></div>
+
+
+
+
+<div class="l-screen-inset my-16 pt-16">
+
+<h2 class="text-4xl text-center font-bold mb-4">Neighborhoods</h2>
+
+<div class="grid grid-cols-5 gap-16">
+
+<div>
+<img src="assets/bayview-hunters-point.svg">
+</div>
 
 <div>
 <img src="assets/chinatown.svg">
@@ -208,7 +263,33 @@ map
 </div>
 
 <div>
+<img src="assets/inner-sunset.svg">
+</div>
+
+<div>
 <img src="assets/japantown.svg">
+</div>
+
+<div>
+<img src="assets/outer-sunset.svg">
+</div>
+
+<div>
+<img src="assets/richmond.svg">
+</div>
+
+<div>
+<img src="assets/soma.svg">
+</div>
+
+<div>
+<img src="assets/tenderloin.svg">
+</div>
+
+<div>
+<img src="assets/visitacion-valley.svg">
+</div>
+
 </div>
 
 </div>
