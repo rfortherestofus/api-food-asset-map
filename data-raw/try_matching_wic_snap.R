@@ -342,7 +342,7 @@ final_snap_wic_dataset <- map_dfr(final_data_frames, ~select(.x, name, category,
                            "Supermarkets/Grocery Stores",
                            category))
 
-write_rds(final_snap_wic_dataset, "data/final_snap_wic_dataset")
+write_rds(final_snap_wic_dataset, "data/final_snap_wic_dataset.rds")
 
 
 
