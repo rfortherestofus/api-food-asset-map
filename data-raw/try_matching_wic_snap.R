@@ -334,7 +334,13 @@ remove_final_dupes <- c(2907, 2903, 1077, 105, 2904, 1807, 2906, 9)
 final_snap_wic_dataset <- map_dfr(final_data_frames, ~select(.x, name, category, street_address, city, state, zip_code, accepts_snap_wic, geometry)) %>%
   mutate(final_index = 1:n()) %>%
   filter(!(final_index %in% remove_final_dupes)) %>%
-  select(-final_index)
+  select(-final_index) %>%
+  mutate(category = ifelse(category == "Corner Stores",
+                           "Corner Stores/Convenience Stores",
+                           category),
+         category = ifelse(category == "Supermarkets",
+                           "Supermarkets/Grocery Stores",
+                           category))
 
 write_rds(final_snap_wic_dataset, "data/final_snap_wic_dataset")
 
