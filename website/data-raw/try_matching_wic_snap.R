@@ -96,6 +96,10 @@ match_chains <- function(chain_name) {
   chain_unmatched <- chain_unmatched %>%
     slice(-matches$match_index) # remove locations we have a match for
 
+  chain_snap_wic <- chain_snap_wic[matches$snap_wic_index,] %>% # attach new categories to snap_wic stores
+    mutate(category = chain_matched$category)
+
+
 
   # return chain_matched to use in antijoin on remaining locations
   list(chain_unmatched = chain_unmatched,
@@ -151,7 +155,14 @@ remaining_snap_wic_locations <- remaining_snap_wic_locations %>%
            str_trim())
 
 simple_regex_matches <- semi_join(remaining_locations, remaining_snap_wic_locations %>% st_drop_geometry(), by = "name_simple")
-simple_regex_matches_snap_wic <- semi_join(remaining_snap_wic_locations, remaining_locations %>% st_drop_geometry(), by = "name_simple")
+simple_regex_matches_snap_wic <- inner_join(remaining_snap_wic_locations %>%
+                                              select(-category),
+                                            remaining_locations %>%
+                                              select(category, name_simple) %>%
+                                              st_drop_geometry() %>%
+                                              group_by(name_simple) %>% # deal with duplicates
+                                              slice(1) %>%
+                                              ungroup(), by = "name_simple")
 
 remaining_locations <- remaining_locations %>%
   anti_join(simple_regex_matches %>% st_drop_geometry(), by = "global_index")
@@ -182,7 +193,15 @@ remaining_snap_wic_locations <- remaining_snap_wic_locations %>%
            str_replace_all("Drive", "dr"))
 
 simple_address_matches <- semi_join(remaining_locations, remaining_snap_wic_locations %>% st_drop_geometry(), by = "street_address_simple")
-simple_address_matches_snap_wic <- semi_join(remaining_snap_wic_locations, remaining_locations %>% st_drop_geometry(), by = "street_address_simple")
+simple_address_matches_snap_wic <- inner_join(remaining_snap_wic_locations %>%
+                                                select(-category),
+                                              remaining_locations %>%
+                                                select(category, street_address_simple) %>%
+                                                st_drop_geometry() %>%
+                                                group_by(street_address_simple) %>% # deal with duplicates
+                                                slice(1) %>%
+                                                ungroup(), by = "street_address_simple")
+
 
 remaining_locations <- remaining_locations %>%
   anti_join(simple_address_matches %>% st_drop_geometry(), by = "global_index")
@@ -221,5 +240,110 @@ potential_snap_wic_matches <- map_dfr(1:nrow(remaining_snap_wic_locations), near
 
 # potential_snap_wic_matches
 
-write_rds(potential_snap_wic_matches,
-          "data/potential_snap_wic_matches.rds")
+# write_rds(potential_snap_wic_matches,
+#           "data/potential_snap_wic_matches.rds")
+
+
+# Updating data based on client annotations ------------------------------
+
+
+client_annotated_snap_wic_matches <- read_csv("data-raw/client_annotated_snap_wic_matches.csv")
+
+# remove closed or matched with snap wic stores from the remaining stores list
+
+# eight stores from the original dataset were closed
+closed_possible_match_indices <- client_annotated_snap_wic_matches %>%
+  filter(closed_possible_match == "x") %>%
+  pull(possible_match_index) %>%
+  unique()
+
+
+# there were 32 more matches with snap/wic data
+matched_with_snap_wic_indices <- client_annotated_snap_wic_matches %>%
+  filter(is_match == "x") %>%
+  pull(possible_match_index) %>%
+  unique()
+
+
+# these locations will be added back to the not applicable locations in our final dataset
+remaining_locations_post_annotate <- remaining_locations %>%
+  mutate(local_index = 1:n()) %>%  # accidentily used this in client table instead of global index
+  filter(!(local_index %in% closed_possible_match_indices)) %>%
+  filter(!(local_index %in% matched_with_snap_wic_indices))
+
+
+# remove closed, duplicate, or wrong category snap wic locations
+
+# 3 snap/wic locations were closed
+closed_snap_wic <- client_annotated_snap_wic_matches %>%
+  filter(closed_snap_wic == "x") %>%
+  pull(snap_wic_index) %>%
+  unique()
+
+# six snap/wic locations were duplicates
+duplicate_snap_wic <- client_annotated_snap_wic_matches %>%
+  filter(duplicate_snap_wic == "x") %>%
+  pull(snap_wic_index) %>%
+  unique()
+
+# 3 snap/wic locations had invalid categories
+invalid_category_snap_wic <- client_annotated_snap_wic_matches %>%
+  filter(new_category == "--") %>%
+  pull(snap_wic_index) %>%
+  unique()
+
+remaining_snap_wic_post_annotate <- remaining_snap_wic_locations %>%
+  mutate(local_index = 1:n()) %>%
+  filter(!(local_index %in% closed_snap_wic)) %>%
+  filter(!(local_index %in% duplicate_snap_wic)) %>%
+  filter(!(local_index %in% invalid_category_snap_wic)) %>%
+  left_join(select(client_annotated_snap_wic_matches, # bind on new categories
+                   snap_wic_index,
+                   new_category), by = c("local_index" = "snap_wic_index")) %>%
+  mutate(category = new_category) %>%
+  mutate(category = str_to_title(category)) %>%
+  mutate(category = ifelse(category != "International Grocery Stores",
+                           glue("{category}s"),
+                           category))
+
+
+
+
+
+# Join final dataset ---------------------------------------
+
+
+# The final dataset is the union of:
+# - Not applicable stores (restaurants etc.)
+# - Remaining locations post annotate
+# - all matched snap/wic locations
+
+final_data_frames <- list(
+  not_snap_wic_applic,
+  chains_snap_wic,
+  simple_regex_matches_snap_wic,
+  simple_address_matches_snap_wic,
+  remaining_snap_wic_post_annotate,
+  remaining_locations_post_annotate
+)
+
+# some remaining dupes I found
+remove_final_dupes <- c(2907, 2903, 1077, 105, 2904, 1807, 2906, 9)
+
+
+final_snap_wic_dataset <- map_dfr(final_data_frames, ~select(.x, name, category, street_address, city, state, zip_code, accepts_snap_wic, geometry)) %>%
+  mutate(final_index = 1:n()) %>%
+  filter(!(final_index %in% remove_final_dupes)) %>%
+  select(-final_index) %>%
+  mutate(category = ifelse(category == "Corner Stores",
+                           "Corner Stores/Convenience Stores",
+                           category),
+         category = ifelse(category == "Supermarkets",
+                           "Supermarkets/Grocery Stores",
+                           category))
+
+write_rds(final_snap_wic_dataset, "data/final_snap_wic_dataset.rds")
+
+
+
+
