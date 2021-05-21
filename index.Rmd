@@ -11,6 +11,9 @@ knitr::opts_chunk$set(echo = FALSE)
 
 ```
 
+
+
+
 ```{r packages}
 library(tidyverse)
 library(leaflet)
@@ -23,9 +26,7 @@ library(pluralize)
 library(crosstalk)
 ```
 
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Catamaran:wght@400;700&family=Oswald:wght@400;700&display=swap');
-</style>
+
 
 ```{r colors}
 dark_red <- "#AD1D32"
@@ -125,7 +126,6 @@ demographics <- demographics %>%
 
 ```
 
-<link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
 
 
 <div class="grid grid-cols-3 gap-16 l-screen-inset mt-24 mb-16 mx-64">

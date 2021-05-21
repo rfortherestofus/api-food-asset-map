@@ -1,6 +1,6 @@
 name: "website"
 title: "API Food Assets Map"
-theme: api-theme.css
+theme: css/apistyle.css
 description: |
   API Food Assets Map
 output_dir: "website"
