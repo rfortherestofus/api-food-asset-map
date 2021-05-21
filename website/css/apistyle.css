@@ -652,11 +652,6 @@ video {
   margin-bottom:      4rem;
 }
 
-.mx-64{
-  margin-left:      16rem;
-  margin-right:      16rem;
-}
-
 .mb-4{
   margin-bottom:      1rem;
 }
@@ -697,10 +692,6 @@ video {
 
 .gap-16{
   gap:      4rem;
-}
-
-.grid-cols-3{
-  grid-template-columns:      repeat(3, minmax(0, 1fr));
 }
 
 .grid-cols-4{
@@ -786,6 +777,30 @@ video {
 }
 
 @media (min-width: 640px){
+  .sm\:grid{
+    display:      grid;
+  }
+
+  .sm\:mx-64{
+    margin-left:      16rem;
+    margin-right:      16rem;
+  }
+
+  .sm\:mb-16{
+    margin-bottom:      4rem;
+  }
+
+  .sm\:mt-24{
+    margin-top:      6rem;
+  }
+
+  .sm\:gap-16{
+    gap:      4rem;
+  }
+
+  .sm\:grid-cols-3{
+    grid-template-columns:      repeat(3, minmax(0, 1fr));
+  }
 }
 
 @media (min-width: 768px){

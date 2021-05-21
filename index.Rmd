@@ -128,7 +128,7 @@ demographics <- demographics %>%
 
 
 
-<div class="grid grid-cols-3 gap-16 l-screen-inset mt-24 mb-16 mx-64">
+<div class="sm:grid sm:grid-cols-3 sm:gap-16 l-screen-inset sm:mt-24 sm:mb-16 sm:mx-64">
 
 <div class="col-span-2">
 

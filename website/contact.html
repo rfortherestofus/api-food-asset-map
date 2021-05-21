@@ -2810,10 +2810,6 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     gap:      4rem;
   }
 
-  .grid-cols-3{
-    grid-template-columns:      repeat(3, minmax(0, 1fr));
-  }
-
   .grid-cols-4{
     grid-template-columns:      repeat(4, minmax(0, 1fr));
   }
@@ -2897,6 +2893,17 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   }
 
   @media (min-width: 640px){
+    .sm\:grid{
+      display:      grid;
+    }
+
+    .sm\:gap-16{
+      gap:      4rem;
+    }
+
+    .sm\:grid-cols-3{
+      grid-template-columns:      repeat(3, minmax(0, 1fr));
+    }
   }
 
   @media (min-width: 768px){
