@@ -177,7 +177,7 @@ groups %>%                     # get names of resource groups
                  icon = makeIcon(iconUrl = ~icon_url, iconWidth = 24, iconHeight = 24),
                  popup = ~popup,
                  group = x,
-                 clusterOptions = markerClusterOptions(showCoverageOnHover = FALSE)))
+                 clusterOptions = markerClusterOptions(showCoverageOnHover = FALSE, disableClusteringAtZoom = 15)))
 
 map <-
   map %>%
