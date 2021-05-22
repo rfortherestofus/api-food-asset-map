@@ -55,13 +55,16 @@ demographics <- read_rds("data/api_neighborhood_interpolated.rds") %>%
   mutate(pct_api_interval = cut(pct_api_clean, breaks = c(0, 14, 24, 34, 44, 100), include.lowest = TRUE, ordered = TRUE),
          pct_api_category = fct_relabel(pct_api_interval, clean_interval)) %>%
   rename(nhood = name) %>%
+  arrange(nhood) %>%
+  mutate(nhood = fct_inorder(factor(nhood))) %>%
   st_transform(4326)
 
 food_resources <- read_rds("data/full_dataset.rds") %>%
   st_join(demographics %>% select(nhood)) %>%
   filter(city == "San Francisco") %>%
   st_intersection(sf_boundary %>% select()) %>%
-  mutate(category = factor(category),
+  arrange(category) %>%
+  mutate(category = fct_inorder(category),
          icon_url = case_when(category == "Corner Stores" ~ "assets/corner-stores.svg",
                               category == "Drug Stores" ~ "assets/drug-stores.svg",
                               category == "Food Banks/Pantries" ~ "assets/food-banks-pantries.svg",
@@ -84,12 +87,12 @@ food_resources <- read_rds("data/full_dataset.rds") %>%
 ```{r design}
 groups <- c(
   "Corner Stores" <- "Corner Stores",
-  "International Grocery Stores" <- "International Grocery Stores",
   "Drug Stores" <- "Drug Stores",
   "Farmers Markets" <- "Farmers Markets",
   "Food Banks/Pantries" <- "Food Banks/Pantries",
   "Food Pharmacies" <- "Food Pharmacies",
   "Free Prepared Food or Hot Meals" <- "Free Prepared Food or Hot Meals",
+  "International Grocery Stores" <- "International Grocery Stores",
   "Liquor Stores" <- "Liquor Stores",
   "Restaurants" <- "Restaurants",
   "Restaurants (Fast Food)" <- "Restaurants (Fast Food)",
