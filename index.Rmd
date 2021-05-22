@@ -159,36 +159,49 @@ demographics <- demographics %>%
 
 show_api <- "<span style='border-bottom-width: 2px;border-bottom-style: solid #000;padding-bottom: 10px;'>Show API Population<br></span><br>"
 
-map <- leaflet() %>%
-  addProviderTiles(provider = providers$CartoDB.Positron) %>%
-  addPolygons(data = demographics, group = show_api, fillColor = ~demo_pal(pct_api_category), color = "#ffffff", weight = 0.5, fillOpacity = .8, popup = ~popup, opacity = 1) %>%
-  
-  # legends
-  
-  addLegend(position = "bottomright", pal = demo_pal, values = demographics$pct_api_category, opacity = 1, title = "API Population", group = show_api, na.label = "Data not available")
+draw_resource_map <- function(neighborhoods = NULL) {
+  if (!is.null(neighborhoods)) {
+    demographics <- demographics %>%
+      filter(nhood %in% neighborhoods)
+    food_resources <- food_resources %>%
+      filter(nhood %in% neighborhoods)
+  }
+
+  map <- leaflet() %>%
+    addProviderTiles(provider = providers$CartoDB.Positron) %>%
+    addPolygons(data = demographics, group = show_api, fillColor = ~ demo_pal(pct_api_category), color = "#ffffff", weight = 0.5, fillOpacity = .8, popup = ~popup, opacity = 1) %>%
+    # legends
+
+    addLegend(position = "bottomright", pal = demo_pal, values = demographics$pct_api_category, opacity = 1, title = "API Population", group = show_api, na.label = "Data not available")
 
 
-# use walk from per to return m after adding each layer
-groups %>%                     # get names of resource groups
-  walk(function(x)                         # then walk through vector of names one at a time
-    map <<-
-      map %>%
-      addMarkers(data = food_resources %>% filter(category == x),
-                 icon = makeIcon(iconUrl = ~icon_url, iconWidth = 24, iconHeight = 24),
-                 popup = ~popup,
-                 group = x,
-                 clusterOptions = markerClusterOptions(showCoverageOnHover = FALSE, disableClusteringAtZoom = 15)))
+  # use walk from per to return m after adding each layer
+  groups %>% # get names of resource groups
+    walk(function(x) { # then walk through vector of names one at a time
+      map <<-
+        map %>%
+        addMarkers(
+          data = food_resources %>% filter(category == x),
+          icon = makeIcon(iconUrl = ~icon_url, iconWidth = 24, iconHeight = 24),
+          popup = ~popup,
+          group = x,
+          clusterOptions = markerClusterOptions(showCoverageOnHover = FALSE, disableClusteringAtZoom = 15)
+        )
+    })
 
-map <-
-  map %>%
-  addLayersControl(
-    overlayGroups = c(show_api,  groups),
-    position = "bottomleft",
-    options = layersControlOptions(collapsed = FALSE)
-  ) %>%
-  hideGroup(show_api)
+  map <-
+    map %>%
+    addLayersControl(
+      overlayGroups = c(show_api, groups),
+      position = "bottomleft",
+      options = layersControlOptions(collapsed = FALSE)
+    ) %>%
+    hideGroup(show_api)
 
-map
+  map
+}
+
+draw_resource_map()
 
 
 ```
