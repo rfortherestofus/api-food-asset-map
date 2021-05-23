@@ -11,7 +11,7 @@ library(beepr)
 
 # Generate TailwindCSS ----------------------------------------------------
 
-terminalExecute("NODE_ENV=production npx tailwindcss-cli build css/tailwind.css -o css/apistyle.css")
+# terminalExecute("NODE_ENV=production npx tailwindcss-cli build css/tailwind.css -o css/apistyle.css")
 
 # Render Site -------------------------------------------------------------
 

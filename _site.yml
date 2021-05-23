@@ -13,23 +13,25 @@ navbar:
       href: #
       menu:
         - text: "Bayview Hunters Point"
-          href: #
+          href: bayview-hunters-point.html
         - text: "Chinatown"
-          href: #
+          href: chinatown.html
         - text: "Excelsior"
-          href: #
+          href: excelsior.html
+        - text: "Inner Sunset"
+          href: inner-sunset.html
         - text: "Japantown"
-          href: #
+          href: japantown.html
+        - text: "Outer Sunset"
+          href: outer-sunset.html
         - text: "Richmond"
-          href: #
+          href: richmond.html
         - text: "SOMA"
-          href: #
-        - text: "Sunset"
-          href: #
+          href: soma.html
         - text: "Tenderloin"
-          href: #
+          href: tenderloin.html
         - text: "Visitacion Valley"
-          href: #
+          href: visitacion-valley.html
     - text: "Contact"
       href: contact.html
 output: distill::distill_article

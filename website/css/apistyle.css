@@ -656,6 +656,10 @@ video {
   margin-bottom:      1rem;
 }
 
+.mt-16{
+  margin-top:      4rem;
+}
+
 .mb-16{
   margin-bottom:      4rem;
 }
@@ -704,10 +708,6 @@ video {
 
 .col-span-1{
   grid-column:      span 1 / span 1;
-}
-
-.col-span-2{
-  grid-column:      span 2 / span 2;
 }
 
 @-webkit-keyframes spin{
@@ -800,6 +800,10 @@ video {
 
   .sm\:grid-cols-3{
     grid-template-columns:      repeat(3, minmax(0, 1fr));
+  }
+
+  .sm\:col-span-2{
+    grid-column:      span 2 / span 2;
   }
 }
 

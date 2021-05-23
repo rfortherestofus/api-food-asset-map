@@ -1,0 +1,34 @@
+---
+title: "Tenderloin"
+site: distill::distill_website
+---
+
+  ```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+
+# Learn more about creating websites with Distill at:
+# https://rstudio.github.io/distill/website.html
+
+```
+
+
+
+```{r}
+source("R/interactive-maps.R")
+```
+
+
+
+<div class="mt-16 mb-4">
+  <h1 class="text-4xl font-bold mb-4">Tenderloin</h1>
+  </div>
+
+
+
+
+
+
+
+```{r map, layout = "l-screen-inset", fig.height = 8}
+draw_resource_map("Tenderloin")
+```
