@@ -150,7 +150,7 @@ draw_resource_map <- function(neighborhoods = NULL) {
         map %>%
         addMarkers(
           data = food_resources %>% filter(category == x),
-          icon = makeIcon(iconUrl = ~icon_url, iconWidth = 36, iconHeight = 36),
+          icon = makeIcon(iconUrl = ~icon_url, iconWidth = 24, iconHeight = 24),
           popup = ~popup,
           group = x,
           clusterOptions = markerClusterOptions(showCoverageOnHover = FALSE)

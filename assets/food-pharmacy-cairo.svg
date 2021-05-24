@@ -1,9 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="36pt" height="36pt" viewBox="0 0 36 36" version="1.1">
-<g id="surface131">
-<path style=" stroke:none;fill-rule:nonzero;fill:rgb(76.862746%,76.862746%,76.862746%);fill-opacity:1;" d="M 36 18 C 36 27.941406 27.941406 36 18 36 C 8.058594 36 0 27.941406 0 18 C 0 8.058594 8.058594 0 18 0 C 27.941406 0 36 8.058594 36 18 Z M 36 18 "/>
-<path style="fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:4;" d="M 10 21 L 10 9 L 16 9 C 18.210938 9 20 10.789062 20 13 C 20 15.210938 18.210938 17 16 17 L 10 17 "/>
-<path style="fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:4;" d="M 15 27 L 26 18 "/>
-<path style="fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:4;" d="M 26 27 L 14 17 "/>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24pt" height="24pt" viewBox="0 0 24 24" version="1.1">
+<defs>
+<clipPath id="clip1">
+  <path d="M 6 5.332031 L 14 5.332031 L 14 15 L 6 15 Z M 6 5.332031 "/>
+</clipPath>
+<clipPath id="clip2">
+  <path d="M 9 11 L 18 11 L 18 18.667969 L 9 18.667969 Z M 9 11 "/>
+</clipPath>
+<clipPath id="clip3">
+  <path d="M 8 10 L 18 10 L 18 18.667969 L 8 18.667969 Z M 8 10 "/>
+</clipPath>
+</defs>
+<g id="surface21">
+<path style=" stroke:none;fill-rule:nonzero;fill:rgb(92.54902%,94.117647%,94.509804%);fill-opacity:1;" d="M 24 12 C 24 18.628906 18.628906 24 12 24 C 5.371094 24 0 18.628906 0 12 C 0 5.371094 5.371094 0 12 0 C 18.628906 0 24 5.371094 24 12 Z M 24 12 "/>
+<g clip-path="url(#clip1)" clip-rule="nonzero">
+<path style="fill:none;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:4;" d="M 6.667969 14 L 6.667969 6 L 10.667969 6 C 12.140625 6 13.332031 7.195312 13.332031 8.667969 C 13.332031 10.140625 12.140625 11.332031 10.667969 11.332031 L 6.667969 11.332031 "/>
+</g>
+<g clip-path="url(#clip2)" clip-rule="nonzero">
+<path style="fill:none;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:4;" d="M 10 18 L 17.332031 12 "/>
+</g>
+<g clip-path="url(#clip3)" clip-rule="nonzero">
+<path style="fill:none;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:4;" d="M 17.332031 18 L 9.332031 11.332031 "/>
+</g>
 </g>
 </svg>

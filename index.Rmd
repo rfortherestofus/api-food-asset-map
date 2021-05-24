@@ -11,7 +11,7 @@ knitr::opts_chunk$set(echo = FALSE)
 
 ```
 
-
+<!-- <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet"> -->
 
 ```{r}
 source("R/interactive-maps.R")
@@ -40,12 +40,12 @@ source("R/interactive-maps.R")
 
 
 
-
-
-
 ```{r map, layout = "l-screen-inset", fig.height = 8}
 draw_resource_map()
 ```
+
+
+<div class="mx-auto inline text-gray-600"><img class="py-4 pr-2 inline" src="assets/accepts-snap-wic.svg"><span>Accepts SNAP/WIC</span><img class="py-4 pr-2 pl-4 inline" src="assets/doesnt-accept-snap-wic.svg"><span>Does Not Accept SNAP/WIC</span></div>
 
 
 
@@ -54,7 +54,7 @@ draw_resource_map()
 <div class="grid grid-cols-4 gap-8 l-page my-16">
 
 <div>
-<img src="assets/corner-stores-icon-summary.svg">
+<img src="assets/corner-stores-icon-summary.svg" alt="Corner/Convenience Stores">
 </div>
 
 <div>

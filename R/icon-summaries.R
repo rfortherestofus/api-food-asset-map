@@ -19,17 +19,17 @@ category_counts <- full_dataset %>%
   filter(category != "Stores that Accept SNAP/WIC")
 
 label_table <-tribble(~store_type, ~category,
-        "corner-stores", "Corner Stores/Convenience Stores",
-        "drug-stores", "Drug Stores",
-        "farmers-market", "Farmers Markets",
-        "food-banks-pantries", "Food Banks/Pantries",
-        "food-pharmacy", "Food Pharmacies",
-        "free-prepared-hot-meals", "Free Prepared Food or Hot Meals",
-        "international-grocery-stores", "International Grocery Stores",
-        "liquor-stores", "Liquor Stores",
-        "restaurants", "Restaurants",
-        "restaurants-fast-food", "Restaurants (Fast Food)",
-        "supermarkets", "Supermarkets/Grocery Stores")
+                      "corner-stores", "Corner Stores/Convenience Stores",
+                      "drug-stores", "Drug Stores",
+                      "farmers-market", "Farmers Markets",
+                      "food-banks-pantries", "Food Banks/Pantries",
+                      "food-pharmacy", "Food Pharmacies",
+                      "free-prepared-hot-meals", "Free Prepared Food or Hot Meals",
+                      "international-grocery-stores", "International Grocery Stores",
+                      "liquor-stores", "Liquor Stores",
+                      "restaurants", "Restaurants",
+                      "restaurants-fast-food", "Restaurants (Fast Food)",
+                      "supermarkets", "Supermarkets/Grocery Stores")
 
 final_table <- label_table %>%
   left_join(category_counts, by = c("category"))
@@ -39,7 +39,7 @@ plot_icon_summary <- function(category) {
     filter(category == {{category}})
   print(category)
   # convert svg to correct formats
-  rsvg_svg(glue("assets/{plot_info$store_type}.svg"), glue("assets/{plot_info$store_type}-cairo.svg"))
+  rsvg_svg(glue("assets/{plot_info$store_type}-gray.svg"), glue("assets/{plot_info$store_type}-cairo.svg"))
 
   img <- readPicture(glue("assets/{plot_info$store_type}-cairo.svg"))
 

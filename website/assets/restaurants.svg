@@ -1,9 +1,9 @@
-<svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-<circle cx="18" cy="18" r="18" fill="#CFE1FC"/>
-<path d="M10.0003 7V14" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M7.00031 7V15C7.00031 16.104 7.89631 17 9.00031 17H11.0003C12.1043 17 13.0003 16.104 13.0003 15V7" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M10.0003 17V29" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M26.0003 17V29" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M20.0003 29V7C17.7913 7 16.0003 8.791 16.0003 11V21H20.0003" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-<path fill-rule="evenodd" clip-rule="evenodd" d="M29.0003 12C29.0003 14.762 27.6573 17 26.0003 17C24.3433 17 23.0003 14.762 23.0003 12C23.0003 9.238 24.3433 7 26.0003 7C27.6573 7 29.0003 9.238 29.0003 12Z" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<circle cx="12" cy="12" r="12" fill="#C9D7E1"/>
+<path d="M6.66687 4.66667V9.33333" stroke="black" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M4.66687 4.66667V10C4.66687 10.736 5.2642 11.3333 6.0002 11.3333H7.33354C8.06954 11.3333 8.66687 10.736 8.66687 10V4.66667" stroke="black" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M6.66687 11.3333V19.3333" stroke="black" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M17.3335 11.3333V19.3333" stroke="black" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M13.3335 19.3333V4.66667C11.8609 4.66667 10.6669 5.86067 10.6669 7.33333V14H13.3335" stroke="black" stroke-linecap="round" stroke-linejoin="round"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M19.3335 8C19.3335 9.84133 18.4382 11.3333 17.3335 11.3333C16.2289 11.3333 15.3335 9.84133 15.3335 8C15.3335 6.15867 16.2289 4.66667 17.3335 4.66667C18.4382 4.66667 19.3335 6.15867 19.3335 8Z" stroke="black" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>
