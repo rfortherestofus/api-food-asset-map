@@ -11,7 +11,7 @@ library(glue)
 library(extrafont)
 loadfonts(device = "win")
 
-full_dataset <- read_rds("data/full_dataset.rds")
+full_dataset <- read_rds("data/reverse_geocoded.rds")
 
 category_counts <- full_dataset %>%
   st_drop_geometry() %>%

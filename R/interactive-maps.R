@@ -14,7 +14,7 @@ draw_resource_map <- function(neighborhoods = NULL) {
 
   ## boundary for San Francisco
 
-  sf_boundary <- counties(state = "California", cb = TRUE) %>%
+  sf_boundary <- counties(state = "California", cb = TRUE, progress_bar = FALSE) %>%
     clean_names() %>%
     filter(name == "San Francisco") %>%
     st_transform(4326)

@@ -14,7 +14,7 @@ draw_resource_map <- function(neighborhoods = NULL) {
 
   ## boundary for San Francisco
 
-  sf_boundary <- counties(state = "California", cb = TRUE) %>%
+  sf_boundary <- counties(state = "California", cb = TRUE, progress_bar = FALSE) %>%
     clean_names() %>%
     filter(name == "San Francisco") %>%
     st_transform(4326)
@@ -34,8 +34,9 @@ draw_resource_map <- function(neighborhoods = NULL) {
     mutate(nhood = fct_inorder(factor(nhood))) %>%
     st_transform(4326)
 
-  food_resources <- read_rds("data/full_dataset.rds") %>%
+  food_resources <- read_rds("data/reverse_geocoded.rds") %>%
     st_join(demographics %>% select(nhood)) %>%
+    mutate(street_address = str_trim(street_address)) %>%
     filter(city == "San Francisco") %>%
     st_intersection(sf_boundary %>% select()) %>%
     arrange(category) %>%
@@ -95,15 +96,15 @@ draw_resource_map <- function(neighborhoods = NULL) {
     mutate(singular_category = singularize(category),
            popup = paste("<span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>", singular_category,"</span>", "<br/>",
                          "<span style='font-family: Oswald; font-weight:700; font-size:20px; color: #111827'>", name,"</span>", "<br/>",
+                         "<span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>", street_address, " (", nhood, ") </span>", "<br/>",
                          sep='')) %>%
     filter(category %in% groups) # for now, filter out the SNAP/WIC category
 
 
   demographics <- demographics %>%
     mutate(popup = case_when(
-      !is.na(pct_api_clean) ~  paste("<span style='font-family: Oswald; font-weight:700; font-size:14px; color: #6B7280'>", nhood,"<br></span>",
+      !is.na(pct_api_clean) ~  paste("<span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280'>", nhood,"<br></span>",
                                      "<span style='font-family: Oswald; font-weight:700; font-size:20px; color: #111827;'>", pct_api_display, " API Population", "</span>", "<br/>",
-                                     # "<span style='font-family: Oswald; font-weight:700; font-size:14px; color: #111827'>", "2019 5-year ACS","</span>", "<br/>",
                                      sep=''),
       is.na(pct_api_clean) ~ paste("<span style='font-family: Oswald; font-weight:700; font-size:20px; color: #111827'>", nhood,"<br></span>",
                                    sep='')))
