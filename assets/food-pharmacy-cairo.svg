@@ -11,8 +11,8 @@
   <path d="M 8 10 L 18 10 L 18 18.667969 L 8 18.667969 Z M 8 10 "/>
 </clipPath>
 </defs>
-<g id="surface21">
-<path style=" stroke:none;fill-rule:nonzero;fill:rgb(92.54902%,94.117647%,94.509804%);fill-opacity:1;" d="M 24 12 C 24 18.628906 18.628906 24 12 24 C 5.371094 24 0 18.628906 0 12 C 0 5.371094 5.371094 0 12 0 C 18.628906 0 24 5.371094 24 12 Z M 24 12 "/>
+<g id="surface76">
+<path style=" stroke:none;fill-rule:nonzero;fill:rgb(76.862746%,76.862746%,76.862746%);fill-opacity:1;" d="M 24 12 C 24 18.628906 18.628906 24 12 24 C 5.371094 24 0 18.628906 0 12 C 0 5.371094 5.371094 0 12 0 C 18.628906 0 24 5.371094 24 12 Z M 24 12 "/>
 <g clip-path="url(#clip1)" clip-rule="nonzero">
 <path style="fill:none;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:4;" d="M 6.667969 14 L 6.667969 6 L 10.667969 6 C 12.140625 6 13.332031 7.195312 13.332031 8.667969 C 13.332031 10.140625 12.140625 11.332031 10.667969 11.332031 L 6.667969 11.332031 "/>
 </g>
