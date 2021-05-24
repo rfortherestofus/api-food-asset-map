@@ -29,7 +29,7 @@ source("R/interactive-maps.R")
 </div>
 
 <div class="col-span-1">
-<img class="rounded-md shadow-md items-center" src="assets/family.jpg">
+<img class="rounded-md shadow-md items-center" src="assets/family.jpg" alt="Smiling Family">
 </div>
 
 
@@ -58,44 +58,44 @@ draw_resource_map()
 </div>
 
 <div>
-<img src="assets/drug-stores-icon-summary.svg">
+<img src="assets/drug-stores-icon-summary.svg" alt="Drug Stores">
 </div>
 
 <div>
-<img src="assets/farmers-market-icon-summary.svg">
+<img src="assets/farmers-market-icon-summary.svg" alt="Farmers Markets">
 </div>
 
 <div>
-<img src="assets/food-banks-pantries-icon-summary.svg">
+<img src="assets/food-banks-pantries-icon-summary.svg" alt="Food Banks/Pantries">
 </div>
 
 <div>
-<img src="assets/food-pharmacy-icon-summary.svg">
+<img src="assets/food-pharmacy-icon-summary.svg" alt="Food Pharamcies">
 </div>
 
 <div>
-<img src="assets/free-prepared-hot-meals-icon-summary.svg">
+<img src="assets/free-prepared-hot-meals-icon-summary.svg" alt="Free or Prepared Hot Meals">
 </div>
 
 <div>
-<img src="assets/international-grocery-stores-icon-summary.svg">
+<img src="assets/international-grocery-stores-icon-summary.svg" alt="International Grocery Stores">
 </div>
 
 <div>
-<img src="assets/liquor-stores-icon-summary.svg">
+<img src="assets/liquor-stores-icon-summary.svg" alt="Liquor Stores">
 </div>
 
 <div>
-<img src="assets/restaurants-fast-food-icon-summary.svg">
+<img src="assets/restaurants-fast-food-icon-summary.svg" alt="Restaurants (Fast Food)">
 </div>
 
 <div>
-<img src="assets/restaurants-icon-summary.svg">
+<img src="assets/restaurants-icon-summary.svg" alt="Restaurants">
 </div>
 
 
 <div>
-<img src="assets/supermarkets-icon-summary.svg">
+<img src="assets/supermarkets-icon-summary.svg" alt="Supermarkets/Grocery Stores">
 </div></div>
 
 
@@ -109,61 +109,61 @@ draw_resource_map()
 
 <div>
 <a href="bayview-hunters-point.html">
-<img src="assets/bayview-hunters-point.svg">
+<img src="assets/bayview-hunters-point.svg" alt="Bayview Hunters Point">
 </a>
 </div>
 
 <div>
 <a href="chinatown.html">
-<img src="assets/chinatown.svg">
+<img src="assets/chinatown.svg" alt="Chinatown">
 </a>
 </div>
 
 <div>
 <a href="excelsior.html">
-<img src="assets/excelsior.svg">
+<img src="assets/excelsior.svg" alt="Excelsior">
 </a>
 </div>
 
 <div>
 <a href="inner-sunset.html">
-<img src="assets/inner-sunset.svg">
+<img src="assets/inner-sunset.svg" alt="Inner Sunset">
 </a>
 </div>
 
 <div>
 <a href="japantown.html">
-<img src="assets/japantown.svg">
+<img src="assets/japantown.svg" alt="Japantown">
 </a>
 </div>
 
 <div>
 <a href="outer-sunset.html">
-<img src="assets/outer-sunset.svg">
+<img src="assets/outer-sunset.svg" alt="Outer Sunset">
 </a>
 </div>
 
 <div>
 <a href="richmond.html">
-<img src="assets/richmond.svg">
+<img src="assets/richmond.svg" alt="Richmond">
 </a>
 </div>
 
 <div>
 <a href="soma.html">
-<img src="assets/soma.svg">
+<img src="assets/soma.svg" alt="SOMA">
 </a>
 </div>
 
 <div>
 <a href="tenderloin.html">
-<img src="assets/tenderloin.svg">
+<img src="assets/tenderloin.svg" alt="Tenderloin">
 </a>
 </div>
 
 <div>
 <a href="visitacion-valley.html">
-<img src="assets/visitacion-valley.svg">
+<img src="assets/visitacion-valley.svg" alt="Visitacion Valley">
 </a>
 </div>
 
