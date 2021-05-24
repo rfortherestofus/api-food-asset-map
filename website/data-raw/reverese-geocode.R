@@ -10,15 +10,19 @@ final_snap_wic_dataset <- read_rds("data/final_snap_wic_dataset.rds") %>%
 
 
 
-st_coordinates(final_snap_wic_dataset)[1,]
 
 need_geocoding <- final_snap_wic_dataset %>%
   mutate(long = st_coordinates(.)[,1],
          lat = st_coordinates(.)[,2]) %>%
   filter(street_address == " ")
 
+need_zip <- final_snap_wic_dataset %>%
+  mutate(long = st_coordinates(.)[,1],
+         lat = st_coordinates(.)[,2]) %>%
+  filter(is.na(zip_code), street_address != " ")
+
 not_need_geocoding <- final_snap_wic_dataset %>%
-  filter(street_address != " ")
+  filter(street_address != " ", !is.na(zip_code))
 
 geocoded <- need_geocoding %>%
   reverse_geocode(lat = lat, long = long, address = address, method = "mapbox")
@@ -86,7 +90,19 @@ addressed <- partially_addressed %>%
   select(name, category, street_address, city, state, zip_code, geometry, accepts_snap_wic)
 
 
-full_geocoded <- bind_rows(addressed, not_need_geocoding) %>%
+
+geocoded_zip <- need_zip %>%
+  reverse_geocode(lat = lat, long = long, address = address, method = "mapbox")
+
+# add zips on
+zip_coded <- geocoded_zip %>%
+  separate(address, into = glue("address_part_{1:7}"), sep = ",", fill = "left") %>%
+  mutate(zip_code = str_extract(address_part_6, "[0-9]{5}")) %>%
+  select(name, category, street_address, city, state, zip_code, geometry, accepts_snap_wic)
+
+
+
+full_geocoded <- bind_rows(addressed, not_need_geocoding, zip_coded) %>%
   st_as_sf()
 
 write_rds(full_geocoded, "data/reverse_geocoded.rds")

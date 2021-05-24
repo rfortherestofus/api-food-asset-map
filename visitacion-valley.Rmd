@@ -14,7 +14,7 @@ knitr::opts_chunk$set(echo = FALSE)
 
 
 ```{r}
-source("R/interactive-maps.R")
+source(here::here("R", "interactive-maps.R"))
 ```
 
 

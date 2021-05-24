@@ -14,22 +14,22 @@ knitr::opts_chunk$set(echo = FALSE)
 <!-- <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet"> -->
 
 ```{r}
-source("R/interactive-maps.R")
+source(here::here("R", "interactive-maps.R"))
 ```
 
 
 
-<div class="sm:grid sm:grid-cols-3 sm:gap-16 l-screen-inset sm:mt-24 sm:mb-16 sm:mx-64">
+<div class="xl:grid xl:grid-cols-3 xl:gap-16 l-screen-inset mt-24 xl:mb-16 xl:mx-64">
 
-<div class="sm:col-span-2">
+<div class="xl:col-span-2">
 
 <h1 class="text-4xl font-bold mb-4">API Food Assets Map</h1>
 
 <p>The following asset map visually depicts various food resources across San Francisco, with a special emphasis on regions with larger concentrations of Asian Pacific Islander (API) residents. The existence of this map aims to expand the understanding of food access and systems within and across API communities in San Francisco, serving as a starting point to explore how API community members access food, interact with various typologies of food (e.g., charitable food, grocery stores/markets, restaurants), and experience their community’s food resources. Potential also exists for better understanding the nexus of cultural preservation, economic health, and transportation/mobility. This map was created with funds from the Stupski Foundation, as  a part of a larger food access and security project in April-June 2021.</p>
 </div>
 
-<div class="col-span-1">
-<img class="rounded-md shadow-md items-center" src="assets/family.jpg" alt="Smiling Family">
+<div class="xl:col-span-1 mx-auto">
+<img class="rounded-md shadow-md items-center h-full w-full" src="assets/family.jpg" alt="Smiling Family">
 </div>
 
 
@@ -45,13 +45,13 @@ draw_resource_map()
 ```
 
 
-<div class="mx-auto inline text-gray-600"><img class="py-4 pr-2 inline" src="assets/accepts-snap-wic.svg"><span>Accepts SNAP/WIC</span><img class="py-4 pr-2 pl-4 inline" src="assets/doesnt-accept-snap-wic.svg"><span>Does Not Accept SNAP/WIC</span></div>
+<div class="mx-auto inline text-gray-600"><img class="py-4 pr-2 inline" src="assets/accepts-snap-wic.svg"><span>Accepts SNAP/WIC</span></div>
 
 
 
 
 
-<div class="grid grid-cols-4 gap-8 l-page my-16">
+<div class="sm:grid sm:grid-cols-2 xl:grid-cols-4 sm:gap-4 md:gap-8 l-page my-16">
 
 <div>
 <img src="assets/corner-stores-icon-summary.svg" alt="Corner/Convenience Stores">
@@ -105,7 +105,7 @@ draw_resource_map()
 
 <h2 class="text-4xl text-center font-bold mb-16">Neighborhoods</h2>
 
-<div class="grid grid-cols-5 gap-16">
+<div class="sm:grid sm:grid-cols-2 xl:grid-cols-5 sm:gap-16">
 
 <div>
 <a href="bayview-hunters-point.html">
