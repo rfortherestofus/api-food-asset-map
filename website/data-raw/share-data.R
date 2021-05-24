@@ -1,6 +1,7 @@
 library(tidyverse)
 library(sf)
 library(googlesheets4)
+library(stringdist)
 
 read_rds("data/snap_stores.rds") %>%
   select(name:zip_code) %>%
@@ -20,5 +21,10 @@ read_rds("data/potential_snap_wic_matches.rds") %>%
 
 read_rds("data/final_potential_duplicates.rds") %>%
   arrange(distance) %>%
+  mutate(string_distance = stringdist(a = "name_location_1",
+                                      b = "name_location_2",
+                                      method = "jw")) %>%
+  select(string_distance) %>%
+  view()
   write_sheet("https://docs.google.com/spreadsheets/d/1AnOuJMK5HHqe3mDn0aH3Mf3JYfLS61uWnvb_kHp1xFY/edit?usp=sharing",
               sheet = "Potential Duplicates")
