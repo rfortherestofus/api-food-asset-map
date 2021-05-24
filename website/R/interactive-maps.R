@@ -34,23 +34,35 @@ draw_resource_map <- function(neighborhoods = NULL) {
     mutate(nhood = fct_inorder(factor(nhood))) %>%
     st_transform(4326)
 
-  food_resources <- read_rds("data/full_dataset.rds") %>%
+  food_resources <- read_rds("data/reverse_geocoded.rds") %>%
     st_join(demographics %>% select(nhood)) %>%
+    mutate(street_address = str_trim(street_address)) %>%
     filter(city == "San Francisco") %>%
     st_intersection(sf_boundary %>% select()) %>%
     arrange(category) %>%
     mutate(category = fct_inorder(category),
-           icon_url = case_when(category == "Corner Stores" ~ "assets/corner-stores.svg",
-                                category == "Drug Stores" ~ "assets/drug-stores.svg",
-                                category == "Food Banks/Pantries" ~ "assets/food-banks-pantries.svg",
-                                category == "Food Pharmacies" ~ "assets/food-pharmacy.svg",
-                                category == "Free Prepared Food or Hot Meals" ~ "assets/free-prepared-hot-meals.svg",
-                                category == "Liquor Stores" ~ "assets/liquor-stores.svg",
-                                category == "International Grocery Stores" ~ "assets/international-grocery-stores.svg",
-                                category == "Restaurants (Fast Food)" ~ "assets/restaurants-fast-food.svg",
-                                category == "Restaurants" ~ "assets/restaurants.svg",
-                                category == "Supermarkets" ~ "assets/supermarkets.svg",
-                                category == "Farmers Markets" ~ "assets/farmers-market.svg",
+           icon_url = case_when(category == "Corner Stores/Convenience Stores" & accepts_snap_wic == FALSE ~ "assets/corner-stores.svg",
+                                category == "Drug Stores" & accepts_snap_wic == FALSE ~ "assets/drug-stores.svg",
+                                category == "Food Banks/Pantries" & accepts_snap_wic == FALSE ~ "assets/food-banks-pantries.svg",
+                                category == "Food Pharmacies" & accepts_snap_wic == FALSE ~ "assets/food-pharmacy.svg",
+                                category == "Free Prepared Food or Hot Meals" & accepts_snap_wic == FALSE ~ "assets/free-prepared-hot-meals.svg",
+                                category == "Liquor Stores" & accepts_snap_wic == FALSE ~ "assets/liquor-stores.svg",
+                                category == "International Grocery Stores" & accepts_snap_wic == FALSE ~ "assets/international-grocery-stores.svg",
+                                category == "Restaurants (Fast Food)" & accepts_snap_wic == FALSE ~ "assets/restaurants-fast-food.svg",
+                                category == "Restaurants" & accepts_snap_wic == FALSE ~ "assets/restaurants.svg",
+                                category == "Supermarkets/Grocery Stores" & accepts_snap_wic == FALSE ~ "assets/supermarkets.svg",
+                                category == "Farmers Markets" & accepts_snap_wic == FALSE ~ "assets/farmers-market.svg",
+                                category == "Corner Stores/Convenience Stores" & accepts_snap_wic == TRUE ~ "assets/corner-stores-snap-wic.svg",
+                                category == "Drug Stores" & accepts_snap_wic == TRUE ~ "assets/drug-stores-snap-wic.svg",
+                                category == "Food Banks/Pantries" & accepts_snap_wic == TRUE ~ "assets/food-banks-pantries-snap-wic.svg",
+                                category == "Food Pharmacies" & accepts_snap_wic == TRUE ~ "assets/food-pharmacy-snap-wic.svg",
+                                category == "Free Prepared Food or Hot Meals" & accepts_snap_wic == TRUE ~ "assets/free-prepared-hot-meals-snap-wic.svg",
+                                category == "Liquor Stores" & accepts_snap_wic == TRUE ~ "assets/liquor-stores-snap-wic.svg",
+                                category == "International Grocery Stores" & accepts_snap_wic == TRUE ~ "assets/international-grocery-stores-snap-wic.svg",
+                                category == "Restaurants (Fast Food)" & accepts_snap_wic == TRUE ~ "assets/restaurants-fast-food-snap-wic.svg",
+                                category == "Restaurants" & accepts_snap_wic == TRUE ~ "assets/restaurants-snap-wic.svg",
+                                category == "Supermarkets/Grocery Stores" & accepts_snap_wic == TRUE ~ "assets/supermarkets-snap-wic.svg",
+                                category == "Farmers Markets" & accepts_snap_wic == TRUE ~ "assets/farmers-market-snap-wic.svg",
                                 TRUE ~ NA_character_
            )
     )
@@ -95,15 +107,15 @@ draw_resource_map <- function(neighborhoods = NULL) {
     mutate(singular_category = singularize(category),
            popup = paste("<span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>", singular_category,"</span>", "<br/>",
                          "<span style='font-family: Oswald; font-weight:700; font-size:20px; color: #111827'>", name,"</span>", "<br/>",
+                         "<span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>", street_address, " (", nhood, ") </span>", "<br/>",
                          sep='')) %>%
     filter(category %in% groups) # for now, filter out the SNAP/WIC category
 
 
   demographics <- demographics %>%
     mutate(popup = case_when(
-      !is.na(pct_api_clean) ~  paste("<span style='font-family: Oswald; font-weight:700; font-size:14px; color: #6B7280'>", nhood,"<br></span>",
+      !is.na(pct_api_clean) ~  paste("<span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280'>", nhood,"<br></span>",
                                      "<span style='font-family: Oswald; font-weight:700; font-size:20px; color: #111827;'>", pct_api_display, " API Population", "</span>", "<br/>",
-                                     # "<span style='font-family: Oswald; font-weight:700; font-size:14px; color: #111827'>", "2019 5-year ACS","</span>", "<br/>",
                                      sep=''),
       is.na(pct_api_clean) ~ paste("<span style='font-family: Oswald; font-weight:700; font-size:20px; color: #111827'>", nhood,"<br></span>",
                                    sep='')))

@@ -19,7 +19,7 @@ category_counts <- full_dataset %>%
   filter(category != "Stores that Accept SNAP/WIC")
 
 label_table <-tribble(~store_type, ~category,
-        "corner-stores", "Corner Stores",
+        "corner-stores", "Corner Stores/Convenience Stores",
         "drug-stores", "Drug Stores",
         "farmers-market", "Farmers Markets",
         "food-banks-pantries", "Food Banks/Pantries",
@@ -29,7 +29,7 @@ label_table <-tribble(~store_type, ~category,
         "liquor-stores", "Liquor Stores",
         "restaurants", "Restaurants",
         "restaurants-fast-food", "Restaurants (Fast Food)",
-        "supermarkets", "Supermarkets")
+        "supermarkets", "Supermarkets/Grocery Stores")
 
 final_table <- label_table %>%
   left_join(category_counts, by = c("category"))
@@ -76,6 +76,6 @@ plot_icon_summary <- function(category) {
   ggsave(glue("assets/{plot_info$store_type}-icon-summary.svg"),
          width = 4, height = 1.5, units = "in")
 }
-q
+
 walk(final_table$category, plot_icon_summary)
 
