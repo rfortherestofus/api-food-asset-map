@@ -39,7 +39,7 @@ plot_icon_summary <- function(category) {
     filter(category == {{category}})
   print(category)
   # convert svg to correct formats
-  rsvg_svg(glue("assets/{plot_info$store_type}-gray.svg"), glue("assets/{plot_info$store_type}-cairo.svg"))
+  rsvg_svg(glue("assets/{plot_info$store_type}-nobg.svg"), glue("assets/{plot_info$store_type}-cairo.svg"))
 
   img <- readPicture(glue("assets/{plot_info$store_type}-cairo.svg"))
 
@@ -61,11 +61,11 @@ plot_icon_summary <- function(category) {
   #Plot
   icon_summary <- ggplot(d,aes(x,y))+
     theme_void() +
-    annotate("text", label = str_wrap(plot_info$category, width = 15), x = 0.45, y = 0.56,
+    annotate("text", label = str_wrap(plot_info$category, width = 20), x = 0.35, y = 0.56,
              family = "Oswald", hjust = 0, vjust = 0,
              size = 6, color = "#565656",
              lineheight = 0.75) +
-    annotate("text", label = plot_info$n, x = 0.45, y = 0.51,
+    annotate("text", label = plot_info$n, x = 0.35, y = 0.51,
              family = "Oswald", fontface = "bold", hjust = 0, vjust = 1,
              size = 12) +
     annotation_custom(sym.grob)+
