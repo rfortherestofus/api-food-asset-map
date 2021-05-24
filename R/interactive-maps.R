@@ -14,7 +14,7 @@ draw_resource_map <- function(neighborhoods = NULL) {
 
   ## boundary for San Francisco
 
-  sf_boundary <- counties(state = "California", cb = TRUE) %>%
+  sf_boundary <- counties(state = "California", cb = TRUE, progress_bar = FALSE) %>%
     clean_names() %>%
     filter(name == "San Francisco") %>%
     st_transform(4326)
@@ -41,7 +41,9 @@ draw_resource_map <- function(neighborhoods = NULL) {
     st_intersection(sf_boundary %>% select()) %>%
     arrange(category) %>%
     mutate(category = fct_inorder(category),
+
            icon_url = case_when(category == "Corner Stores/Convenience Stores" & accepts_snap_wic == FALSE ~ "assets/corner-stores.svg",
+
                                 category == "Drug Stores" & accepts_snap_wic == FALSE ~ "assets/drug-stores.svg",
                                 category == "Food Banks/Pantries" & accepts_snap_wic == FALSE ~ "assets/food-banks-pantries.svg",
                                 category == "Food Pharmacies" & accepts_snap_wic == FALSE ~ "assets/food-pharmacy.svg",
@@ -53,6 +55,11 @@ draw_resource_map <- function(neighborhoods = NULL) {
                                 category == "Supermarkets/Grocery Stores" & accepts_snap_wic == FALSE ~ "assets/supermarkets.svg",
                                 category == "Farmers Markets" & accepts_snap_wic == FALSE ~ "assets/farmers-market.svg",
                                 category == "Corner Stores/Convenience Stores" & accepts_snap_wic == TRUE ~ "assets/corner-stores-snap-wic.svg",
+                                category == "Supermarkets/Grocery Stores" & accepts_snap_wic == FALSE ~ "assets/supermarkets.svg",
+                                category == "Farmers Markets" & accepts_snap_wic == FALSE ~ "assets/farmers-market.svg",
+
+                                ## SNAP/WIC has different color
+                                category == "Corner Stores" & accepts_snap_wic == TRUE ~ "assets/corner-stores-snap-wic.svg",
                                 category == "Drug Stores" & accepts_snap_wic == TRUE ~ "assets/drug-stores-snap-wic.svg",
                                 category == "Food Banks/Pantries" & accepts_snap_wic == TRUE ~ "assets/food-banks-pantries-snap-wic.svg",
                                 category == "Food Pharmacies" & accepts_snap_wic == TRUE ~ "assets/food-pharmacy-snap-wic.svg",
@@ -105,7 +112,7 @@ draw_resource_map <- function(neighborhoods = NULL) {
   # make popup text with name, address, notes, and link to website
   food_resources <- food_resources %>%
     mutate(singular_category = singularize(category),
-           popup = paste("<span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>", singular_category,"</span>", "<br/>",
+           popup = paste("<span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>", singular_category, if_else(accepts_snap_wic, " (Accepts SNAP/WIC)", ""), "</span>", "<br/>",
                          "<span style='font-family: Oswald; font-weight:700; font-size:20px; color: #111827'>", name,"</span>", "<br/>",
                          "<span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>", street_address, " (", nhood, ") </span>", "<br/>",
                          sep='')) %>%
@@ -143,7 +150,7 @@ draw_resource_map <- function(neighborhoods = NULL) {
         map %>%
         addMarkers(
           data = food_resources %>% filter(category == x),
-          icon = makeIcon(iconUrl = ~icon_url, iconWidth = 24, iconHeight = 24),
+          icon = makeIcon(iconUrl = ~icon_url, iconWidth = 36, iconHeight = 36),
           popup = ~popup,
           group = x,
           clusterOptions = markerClusterOptions(showCoverageOnHover = FALSE)

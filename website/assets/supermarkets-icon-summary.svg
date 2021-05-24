@@ -18,9 +18,13 @@
   </clipPath>
 </defs>
 <g clip-path='url(#cpMC4wMHwyODguMDB8MC4wMHwxMDguMDA=)'>
+<<<<<<< HEAD
 <text x='129.60' y='32.16' style='font-size: 17.07px; fill: #565656; font-family: Oswald;' textLength='92.66px' lengthAdjust='spacingAndGlyphs'>Supermarkets/</text>
 <text x='129.60' y='47.52' style='font-size: 17.07px; fill: #565656; font-family: Oswald;' textLength='91.76px' lengthAdjust='spacingAndGlyphs'>Grocery Stores</text>
 <text x='129.60' y='80.58' style='font-size: 34.14px; font-weight: bold; font-family: Oswald;' textLength='49.54px' lengthAdjust='spacingAndGlyphs'>149</text>
+=======
+<text x='129.60' y='47.52' style='font-size: 17.07px; fill: #565656; font-family: Oswald;' textLength='86.36px' lengthAdjust='spacingAndGlyphs'>Supermarkets</text>
+>>>>>>> fc415663157214825dc7e18679b7793635398747
 </g>
 <defs>
   <clipPath id='cpMy42MHwxMTEuNjB8MC4wMHwxMDguMDA='>
