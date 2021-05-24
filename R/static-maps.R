@@ -26,13 +26,15 @@ generate_static_neighborhood_map <- function(neighborhood_name) {
     str_to_lower() %>%
     str_glue(".svg")
 
-  neighborhood_map <- ggplot(data = filter(demographics, name == neighborhood_name)) +
+  neighborhood_map <-
+    ggplot(data = filter(demographics, name == neighborhood_name)) +
     with_shadow(geom_sf(fill = "#AD1D32",
                         color = "transparent"),
                 colour = "#806E6E",
                 x_offset = 2,
                 y_offset = 2) +
     with_shadow(geom_sf_text(aes(label = str_wrap(neighborhood_name, 10)),
+                             hjust = if_else(neighborhood_name == "Bayview Hunters Point", 1.35, NaN),
                              family = "Oswald",
                              fontface = "bold",
                              color = "white",
@@ -40,7 +42,6 @@ generate_static_neighborhood_map <- function(neighborhood_name) {
                 colour = "#806E6E",
                 x_offset = 1,
                 y_offset = 1) +
-
     theme_void() +
     theme(plot.background = element_rect(fill = "transparent",
                                          color = "transparent"))
@@ -48,12 +49,12 @@ generate_static_neighborhood_map <- function(neighborhood_name) {
   ggsave(neighborhood_map,
          filename = str_glue("assets/{file_name}"))
 
-  return(neighborhood_map)
+  neighborhood_map
 
 }
 
 
-generate_static_neighborhood_map(neighborhoods[1])
+# generate_static_neighborhood_map(neighborhoods[1])
 
 walk(neighborhoods, generate_static_neighborhood_map)
 

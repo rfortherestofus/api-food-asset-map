@@ -11,126 +11,17 @@ knitr::opts_chunk$set(echo = FALSE)
 
 ```
 
+<!-- <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet"> -->
 
-
-
-```{r packages}
-library(tidyverse)
-library(leaflet)
-library(leafem)
-library(tigris)
-library(here)
-library(sf)
-library(janitor)
-library(pluralize)
-library(crosstalk)
-```
-
-
-
-```{r colors}
-dark_red <- "#AD1D32"
-light_red <- "#E00052"
-off_white <- "#FDFAF9"
-gray <- "#806E6E"
-light_gray <- "#ECF0F1"
-```
-
-```{r import_data, results = 'hide'}
-## boundary for San Francisco
-
-sf_boundary <- counties(state = "California", cb = TRUE) %>%
-  clean_names() %>%
-  filter(name == "San Francisco") %>%
-  st_transform(4326)
-
-
-## read in data for map
-
-clean_interval <- function(x){
-  str_remove_all(x, "\\[|\\]|\\(|\\)") %>% str_replace(",", " to ") %>% paste0("%")
-}
-
-demographics <- read_rds("data/api_neighborhood_interpolated.rds") %>%
-  mutate(pct_api_interval = cut(pct_api_clean, breaks = c(0, 14, 24, 34, 44, 100), include.lowest = TRUE, ordered = TRUE),
-         pct_api_category = fct_relabel(pct_api_interval, clean_interval)) %>%
-  rename(nhood = name) %>%
-  st_transform(4326)
-
-food_resources <- read_rds("data/full_dataset.rds") %>%
-  st_join(demographics %>% select(nhood)) %>%
-  filter(city == "San Francisco") %>%
-  st_intersection(sf_boundary %>% select()) %>%
-  mutate(category = factor(category),
-         icon_url = case_when(category == "Corner Stores" ~ "assets/corner-stores.svg",
-                              category == "Drug Stores" ~ "assets/drug-stores.svg",
-                              category == "Food Banks/Pantries" ~ "assets/food-banks-pantries.svg",
-                              category == "Food Pharmacies" ~ "assets/food-pharmacy.svg",
-                              category == "Free Prepared Food or Hot Meals" ~ "assets/free-prepared-hot-meals.svg",
-                              category == "Liquor Stores" ~ "assets/liquor-stores.svg",
-                              category == "International Grocery Stores" ~ "assets/international-grocery-stores.svg",
-                              category == "Restaurants (Fast Food)" ~ "assets/restaurants-fast-food.svg",
-                              category == "Restaurants" ~ "assets/restaurants.svg",
-                              category == "Supermarkets" ~ "assets/supermarkets.svg",
-                              category == "Farmers Markets" ~ "assets/farmers-market.svg",
-                              TRUE ~ NA_character_
-         )
-  )
-
-```
-
-
-
-```{r design}
-groups <- c(
-  "Corner Stores" <- "Corner Stores",
-  "International Grocery Stores" <- "International Grocery Stores",
-  "Drug Stores" <- "Drug Stores",
-  "Farmers Markets" <- "Farmers Markets",
-  "Food Banks/Pantries" <- "Food Banks/Pantries",
-  "Food Pharmacies" <- "Food Pharmacies",
-  "Free Prepared Food or Hot Meals" <- "Free Prepared Food or Hot Meals",
-  "Liquor Stores" <- "Liquor Stores",
-  "Restaurants" <- "Restaurants",
-  "Restaurants (Fast Food)" <- "Restaurants (Fast Food)",
-  "Supermarkets" <- "Supermarkets"
-)
-
-## color palettes
-
-demo_pal <- colorFactor(
-  palette = c("#F5D0C9", "#E5A6A3", "#D57C7C", "#C45156", "#B4272F"),
-  domain = demographics$pct_api_category,
-  na.color = "#FFFFFF40")
-
-## popups
-
-# make popup text with name, address, notes, and link to website
-food_resources <- food_resources %>%
-  mutate(singular_category = singularize(category),
-         popup = paste("<span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>", singular_category,"</span>", "<br/>",
-                       "<span style='font-family: Oswald; font-weight:700; font-size:20px; color: #111827'>", name,"</span>", "<br/>",
-                       sep='')) %>%
-  filter(category %in% groups) # for now, filter out the SNAP/WIC category
-
-
-demographics <- demographics %>%
-  mutate(popup = case_when(
-    !is.na(pct_api_clean) ~  paste("<span style='font-family: Oswald; font-weight:700; font-size:14px; color: #6B7280'>", nhood,"<br></span>",
-                                   "<span style='font-family: Oswald; font-weight:700; font-size:20px; color: #111827;'>", pct_api_display, " API Population", "</span>", "<br/>",
-                                   # "<span style='font-family: Oswald; font-weight:700; font-size:14px; color: #111827'>", "2019 5-year ACS","</span>", "<br/>",
-                                   sep=''),
-    is.na(pct_api_clean) ~ paste("<span style='font-family: Oswald; font-weight:700; font-size:20px; color: #111827'>", nhood,"<br></span>",
-                                 sep='')))
-
-
+```{r}
+source("R/interactive-maps.R")
 ```
 
 
 
 <div class="sm:grid sm:grid-cols-3 sm:gap-16 l-screen-inset sm:mt-24 sm:mb-16 sm:mx-64">
 
-<div class="col-span-2">
+<div class="sm:col-span-2">
 
 <h1 class="text-4xl font-bold mb-4">API Food Assets Map</h1>
 
@@ -138,7 +29,7 @@ demographics <- demographics %>%
 </div>
 
 <div class="col-span-1">
-<img class="rounded-md shadow-md items-center" src="assets/family.jpg">
+<img class="rounded-md shadow-md items-center" src="assets/family.jpg" alt="Smiling Family">
 </div>
 
 
@@ -146,49 +37,15 @@ demographics <- demographics %>%
 
 
 </div>
-
-
-
 
 
 
 ```{r map, layout = "l-screen-inset", fig.height = 8}
-
-show_api <- "<span style='border-bottom-width: 2px;border-bottom-style: solid #000;padding-bottom: 10px;'>Show API Population<br></span><br>"
-
-map <- leaflet() %>%
-  addProviderTiles(provider = providers$CartoDB.Positron) %>%
-  addPolygons(data = demographics, group = show_api, fillColor = ~demo_pal(pct_api_category), color = gray, weight = 1, fillOpacity = .8, popup = ~popup) %>%
-  
-  # legends
-  
-  addLegend(position = "bottomright", pal = demo_pal, values = demographics$pct_api_category, opacity = .8, title = "API Population<br><span style='font-weight:700; font-size:12px;'>ACS 2019 (5-year), quantile breaks", group = show_api, na.label = "Data not available", labels = c("Less than 16%", "16 to 22%", "22 to 34%", "34 to 44%", "Greater than 44%"))
-
-
-# use walk from per to return m after adding each layer
-groups %>%                     # get names of resource groups
-  walk(function(x)                         # then walk through vector of names one at a time
-    map <<-
-      map %>%
-      addMarkers(data = food_resources %>% filter(category == x),
-                 icon = makeIcon(iconUrl = ~icon_url, iconWidth = 24, iconHeight = 24),
-                 popup = ~popup,
-                 group = x,
-                 clusterOptions = markerClusterOptions(showCoverageOnHover = FALSE)))
-
-map <-
-  map %>%
-  addLayersControl(
-    overlayGroups = c(show_api,  groups),
-    position = "bottomleft",
-    options = layersControlOptions(collapsed = FALSE)
-  ) %>%
-  hideGroup(show_api)
-
-map
-
-
+draw_resource_map()
 ```
+
+
+<div class="mx-auto inline text-gray-600"><img class="py-4 pr-2 inline" src="assets/accepts-snap-wic.svg"><span>Accepts SNAP/WIC</span><img class="py-4 pr-2 pl-4 inline" src="assets/doesnt-accept-snap-wic.svg"><span>Does Not Accept SNAP/WIC</span></div>
 
 
 
@@ -197,48 +54,48 @@ map
 <div class="grid grid-cols-4 gap-8 l-page my-16">
 
 <div>
-<img src="assets/corner-stores-icon-summary.svg">
+<img src="assets/corner-stores-icon-summary.svg" alt="Corner/Convenience Stores">
 </div>
 
 <div>
-<img src="assets/drug-stores-icon-summary.svg">
+<img src="assets/drug-stores-icon-summary.svg" alt="Drug Stores">
 </div>
 
 <div>
-<img src="assets/farmers-market-icon-summary.svg">
+<img src="assets/farmers-market-icon-summary.svg" alt="Farmers Markets">
 </div>
 
 <div>
-<img src="assets/food-banks-pantries-icon-summary.svg">
+<img src="assets/food-banks-pantries-icon-summary.svg" alt="Food Banks/Pantries">
 </div>
 
 <div>
-<img src="assets/food-pharmacy-icon-summary.svg">
+<img src="assets/food-pharmacy-icon-summary.svg" alt="Food Pharamcies">
 </div>
 
 <div>
-<img src="assets/free-prepared-hot-meals-icon-summary.svg">
+<img src="assets/free-prepared-hot-meals-icon-summary.svg" alt="Free or Prepared Hot Meals">
 </div>
 
 <div>
-<img src="assets/international-grocery-stores-icon-summary.svg">
+<img src="assets/international-grocery-stores-icon-summary.svg" alt="International Grocery Stores">
 </div>
 
 <div>
-<img src="assets/liquor-stores-icon-summary.svg">
+<img src="assets/liquor-stores-icon-summary.svg" alt="Liquor Stores">
 </div>
 
 <div>
-<img src="assets/restaurants-fast-food-icon-summary.svg">
+<img src="assets/restaurants-fast-food-icon-summary.svg" alt="Restaurants (Fast Food)">
 </div>
 
 <div>
-<img src="assets/restaurants-icon-summary.svg">
+<img src="assets/restaurants-icon-summary.svg" alt="Restaurants">
 </div>
 
 
 <div>
-<img src="assets/supermarkets-icon-summary.svg">
+<img src="assets/supermarkets-icon-summary.svg" alt="Supermarkets/Grocery Stores">
 </div></div>
 
 
@@ -251,43 +108,63 @@ map
 <div class="grid grid-cols-5 gap-16">
 
 <div>
-<img src="assets/bayview-hunters-point.svg">
+<a href="bayview-hunters-point.html">
+<img src="assets/bayview-hunters-point.svg" alt="Bayview Hunters Point">
+</a>
 </div>
 
 <div>
-<img src="assets/chinatown.svg">
+<a href="chinatown.html">
+<img src="assets/chinatown.svg" alt="Chinatown">
+</a>
 </div>
 
 <div>
-<img src="assets/excelsior.svg">
+<a href="excelsior.html">
+<img src="assets/excelsior.svg" alt="Excelsior">
+</a>
 </div>
 
 <div>
-<img src="assets/inner-sunset.svg">
+<a href="inner-sunset.html">
+<img src="assets/inner-sunset.svg" alt="Inner Sunset">
+</a>
 </div>
 
 <div>
-<img src="assets/japantown.svg">
+<a href="japantown.html">
+<img src="assets/japantown.svg" alt="Japantown">
+</a>
 </div>
 
 <div>
-<img src="assets/outer-sunset.svg">
+<a href="outer-sunset.html">
+<img src="assets/outer-sunset.svg" alt="Outer Sunset">
+</a>
 </div>
 
 <div>
-<img src="assets/richmond.svg">
+<a href="richmond.html">
+<img src="assets/richmond.svg" alt="Richmond">
+</a>
 </div>
 
 <div>
-<img src="assets/soma.svg">
+<a href="soma.html">
+<img src="assets/soma.svg" alt="SOMA">
+</a>
 </div>
 
 <div>
-<img src="assets/tenderloin.svg">
+<a href="tenderloin.html">
+<img src="assets/tenderloin.svg" alt="Tenderloin">
+</a>
 </div>
 
 <div>
-<img src="assets/visitacion-valley.svg">
+<a href="visitacion-valley.html">
+<img src="assets/visitacion-valley.svg" alt="Visitacion Valley">
+</a>
 </div>
 
 </div>

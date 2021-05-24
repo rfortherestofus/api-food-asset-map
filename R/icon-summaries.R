@@ -11,7 +11,7 @@ library(glue)
 library(extrafont)
 loadfonts(device = "win")
 
-full_dataset <- read_rds("data/full_dataset.rds")
+full_dataset <- read_rds("data/reverse_geocoded.rds")
 
 category_counts <- full_dataset %>%
   st_drop_geometry() %>%
@@ -19,17 +19,17 @@ category_counts <- full_dataset %>%
   filter(category != "Stores that Accept SNAP/WIC")
 
 label_table <-tribble(~store_type, ~category,
-        "corner-stores", "Corner Stores",
-        "drug-stores", "Drug Stores",
-        "farmers-market", "Farmers Markets",
-        "food-banks-pantries", "Food Banks/Pantries",
-        "food-pharmacy", "Food Pharmacies",
-        "free-prepared-hot-meals", "Free Prepared Food or Hot Meals",
-        "international-grocery-stores", "International Grocery Stores",
-        "liquor-stores", "Liquor Stores",
-        "restaurants", "Restaurants",
-        "restaurants-fast-food", "Restaurants (Fast Food)",
-        "supermarkets", "Supermarkets")
+                      "corner-stores", "Corner Stores/Convenience Stores",
+                      "drug-stores", "Drug Stores",
+                      "farmers-market", "Farmers Markets",
+                      "food-banks-pantries", "Food Banks/Pantries",
+                      "food-pharmacy", "Food Pharmacies",
+                      "free-prepared-hot-meals", "Free Prepared Food or Hot Meals",
+                      "international-grocery-stores", "International Grocery Stores",
+                      "liquor-stores", "Liquor Stores",
+                      "restaurants", "Restaurants",
+                      "restaurants-fast-food", "Restaurants (Fast Food)",
+                      "supermarkets", "Supermarkets/Grocery Stores")
 
 final_table <- label_table %>%
   left_join(category_counts, by = c("category"))
@@ -39,7 +39,7 @@ plot_icon_summary <- function(category) {
     filter(category == {{category}})
   print(category)
   # convert svg to correct formats
-  rsvg_svg(glue("assets/{plot_info$store_type}.svg"), glue("assets/{plot_info$store_type}-cairo.svg"))
+  rsvg_svg(glue("assets/{plot_info$store_type}-nobg.svg"), glue("assets/{plot_info$store_type}-cairo.svg"))
 
   img <- readPicture(glue("assets/{plot_info$store_type}-cairo.svg"))
 
@@ -61,11 +61,11 @@ plot_icon_summary <- function(category) {
   #Plot
   icon_summary <- ggplot(d,aes(x,y))+
     theme_void() +
-    annotate("text", label = str_wrap(plot_info$category, width = 15), x = 0.45, y = 0.56,
+    annotate("text", label = str_wrap(plot_info$category, width = 20), x = 0.4, y = 0.56,
              family = "Oswald", hjust = 0, vjust = 0,
              size = 6, color = "#565656",
              lineheight = 0.75) +
-    annotate("text", label = plot_info$n, x = 0.45, y = 0.51,
+    annotate("text", label = plot_info$n, x = 0.4, y = 0.51,
              family = "Oswald", fontface = "bold", hjust = 0, vjust = 1,
              size = 12) +
     annotation_custom(sym.grob)+
@@ -76,6 +76,6 @@ plot_icon_summary <- function(category) {
   ggsave(glue("assets/{plot_info$store_type}-icon-summary.svg"),
          width = 4, height = 1.5, units = "in")
 }
-q
+
 walk(final_table$category, plot_icon_summary)
 

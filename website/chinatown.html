@@ -1,0 +1,3230 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"/>
+  <meta name="generator" content="distill" />
+
+  <style type="text/css">
+  /* Hide doc at startup (prevent jankiness while JS renders/transforms) */
+  body {
+    visibility: hidden;
+  }
+  </style>
+
+ <!--radix_placeholder_import_source-->
+ <!--/radix_placeholder_import_source-->
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ad0000; } /* Alert */
+code span.an { color: #5e5e5e; } /* Annotation */
+code span.at { color: #20794d; } /* Attribute */
+code span.bn { color: #ad0000; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007ba5; } /* ControlFlow */
+code span.ch { color: #20794d; } /* Char */
+code span.cn { color: #8f5902; } /* Constant */
+code span.co { color: #5e5e5e; } /* Comment */
+code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+code span.dt { color: #ad0000; } /* DataType */
+code span.dv { color: #ad0000; } /* DecVal */
+code span.er { color: #ad0000; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #ad0000; } /* Float */
+code span.fu { color: #4758ab; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #5e5e5e; } /* Information */
+code span.kw { color: #007ba5; } /* Keyword */
+code span.op { color: #5e5e5e; } /* Operator */
+code span.ot { color: #007ba5; } /* Other */
+code span.pp { color: #ad0000; } /* Preprocessor */
+code span.sc { color: #20794d; } /* SpecialChar */
+code span.ss { color: #20794d; } /* SpecialString */
+code span.st { color: #20794d; } /* String */
+code span.va { color: #111111; } /* Variable */
+code span.vs { color: #20794d; } /* VerbatimString */
+code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
+</style>
+
+  <!--radix_placeholder_meta_tags-->
+  <title>API Food Assets Map: Chinatown</title>
+
+
+
+
+  <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
+  <meta property="og:title" content="API Food Assets Map: Chinatown"/>
+  <meta property="og:type" content="article"/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:site_name" content="API Food Assets Map"/>
+
+  <!--  https://dev.twitter.com/cards/types/summary -->
+  <meta property="twitter:card" content="summary"/>
+  <meta property="twitter:title" content="API Food Assets Map: Chinatown"/>
+
+  <!--/radix_placeholder_meta_tags-->
+  <!--radix_placeholder_rmarkdown_metadata-->
+
+  <script type="text/json" id="radix-rmarkdown-metadata">
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","site"]}},"value":[{"type":"character","attributes":{},"value":["Chinatown"]},{"type":"character","attributes":{},"value":["distill::distill_website"]}]}
+  </script>
+  <!--/radix_placeholder_rmarkdown_metadata-->
+  <!--radix_placeholder_navigation_in_header-->
+  <meta name="distill:offset" content=""/>
+
+  <script type="application/javascript">
+
+    window.headroom_prevent_pin = false;
+
+    window.document.addEventListener("DOMContentLoaded", function (event) {
+
+      // initialize headroom for banner
+      var header = $('header').get(0);
+      var headerHeight = header.offsetHeight;
+      var headroom = new Headroom(header, {
+        tolerance: 5,
+        onPin : function() {
+          if (window.headroom_prevent_pin) {
+            window.headroom_prevent_pin = false;
+            headroom.unpin();
+          }
+        }
+      });
+      headroom.init();
+      if(window.location.hash)
+        headroom.unpin();
+      $(header).addClass('headroom--transition');
+
+      // offset scroll location for banner on hash change
+      // (see: https://github.com/WickyNilliams/headroom.js/issues/38)
+      window.addEventListener("hashchange", function(event) {
+        window.scrollTo(0, window.pageYOffset - (headerHeight + 25));
+      });
+
+      // responsive menu
+      $('.distill-site-header').each(function(i, val) {
+        var topnav = $(this);
+        var toggle = topnav.find('.nav-toggle');
+        toggle.on('click', function() {
+          topnav.toggleClass('responsive');
+        });
+      });
+
+      // nav dropdowns
+      $('.nav-dropbtn').click(function(e) {
+        $(this).next('.nav-dropdown-content').toggleClass('nav-dropdown-active');
+        $(this).parent().siblings('.nav-dropdown')
+           .children('.nav-dropdown-content').removeClass('nav-dropdown-active');
+      });
+      $("body").click(function(e){
+        $('.nav-dropdown-content').removeClass('nav-dropdown-active');
+      });
+      $(".nav-dropdown").click(function(e){
+        e.stopPropagation();
+      });
+    });
+  </script>
+
+  <style type="text/css">
+
+  /* Theme (user-documented overrideables for nav appearance) */
+
+  .distill-site-nav {
+    color: rgba(255, 255, 255, 0.8);
+    background-color: #0F2E3D;
+    font-size: 15px;
+    font-weight: 300;
+  }
+
+  .distill-site-nav a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .distill-site-nav a:hover {
+    color: white;
+  }
+
+  @media print {
+    .distill-site-nav {
+      display: none;
+    }
+  }
+
+  .distill-site-header {
+
+  }
+
+  .distill-site-footer {
+
+  }
+
+
+  /* Site Header */
+
+  .distill-site-header {
+    width: 100%;
+    box-sizing: border-box;
+    z-index: 3;
+  }
+
+  .distill-site-header .nav-left {
+    display: inline-block;
+    margin-left: 8px;
+  }
+
+  @media screen and (max-width: 768px) {
+    .distill-site-header .nav-left {
+      margin-left: 0;
+    }
+  }
+
+
+  .distill-site-header .nav-right {
+    float: right;
+    margin-right: 8px;
+  }
+
+  .distill-site-header a,
+  .distill-site-header .title {
+    display: inline-block;
+    text-align: center;
+    padding: 14px 10px 14px 10px;
+  }
+
+  .distill-site-header .title {
+    font-size: 18px;
+    min-width: 150px;
+  }
+
+  .distill-site-header .logo {
+    padding: 0;
+  }
+
+  .distill-site-header .logo img {
+    display: none;
+    max-height: 20px;
+    width: auto;
+    margin-bottom: -4px;
+  }
+
+  .distill-site-header .nav-image img {
+    max-height: 18px;
+    width: auto;
+    display: inline-block;
+    margin-bottom: -3px;
+  }
+
+
+
+  @media screen and (min-width: 1000px) {
+    .distill-site-header .logo img {
+      display: inline-block;
+    }
+    .distill-site-header .nav-left {
+      margin-left: 20px;
+    }
+    .distill-site-header .nav-right {
+      margin-right: 20px;
+    }
+    .distill-site-header .title {
+      padding-left: 12px;
+    }
+  }
+
+
+  .distill-site-header .nav-toggle {
+    display: none;
+  }
+
+  .nav-dropdown {
+    display: inline-block;
+    position: relative;
+  }
+
+  .nav-dropdown .nav-dropbtn {
+    border: none;
+    outline: none;
+    color: rgba(255, 255, 255, 0.8);
+    padding: 16px 10px;
+    background-color: transparent;
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+    margin: 0;
+    margin-top: 1px;
+    z-index: 2;
+  }
+
+  .nav-dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: white;
+    min-width: 200px;
+    border: 1px solid rgba(0,0,0,0.15);
+    border-radius: 4px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.1);
+    z-index: 1;
+    margin-top: 2px;
+    white-space: nowrap;
+    padding-top: 4px;
+    padding-bottom: 4px;
+  }
+
+  .nav-dropdown-content hr {
+    margin-top: 4px;
+    margin-bottom: 4px;
+    border: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  .nav-dropdown-active {
+    display: block;
+  }
+
+  .nav-dropdown-content a, .nav-dropdown-content .nav-dropdown-header {
+    color: black;
+    padding: 6px 24px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+  }
+
+  .nav-dropdown-content .nav-dropdown-header {
+    display: block;
+    padding: 5px 24px;
+    padding-bottom: 0;
+    text-transform: uppercase;
+    font-size: 14px;
+    color: #999999;
+    white-space: nowrap;
+  }
+
+  .nav-dropdown:hover .nav-dropbtn {
+    color: white;
+  }
+
+  .nav-dropdown-content a:hover {
+    background-color: #ddd;
+    color: black;
+  }
+
+  .nav-right .nav-dropdown-content {
+    margin-left: -45%;
+    right: 0;
+  }
+
+  @media screen and (max-width: 768px) {
+    .distill-site-header a, .distill-site-header .nav-dropdown  {display: none;}
+    .distill-site-header a.nav-toggle {
+      float: right;
+      display: block;
+    }
+    .distill-site-header .title {
+      margin-left: 0;
+    }
+    .distill-site-header .nav-right {
+      margin-right: 0;
+    }
+    .distill-site-header {
+      overflow: hidden;
+    }
+    .nav-right .nav-dropdown-content {
+      margin-left: 0;
+    }
+  }
+
+
+  @media screen and (max-width: 768px) {
+    .distill-site-header.responsive {position: relative; min-height: 500px; }
+    .distill-site-header.responsive a.nav-toggle {
+      position: absolute;
+      right: 0;
+      top: 0;
+    }
+    .distill-site-header.responsive a,
+    .distill-site-header.responsive .nav-dropdown {
+      display: block;
+      text-align: left;
+    }
+    .distill-site-header.responsive .nav-left,
+    .distill-site-header.responsive .nav-right {
+      width: 100%;
+    }
+    .distill-site-header.responsive .nav-dropdown {float: none;}
+    .distill-site-header.responsive .nav-dropdown-content {position: relative;}
+    .distill-site-header.responsive .nav-dropdown .nav-dropbtn {
+      display: block;
+      width: 100%;
+      text-align: left;
+    }
+  }
+
+  /* Site Footer */
+
+  .distill-site-footer {
+    width: 100%;
+    overflow: hidden;
+    box-sizing: border-box;
+    z-index: 3;
+    margin-top: 30px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    text-align: center;
+  }
+
+  /* Headroom */
+
+  d-title {
+    padding-top: 6rem;
+  }
+
+  @media print {
+    d-title {
+      padding-top: 4rem;
+    }
+  }
+
+  .headroom {
+    z-index: 1000;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+  }
+
+  .headroom--transition {
+    transition: all .4s ease-in-out;
+  }
+
+  .headroom--unpinned {
+    top: -100px;
+  }
+
+  .headroom--pinned {
+    top: 0;
+  }
+
+  /* adjust viewport for navbar height */
+  /* helps vertically center bootstrap (non-distill) content */
+  .min-vh-100 {
+    min-height: calc(100vh - 100px) !important;
+  }
+
+  </style>
+
+  <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+  <link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet"/>
+  <link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet"/>
+  <script src="site_libs/headroom-0.9.4/headroom.min.js"></script>
+  <script src="site_libs/autocomplete-0.37.1/autocomplete.min.js"></script>
+  <script src="site_libs/fuse-6.4.1/fuse.min.js"></script>
+
+  <script type="application/javascript">
+
+  function getMeta(metaName) {
+    var metas = document.getElementsByTagName('meta');
+    for (let i = 0; i < metas.length; i++) {
+      if (metas[i].getAttribute('name') === metaName) {
+        return metas[i].getAttribute('content');
+      }
+    }
+    return '';
+  }
+
+  function offsetURL(url) {
+    var offset = getMeta('distill:offset');
+    return offset ? offset + '/' + url : url;
+  }
+
+  function createFuseIndex() {
+
+    // create fuse index
+    var options = {
+      keys: [
+        { name: 'title', weight: 20 },
+        { name: 'categories', weight: 15 },
+        { name: 'description', weight: 10 },
+        { name: 'contents', weight: 5 },
+      ],
+      ignoreLocation: true,
+      threshold: 0
+    };
+    var fuse = new window.Fuse([], options);
+
+    // fetch the main search.json
+    return fetch(offsetURL('search.json'))
+      .then(function(response) {
+        if (response.status == 200) {
+          return response.json().then(function(json) {
+            // index main articles
+            json.articles.forEach(function(article) {
+              fuse.add(article);
+            });
+            // download collections and index their articles
+            return Promise.all(json.collections.map(function(collection) {
+              return fetch(offsetURL(collection)).then(function(response) {
+                if (response.status === 200) {
+                  return response.json().then(function(articles) {
+                    articles.forEach(function(article) {
+                      fuse.add(article);
+                    });
+                  })
+                } else {
+                  return Promise.reject(
+                    new Error('Unexpected status from search index request: ' +
+                              response.status)
+                  );
+                }
+              });
+            })).then(function() {
+              return fuse;
+            });
+          });
+
+        } else {
+          return Promise.reject(
+            new Error('Unexpected status from search index request: ' +
+                        response.status)
+          );
+        }
+      });
+  }
+
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+
+    // get search element (bail if we don't have one)
+    var searchEl = window.document.getElementById('distill-search');
+    if (!searchEl)
+      return;
+
+    createFuseIndex()
+      .then(function(fuse) {
+
+        // make search box visible
+        searchEl.classList.remove('hidden');
+
+        // initialize autocomplete
+        var options = {
+          autoselect: true,
+          hint: false,
+          minLength: 2,
+        };
+        window.autocomplete(searchEl, options, [{
+          source: function(query, callback) {
+            const searchOptions = {
+              isCaseSensitive: false,
+              shouldSort: true,
+              minMatchCharLength: 2,
+              limit: 10,
+            };
+            var results = fuse.search(query, searchOptions);
+            callback(results
+              .map(function(result) { return result.item; })
+            );
+          },
+          templates: {
+            suggestion: function(suggestion) {
+              var img = suggestion.preview && Object.keys(suggestion.preview).length > 0
+                ? `<img src="${offsetURL(suggestion.preview)}"</img>`
+                : '';
+              var html = `
+                <div class="search-item">
+                  <h3>${suggestion.title}</h3>
+                  <div class="search-item-description">
+                    ${suggestion.description || ''}
+                  </div>
+                  <div class="search-item-preview">
+                    ${img}
+                  </div>
+                </div>
+              `;
+              return html;
+            }
+          }
+        }]).on('autocomplete:selected', function(event, suggestion) {
+          window.location.href = offsetURL(suggestion.path);
+        });
+        // remove inline display style on autocompleter (we want to
+        // manage responsive display via css)
+        $('.algolia-autocomplete').css("display", "");
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
+
+  });
+
+  </script>
+
+  <style type="text/css">
+
+  .nav-search {
+    font-size: x-small;
+  }
+
+  /* Algolioa Autocomplete */
+
+  .algolia-autocomplete {
+    display: inline-block;
+    margin-left: 10px;
+    vertical-align: sub;
+    background-color: white;
+    color: black;
+    padding: 6px;
+    padding-top: 8px;
+    padding-bottom: 0;
+    border-radius: 6px;
+    border: 1px #0F2E3D solid;
+    width: 180px;
+  }
+
+
+  @media screen and (max-width: 768px) {
+    .distill-site-nav .algolia-autocomplete {
+      display: none;
+      visibility: hidden;
+    }
+    .distill-site-nav.responsive .algolia-autocomplete {
+      display: inline-block;
+      visibility: visible;
+    }
+    .distill-site-nav.responsive .algolia-autocomplete .aa-dropdown-menu {
+      margin-left: 0;
+      width: 400px;
+      max-height: 400px;
+    }
+  }
+
+  .algolia-autocomplete .aa-input, .algolia-autocomplete .aa-hint {
+    width: 90%;
+    outline: none;
+    border: none;
+  }
+
+  .algolia-autocomplete .aa-hint {
+    color: #999;
+  }
+  .algolia-autocomplete .aa-dropdown-menu {
+    width: 550px;
+    max-height: 70vh;
+    overflow-x: visible;
+    overflow-y: scroll;
+    padding: 5px;
+    margin-top: 3px;
+    margin-left: -150px;
+    background-color: #fff;
+    border-radius: 5px;
+    border: 1px solid #999;
+    border-top: none;
+  }
+
+  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion {
+    cursor: pointer;
+    padding: 5px 4px;
+    border-bottom: 1px solid #eee;
+  }
+
+  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion:last-of-type {
+    border-bottom: none;
+    margin-bottom: 2px;
+  }
+
+  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item {
+    overflow: hidden;
+    font-size: 0.8em;
+    line-height: 1.4em;
+  }
+
+  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item h3 {
+    font-size: 1rem;
+    margin-block-start: 0;
+    margin-block-end: 5px;
+  }
+
+  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item-description {
+    display: inline-block;
+    overflow: hidden;
+    height: 2.8em;
+    width: 80%;
+    margin-right: 4%;
+  }
+
+  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item-preview {
+    display: inline-block;
+    width: 15%;
+  }
+
+  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item-preview img {
+    height: 3em;
+    width: auto;
+    display: none;
+  }
+
+  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion .search-item-preview img[src] {
+    display: initial;
+  }
+
+  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion.aa-cursor {
+    background-color: #eee;
+  }
+  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion em {
+    font-weight: bold;
+    font-style: normal;
+  }
+
+  </style>
+
+
+  <!--/radix_placeholder_navigation_in_header-->
+  <!--radix_placeholder_distill-->
+
+  <style type="text/css">
+
+  body {
+    background-color: white;
+  }
+
+  .pandoc-table {
+    width: 100%;
+  }
+
+  .pandoc-table>caption {
+    margin-bottom: 10px;
+  }
+
+  .pandoc-table th:not([align]) {
+    text-align: left;
+  }
+
+  .pagedtable-footer {
+    font-size: 15px;
+  }
+
+  d-byline .byline {
+    grid-template-columns: 2fr 2fr;
+  }
+
+  d-byline .byline h3 {
+    margin-block-start: 1.5em;
+  }
+
+  d-byline .byline .authors-affiliations h3 {
+    margin-block-start: 0.5em;
+  }
+
+  .authors-affiliations .orcid-id {
+    width: 16px;
+    height:16px;
+    margin-left: 4px;
+    margin-right: 4px;
+    vertical-align: middle;
+    padding-bottom: 2px;
+  }
+
+  d-title .dt-tags {
+    margin-top: 1em;
+    grid-column: text;
+  }
+
+  .dt-tags .dt-tag {
+    text-decoration: none;
+    display: inline-block;
+    color: rgba(0,0,0,0.6);
+    padding: 0em 0.4em;
+    margin-right: 0.5em;
+    margin-bottom: 0.4em;
+    font-size: 70%;
+    border: 1px solid rgba(0,0,0,0.2);
+    border-radius: 3px;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  d-article table.gt_table td,
+  d-article table.gt_table th {
+    border-bottom: none;
+  }
+
+  .html-widget {
+    margin-bottom: 2.0em;
+  }
+
+  .l-screen-inset {
+    padding-right: 16px;
+  }
+
+  .l-screen .caption {
+    margin-left: 10px;
+  }
+
+  .shaded {
+    background: rgb(247, 247, 247);
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  .shaded .html-widget {
+    margin-bottom: 0;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  .shaded .shaded-content {
+    background: white;
+  }
+
+  .text-output {
+    margin-top: 0;
+    line-height: 1.5em;
+  }
+
+  .hidden {
+    display: none !important;
+  }
+
+  d-article {
+    padding-top: 2.5rem;
+    padding-bottom: 30px;
+  }
+
+  d-appendix {
+    padding-top: 30px;
+  }
+
+  d-article>p>img {
+    width: 100%;
+  }
+
+  d-article h2 {
+    margin: 1rem 0 1.5rem 0;
+  }
+
+  d-article h3 {
+    margin-top: 1.5rem;
+  }
+
+  d-article iframe {
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    margin-bottom: 2.0em;
+    width: 100%;
+  }
+
+  /* Tweak code blocks */
+
+  d-article div.sourceCode code,
+  d-article pre code {
+    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+  }
+
+  d-article pre,
+  d-article div.sourceCode,
+  d-article div.sourceCode pre {
+    overflow: auto;
+  }
+
+  d-article div.sourceCode {
+    background-color: white;
+  }
+
+  d-article div.sourceCode pre {
+    padding-left: 10px;
+    font-size: 12px;
+    border-left: 2px solid rgba(0,0,0,0.1);
+  }
+
+  d-article pre {
+    font-size: 12px;
+    color: black;
+    background: none;
+    margin-top: 0;
+    text-align: left;
+    white-space: pre;
+    word-spacing: normal;
+    word-break: normal;
+    word-wrap: normal;
+    line-height: 1.5;
+
+    -moz-tab-size: 4;
+    -o-tab-size: 4;
+    tab-size: 4;
+
+    -webkit-hyphens: none;
+    -moz-hyphens: none;
+    -ms-hyphens: none;
+    hyphens: none;
+  }
+
+  d-article pre a {
+    border-bottom: none;
+  }
+
+  d-article pre a:hover {
+    border-bottom: none;
+    text-decoration: underline;
+  }
+
+  d-article details {
+    grid-column: text;
+    margin-bottom: 0.8em;
+  }
+
+  @media(min-width: 768px) {
+
+  d-article pre,
+  d-article div.sourceCode,
+  d-article div.sourceCode pre {
+    overflow: visible !important;
+  }
+
+  d-article div.sourceCode pre {
+    padding-left: 18px;
+    font-size: 14px;
+  }
+
+  d-article pre {
+    font-size: 14px;
+  }
+
+  }
+
+  figure img.external {
+    background: white;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1);
+    padding: 18px;
+    box-sizing: border-box;
+  }
+
+  /* CSS for d-contents */
+
+  .d-contents {
+    grid-column: text;
+    color: rgba(0,0,0,0.8);
+    font-size: 0.9em;
+    padding-bottom: 1em;
+    margin-bottom: 1em;
+    padding-bottom: 0.5em;
+    margin-bottom: 1em;
+    padding-left: 0.25em;
+    justify-self: start;
+  }
+
+  @media(min-width: 1000px) {
+    .d-contents.d-contents-float {
+      height: 0;
+      grid-column-start: 1;
+      grid-column-end: 4;
+      justify-self: center;
+      padding-right: 3em;
+      padding-left: 2em;
+    }
+  }
+
+  .d-contents nav h3 {
+    font-size: 18px;
+    margin-top: 0;
+    margin-bottom: 1em;
+  }
+
+  .d-contents li {
+    list-style-type: none
+  }
+
+  .d-contents nav > ul {
+    padding-left: 0;
+  }
+
+  .d-contents ul {
+    padding-left: 1em
+  }
+
+  .d-contents nav ul li {
+    margin-top: 0.6em;
+    margin-bottom: 0.2em;
+  }
+
+  .d-contents nav a {
+    font-size: 13px;
+    border-bottom: none;
+    text-decoration: none
+    color: rgba(0, 0, 0, 0.8);
+  }
+
+  .d-contents nav a:hover {
+    text-decoration: underline solid rgba(0, 0, 0, 0.6)
+  }
+
+  .d-contents nav > ul > li > a {
+    font-weight: 600;
+  }
+
+  .d-contents nav > ul > li > ul {
+    font-weight: inherit;
+  }
+
+  .d-contents nav > ul > li > ul > li {
+    margin-top: 0.2em;
+  }
+
+
+  .d-contents nav ul {
+    margin-top: 0;
+    margin-bottom: 0.25em;
+  }
+
+  .d-article-with-toc h2:nth-child(2) {
+    margin-top: 0;
+  }
+
+
+  /* Figure */
+
+  .figure {
+    position: relative;
+    margin-bottom: 2.5em;
+    margin-top: 1.5em;
+  }
+
+  .figure img {
+    width: 100%;
+  }
+
+  .figure .caption {
+    color: rgba(0, 0, 0, 0.6);
+    font-size: 12px;
+    line-height: 1.5em;
+  }
+
+  .figure img.external {
+    background: white;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1);
+    padding: 18px;
+    box-sizing: border-box;
+  }
+
+  .figure .caption a {
+    color: rgba(0, 0, 0, 0.6);
+  }
+
+  .figure .caption b,
+  .figure .caption strong, {
+    font-weight: 600;
+    color: rgba(0, 0, 0, 1.0);
+  }
+
+  /* Citations */
+
+  d-article .citation {
+    color: inherit;
+    cursor: inherit;
+  }
+
+  div.hanging-indent{
+    margin-left: 1em; text-indent: -1em;
+  }
+
+  /* Citation hover box */
+
+  .tippy-box[data-theme~=light-border] {
+    background-color: rgba(250, 250, 250, 0.95);
+  }
+
+  .tippy-content > p {
+    margin-bottom: 0;
+    padding: 2px;
+  }
+
+
+  /* Tweak 1000px media break to show more text */
+
+  @media(min-width: 1000px) {
+    .base-grid,
+    distill-header,
+    d-title,
+    d-abstract,
+    d-article,
+    d-appendix,
+    distill-appendix,
+    d-byline,
+    d-footnote-list,
+    d-citation-list,
+    distill-footer {
+      grid-template-columns: [screen-start] 1fr [page-start kicker-start] 80px [middle-start] 50px [text-start kicker-end] 65px 65px 65px 65px 65px 65px 65px 65px [text-end gutter-start] 65px [middle-end] 65px [page-end gutter-end] 1fr [screen-end];
+      grid-column-gap: 16px;
+    }
+
+    .grid {
+      grid-column-gap: 16px;
+    }
+
+    d-article {
+      font-size: 1.06rem;
+      line-height: 1.7em;
+    }
+    figure .caption, .figure .caption, figure figcaption {
+      font-size: 13px;
+    }
+  }
+
+  @media(min-width: 1180px) {
+    .base-grid,
+    distill-header,
+    d-title,
+    d-abstract,
+    d-article,
+    d-appendix,
+    distill-appendix,
+    d-byline,
+    d-footnote-list,
+    d-citation-list,
+    distill-footer {
+      grid-template-columns: [screen-start] 1fr [page-start kicker-start] 60px [middle-start] 60px [text-start kicker-end] 60px 60px 60px 60px 60px 60px 60px 60px [text-end gutter-start] 60px [middle-end] 60px [page-end gutter-end] 1fr [screen-end];
+      grid-column-gap: 32px;
+    }
+
+    .grid {
+      grid-column-gap: 32px;
+    }
+  }
+
+
+  /* Get the citation styles for the appendix (not auto-injected on render since
+     we do our own rendering of the citation appendix) */
+
+  d-appendix .citation-appendix,
+  .d-appendix .citation-appendix {
+    font-size: 11px;
+    line-height: 15px;
+    border-left: 1px solid rgba(0, 0, 0, 0.1);
+    padding-left: 18px;
+    border: 1px solid rgba(0,0,0,0.1);
+    background: rgba(0, 0, 0, 0.02);
+    padding: 10px 18px;
+    border-radius: 3px;
+    color: rgba(150, 150, 150, 1);
+    overflow: hidden;
+    margin-top: -12px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+  }
+
+  /* Include appendix styles here so they can be overridden */
+
+  d-appendix {
+    contain: layout style;
+    font-size: 0.8em;
+    line-height: 1.7em;
+    margin-top: 60px;
+    margin-bottom: 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    color: rgba(0,0,0,0.5);
+    padding-top: 60px;
+    padding-bottom: 48px;
+  }
+
+  d-appendix h3 {
+    grid-column: page-start / text-start;
+    font-size: 15px;
+    font-weight: 500;
+    margin-top: 1em;
+    margin-bottom: 0;
+    color: rgba(0,0,0,0.65);
+  }
+
+  d-appendix h3 + * {
+    margin-top: 1em;
+  }
+
+  d-appendix ol {
+    padding: 0 0 0 15px;
+  }
+
+  @media (min-width: 768px) {
+    d-appendix ol {
+      padding: 0 0 0 30px;
+      margin-left: -30px;
+    }
+  }
+
+  d-appendix li {
+    margin-bottom: 1em;
+  }
+
+  d-appendix a {
+    color: rgba(0, 0, 0, 0.6);
+  }
+
+  d-appendix > * {
+    grid-column: text;
+  }
+
+  d-appendix > d-footnote-list,
+  d-appendix > d-citation-list,
+  d-appendix > distill-appendix {
+    grid-column: screen;
+  }
+
+  /* Include footnote styles here so they can be overridden */
+
+  d-footnote-list {
+    contain: layout style;
+  }
+
+  d-footnote-list > * {
+    grid-column: text;
+  }
+
+  d-footnote-list a.footnote-backlink {
+    color: rgba(0,0,0,0.3);
+    padding-left: 0.5em;
+  }
+
+
+
+  /* Anchor.js */
+
+  .anchorjs-link {
+    /*transition: all .25s linear; */
+    text-decoration: none;
+    border-bottom: none;
+  }
+  *:hover > .anchorjs-link {
+    margin-left: -1.125em !important;
+    text-decoration: none;
+    border-bottom: none;
+  }
+
+  /* Social footer */
+
+  .social_footer {
+    margin-top: 30px;
+    margin-bottom: 0;
+    color: rgba(0,0,0,0.67);
+  }
+
+  .disqus-comments {
+    margin-right: 30px;
+  }
+
+  .disqus-comment-count {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+    cursor: pointer;
+  }
+
+  #disqus_thread {
+    margin-top: 30px;
+  }
+
+  .article-sharing a {
+    border-bottom: none;
+    margin-right: 8px;
+  }
+
+  .article-sharing a:hover {
+    border-bottom: none;
+  }
+
+  .sidebar-section.subscribe {
+    font-size: 12px;
+    line-height: 1.6em;
+  }
+
+  .subscribe p {
+    margin-bottom: 0.5em;
+  }
+
+
+  .article-footer .subscribe {
+    font-size: 15px;
+    margin-top: 45px;
+  }
+
+
+  .sidebar-section.custom {
+    font-size: 12px;
+    line-height: 1.6em;
+  }
+
+  .custom p {
+    margin-bottom: 0.5em;
+  }
+
+  /* Styles for listing layout (hide title) */
+  .layout-listing d-title, .layout-listing .d-title {
+    display: none;
+  }
+
+  /* Styles for posts lists (not auto-injected) */
+
+
+  .posts-with-sidebar {
+    padding-left: 45px;
+    padding-right: 45px;
+  }
+
+  .posts-list .description h2,
+  .posts-list .description p {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif;
+  }
+
+  .posts-list .description h2 {
+    font-weight: 700;
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  .posts-list h2.post-tag {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    padding-bottom: 12px;
+  }
+  .posts-list {
+    margin-top: 60px;
+    margin-bottom: 24px;
+  }
+
+  .posts-list .post-preview {
+    text-decoration: none;
+    overflow: hidden;
+    display: block;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    padding: 24px 0;
+  }
+
+  .post-preview-last {
+    border-bottom: none !important;
+  }
+
+  .posts-list .posts-list-caption {
+    grid-column: screen;
+    font-weight: 400;
+  }
+
+  .posts-list .post-preview h2 {
+    margin: 0 0 6px 0;
+    line-height: 1.2em;
+    font-style: normal;
+    font-size: 24px;
+  }
+
+  .posts-list .post-preview p {
+    margin: 0 0 12px 0;
+    line-height: 1.4em;
+    font-size: 16px;
+  }
+
+  .posts-list .post-preview .thumbnail {
+    box-sizing: border-box;
+    margin-bottom: 24px;
+    position: relative;
+    max-width: 500px;
+  }
+  .posts-list .post-preview img {
+    width: 100%;
+    display: block;
+  }
+
+  .posts-list .metadata {
+    font-size: 12px;
+    line-height: 1.4em;
+    margin-bottom: 18px;
+  }
+
+  .posts-list .metadata > * {
+    display: inline-block;
+  }
+
+  .posts-list .metadata .publishedDate {
+    margin-right: 2em;
+  }
+
+  .posts-list .metadata .dt-authors {
+    display: block;
+    margin-top: 0.3em;
+    margin-right: 2em;
+  }
+
+  .posts-list .dt-tags {
+    display: block;
+    line-height: 1em;
+  }
+
+  .posts-list .dt-tags .dt-tag {
+    display: inline-block;
+    color: rgba(0,0,0,0.6);
+    padding: 0.3em 0.4em;
+    margin-right: 0.2em;
+    margin-bottom: 0.4em;
+    font-size: 60%;
+    border: 1px solid rgba(0,0,0,0.2);
+    border-radius: 3px;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  .posts-list img {
+    opacity: 1;
+  }
+
+  .posts-list img[data-src] {
+    opacity: 0;
+  }
+
+  .posts-more {
+    clear: both;
+  }
+
+
+  .posts-sidebar {
+    font-size: 16px;
+  }
+
+  .posts-sidebar h3 {
+    font-size: 16px;
+    margin-top: 0;
+    margin-bottom: 0.5em;
+    font-weight: 400;
+    text-transform: uppercase;
+  }
+
+  .sidebar-section {
+    margin-bottom: 30px;
+  }
+
+  .categories ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .categories li {
+    color: rgba(0, 0, 0, 0.8);
+    margin-bottom: 0;
+  }
+
+  .categories li>a {
+    border-bottom: none;
+  }
+
+  .categories li>a:hover {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+  }
+
+  .categories .active {
+    font-weight: 600;
+  }
+
+  .categories .category-count {
+    color: rgba(0, 0, 0, 0.4);
+  }
+
+
+  @media(min-width: 768px) {
+    .posts-list .post-preview h2 {
+      font-size: 26px;
+    }
+    .posts-list .post-preview .thumbnail {
+      float: right;
+      width: 30%;
+      margin-bottom: 0;
+    }
+    .posts-list .post-preview .description {
+      float: left;
+      width: 45%;
+    }
+    .posts-list .post-preview .metadata {
+      float: left;
+      width: 20%;
+      margin-top: 8px;
+    }
+    .posts-list .post-preview p {
+      margin: 0 0 12px 0;
+      line-height: 1.5em;
+      font-size: 16px;
+    }
+    .posts-with-sidebar .posts-list {
+      float: left;
+      width: 75%;
+    }
+    .posts-with-sidebar .posts-sidebar {
+      float: right;
+      width: 20%;
+      margin-top: 60px;
+      padding-top: 24px;
+      padding-bottom: 24px;
+    }
+  }
+
+
+  /* Improve display for browsers without grid (IE/Edge <= 15) */
+
+  .downlevel {
+    line-height: 1.6em;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif;
+    margin: 0;
+  }
+
+  .downlevel .d-title {
+    padding-top: 6rem;
+    padding-bottom: 1.5rem;
+  }
+
+  .downlevel .d-title h1 {
+    font-size: 50px;
+    font-weight: 700;
+    line-height: 1.1em;
+    margin: 0 0 0.5rem;
+  }
+
+  .downlevel .d-title p {
+    font-weight: 300;
+    font-size: 1.2rem;
+    line-height: 1.55em;
+    margin-top: 0;
+  }
+
+  .downlevel .d-byline {
+    padding-top: 0.8em;
+    padding-bottom: 0.8em;
+    font-size: 0.8rem;
+    line-height: 1.8em;
+  }
+
+  .downlevel .section-separator {
+    border: none;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  .downlevel .d-article {
+    font-size: 1.06rem;
+    line-height: 1.7em;
+    padding-top: 1rem;
+    padding-bottom: 2rem;
+  }
+
+
+  .downlevel .d-appendix {
+    padding-left: 0;
+    padding-right: 0;
+    max-width: none;
+    font-size: 0.8em;
+    line-height: 1.7em;
+    margin-bottom: 0;
+    color: rgba(0,0,0,0.5);
+    padding-top: 40px;
+    padding-bottom: 48px;
+  }
+
+  .downlevel .footnotes ol {
+    padding-left: 13px;
+  }
+
+  .downlevel .base-grid,
+  .downlevel .distill-header,
+  .downlevel .d-title,
+  .downlevel .d-abstract,
+  .downlevel .d-article,
+  .downlevel .d-appendix,
+  .downlevel .distill-appendix,
+  .downlevel .d-byline,
+  .downlevel .d-footnote-list,
+  .downlevel .d-citation-list,
+  .downlevel .distill-footer,
+  .downlevel .appendix-bottom,
+  .downlevel .posts-container {
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+
+  @media(min-width: 768px) {
+    .downlevel .base-grid,
+    .downlevel .distill-header,
+    .downlevel .d-title,
+    .downlevel .d-abstract,
+    .downlevel .d-article,
+    .downlevel .d-appendix,
+    .downlevel .distill-appendix,
+    .downlevel .d-byline,
+    .downlevel .d-footnote-list,
+    .downlevel .d-citation-list,
+    .downlevel .distill-footer,
+    .downlevel .appendix-bottom,
+    .downlevel .posts-container {
+    padding-left: 150px;
+    padding-right: 150px;
+    max-width: 900px;
+  }
+  }
+
+  .downlevel pre code {
+    display: block;
+    border-left: 2px solid rgba(0, 0, 0, .1);
+    padding: 0 0 0 20px;
+    font-size: 14px;
+  }
+
+  .downlevel code, .downlevel pre {
+    color: black;
+    background: none;
+    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+    text-align: left;
+    white-space: pre;
+    word-spacing: normal;
+    word-break: normal;
+    word-wrap: normal;
+    line-height: 1.5;
+
+    -moz-tab-size: 4;
+    -o-tab-size: 4;
+    tab-size: 4;
+
+    -webkit-hyphens: none;
+    -moz-hyphens: none;
+    -ms-hyphens: none;
+    hyphens: none;
+  }
+
+  .downlevel .posts-list .post-preview {
+    color: inherit;
+  }
+
+
+
+  </style>
+
+  <script type="application/javascript">
+
+  function is_downlevel_browser() {
+    if (bowser.isUnsupportedBrowser({ msie: "12", msedge: "16"},
+                                   window.navigator.userAgent)) {
+      return true;
+    } else {
+      return window.load_distill_framework === undefined;
+    }
+  }
+
+  // show body when load is complete
+  function on_load_complete() {
+
+    // add anchors
+    if (window.anchors) {
+      window.anchors.options.placement = 'left';
+      window.anchors.add('d-article > h2, d-article > h3, d-article > h4, d-article > h5');
+    }
+
+
+    // set body to visible
+    document.body.style.visibility = 'visible';
+
+    // force redraw for leaflet widgets
+    if (window.HTMLWidgets) {
+      var maps = window.HTMLWidgets.findAll(".leaflet");
+      $.each(maps, function(i, el) {
+        var map = this.getMap();
+        map.invalidateSize();
+        map.eachLayer(function(layer) {
+          if (layer instanceof L.TileLayer)
+            layer.redraw();
+        });
+      });
+    }
+
+    // trigger 'shown' so htmlwidgets resize
+    $('d-article').trigger('shown');
+  }
+
+  function init_distill() {
+
+    init_common();
+
+    // create front matter
+    var front_matter = $('<d-front-matter></d-front-matter>');
+    $('#distill-front-matter').wrap(front_matter);
+
+    // create d-title
+    $('.d-title').changeElementType('d-title');
+
+    // create d-byline
+    var byline = $('<d-byline></d-byline>');
+    $('.d-byline').replaceWith(byline);
+
+    // create d-article
+    var article = $('<d-article></d-article>');
+    $('.d-article').wrap(article).children().unwrap();
+
+    // move posts container into article
+    $('.posts-container').appendTo($('d-article'));
+
+    // create d-appendix
+    $('.d-appendix').changeElementType('d-appendix');
+
+    // flag indicating that we have appendix items
+    var appendix = $('.appendix-bottom').children('h3').length > 0;
+
+    // replace footnotes with <d-footnote>
+    $('.footnote-ref').each(function(i, val) {
+      appendix = true;
+      var href = $(this).attr('href');
+      var id = href.replace('#', '');
+      var fn = $('#' + id);
+      var fn_p = $('#' + id + '>p');
+      fn_p.find('.footnote-back').remove();
+      var text = fn_p.html();
+      var dtfn = $('<d-footnote></d-footnote>');
+      dtfn.html(text);
+      $(this).replaceWith(dtfn);
+    });
+    // remove footnotes
+    $('.footnotes').remove();
+
+    // move refs into #references-listing
+    $('#references-listing').replaceWith($('#refs'));
+
+    $('h1.appendix, h2.appendix').each(function(i, val) {
+      $(this).changeElementType('h3');
+    });
+    $('h3.appendix').each(function(i, val) {
+      var id = $(this).attr('id');
+      $('.d-contents a[href="#' + id + '"]').parent().remove();
+      appendix = true;
+      $(this).nextUntil($('h1, h2, h3')).addBack().appendTo($('d-appendix'));
+    });
+
+    // show d-appendix if we have appendix content
+    $("d-appendix").css('display', appendix ? 'grid' : 'none');
+
+    // localize layout chunks to just output
+    $('.layout-chunk').each(function(i, val) {
+
+      // capture layout
+      var layout = $(this).attr('data-layout');
+
+      // apply layout to markdown level block elements
+      var elements = $(this).children().not('details, div.sourceCode, pre, script');
+      elements.each(function(i, el) {
+        var layout_div = $('<div class="' + layout + '"></div>');
+        if (layout_div.hasClass('shaded')) {
+          var shaded_content = $('<div class="shaded-content"></div>');
+          $(this).wrap(shaded_content);
+          $(this).parent().wrap(layout_div);
+        } else {
+          $(this).wrap(layout_div);
+        }
+      });
+
+
+      // unwrap the layout-chunk div
+      $(this).children().unwrap();
+    });
+
+    // remove code block used to force  highlighting css
+    $('.distill-force-highlighting-css').parent().remove();
+
+    // remove empty line numbers inserted by pandoc when using a
+    // custom syntax highlighting theme
+    $('code.sourceCode a:empty').remove();
+
+    // load distill framework
+    load_distill_framework();
+
+    // wait for window.distillRunlevel == 4 to do post processing
+    function distill_post_process() {
+
+      if (!window.distillRunlevel || window.distillRunlevel < 4)
+        return;
+
+      // hide author/affiliations entirely if we have no authors
+      var front_matter = JSON.parse($("#distill-front-matter").html());
+      var have_authors = front_matter.authors && front_matter.authors.length > 0;
+      if (!have_authors)
+        $('d-byline').addClass('hidden');
+
+      // article with toc class
+      $('.d-contents').parent().addClass('d-article-with-toc');
+
+      // strip links that point to #
+      $('.authors-affiliations').find('a[href="#"]').removeAttr('href');
+
+      // add orcid ids
+      $('.authors-affiliations').find('.author').each(function(i, el) {
+        var orcid_id = front_matter.authors[i].orcidID;
+        if (orcid_id) {
+          var a = $('<a></a>');
+          a.attr('href', 'https://orcid.org/' + orcid_id);
+          var img = $('<img></img>');
+          img.addClass('orcid-id');
+          img.attr('alt', 'ORCID ID');
+          img.attr('src','data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg==');
+          a.append(img);
+          $(this).append(a);
+        }
+      });
+
+      // hide elements of author/affiliations grid that have no value
+      function hide_byline_column(caption) {
+        $('d-byline').find('h3:contains("' + caption + '")').parent().css('visibility', 'hidden');
+      }
+
+      // affiliations
+      var have_affiliations = false;
+      for (var i = 0; i<front_matter.authors.length; ++i) {
+        var author = front_matter.authors[i];
+        if (author.affiliation !== "&nbsp;") {
+          have_affiliations = true;
+          break;
+        }
+      }
+      if (!have_affiliations)
+        $('d-byline').find('h3:contains("Affiliations")').css('visibility', 'hidden');
+
+      // published date
+      if (!front_matter.publishedDate)
+        hide_byline_column("Published");
+
+      // document object identifier
+      var doi = $('d-byline').find('h3:contains("DOI")');
+      var doi_p = doi.next().empty();
+      if (!front_matter.doi) {
+        // if we have a citation and valid citationText then link to that
+        if ($('#citation').length > 0 && front_matter.citationText) {
+          doi.html('Citation');
+          $('<a href="#citation"></a>')
+            .text(front_matter.citationText)
+            .appendTo(doi_p);
+        } else {
+          hide_byline_column("DOI");
+        }
+      } else {
+        $('<a></a>')
+           .attr('href', "https://doi.org/" + front_matter.doi)
+           .html(front_matter.doi)
+           .appendTo(doi_p);
+      }
+
+       // change plural form of authors/affiliations
+      if (front_matter.authors.length === 1) {
+        var grid = $('.authors-affiliations');
+        grid.children('h3:contains("Authors")').text('Author');
+        grid.children('h3:contains("Affiliations")').text('Affiliation');
+      }
+
+      // remove d-appendix and d-footnote-list local styles
+      $('d-appendix > style:first-child').remove();
+      $('d-footnote-list > style:first-child').remove();
+
+      // move appendix-bottom entries to the bottom
+      $('.appendix-bottom').appendTo('d-appendix').children().unwrap();
+      $('.appendix-bottom').remove();
+
+      // hoverable references
+      $('span.citation[data-cites]').each(function() {
+        var refHtml = $('#ref-' + $(this).attr('data-cites')).html();
+        window.tippy(this, {
+          allowHTML: true,
+          content: refHtml,
+          maxWidth: 500,
+          interactive: true,
+          interactiveBorder: 10,
+          theme: 'light-border',
+          placement: 'bottom-start'
+        });
+      });
+
+      // clear polling timer
+      clearInterval(tid);
+
+      // show body now that everything is ready
+      on_load_complete();
+    }
+
+    var tid = setInterval(distill_post_process, 50);
+    distill_post_process();
+
+  }
+
+  function init_downlevel() {
+
+    init_common();
+
+     // insert hr after d-title
+    $('.d-title').after($('<hr class="section-separator"/>'));
+
+    // check if we have authors
+    var front_matter = JSON.parse($("#distill-front-matter").html());
+    var have_authors = front_matter.authors && front_matter.authors.length > 0;
+
+    // manage byline/border
+    if (!have_authors)
+      $('.d-byline').remove();
+    $('.d-byline').after($('<hr class="section-separator"/>'));
+    $('.d-byline a').remove();
+
+    // remove toc
+    $('.d-contents').remove();
+
+    // move appendix elements
+    $('h1.appendix, h2.appendix').each(function(i, val) {
+      $(this).changeElementType('h3');
+    });
+    $('h3.appendix').each(function(i, val) {
+      $(this).nextUntil($('h1, h2, h3')).addBack().appendTo($('.d-appendix'));
+    });
+
+
+    // inject headers into references and footnotes
+    var refs_header = $('<h3></h3>');
+    refs_header.text('References');
+    $('#refs').prepend(refs_header);
+
+    var footnotes_header = $('<h3></h3');
+    footnotes_header.text('Footnotes');
+    $('.footnotes').children('hr').first().replaceWith(footnotes_header);
+
+    // move appendix-bottom entries to the bottom
+    $('.appendix-bottom').appendTo('.d-appendix').children().unwrap();
+    $('.appendix-bottom').remove();
+
+    // remove appendix if it's empty
+    if ($('.d-appendix').children().length === 0)
+      $('.d-appendix').remove();
+
+    // prepend separator above appendix
+    $('.d-appendix').before($('<hr class="section-separator" style="clear: both"/>'));
+
+    // trim code
+    $('pre>code').each(function(i, val) {
+      $(this).html($.trim($(this).html()));
+    });
+
+    // move posts-container right before article
+    $('.posts-container').insertBefore($('.d-article'));
+
+    $('body').addClass('downlevel');
+
+    on_load_complete();
+  }
+
+
+  function init_common() {
+
+    // jquery plugin to change element types
+    (function($) {
+      $.fn.changeElementType = function(newType) {
+        var attrs = {};
+
+        $.each(this[0].attributes, function(idx, attr) {
+          attrs[attr.nodeName] = attr.nodeValue;
+        });
+
+        this.replaceWith(function() {
+          return $("<" + newType + "/>", attrs).append($(this).contents());
+        });
+      };
+    })(jQuery);
+
+    // prevent underline for linked images
+    $('a > img').parent().css({'border-bottom' : 'none'});
+
+    // mark non-body figures created by knitr chunks as 100% width
+    $('.layout-chunk').each(function(i, val) {
+      var figures = $(this).find('img, .html-widget');
+      if ($(this).attr('data-layout') !== "l-body") {
+        figures.css('width', '100%');
+      } else {
+        figures.css('max-width', '100%');
+        figures.filter("[width]").each(function(i, val) {
+          var fig = $(this);
+          fig.css('width', fig.attr('width') + 'px');
+        });
+
+      }
+    });
+
+    // auto-append index.html to post-preview links in file: protocol
+    // and in rstudio ide preview
+    $('.post-preview').each(function(i, val) {
+      if (window.location.protocol === "file:")
+        $(this).attr('href', $(this).attr('href') + "index.html");
+    });
+
+    // get rid of index.html references in header
+    if (window.location.protocol !== "file:") {
+      $('.distill-site-header a[href]').each(function(i,val) {
+        $(this).attr('href', $(this).attr('href').replace("index.html", "./"));
+      });
+    }
+
+    // add class to pandoc style tables
+    $('tr.header').parent('thead').parent('table').addClass('pandoc-table');
+    $('.kable-table').children('table').addClass('pandoc-table');
+
+    // add figcaption style to table captions
+    $('caption').parent('table').addClass("figcaption");
+
+    // initialize posts list
+    if (window.init_posts_list)
+      window.init_posts_list();
+
+    // implmement disqus comment link
+    $('.disqus-comment-count').click(function() {
+      window.headroom_prevent_pin = true;
+      $('#disqus_thread').toggleClass('hidden');
+      if (!$('#disqus_thread').hasClass('hidden')) {
+        var offset = $(this).offset();
+        $(window).resize();
+        $('html, body').animate({
+          scrollTop: offset.top - 35
+        });
+      }
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', function() {
+    if (is_downlevel_browser())
+      init_downlevel();
+    else
+      window.addEventListener('WebComponentsReady', init_distill);
+  });
+
+  </script>
+
+  <style type="text/css">
+  /* base variables */
+
+  /* Edit the CSS properties in this file to create a custom
+     Distill theme. Only edit values in the right column
+     for each row; values shown are the CSS defaults.
+     To return any property to the default,
+     you may set its value to: unset
+     All rows must end with a semi-colon.                      */
+
+  /* Optional: embed custom fonts here with `@import`          */
+  /* This must remain at the top of this file.                 */
+
+
+
+  html {
+    /*-- Main font sizes --*/
+    --title-size:      50px;
+    --body-size:       1.06rem;
+    --code-size:       14px;
+    --aside-size:      12px;
+    --fig-cap-size:    13px;
+    /*-- Main font colors --*/
+    --title-color:     #000000;
+    --header-color:    rgba(0, 0, 0, 0.8);
+    --body-color:      rgba(0, 0, 0, 0.8);
+    --aside-color:     rgba(0, 0, 0, 0.6);
+    --fig-cap-color:   rgba(0, 0, 0, 0.6);
+    /*-- Specify custom fonts ~~~ must be imported above   --*/
+    --heading-font:    sans-serif;
+    --mono-font:       monospace;
+    --body-font:       sans-serif;
+    --navbar-font:     sans-serif;  /* websites + blogs only */
+  }
+
+  /*-- ARTICLE METADATA --*/
+  d-byline {
+    --heading-size:    0.6rem;
+    --heading-color:   rgba(0, 0, 0, 0.5);
+    --body-size:       0.8rem;
+    --body-color:      rgba(0, 0, 0, 0.8);
+  }
+
+  /*-- ARTICLE TABLE OF CONTENTS --*/
+  .d-contents {
+    --heading-size:    18px;
+    --contents-size:   13px;
+  }
+
+  /*-- ARTICLE APPENDIX --*/
+  d-appendix {
+    --heading-size:    15px;
+    --heading-color:   rgba(0, 0, 0, 0.65);
+    --text-size:       0.8em;
+    --text-color:      rgba(0, 0, 0, 0.5);
+  }
+
+  /*-- WEBSITE HEADER + FOOTER --*/
+  /* These properties only apply to Distill sites and blogs  */
+
+  .distill-site-header {
+    --title-size:       18px;
+    --text-color:       rgba(255, 255, 255, 0.8);
+    --text-size:        15px;
+    --hover-color:      white;
+    --bkgd-color:       #0F2E3D;
+  }
+
+  .distill-site-footer {
+    --text-color:       rgba(255, 255, 255, 0.8);
+    --text-size:        15px;
+    --hover-color:      white;
+    --bkgd-color:       #0F2E3D;
+  }
+
+  /*-- Additional custom styles --*/
+  /* Add any additional CSS rules below                      */
+  </style>
+  <style type="text/css">/* base variables */
+
+  /* Edit the CSS properties in this file to create a custom
+     Distill theme. Only edit values in the right column
+     for each row; values shown are the CSS defaults.
+     To return any property to the default,
+     you may set its value to: unset
+     All rows must end with a semi-colon.                      */
+
+  /* Optional: embed custom fonts here with `@import`          */
+
+  /* This must remain at the top of this file.                 */
+
+  @import url('https://fonts.googleapis.com/css2?family=Catamaran:wght@400;700&display=swap');
+
+  @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&display=swap');
+
+  html {
+    /*-- Main font sizes --*/
+    --title-size:      50px;
+    --body-size:       1.06rem;
+    --code-size:       14px;
+    --aside-size:      12px;
+    --fig-cap-size:    13px;
+    /*-- Main font colors --*/
+    --title-color:     #000000;
+    --header-color:    rgba(0, 0, 0, 0.8);
+    --body-color:      rgba(0, 0, 0, 0.8);
+    --aside-color:     rgba(0, 0, 0, 0.6);
+    --fig-cap-color:   rgba(0, 0, 0, 0.6);
+    /*-- Specify custom fonts ~~~ must be imported above   --*/
+    --heading-font:    'Oswald', sans-serif;
+    --mono-font:       monospace;
+    --body-font:       'Catamaran', sans-serif;
+    --navbar-font:     'Oswald', sans-serif;  /* websites + blogs only */
+  }
+
+  /*-- ARTICLE METADATA --*/
+
+  d-byline {
+    --heading-size:    0.6rem;
+    --heading-color:   rgba(0, 0, 0, 0.5);
+    --body-size:       0.8rem;
+    --body-color:      rgba(0, 0, 0, 0.8);
+  }
+
+  /*-- ARTICLE TABLE OF CONTENTS --*/
+
+  .d-contents {
+    --heading-size:    18px;
+    --contents-size:   13px;
+  }
+
+  /*-- ARTICLE APPENDIX --*/
+
+  d-appendix {
+    --heading-size:    15px;
+    --heading-color:   rgba(0, 0, 0, 0.65);
+    --text-size:       0.8em;
+    --text-color:      rgba(0, 0, 0, 0.5);
+  }
+
+  /*-- WEBSITE HEADER + FOOTER --*/
+
+  /* These properties only apply to Distill sites and blogs  */
+
+  .distill-site-header {
+    --title-size:       18px;
+    --text-color:       #000000;
+    --text-size:        18px;
+    --hover-color:      #AD1D32;
+    --bkgd-color:       #ffffff;
+  }
+
+  .distill-site-footer {
+    --text-color:       rgba(255, 255, 255, 0.8);
+    --text-size:        15px;
+    --hover-color:      white;
+    --bkgd-color:       #0F2E3D;
+  }
+
+  /*-- Additional custom styles --*/
+
+  /* Add any additional CSS rules below                      */
+
+  .distill-site-header .title, .d-title {
+    display: none;
+  }
+
+  .distill-site-header .logo img {
+    max-height: 60px;
+  }
+
+  .headroom {
+    top: 20px;
+  }
+
+  body > header > nav > div.nav-left > a {
+    display: none;
+  }
+
+  d-article h2 {
+    border-bottom: 0;
+  }
+
+  /* Tailwind */
+
+  /* ! tailwindcss v2.0.3 | MIT License | https://tailwindcss.com */
+
+  /*! modern-normalize v1.0.0 | MIT License | https://github.com/sindresorhus/modern-normalize */
+
+  /*
+  Document
+  ========
+  */
+
+  /**
+  Use a better box model (opinionated).
+  */
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  /**
+  Use a more readable tab size (opinionated).
+  */
+
+  :root {
+    -moz-tab-size: 4;
+    -o-tab-size: 4;
+       tab-size: 4;
+  }
+
+  /**
+  1. Correct the line height in all browsers.
+  2. Prevent adjustments of font size after orientation changes in iOS.
+  */
+
+  html {
+    line-height: 1.15; /* 1 */
+    -webkit-text-size-adjust: 100%; /* 2 */
+  }
+
+  /*
+  Sections
+  ========
+  */
+
+  /**
+  Remove the margin in all browsers.
+  */
+
+  body {
+    margin: 0;
+  }
+
+  /**
+  Improve consistency of default fonts in all browsers. (https://github.com/sindresorhus/modern-normalize/issues/3)
+  */
+
+  body {
+    font-family:
+  		system-ui,
+  		-apple-system, /* Firefox supports this but not yet `system-ui` */
+  		'Segoe UI',
+  		Roboto,
+  		Helvetica,
+  		Arial,
+  		sans-serif,
+  		'Apple Color Emoji',
+  		'Segoe UI Emoji';
+  }
+
+  /*
+  Grouping content
+  ================
+  */
+
+  /**
+  1. Add the correct height in Firefox.
+  2. Correct the inheritance of border color in Firefox. (https://bugzilla.mozilla.org/show_bug.cgi?id=190655)
+  */
+
+  hr {
+    height: 0; /* 1 */
+    color: inherit; /* 2 */
+  }
+
+  /*
+  Text-level semantics
+  ====================
+  */
+
+  /**
+  Add the correct text decoration in Chrome, Edge, and Safari.
+  */
+
+  abbr[title] {
+    -webkit-text-decoration: underline dotted;
+            text-decoration: underline dotted;
+  }
+
+  /**
+  Add the correct font weight in Edge and Safari.
+  */
+
+  b,
+  strong {
+    font-weight: bolder;
+  }
+
+  /**
+  1. Improve consistency of default fonts in all browsers. (https://github.com/sindresorhus/modern-normalize/issues/3)
+  2. Correct the odd 'em' font sizing in all browsers.
+  */
+
+  code,
+  kbd,
+  samp,
+  pre {
+    font-family:
+  		ui-monospace,
+  		SFMono-Regular,
+  		Consolas,
+  		'Liberation Mono',
+  		Menlo,
+  		monospace; /* 1 */
+    font-size: 1em; /* 2 */
+  }
+
+  /**
+  Add the correct font size in all browsers.
+  */
+
+  small {
+    font-size: 80%;
+  }
+
+  /**
+  Prevent 'sub' and 'sup' elements from affecting the line height in all browsers.
+  */
+
+  sub,
+  sup {
+    font-size: 75%;
+    line-height: 0;
+    position: relative;
+    vertical-align: baseline;
+  }
+
+  sub {
+    bottom: -0.25em;
+  }
+
+  sup {
+    top: -0.5em;
+  }
+
+  /*
+  Tabular data
+  ============
+  */
+
+  /**
+  1. Remove text indentation from table contents in Chrome and Safari. (https://bugs.chromium.org/p/chromium/issues/detail?id=999088, https://bugs.webkit.org/show_bug.cgi?id=201297)
+  2. Correct table border color inheritance in all Chrome and Safari. (https://bugs.chromium.org/p/chromium/issues/detail?id=935729, https://bugs.webkit.org/show_bug.cgi?id=195016)
+  */
+
+  table {
+    text-indent: 0; /* 1 */
+    border-color: inherit; /* 2 */
+  }
+
+  /*
+  Forms
+  =====
+  */
+
+  /**
+  1. Change the font styles in all browsers.
+  2. Remove the margin in Firefox and Safari.
+  */
+
+  button,
+  input,
+  optgroup,
+  select,
+  textarea {
+    font-family: inherit; /* 1 */
+    font-size: 100%; /* 1 */
+    line-height: 1.15; /* 1 */
+    margin: 0; /* 2 */
+  }
+
+  /**
+  Remove the inheritance of text transform in Edge and Firefox.
+  1. Remove the inheritance of text transform in Firefox.
+  */
+
+  button,
+  select { /* 1 */
+    text-transform: none;
+  }
+
+  /**
+  Correct the inability to style clickable types in iOS and Safari.
+  */
+
+  button {
+    -webkit-appearance: button;
+  }
+
+  /**
+  Remove the inner border and padding in Firefox.
+  */
+
+  /**
+  Restore the focus styles unset by the previous rule.
+  */
+
+  /**
+  Remove the additional ':invalid' styles in Firefox.
+  See: https://github.com/mozilla/gecko-dev/blob/2f9eacd9d3d995c937b4251a5557d95d494c9be1/layout/style/res/forms.css#L728-L737
+  */
+
+  /**
+  Remove the padding so developers are not caught out when they zero out 'fieldset' elements in all browsers.
+  */
+
+  legend {
+    padding: 0;
+  }
+
+  /**
+  Add the correct vertical alignment in Chrome and Firefox.
+  */
+
+  progress {
+    vertical-align: baseline;
+  }
+
+  /**
+  Correct the cursor style of increment and decrement buttons in Safari.
+  */
+
+  /**
+  1. Correct the odd appearance in Chrome and Safari.
+  2. Correct the outline style in Safari.
+  */
+
+  /**
+  Remove the inner padding in Chrome and Safari on macOS.
+  */
+
+  /**
+  1. Correct the inability to style clickable types in iOS and Safari.
+  2. Change font properties to 'inherit' in Safari.
+  */
+
+  /*
+  Interactive
+  ===========
+  */
+
+  /*
+  Add the correct display in Chrome and Safari.
+  */
+
+  summary {
+    display: list-item;
+  }
+
+  /**
+   * Manually forked from SUIT CSS Base: https://github.com/suitcss/base
+   * A thin layer on top of normalize.css that provides a starting point more
+   * suitable for web applications.
+   */
+
+  /**
+   * Removes the default spacing and border for appropriate elements.
+   */
+
+  blockquote,
+  dl,
+  dd,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  hr,
+  figure,
+  p,
+  pre {
+    margin: 0;
+  }
+
+  button {
+    background-color: transparent;
+    background-image: none;
+  }
+
+  /**
+   * Work around a Firefox/IE bug where the transparent `button` background
+   * results in a loss of the default `button` focus styles.
+   */
+
+  button:focus {
+    outline: 1px dotted;
+    outline: 5px auto -webkit-focus-ring-color;
+  }
+
+  fieldset {
+    margin: 0;
+    padding: 0;
+  }
+
+  ol,
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  /**
+   * Tailwind custom reset styles
+   */
+
+  /**
+   * 1. Use the user's configured `sans` font-family (with Tailwind's default
+   *    sans-serif font stack as a fallback) as a sane default.
+   * 2. Use Tailwind's default "normal" line-height so the user isn't forced
+   *    to override it to ensure consistency even when using the default theme.
+   */
+
+  html {
+    font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"; /* 1 */
+    line-height: 1.5; /* 2 */
+  }
+
+  /**
+   * Inherit font-family and line-height from `html` so users can set them as
+   * a class directly on the `html` element.
+   */
+
+  body {
+    font-family: inherit;
+    line-height: inherit;
+  }
+
+  /**
+   * 1. Prevent padding and border from affecting element width.
+   *
+   *    We used to set this in the html element and inherit from
+   *    the parent element for everything else. This caused issues
+   *    in shadow-dom-enhanced elements like <details> where the content
+   *    is wrapped by a div with box-sizing set to `content-box`.
+   *
+   *    https://github.com/mozdevs/cssremedy/issues/4
+   *
+   *
+   * 2. Allow adding a border to an element by just adding a border-width.
+   *
+   *    By default, the way the browser specifies that an element should have no
+   *    border is by setting it's border-style to `none` in the user-agent
+   *    stylesheet.
+   *
+   *    In order to easily add borders to elements by just setting the `border-width`
+   *    property, we change the default border-style for all elements to `solid`, and
+   *    use border-width to hide them instead. This way our `border` utilities only
+   *    need to set the `border-width` property instead of the entire `border`
+   *    shorthand, making our border utilities much more straightforward to compose.
+   *
+   *    https://github.com/tailwindcss/tailwindcss/pull/116
+   */
+
+  *,
+  ::before,
+  ::after {
+    box-sizing: border-box; /* 1 */
+    border-width: 0; /* 2 */
+    border-style: solid; /* 2 */
+    border-color: #e5e7eb; /* 2 */
+  }
+
+  /*
+   * Ensure horizontal rules are visible by default
+   */
+
+  hr {
+    border-top-width: 1px;
+  }
+
+  /**
+   * Undo the `border-style: none` reset that Normalize applies to images so that
+   * our `border-{width}` utilities have the expected effect.
+   *
+   * The Normalize reset is unnecessary for us since we default the border-width
+   * to 0 on all elements.
+   *
+   * https://github.com/tailwindcss/tailwindcss/issues/362
+   */
+
+  img {
+    border-style: solid;
+  }
+
+  textarea {
+    resize: vertical;
+  }
+
+  input::-moz-placeholder, textarea::-moz-placeholder {
+    opacity: 1;
+    color: #9ca3af;
+  }
+
+  input:-ms-input-placeholder, textarea:-ms-input-placeholder {
+    opacity: 1;
+    color: #9ca3af;
+  }
+
+  input::placeholder,
+  textarea::placeholder {
+    opacity: 1;
+    color: #9ca3af;
+  }
+
+  button {
+    cursor: pointer;
+  }
+
+  table {
+    border-collapse: collapse;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-size: inherit;
+    font-weight: inherit;
+  }
+
+  /**
+   * Reset links to optimize for opt-in styling instead of
+   * opt-out.
+   */
+
+  a {
+    color: inherit;
+    text-decoration: inherit;
+  }
+
+  /**
+   * Reset form element properties that are easy to forget to
+   * style explicitly so you don't inadvertently introduce
+   * styles that deviate from your design system. These styles
+   * supplement a partial reset that is already applied by
+   * normalize.css.
+   */
+
+  button,
+  input,
+  optgroup,
+  select,
+  textarea {
+    padding: 0;
+    line-height: inherit;
+    color: inherit;
+  }
+
+  /**
+   * Use the configured 'mono' font family for elements that
+   * are expected to be rendered with a monospace font, falling
+   * back to the system monospace stack if there is no configured
+   * 'mono' font family.
+   */
+
+  pre,
+  code,
+  kbd,
+  samp {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  }
+
+  /**
+   * Make replaced elements `display: block` by default as that's
+   * the behavior you want almost all of the time. Inspired by
+   * CSS Remedy, with `svg` added as well.
+   *
+   * https://github.com/mozdevs/cssremedy/issues/14
+   */
+
+  img,
+  svg,
+  video,
+  canvas,
+  audio,
+  iframe,
+  embed,
+  object {
+    display: block;
+    vertical-align: middle;
+  }
+
+  /**
+   * Constrain images and videos to the parent width and preserve
+   * their instrinsic aspect ratio.
+   *
+   * https://github.com/mozdevs/cssremedy/issues/14
+   */
+
+  img,
+  video {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .rounded-md{
+    border-radius:      0.375rem;
+  }
+
+  .inline{
+    display:      inline;
+  }
+
+  .table{
+    display:      table;
+  }
+
+  .grid{
+    display:      grid;
+  }
+
+  .items-center{
+    align-items:      center;
+  }
+
+  .font-bold{
+    font-weight:      700;
+  }
+
+  .text-4xl{
+    font-size:      2.25rem;
+    line-height:      2.5rem;
+  }
+
+  .my-16{
+    margin-top:      4rem;
+    margin-bottom:      4rem;
+  }
+
+  .mx-auto{
+    margin-left:      auto;
+    margin-right:      auto;
+  }
+
+  .mb-4{
+    margin-bottom:      1rem;
+  }
+
+  .mt-16{
+    margin-top:      4rem;
+  }
+
+  .mb-16{
+    margin-bottom:      4rem;
+  }
+
+  .mt-24{
+    margin-top:      6rem;
+  }
+
+  .py-4{
+    padding-top:      1rem;
+    padding-bottom:      1rem;
+  }
+
+  .pr-2{
+    padding-right:      0.5rem;
+  }
+
+  .pl-4{
+    padding-left:      1rem;
+  }
+
+  *{
+    --tw-shadow:      0 0 #0000;
+  }
+
+  .shadow-md{
+    --tw-shadow:      0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    box-shadow:      var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+  }
+
+  *{
+    --tw-ring-inset:      var(--tw-empty,/*!*/ /*!*/);
+    --tw-ring-offset-width:      0px;
+    --tw-ring-offset-color:      #fff;
+    --tw-ring-color:      rgba(59, 130, 246, 0.5);
+    --tw-ring-offset-shadow:      0 0 #0000;
+    --tw-ring-shadow:      0 0 #0000;
+  }
+
+  .text-center{
+    text-align:      center;
+  }
+
+  .text-gray-600{
+    --tw-text-opacity:      1;
+    color:      rgba(75, 85, 99, var(--tw-text-opacity));
+  }
+
+  .gap-8{
+    gap:      2rem;
+  }
+
+  .gap-16{
+    gap:      4rem;
+  }
+
+  .grid-cols-4{
+    grid-template-columns:      repeat(4, minmax(0, 1fr));
+  }
+
+  .grid-cols-5{
+    grid-template-columns:      repeat(5, minmax(0, 1fr));
+  }
+
+  .col-span-1{
+    grid-column:      span 1 / span 1;
+  }
+
+  @-webkit-keyframes spin{
+    to{
+      transform:      rotate(360deg);
+    }
+  }
+
+  @keyframes spin{
+    to{
+      transform:      rotate(360deg);
+    }
+  }
+
+  @-webkit-keyframes ping{
+    75%, 100%{
+      transform:      scale(2);
+      opacity:      0;
+    }
+  }
+
+  @keyframes ping{
+    75%, 100%{
+      transform:      scale(2);
+      opacity:      0;
+    }
+  }
+
+  @-webkit-keyframes pulse{
+    50%{
+      opacity:      .5;
+    }
+  }
+
+  @keyframes pulse{
+    50%{
+      opacity:      .5;
+    }
+  }
+
+  @-webkit-keyframes bounce{
+    0%, 100%{
+      transform:      translateY(-25%);
+      -webkit-animation-timing-function:      cubic-bezier(0.8,0,1,1);
+              animation-timing-function:      cubic-bezier(0.8,0,1,1);
+    }
+
+    50%{
+      transform:      none;
+      -webkit-animation-timing-function:      cubic-bezier(0,0,0.2,1);
+              animation-timing-function:      cubic-bezier(0,0,0.2,1);
+    }
+  }
+
+  @keyframes bounce{
+    0%, 100%{
+      transform:      translateY(-25%);
+      -webkit-animation-timing-function:      cubic-bezier(0.8,0,1,1);
+              animation-timing-function:      cubic-bezier(0.8,0,1,1);
+    }
+
+    50%{
+      transform:      none;
+      -webkit-animation-timing-function:      cubic-bezier(0,0,0.2,1);
+              animation-timing-function:      cubic-bezier(0,0,0.2,1);
+    }
+  }
+
+  @media (min-width: 640px){
+    .sm\:grid{
+      display:      grid;
+    }
+
+    .sm\:mx-64{
+      margin-left:      16rem;
+      margin-right:      16rem;
+    }
+
+    .sm\:mb-16{
+      margin-bottom:      4rem;
+    }
+
+    .sm\:mt-24{
+      margin-top:      6rem;
+    }
+
+    .sm\:gap-16{
+      gap:      4rem;
+    }
+
+    .sm\:grid-cols-3{
+      grid-template-columns:      repeat(3, minmax(0, 1fr));
+    }
+
+    .sm\:col-span-2{
+      grid-column:      span 2 / span 2;
+    }
+  }
+
+  @media (min-width: 768px){
+  }
+
+  @media (min-width: 1024px){
+  }
+
+  @media (min-width: 1280px){
+  }
+
+  @media (min-width: 1536px){
+  }</style>
+  <style type="text/css">
+  /* base style */
+
+  /* FONT FAMILIES */
+
+  :root {
+    --heading-default: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif;
+    --mono-default: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+    --body-default: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif;
+  }
+
+  body,
+  .posts-list .post-preview p,
+  .posts-list .description p {
+    font-family: var(--body-font), var(--body-default);
+  }
+
+  h1, h2, h3, h4, h5, h6,
+  .posts-list .post-preview h2,
+  .posts-list .description h2 {
+    font-family: var(--heading-font), var(--heading-default);
+  }
+
+  d-article div.sourceCode code,
+  d-article pre code {
+    font-family: var(--mono-font), var(--mono-default);
+  }
+
+
+  /*-- TITLE --*/
+  d-title h1,
+  .posts-list > h1 {
+    color: var(--title-color, black);
+  }
+
+  d-title h1 {
+    font-size: var(--title-size, 50px);
+  }
+
+  /*-- HEADERS --*/
+  d-article h1,
+  d-article h2,
+  d-article h3,
+  d-article h4,
+  d-article h5,
+  d-article h6 {
+    color: var(--header-color, rgba(0, 0, 0, 0.8));
+  }
+
+  /*-- BODY --*/
+  d-article > p,  /* only text inside of <p> tags */
+  d-article > ul, /* lists */
+  d-article > ol {
+    color: var(--body-color, rgba(0, 0, 0, 0.8));
+    font-size: var(--body-size, 1.06rem);
+  }
+
+
+  /*-- CODE --*/
+  d-article div.sourceCode code,
+  d-article pre code {
+    font-size: var(--code-size, 14px);
+  }
+
+  /*-- ASIDE --*/
+  d-article aside {
+    font-size: var(--aside-size, 12px);
+    color: var(--aside-color, rgba(0, 0, 0, 0.6));
+  }
+
+  /*-- FIGURE CAPTIONS --*/
+  figure .caption,
+  figure figcaption,
+  .figure .caption {
+    font-size: var(--fig-cap-size, 13px);
+    color: var(--fig-cap-color, rgba(0, 0, 0, 0.6));
+  }
+
+  /*-- METADATA --*/
+  d-byline h3 {
+    font-size: var(--heading-size, 0.6rem);
+    color: var(--heading-color, rgba(0, 0, 0, 0.5));
+  }
+
+  d-byline {
+    font-size: var(--body-size, 0.8rem);
+    color: var(--body-color, rgba(0, 0, 0, 0.8));
+  }
+
+  d-byline a,
+  d-article d-byline a {
+    color: var(--body-color, rgba(0, 0, 0, 0.8));
+  }
+
+  /*-- TABLE OF CONTENTS --*/
+  .d-contents nav h3 {
+    font-size: var(--heading-size, 18px);
+  }
+
+  .d-contents nav a {
+    font-size: var(--contents-size, 13px);
+  }
+
+  /*-- APPENDIX --*/
+  d-appendix h3 {
+    font-size: var(--heading-size, 15px);
+    color: var(--heading-color, rgba(0, 0, 0, 0.65));
+  }
+
+  d-appendix {
+    font-size: var(--text-size, 0.8em);
+    color: var(--text-color, rgba(0, 0, 0, 0.5));
+  }
+
+  d-appendix d-footnote-list a.footnote-backlink {
+    color: var(--text-color, rgba(0, 0, 0, 0.5));
+  }
+
+  /*-- WEBSITE HEADER + FOOTER --*/
+  .distill-site-header .title {
+    font-size: var(--title-size, 18px);
+    font-family: var(--navbar-font), var(--heading-default);
+  }
+
+  .distill-site-header a,
+  .nav-dropdown .nav-dropbtn {
+    font-family: var(--navbar-font), var(--heading-default);
+  }
+
+  .nav-dropdown .nav-dropbtn {
+    color: var(--text-color, rgba(255, 255, 255, 0.8));
+    font-size: var(--text-size, 15px);
+  }
+
+  .distill-site-header a:hover,
+  .nav-dropdown:hover .nav-dropbtn {
+    color: var(--hover-color, white);
+  }
+
+  .distill-site-header {
+    font-size: var(--text-size, 15px);
+    color: var(--text-color, rgba(255, 255, 255, 0.8));
+    background-color: var(--bkgd-color, #0F2E3D);
+  }
+
+  .distill-site-footer {
+    font-size: var(--text-size, 15px);
+    color: var(--text-color, rgba(255, 255, 255, 0.8));
+    background-color: var(--bkgd-color, #0F2E3D);
+  }
+
+  .distill-site-footer a:hover {
+    color: var(--hover-color, white);
+  }</style>
+  <!--/radix_placeholder_distill-->
+  <script src="site_libs/header-attrs-2.8/header-attrs.js"></script>
+  <script src="site_libs/htmlwidgets-1.5.3/htmlwidgets.js"></script>
+  <script src="site_libs/jquery-1.12.4/jquery.min.js"></script>
+  <link href="site_libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
+  <script src="site_libs/leaflet-1.3.1/leaflet.js"></script>
+  <link href="site_libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
+  <script src="site_libs/proj4-2.6.2/proj4.min.js"></script>
+  <script src="site_libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
+  <link href="site_libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
+  <script src="site_libs/leaflet-binding-2.0.4.1/leaflet.js"></script>
+  <script src="site_libs/leaflet-providers-1.9.0/leaflet-providers_1.9.0.js"></script>
+  <script src="site_libs/leaflet-providers-plugin-2.0.4.1/leaflet-providers-plugin.js"></script>
+  <link href="site_libs/leaflet-markercluster-1.0.5/MarkerCluster.css" rel="stylesheet" />
+  <link href="site_libs/leaflet-markercluster-1.0.5/MarkerCluster.Default.css" rel="stylesheet" />
+  <script src="site_libs/leaflet-markercluster-1.0.5/leaflet.markercluster.js"></script>
+  <script src="site_libs/leaflet-markercluster-1.0.5/leaflet.markercluster.freezable.js"></script>
+  <script src="site_libs/leaflet-markercluster-1.0.5/leaflet.markercluster.layersupport.js"></script>
+  <script src="site_libs/popper-2.6.0/popper.min.js"></script>
+  <link href="site_libs/tippy-6.2.7/tippy.css" rel="stylesheet" />
+  <link href="site_libs/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
+  <script src="site_libs/tippy-6.2.7/tippy.umd.min.js"></script>
+  <script src="site_libs/anchor-4.2.2/anchor.min.js"></script>
+  <script src="site_libs/bowser-1.9.3/bowser.min.js"></script>
+  <script src="site_libs/webcomponents-2.0.0/webcomponents.js"></script>
+  <script src="site_libs/distill-2.2.21/template.v2.js"></script>
+  <!--radix_placeholder_site_in_header-->
+  <!--/radix_placeholder_site_in_header-->
+
+
+</head>
+
+<body>
+
+<!--radix_placeholder_front_matter-->
+
+<script id="distill-front-matter" type="text/json">
+{"title":"Chinatown","authors":[]}
+</script>
+
+<!--/radix_placeholder_front_matter-->
+<!--radix_placeholder_navigation_before_body-->
+<header class="header header--fixed" role="banner">
+<nav class="distill-site-nav distill-site-header">
+<div class="nav-left">
+<span class="logo">
+<img src="assets/api_logo.png"/>
+</span>
+<a href="index.html" class="title">API Food Assets Map</a>
+</div>
+<div class="nav-right">
+<a href="index.html">Home</a>
+<div class="nav-dropdown">
+<button class="nav-dropbtn">
+Neighborhoods
+ 
+<span class="down-arrow">&#x25BE;</span>
+</button>
+<div class="nav-dropdown-content">
+<a href="bayview-hunters-point.html">Bayview Hunters Point</a>
+<a href="chinatown.html">Chinatown</a>
+<a href="excelsior.html">Excelsior</a>
+<a href="inner-sunset.html">Inner Sunset</a>
+<a href="japantown.html">Japantown</a>
+<a href="outer-sunset.html">Outer Sunset</a>
+<a href="richmond.html">Richmond</a>
+<a href="soma.html">SOMA</a>
+<a href="tenderloin.html">Tenderloin</a>
+<a href="visitacion-valley.html">Visitacion Valley</a>
+</div>
+</div>
+<a href="contact.html">Contact</a>
+<a href="javascript:void(0);" class="nav-toggle">&#9776;</a>
+</div>
+</nav>
+</header>
+<!--/radix_placeholder_navigation_before_body-->
+<!--radix_placeholder_site_before_body-->
+<!--/radix_placeholder_site_before_body-->
+
+<div class="d-title">
+<h1>Chinatown</h1>
+<!--radix_placeholder_categories-->
+<!--/radix_placeholder_categories-->
+
+</div>
+
+
+<div class="d-article">
+<div class="layout-chunk" data-layout="l-body">
+
+</div>
+<div class="mt-16 mb-4">
+<h1 class="text-4xl font-bold mb-4">
+Chinatown
+</h1>
+</div>
+<div class="layout-chunk" data-layout="l-screen-inset">
+<div id="htmlwidget-19c7292122759d15359d" style="width:624px;height:768px;" class="leaflet html-widget"></div>
+<script type="application/json" data-for="htmlwidget-19c7292122759d15359d">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addProviderTiles","args":["CartoDB.Positron",null,null,{"errorTileUrl":"","noWrap":false,"detectRetina":false}]},{"method":"addPolygons","args":[[[[{"lng":[-122.409541047693,-122.409721578729,-122.409898751981,-122.410075970017,-122.410263524311,-122.408618845523,-122.407016162822,-122.406667930863,-122.405512936042,-122.405288396716,-122.405142977142,-122.404412161066,-122.403316944716,-122.40313929489,-122.402957361312,-122.404613421442,-122.404418428022,-122.404219835546,-122.404030724298,-122.405573744951,-122.407148804516,-122.407340016287,-122.407322928541,-122.407518951008,-122.407536040075,-122.407727185792,-122.407903301916,-122.409541047693],"lat":[37.7938519283136,37.7947368238531,37.7956164241125,37.7964927605727,37.7974201850211,37.7976275608065,37.7978223011569,37.7978646119564,37.79706459021,37.7969090564145,37.7962109542128,37.7963020967545,37.795531832031,37.794666281035,37.7937798570599,37.7935650834196,37.7926386548536,37.7916905834141,37.7907600953505,37.7905652372082,37.7903663109249,37.7912959728307,37.7912981347396,37.792251163447,37.7922490051226,37.7931783007755,37.7940602972452,37.7938519283136]}]]],null,"<span style='border-bottom-width: 2px;border-bottom-style: solid #000;padding-bottom: 10px;'>Show API Population<br><\/span><br>",{"interactive":true,"className":"","stroke":true,"color":"#ffffff","weight":0.5,"opacity":1,"fill":true,"fillColor":"#B4272F","fillOpacity":0.8,"smoothFactor":1,"noClip":false},"<span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280'>Chinatown<br><\/span><span style='font-family: Oswald; font-weight:700; font-size:20px; color: #111827;'>84% API Population<\/span><br/>",null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addMarkers","args":[[],[],{"iconWidth":24,"iconHeight":24},null,"Corner Stores",{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},[],null,{"showCoverageOnHover":false,"zoomToBoundsOnClick":true,"spiderfyOnMaxZoom":true,"removeOutsideVisibleBounds":true,"spiderLegPolylineOptions":{"weight":1.5,"color":"#222","opacity":0.5},"freezeAtZoom":false},null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addMarkers","args":[37.7956834,-122.4083912,{"iconUrl":{"data":"data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iMTIiIGN5PSIxMiIgcj0iMTIiIGZpbGw9IiNDOUQ3RTEiLz4KPHBhdGggZD0iTTcuMzMzNTQgMTBWMTkuMzMzM0gxNi42NjY5VjEwIiBzdHJva2U9ImJsYWNrIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz4KPHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik0xNC4zMzM1IDE0LjMzMzNDMTQuMzMzNSAxNS42MjIgMTMuMjg4OSAxNi42NjY3IDEyLjAwMDIgMTYuNjY2N0MxMC43MTE1IDE2LjY2NjcgOS42NjY4NyAxNS42MjIgOS42NjY4NyAxNC4zMzMzQzkuNjY2ODcgMTMuMDQ0IDEwLjcxMTUgMTIgMTIuMDAwMiAxMkMxMy4yODg5IDEyIDE0LjMzMzUgMTMuMDQ0IDE0LjMzMzUgMTQuMzMzM1oiIHN0cm9rZT0iYmxhY2siIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPgo8cGF0aCBkPSJNNi42NjY4NyA0LjY2NjY3VjcuMzMzMzMiIHN0cm9rZT0iYmxhY2siIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPgo8cGF0aCBkPSJNOS4zMzM1NCA0LjY2NjY3VjcuMzMzMzMiIHN0cm9rZT0iYmxhY2siIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPgo8cGF0aCBkPSJNMTIuMDAwMiA0LjY2NjY3VjcuMzMzMzMiIHN0cm9rZT0iYmxhY2siIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPgo8cGF0aCBkPSJNMTQuNjY2OSA0LjY2NjY3VjcuMzMzMzMiIHN0cm9rZT0iYmxhY2siIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPgo8cGF0aCBkPSJNMTcuMzMzNSA0LjY2NjY3VjcuMzMzMzMiIHN0cm9rZT0iYmxhY2siIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPgo8L3N2Zz4K","index":0},"iconWidth":24,"iconHeight":24},null,"Drug Stores",{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},"<span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>Drug Store<\/span><br/><span style='font-family: Oswald; font-weight:700; font-size:20px; color: #111827'>Wellman's HealthMart<\/span><br/><span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>1053 Stockton Street (Chinatown) <\/span><br/>",null,{"showCoverageOnHover":false,"zoomToBoundsOnClick":true,"spiderfyOnMaxZoom":true,"removeOutsideVisibleBounds":true,"spiderLegPolylineOptions":{"weight":1.5,"color":"#222","opacity":0.5},"freezeAtZoom":false},null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addMarkers","args":[[],[],{"iconWidth":24,"iconHeight":24},null,"Farmers Markets",{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},[],null,{"showCoverageOnHover":false,"zoomToBoundsOnClick":true,"spiderfyOnMaxZoom":true,"removeOutsideVisibleBounds":true,"spiderLegPolylineOptions":{"weight":1.5,"color":"#222","opacity":0.5},"freezeAtZoom":false},null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addMarkers","args":[[],[],{"iconWidth":24,"iconHeight":24},null,"Food Banks/Pantries",{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},[],null,{"showCoverageOnHover":false,"zoomToBoundsOnClick":true,"spiderfyOnMaxZoom":true,"removeOutsideVisibleBounds":true,"spiderLegPolylineOptions":{"weight":1.5,"color":"#222","opacity":0.5},"freezeAtZoom":false},null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addMarkers","args":[[],[],{"iconWidth":24,"iconHeight":24},null,"Food Pharmacies",{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},[],null,{"showCoverageOnHover":false,"zoomToBoundsOnClick":true,"spiderfyOnMaxZoom":true,"removeOutsideVisibleBounds":true,"spiderLegPolylineOptions":{"weight":1.5,"color":"#222","opacity":0.5},"freezeAtZoom":false},null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addMarkers","args":[[],[],{"iconWidth":24,"iconHeight":24},null,"Free Prepared Food or Hot Meals",{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},[],null,{"showCoverageOnHover":false,"zoomToBoundsOnClick":true,"spiderfyOnMaxZoom":true,"removeOutsideVisibleBounds":true,"spiderLegPolylineOptions":{"weight":1.5,"color":"#222","opacity":0.5},"freezeAtZoom":false},null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addMarkers","args":[[37.7974117,37.7971173,37.7916382,37.7969706,37.7974827,37.7957121,37.7966205,37.795853,37.796925,37.797016,37.79731,37.795193,37.794994,37.796871,37.795277,37.793495,37.797508,37.796646,37.796108,37.797131,37.796974,37.795124,37.79681,37.796844,37.796391,37.797726,37.796013,37.796223,37.795746,37.796474,37.795048,37.796974,37.795189,37.796417,37.796143,37.794159,37.795197,37.797031,37.797134,37.795177,37.796974,37.797482,37.795769,37.796989,37.796028,37.796028,37.795223,37.797009,37.793907,37.795582,37.7968178,37.79393005,37.7970928],[-122.4084311,-122.4069884,-122.4056942,-122.4083521,-122.4087315,-122.4084066,-122.4097355,-122.40925,-122.40874,-122.40622,-122.40881,-122.40815,-122.40581,-122.40837,-122.40817,-122.40768,-122.40855,-122.40884,-122.40825,-122.40682,-122.4085,-122.40743,-122.40839,-122.40791,-122.40838,-122.40764,-122.40829,-122.40837,-122.40947,-122.40839,-122.40765,-122.4085,-122.40805,-122.40667,-122.4078,-122.4078,-122.40801,-122.40685,-122.40828,-122.40805,-122.4085,-122.40821,-122.409,-122.40844,-122.40685,-122.40823,-122.40791,-122.40801,-122.40765,-122.4082,-122.4083185,-122.4054565,-122.4086681],{"iconUrl":{"data":["data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iMTIiIGN5PSIxMiIgcj0iMTIiIGZpbGw9IiNDOUQ3RTEiLz4KPHBhdGggZD0iTTE4LjUyNjYgMTUuMzMzM0gxNC42NjY2QzEzLjkzMDYgMTUuMzMzMyAxMy4zMzMzIDE1LjkzMDcgMTMuMzMzMyAxNi42NjY3VjE5LjIwNjciIHN0cm9rZT0iYmxhY2siIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPgo8cGF0aCBkPSJNNC43OTM4MSAxMy4zMzMzSDcuMzgzMTRDNy43Njg0NyAxMy4zMzMzIDguMTI4NDcgMTMuMTQwNyA4LjM0MjQ3IDEyLjgxOTNMOC45OTExNCAxMS44NDczQzkuMjA1MTQgMTEuNTI2IDkuNTY1MTQgMTEuMzMzMyA5Ljk1MDQ3IDExLjMzMzNIOS45NTM4MUMxMC4zOTExIDExLjMzMzMgMTAuNzkwNSAxMS41OCAxMC45ODU4IDExLjk3MDdMMTEuMDE1MSAxMi4wMjkzQzExLjIxMDUgMTIuNDIgMTEuNjA5OCAxMi42NjY3IDEyLjA0NjUgMTIuNjY2N0gxMi4xODA1QzEyLjgxNzEgMTIuNjY2NyAxMy4zMzM4IDEyLjE1MDcgMTMuMzMzOCAxMS41MTMzVjExLjUxMjdDMTMuMzMzOCAxMS4wMDczIDEzLjY1NjUgMTAuNTU4NyAxNC4xMzU4IDEwLjM5OTNMMTQuNjQ5OCAxMC4yMjhDMTUuMDU3OCAxMC4wOTIgMTUuMzMzOCA5LjcwOTMzIDE1LjMzMzggOS4yNzkzM1Y5QzE1LjMzMzggOC40NDggMTQuODg1OCA4IDE0LjMzMzggOEMxMy43ODExIDggMTMuMzMzOCA3LjU1MiAxMy4zMzM4IDdWNC43OTMzMyIgc3Ryb2tlPSJibGFjayIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+CjxwYXRoIGZpbGwtcnVsZT0iZXZlbm9kZCIgY2xpcC1ydWxlPSJldmVub2RkIiBkPSJNMTkuMzMzNSAxMkMxOS4zMzM1IDE2LjA1IDE2LjA1MDIgMTkuMzMzMyAxMi4wMDAyIDE5LjMzMzNDNy45NTAyIDE5LjMzMzMgNC42NjY4NyAxNi4wNSA0LjY2Njg3IDEyQzQuNjY2ODcgNy45NSA3Ljk1MDIgNC42NjY2NyAxMi4wMDAyIDQuNjY2NjdDMTYuMDUwMiA0LjY2NjY3IDE5LjMzMzUgNy45NSAxOS4zMzM1IDEyWiIgc3Ryb2tlPSJibGFjayIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+Cjwvc3ZnPgo=","data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iMTIiIGN5PSIxMiIgcj0iMTIiIGZpbGw9IiMwMjQyNzEiLz4KPHBhdGggZD0iTTE4LjUyNjYgMTUuMzMzM0gxNC42NjY2QzEzLjkzMDYgMTUuMzMzMyAxMy4zMzMzIDE1LjkzMDcgMTMuMzMzMyAxNi42NjY3VjE5LjIwNjciIHN0cm9rZT0id2hpdGUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPgo8cGF0aCBkPSJNNC43OTM4MSAxMy4zMzMzSDcuMzgzMTRDNy43Njg0NyAxMy4zMzMzIDguMTI4NDcgMTMuMTQwNyA4LjM0MjQ3IDEyLjgxOTNMOC45OTExNCAxMS44NDczQzkuMjA1MTQgMTEuNTI2IDkuNTY1MTQgMTEuMzMzMyA5Ljk1MDQ3IDExLjMzMzNIOS45NTM4MUMxMC4zOTExIDExLjMzMzMgMTAuNzkwNSAxMS41OCAxMC45ODU4IDExLjk3MDdMMTEuMDE1MSAxMi4wMjkzQzExLjIxMDUgMTIuNDIgMTEuNjA5OCAxMi42NjY3IDEyLjA0NjUgMTIuNjY2N0gxMi4xODA1QzEyLjgxNzEgMTIuNjY2NyAxMy4zMzM4IDEyLjE1MDcgMTMuMzMzOCAxMS41MTMzVjExLjUxMjdDMTMuMzMzOCAxMS4wMDczIDEzLjY1NjUgMTAuNTU4NyAxNC4xMzU4IDEwLjM5OTNMMTQuNjQ5OCAxMC4yMjhDMTUuMDU3OCAxMC4wOTIgMTUuMzMzOCA5LjcwOTMzIDE1LjMzMzggOS4yNzkzM1Y5QzE1LjMzMzggOC40NDggMTQuODg1OCA4IDE0LjMzMzggOEMxMy43ODExIDggMTMuMzMzOCA3LjU1MiAxMy4zMzM4IDdWNC43OTMzMyIgc3Ryb2tlPSJ3aGl0ZSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+CjxwYXRoIGZpbGwtcnVsZT0iZXZlbm9kZCIgY2xpcC1ydWxlPSJldmVub2RkIiBkPSJNMTkuMzMzNSAxMkMxOS4zMzM1IDE2LjA1IDE2LjA1MDIgMTkuMzMzMyAxMi4wMDAyIDE5LjMzMzNDNy45NTAyIDE5LjMzMzMgNC42NjY4NyAxNi4wNSA0LjY2Njg3IDEyQzQuNjY2ODcgNy45NSA3Ljk1MDIgNC42NjY2NyAxMi4wMDAyIDQuNjY2NjdDMTYuMDUwMiA0LjY2NjY3IDE5LjMzMzUgNy45NSAxOS4zMzM1IDEyWiIgc3Ryb2tlPSJ3aGl0ZSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+Cjwvc3ZnPgo="],"index":[0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0]},"iconWidth":24,"iconHeight":24},null,"International Grocery Stores",{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},["<span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>International Grocery Store<\/span><br/><span style='font-family: Oswald; font-weight:700; font-size:20px; color: #111827'>Kin Tat Co.<\/span><br/><span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>1252 Stockton Street (Chinatown) <\/span><br/>","<span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>International Grocery Store<\/span><br/><span style='font-family: Oswald; font-weight:700; font-size:20px; color: #111827'>Summing Ho Trading Co.<\/span><br/><span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>1111 Grant Avenue (Chinatown) <\/span><br/>","<span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>International Grocery Store<\/span><br/><span style='font-family: Oswald; font-weight:700; font-size:20px; color: #111827'>Chinatown Bargain Depot<\/span><br/><span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>500 Grant Avenue (Chinatown) <\/span><br/>","<span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>International Grocery Store<\/span><br/><span style='font-family: Oswald; font-weight:700; font-size:20px; color: #111827'>Dong Hing Supermarket<\/span><br/><span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>1214 Stockton Street (Chinatown) <\/span><br/>","<span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>International Grocery Store<\/span><br/><span style='font-family: Oswald; font-weight:700; font-size:20px; color: #111827'>Kum Luen<\/span><br/><span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>1248 Stockton St (Chinatown) <\/span><br/>","<span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>International Grocery Store<\/span><br/><span style='font-family: Oswald; font-weight:700; font-size:20px; color: #111827'>VeggieLand Market<\/span><br/><span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>1101 Stockton St (Chinatown) <\/span><br/>","<span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>International Grocery Store<\/span><br/><span style='font-family: Oswald; font-weight:700; font-size:20px; color: #111827'>Gold Coin Trading Co<\/span><br/><span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>878 Pacific Avenue (Chinatown) <\/span><br/>","<span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>International Grocery Store (Accepts SNAP/WIC)<\/span><br/><span style='font-family: Oswald; font-weight:700; font-size:20px; color: #111827'>Mp Fish Market<\/span><br/><span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>848 Jackson St (Chinatown) <\/span><br/>","<span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>International Grocery Store (Accepts SNAP/WIC)<\/span><br/><span style='font-family: Oswald; font-weight:700; font-size:20px; color: #111827'>Dai Chung Wah Trading Llc<\/span><br/><span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>1201 Stockton St (Chinatown) <\/span><br/>","<span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>International Grocery Store (Accepts SNAP/WIC)<\/span><br/><span style='font-family: Oswald; font-weight:700; font-size:20px; color: #111827'>Kin Fai Produce<\/span><br/><span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>628 Pacific Ave (Chinatown) <\/span><br/>","<span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>International Grocery Store (Accepts SNAP/WIC)<\/span><br/><span style='font-family: Oswald; font-weight:700; font-size:20px; color: #111827'>Fu Yuan Food Market<\/span><br/><span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>1251 Stockton St (Chinatown) <\/span><br/>","<span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>International Grocery Store (Accepts SNAP/WIC)<\/span><br/><span style='font-family: Oswald; font-weight:700; font-size:20px; color: #111827'>Hop Hing Ginseng & Company<\/span><br/><span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>1027 Stockton St (Chinatown) <\/span><br/>","<span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>International Grocery Store (Accepts SNAP/WIC)<\/span><br/><span style='font-family: Oswald; font-weight:700; font-size:20px; color: #111827'>Charming Sun Market Inc Dba Jin Yang Market<\/span><br/><span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>49 Walter U Lum Pl (Chinatown) <\/span><br/>","<span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>International Grocery Store (Accepts SNAP/WIC)<\/span><br/><span style='font-family: Oswald; font-weight:700; font-size:20px; color: #111827'>Dong Hing LLC<\/span><br/><span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>1210 Stockton St (Chinatown) <\/span><br/>","<span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>International Grocery Store (Accepts SNAP/WIC)<\/span><br/><span style='font-family: Oswald; font-weight:700; font-size:20px; color: #111827'>Mei's Groceries<\/span><br/><span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>1037 Stockton St (Chinatown) <\/span><br/>","<span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>International Grocery Store (Accepts SNAP/WIC)<\/span><br/><span style='font-family: Oswald; font-weight:700; font-size:20px; color: #111827'>Wycen Foods Inc.<\/span><br/><span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>832 Stockton St (Chinatown) <\/span><br/>","<span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>International Grocery Store (Accepts SNAP/WIC)<\/span><br/><span style='font-family: Oswald; font-weight:700; font-size:20px; color: #111827'>Xing Ye Trading Inc<\/span><br/><span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>1262 Stockton St (Chinatown) <\/span><br/>","<span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>International Grocery Store (Accepts SNAP/WIC)<\/span><br/><span style='font-family: Oswald; font-weight:700; font-size:20px; color: #111827'>New Wing Lung Food, Inc.<\/span><br/><span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>821 Pacific Ave (Chinatown) <\/span><br/>","<span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>International Grocery Store (Accepts SNAP/WIC)<\/span><br/><span style='font-family: Oswald; font-weight:700; font-size:20px; color: #111827'>D&T Market<\/span><br/><span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>1118 Stockton St (Chinatown) <\/span><br/>","<span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>International Grocery Store (Accepts SNAP/WIC)<\/span><br/><span style='font-family: Oswald; font-weight:700; font-size:20px; color: #111827'>Mansung Market Inc<\/span><br/><span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>1116 Grant Ave (Chinatown) <\/span><br/>","<span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>International Grocery Store (Accepts SNAP/WIC)<\/span><br/><span style='font-family: Oswald; font-weight:700; font-size:20px; color: #111827'>Sf Hop Hing, Llc<\/span><br/><span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>1211 Stockton St (Chinatown) <\/span><br/>","<span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>International Grocery Store (Accepts SNAP/WIC)<\/span><br/><span style='font-family: Oswald; font-weight:700; font-size:20px; color: #111827'>Da Chang Yuan<\/span><br/><span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>860 Washington St (Chinatown) <\/span><br/>","<span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>International Grocery Store (Accepts SNAP/WIC)<\/span><br/><span style='font-family: Oswald; font-weight:700; font-size:20px; color: #111827'>Huaxing Produce Inc. 1<\/span><br/><span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>1200 Stockton St (Chinatown) <\/span><br/>","<span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>International Grocery Store (Accepts SNAP/WIC)<\/span><br/><span style='font-family: Oswald; font-weight:700; font-size:20px; color: #111827'>Gum Sing Market Inc.<\/span><br/><span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>774 Pacific Ave (Chinatown) <\/span><br/>","<span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>International Grocery Store (Accepts SNAP/WIC)<\/span><br/><span style='font-family: Oswald; font-weight:700; font-size:20px; color: #111827'>Tan Hua Sf Llc<\/span><br/><span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>1143 Stockton St (Chinatown) <\/span><br/>","<span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>International Grocery Store (Accepts SNAP/WIC)<\/span><br/><span style='font-family: Oswald; font-weight:700; font-size:20px; color: #111827'>ABC Supermarket Inc<\/span><br/><span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>641 Broadway (Chinatown) <\/span><br/>","<span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>International Grocery Store (Accepts SNAP/WIC)<\/span><br/><span style='font-family: Oswald; font-weight:700; font-size:20px; color: #111827'>SHENG HING MARKET INC<\/span><br/><span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>1107 Stockton St (Chinatown) <\/span><br/>","<span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>International Grocery Store (Accepts SNAP/WIC)<\/span><br/><span style='font-family: Oswald; font-weight:700; font-size:20px; color: #111827'>Liang's Food<\/span><br/><span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>1145 Stockton St (Chinatown) <\/span><br/>","<span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>International Grocery Store (Accepts SNAP/WIC)<\/span><br/><span style='font-family: Oswald; font-weight:700; font-size:20px; color: #111827'>Jumbo Trading Company Llc<\/span><br/><span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>870 Jackson St (Chinatown) <\/span><br/>","<span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>International Grocery Store (Accepts SNAP/WIC)<\/span><br/><span style='font-family: Oswald; font-weight:700; font-size:20px; color: #111827'>Duk Hing<\/span><br/><span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>1151 Stockton St (Chinatown) <\/span><br/>","<span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>International Grocery Store (Accepts SNAP/WIC)<\/span><br/><span style='font-family: Oswald; font-weight:700; font-size:20px; color: #111827'>Dai Lee Food, Inc.<\/span><br/><span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>878 Washington St (Chinatown) <\/span><br/>","<span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>International Grocery Store (Accepts SNAP/WIC)<\/span><br/><span style='font-family: Oswald; font-weight:700; font-size:20px; color: #111827'>J & L Vegi Supermarket, Inc 1<\/span><br/><span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>1215 Stockton St (Chinatown) <\/span><br/>","<span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>International Grocery Store (Accepts SNAP/WIC)<\/span><br/><span style='font-family: Oswald; font-weight:700; font-size:20px; color: #111827'>New Rainbow House LLC<\/span><br/><span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>1014 Stockton St (Chinatown) <\/span><br/>","<span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>International Grocery Store (Accepts SNAP/WIC)<\/span><br/><span style='font-family: Oswald; font-weight:700; font-size:20px; color: #111827'>Fong Seng Co<\/span><br/><span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>1024 Grant Ave (Chinatown) <\/span><br/>","<span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>International Grocery Store (Accepts SNAP/WIC)<\/span><br/><span style='font-family: Oswald; font-weight:700; font-size:20px; color: #111827'>Juicy Fruit Inc<\/span><br/><span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>772 Jackson St (Chinatown) <\/span><br/>","<span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>International Grocery Store (Accepts SNAP/WIC)<\/span><br/><span style='font-family: Oswald; font-weight:700; font-size:20px; color: #111827'>Long Hua's Grocery Store<\/span><br/><span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>906 Stockton St (Chinatown) <\/span><br/>","<span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>International Grocery Store (Accepts SNAP/WIC)<\/span><br/><span style='font-family: Oswald; font-weight:700; font-size:20px; color: #111827'>Golden Way Trading Company<\/span><br/><span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>1024 Stockton St (Chinatown) <\/span><br/>","<span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>International Grocery Store (Accepts SNAP/WIC)<\/span><br/><span style='font-family: Oswald; font-weight:700; font-size:20px; color: #111827'>May Sun Market LLC<\/span><br/><span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>1101 Grant Ave (Chinatown) <\/span><br/>","<span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>International Grocery Store (Accepts SNAP/WIC)<\/span><br/><span style='font-family: Oswald; font-weight:700; font-size:20px; color: #111827'>Sun Sun Trading Co<\/span><br/><span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>1226 Stockton St (Chinatown) <\/span><br/>","<span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>International Grocery Store (Accepts SNAP/WIC)<\/span><br/><span style='font-family: Oswald; font-weight:700; font-size:20px; color: #111827'>S&M Ginseng Inc<\/span><br/><span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>1000 Stockton St (Chinatown) <\/span><br/>","<span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>International Grocery Store (Accepts SNAP/WIC)<\/span><br/><span style='font-family: Oswald; font-weight:700; font-size:20px; color: #111827'>New Luen Sing Fish Market<\/span><br/><span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>1207 Stockton St (Chinatown) <\/span><br/>","<span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>International Grocery Store (Accepts SNAP/WIC)<\/span><br/><span style='font-family: Oswald; font-weight:700; font-size:20px; color: #111827'>Tai Hing, Inc<\/span><br/><span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>681 Broadway (Chinatown) <\/span><br/>","<span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>International Grocery Store (Accepts SNAP/WIC)<\/span><br/><span style='font-family: Oswald; font-weight:700; font-size:20px; color: #111827'>Wl Trading Inc<\/span><br/><span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>844 Jackson St (Chinatown) <\/span><br/>","<span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>International Grocery Store (Accepts SNAP/WIC)<\/span><br/><span style='font-family: Oswald; font-weight:700; font-size:20px; color: #111827'>New Fruit Garden Llc<\/span><br/><span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>1216 Stockton St (Chinatown) <\/span><br/>","<span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>International Grocery Store (Accepts SNAP/WIC)<\/span><br/><span style='font-family: Oswald; font-weight:700; font-size:20px; color: #111827'>Hua Long Trading Inc 1<\/span><br/><span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>714 Jackson St (Chinatown) <\/span><br/>","<span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>International Grocery Store (Accepts SNAP/WIC)<\/span><br/><span style='font-family: Oswald; font-weight:700; font-size:20px; color: #111827'>City Super<\/span><br/><span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>1108 Stockton St (Chinatown) <\/span><br/>","<span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>International Grocery Store (Accepts SNAP/WIC)<\/span><br/><span style='font-family: Oswald; font-weight:700; font-size:20px; color: #111827'>Changyi Trading Inc.<\/span><br/><span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>1018 Stockton St (Chinatown) <\/span><br/>","<span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>International Grocery Store (Accepts SNAP/WIC)<\/span><br/><span style='font-family: Oswald; font-weight:700; font-size:20px; color: #111827'>Asia Market<\/span><br/><span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>772 Pacific Ave (Chinatown) <\/span><br/>","<span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>International Grocery Store (Accepts SNAP/WIC)<\/span><br/><span style='font-family: Oswald; font-weight:700; font-size:20px; color: #111827'>Komi Food Company<\/span><br/><span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>898 Stockton St (Chinatown) <\/span><br/>","<span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>International Grocery Store (Accepts SNAP/WIC)<\/span><br/><span style='font-family: Oswald; font-weight:700; font-size:20px; color: #111827'>Vegiland Market Inc 1<\/span><br/><span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>1055 Stockton St (Chinatown) <\/span><br/>","<span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>International Grocery Store<\/span><br/><span style='font-family: Oswald; font-weight:700; font-size:20px; color: #111827'>Wah Hing Market<\/span><br/><span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>1200 Stockton Street (Chinatown) <\/span><br/>","<span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>International Grocery Store<\/span><br/><span style='font-family: Oswald; font-weight:700; font-size:20px; color: #111827'>Mow Lee Shing Kee & Company<\/span><br/><span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>774 Commercial St (Chinatown) <\/span><br/>","<span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>International Grocery Store<\/span><br/><span style='font-family: Oswald; font-weight:700; font-size:20px; color: #111827'>J & L Vegi Supermarket<\/span><br/><span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>1215 Stockton Street (Chinatown) <\/span><br/>"],null,{"showCoverageOnHover":false,"zoomToBoundsOnClick":true,"spiderfyOnMaxZoom":true,"removeOutsideVisibleBounds":true,"spiderLegPolylineOptions":{"weight":1.5,"color":"#222","opacity":0.5},"freezeAtZoom":false},null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addMarkers","args":[37.7964023,-122.4053469,{"iconUrl":{"data":"data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iMTIiIGN5PSIxMiIgcj0iMTIiIGZpbGw9IiNDOUQ3RTEiLz4KPHBhdGggZD0iTTE3LjMzMzUgOS45MTZDMTguNDgzNSA5LjYyIDE5LjMzMzUgOC41NzYgMTkuMzMzNSA3LjMzMzMzQzE5LjMzMzUgNS44NjA2NiAxOC4xMzk1IDQuNjY2NjYgMTYuNjY2OSA0LjY2NjY2QzE2LjE4MDkgNC42NjY2NiAxNS43MjU1IDQuNzk2IDE1LjMzMzUgNS4wMjMzMyIgc3Ryb2tlPSJibGFjayIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+CjxwYXRoIGQ9Ik02LjkxNjg3IDEwSDE0LjQxNjkiIHN0cm9rZT0iYmxhY2siIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPgo8cGF0aCBkPSJNMTYuNjY2OSA3LjMzMzMzTDEwLjY2NjkgMTQuNjY2N0w0LjY2Njg3IDcuMzMzMzMiIHN0cm9rZT0iYmxhY2siIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPgo8cGF0aCBkPSJNNC42NjY4NyA3LjMzMzMzSDE2LjY2NjkiIHN0cm9rZT0iYmxhY2siIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPgo8cGF0aCBkPSJNMTAuNjY2OSAxOS4zMzMzVjE0LjY2NjciIHN0cm9rZT0iYmxhY2siIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPgo8cGF0aCBkPSJNOC42NjY4NyAxOS4zMzMzSDEyLjY2NjkiIHN0cm9rZT0iYmxhY2siIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPgo8L3N2Zz4K","index":0},"iconWidth":24,"iconHeight":24},null,"Liquor Stores",{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},"<span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>Liquor Store<\/span><br/><span style='font-family: Oswald; font-weight:700; font-size:20px; color: #111827'>Wayne's Liquors<\/span><br/><span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>911 Kearny Street (Chinatown) <\/span><br/>",null,{"showCoverageOnHover":false,"zoomToBoundsOnClick":true,"spiderfyOnMaxZoom":true,"removeOutsideVisibleBounds":true,"spiderLegPolylineOptions":{"weight":1.5,"color":"#222","opacity":0.5},"freezeAtZoom":false},null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addMarkers","args":[[37.7975505,37.7973037,37.7975749,37.7974171,37.7968665,37.7968798,37.7960898,37.7950786,37.7961687,37.7953657,37.7970399,37.7972877,37.7947073,37.7956521,37.7942549,37.7940971,37.7914779,37.7914101,37.791569,37.7912849,37.791516,37.7937836,37.7937713,37.7937518,37.7937986,37.7936718,37.7946365,37.7944982,37.7944431,37.7944696,37.7945988,37.7910798,37.7910077,37.7916072,37.7925243,37.7933383,37.7960482,37.7961915,37.7957316,37.7951702,37.7951494,37.795165,37.795171,37.7936366,37.7935904,37.7964204377987,37.7948482,37.7959908,37.7953032,37.7943439,37.7962178,37.794798,37.7961374,37.7960077,37.7960268,37.7958722,37.795941,37.7955186,37.7961086,37.7962001,37.797336,37.7964714,37.7965396,37.7967115,37.7972274,37.7950891,37.7968879,37.7959693,37.7960034,37.7945342,37.7970459,37.7910225,37.7955854,37.7940933,37.7962281,37.7937168,37.7965057,37.7908683,37.794091,37.7929705,37.7934776,37.7942018,37.7951704,37.7942586,37.7946018],[-122.4082232,-122.4084193,-122.4080609,-122.4087304,-122.4079888,-122.4078459,-122.4055754,-122.4061659,-122.4063142,-122.4055504,-122.4064962,-122.4070178,-122.4047006,-122.4083785,-122.4046309,-122.4049029,-122.4043404,-122.4043323,-122.4043646,-122.4043108,-122.4043592,-122.4040444,-122.4038451,-122.4039854,-122.4036156,-122.4044519,-122.4044768,-122.4038504,-122.4039711,-122.4040447,-122.4044066,-122.404282,-122.404337,-122.4059455,-122.4066259,-122.4073814,-122.4058136,-122.4061401,-122.4065185,-122.4068338,-122.4071098,-122.4070129,-122.4067349,-122.4060613,-122.4060637,-122.405675503892,-122.4061012,-122.4063137,-122.4059915,-122.4051279,-122.404589,-122.4047041,-122.4044342,-122.4060508,-122.4059462,-122.4065447,-122.4059366,-122.4043661,-122.404381,-122.4045177,-122.4098768,-122.4053563,-122.4053693,-122.4054027,-122.4059999,-122.4060716,-122.4100069,-122.406503,-122.4075523,-122.4058326,-122.406449,-122.4042452,-122.4083674,-122.407062,-122.4084885,-122.4066622,-122.4053638,-122.4057244,-122.4069112,-122.4061743,-122.4060511,-122.4039514,-122.406792,-122.4058206,-122.4045077],{"iconUrl":{"data":"data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iMTIiIGN5PSIxMiIgcj0iMTIiIGZpbGw9IiNDOUQ3RTEiLz4KPHBhdGggZD0iTTYuNjY2ODcgNC42NjY2N1Y5LjMzMzMzIiBzdHJva2U9ImJsYWNrIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz4KPHBhdGggZD0iTTQuNjY2ODcgNC42NjY2N1YxMEM0LjY2Njg3IDEwLjczNiA1LjI2NDIgMTEuMzMzMyA2LjAwMDIgMTEuMzMzM0g3LjMzMzU0QzguMDY5NTQgMTEuMzMzMyA4LjY2Njg3IDEwLjczNiA4LjY2Njg3IDEwVjQuNjY2NjciIHN0cm9rZT0iYmxhY2siIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPgo8cGF0aCBkPSJNNi42NjY4NyAxMS4zMzMzVjE5LjMzMzMiIHN0cm9rZT0iYmxhY2siIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPgo8cGF0aCBkPSJNMTcuMzMzNSAxMS4zMzMzVjE5LjMzMzMiIHN0cm9rZT0iYmxhY2siIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPgo8cGF0aCBkPSJNMTMuMzMzNSAxOS4zMzMzVjQuNjY2NjdDMTEuODYwOSA0LjY2NjY3IDEwLjY2NjkgNS44NjA2NyAxMC42NjY5IDcuMzMzMzNWMTRIMTMuMzMzNSIgc3Ryb2tlPSJibGFjayIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+CjxwYXRoIGZpbGwtcnVsZT0iZXZlbm9kZCIgY2xpcC1ydWxlPSJldmVub2RkIiBkPSJNMTkuMzMzNSA4QzE5LjMzMzUgOS44NDEzMyAxOC40MzgyIDExLjMzMzMgMTcuMzMzNSAxMS4zMzMzQzE2LjIyODkgMTEuMzMzMyAxNS4zMzM1IDkuODQxMzMgMTUuMzMzNSA4QzE1LjMzMzUgNi4xNTg2NyAxNi4yMjg5IDQuNjY2NjcgMTcuMzMzNSA0LjY2NjY3QzE4LjQzODIgNC42NjY2NyAxOS4zMzM1IDYuMTU4NjcgMTkuMzMzNSA4WiIgc3Ryb2tlPSJibGFjayIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+Cjwvc3ZnPgo=","index":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]},"iconWidth":24,"iconHeight":24},null,"Restaurants",{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},["<span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>Restaurant<\/span><br/><span style='font-family: Oswald; font-weight:700; font-size:20px; color: #111827'>Yummy BBQ Kitchen<\/span><br/><span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>681 Broadway (Chinatown) <\/span><br/>","<span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>Restaurant<\/span><br/><span style='font-family: Oswald; font-weight:700; font-size:20px; color: #111827'>Louie's Dim Sum Inc.<\/span><br/><span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>7 Stark Street (Chinatown) <\/span><br/>","<span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>Restaurant<\/span><br/><span style='font-family: Oswald; font-weight:700; font-size:20px; color: #111827'>Dim Sum Bistro<\/span><br/><span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>671 Broadway (Chinatown) <\/span><br/>","<span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>Restaurant<\/span><br/><span style='font-family: Oswald; font-weight:700; font-size:20px; color: #111827'>Hing Lung Co<\/span><br/><span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>1261 Stockton St (Chinatown) <\/span><br/>","<span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>Restaurant<\/span><br/><span style='font-family: Oswald; font-weight:700; font-size:20px; color: #111827'>New Asia<\/span><br/><span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>774 Pacific Avenue (Chinatown) <\/span><br/>","<span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>Restaurant<\/span><br/><span style='font-family: Oswald; font-weight:700; font-size:20px; color: #111827'>Yummy Yummy<\/span><br/><span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>760 Pacific Avenue (Chinatown) <\/span><br/>","<span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>Restaurant<\/span><br/><span style='font-family: Oswald; font-weight:700; font-size:20px; color: #111827'>Begoni Bistro<\/span><br/><span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>617 Jackson Street (Chinatown) <\/span><br/>","<span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>Restaurant<\/span><br/><span style='font-family: Oswald; font-weight:700; font-size:20px; color: #111827'>Grant Place<\/span><br/><span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>743 Washington Street (Chinatown) <\/span><br/>","<span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>Restaurant<\/span><br/><span style='font-family: Oswald; font-weight:700; font-size:20px; color: #111827'>Lun Ting Cafe<\/span><br/><span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>670 Jackson Street (Chinatown) <\/span><br/>","<span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>Restaurant<\/span><br/><span style='font-family: Oswald; font-weight:700; font-size:20px; color: #111827'>Peking Garden<\/span><br/><span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>728 Washington St (Chinatown) <\/span><br/>","<span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>Restaurant<\/span><br/><span style='font-family: Oswald; font-weight:700; font-size:20px; color: #111827'>New Hollywood Bakery & Restaurant<\/span><br/><span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>652 Pacific Ave (Chinatown) <\/span><br/>","<span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>Restaurant<\/span><br/><span style='font-family: Oswald; font-weight:700; font-size:20px; color: #111827'>Yee's Restaurant<\/span><br/><span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>1131 Grant Ave (Chinatown) <\/span><br/>","<span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>Restaurant<\/span><br/><span style='font-family: Oswald; font-weight:700; font-size:20px; color: #111827'>Joy Hing B.B.Q Noodle House<\/span><br/><span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>716 Kearny St (Chinatown) <\/span><br/>","<span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>Restaurant<\/span><br/><span style='font-family: Oswald; font-weight:700; font-size:20px; color: #111827'>Gourmet Kitchen<\/span><br/><span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>1101 Stockton St (Chinatown) <\/span><br/>","<span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>Restaurant<\/span><br/><span style='font-family: Oswald; font-weight:700; font-size:20px; color: #111827'>Hon's Wun-tun House Ltd. of Calif<\/span><br/><span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>660 Kearny Street (Chinatown) <\/span><br/>","<span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>Restaurant<\/span><br/><span style='font-family: Oswald; font-weight:700; font-size:20px; color: #111827'>R & G Lounge<\/span><br/><span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>633 Kearny Street (Chinatown) <\/span><br/>","<span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>Restaurant<\/span><br/><span style='font-family: Oswald; font-weight:700; font-size:20px; color: #111827'>Ramen Bay<\/span><br/><span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>353 Kearny Street (Chinatown) <\/span><br/>","<span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>Restaurant<\/span><br/><span style='font-family: Oswald; font-weight:700; font-size:20px; color: #111827'>Onigilly<\/span><br/><span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>337 Kearny St (Chinatown) <\/span><br/>","<span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>Restaurant<\/span><br/><span style='font-family: Oswald; font-weight:700; font-size:20px; color: #111827'>Pasilla Mexican Grill<\/span><br/><span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>353 Kearny Street (Chinatown) <\/span><br/>","<span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>Restaurant<\/span><br/><span style='font-family: Oswald; font-weight:700; font-size:20px; color: #111827'>Baladie<\/span><br/><span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>327 Kearny St (Chinatown) <\/span><br/>","<span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>Restaurant<\/span><br/><span style='font-family: Oswald; font-weight:700; font-size:20px; color: #111827'>Harrow<\/span><br/><span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>353 Kearny Street (Chinatown) <\/span><br/>","<span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>Restaurant<\/span><br/><span style='font-family: Oswald; font-weight:700; font-size:20px; color: #111827'>Henry's Hunan Restaurant<\/span><br/><span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>668 Sacramento Street (Chinatown) <\/span><br/>","<span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>Restaurant<\/span><br/><span style='font-family: Oswald; font-weight:700; font-size:20px; color: #111827'>Tokyo Express: Teriyaki House<\/span><br/><span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>656 Sacramento Street (Chinatown) <\/span><br/>","<span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>Restaurant<\/span><br/><span style='font-family: Oswald; font-weight:700; font-size:20px; color: #111827'>Vanda Siam<\/span><br/><span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>668 Sacramento Street (Chinatown) <\/span><br/>","<span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>Restaurant<\/span><br/><span style='font-family: Oswald; font-weight:700; font-size:20px; color: #111827'>Palio<\/span><br/><span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>608 Commercial St (Chinatown) <\/span><br/>","<span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>Restaurant<\/span><br/><span style='font-family: Oswald; font-weight:700; font-size:20px; color: #111827'>Sushi Taka<\/span><br/><span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>602 Kearny Street (Chinatown) <\/span><br/>","<span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>Restaurant<\/span><br/><span style='font-family: Oswald; font-weight:700; font-size:20px; color: #111827'>Lucky Corner Restaurant<\/span><br/><span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>700 Kearny Street (Chinatown) <\/span><br/>","<span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>Restaurant<\/span><br/><span style='font-family: Oswald; font-weight:700; font-size:20px; color: #111827'>Mangia Tutti<\/span><br/><span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>635 Clay St (Chinatown) <\/span><br/>","<span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>Restaurant<\/span><br/><span style='font-family: Oswald; font-weight:700; font-size:20px; color: #111827'>Paparikas<\/span><br/><span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>647 Clay Street (Chinatown) <\/span><br/>","<span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>Restaurant<\/span><br/><span style='font-family: Oswald; font-weight:700; font-size:20px; color: #111827'>Chim<\/span><br/><span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>653 Clay St (Chinatown) <\/span><br/>","<span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>Restaurant<\/span><br/><span style='font-family: Oswald; font-weight:700; font-size:20px; color: #111827'>Jai Yun Restauranr<\/span><br/><span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>670 Clay Street (Chinatown) <\/span><br/>","<span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>Restaurant<\/span><br/><span style='font-family: Oswald; font-weight:700; font-size:20px; color: #111827'>Ayola<\/span><br/><span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>321 Kearny Street (Chinatown) <\/span><br/>","<span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>Restaurant<\/span><br/><span style='font-family: Oswald; font-weight:700; font-size:20px; color: #111827'>Banana House<\/span><br/><span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>319 Kearny Street (Chinatown) <\/span><br/>","<span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>Restaurant<\/span><br/><span style='font-family: Oswald; font-weight:700; font-size:20px; color: #111827'>Rock<\/span><br/><span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>614 Pine Street (Chinatown) <\/span><br/>","<span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>Restaurant<\/span><br/><span style='font-family: Oswald; font-weight:700; font-size:20px; color: #111827'>Cathay House<\/span><br/><span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>1 Sabin Place (Chinatown) <\/span><br/>","<span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>Restaurant<\/span><br/><span style='font-family: Oswald; font-weight:700; font-size:20px; color: #111827'>Hang Ah Restaurant<\/span><br/><span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>1 Pagoda Pl (Chinatown) <\/span><br/>","<span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>Restaurant<\/span><br/><span style='font-family: Oswald; font-weight:700; font-size:20px; color: #111827'>Peninsula Sea Food Restaurant<\/span><br/><span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>641 Jackson St (Chinatown) <\/span><br/>","<span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>Restaurant<\/span><br/><span style='font-family: Oswald; font-weight:700; font-size:20px; color: #111827'>ABC Cafe Restaurant<\/span><br/><span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>658 Jackson Street (Chinatown) <\/span><br/>","<span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>Restaurant<\/span><br/><span style='font-family: Oswald; font-weight:700; font-size:20px; color: #111827'>Grand Palace Restaurant<\/span><br/><span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>950 Grant Ave (Chinatown) <\/span><br/>","<span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>Restaurant<\/span><br/><span style='font-family: Oswald; font-weight:700; font-size:20px; color: #111827'>Kam Lok Restaurant<\/span><br/><span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>814 Washington Street (Chinatown) <\/span><br/>","<span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>Restaurant<\/span><br/><span style='font-family: Oswald; font-weight:700; font-size:20px; color: #111827'>Lucky Creation Vegetarian Restaurant<\/span><br/><span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>834 Washington St (Chinatown) <\/span><br/>","<span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>Restaurant<\/span><br/><span style='font-family: Oswald; font-weight:700; font-size:20px; color: #111827'>San Sun<\/span><br/><span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>826 Washington St (Chinatown) <\/span><br/>","<span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>Restaurant<\/span><br/><span style='font-family: Oswald; font-weight:700; font-size:20px; color: #111827'>Golden Dragon Dining<\/span><br/><span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>814 Washington Street (Chinatown) <\/span><br/>","<span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>Restaurant<\/span><br/><span style='font-family: Oswald; font-weight:700; font-size:20px; color: #111827'>Snow Garden Restaurant<\/span><br/><span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>718 Grant Avenue (Chinatown) <\/span><br/>","<span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>Restaurant<\/span><br/><span style='font-family: Oswald; font-weight:700; font-size:20px; color: #111827'>Kan's<\/span><br/><span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>718 Grant Avenue (Chinatown) <\/span><br/>","<span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>Restaurant<\/span><br/><span style='font-family: Oswald; font-weight:700; font-size:20px; color: #111827'>Hunan Home's Restaurant<\/span><br/><span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>622 Jackson Street (Chinatown) <\/span><br/>","<span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>Restaurant<\/span><br/><span style='font-family: Oswald; font-weight:700; font-size:20px; color: #111827'>Empress of China<\/span><br/><span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>838 Grant Avenue (Chinatown) <\/span><br/>","<span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>Restaurant<\/span><br/><span style='font-family: Oswald; font-weight:700; font-size:20px; color: #111827'>Golden Flower<\/span><br/><span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>667 Jackson Street (Chinatown) <\/span><br/>","<span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>Restaurant<\/span><br/><span style='font-family: Oswald; font-weight:700; font-size:20px; color: #111827'>Chinatown Restaurant<\/span><br/><span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>744 Washington Street (Chinatown) <\/span><br/>","<span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>Restaurant<\/span><br/><span style='font-family: Oswald; font-weight:700; font-size:20px; color: #111827'>Sam Wo's<\/span><br/><span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>713 Clay Street (Chinatown) <\/span><br/>","<span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>Restaurant<\/span><br/><span style='font-family: Oswald; font-weight:700; font-size:20px; color: #111827'>Ravi<\/span><br/><span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>533 Jackson Street (Chinatown) <\/span><br/>","<span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>Restaurant<\/span><br/><span style='font-family: Oswald; font-weight:700; font-size:20px; color: #111827'>The Garden Restaurant<\/span><br/><span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>716 Kearny Street (Chinatown) <\/span><br/>","<span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>Restaurant<\/span><br/><span style='font-family: Oswald; font-weight:700; font-size:20px; color: #111827'>Caffè Macaroni<\/span><br/><span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>59 Columbus Avenue (Chinatown) <\/span><br/>","<span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>Restaurant<\/span><br/><span style='font-family: Oswald; font-weight:700; font-size:20px; color: #111827'>Z & Y Restaurant<\/span><br/><span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>655 Jackson Street (Chinatown) <\/span><br/>","<span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>Restaurant<\/span><br/><span style='font-family: Oswald; font-weight:700; font-size:20px; color: #111827'>Great Eastern Restaurant<\/span><br/><span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>649 Jackson Street (Chinatown) <\/span><br/>","<span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>Restaurant<\/span><br/><span style='font-family: Oswald; font-weight:700; font-size:20px; color: #111827'>Hong Kong Clay Pot Restaurant<\/span><br/><span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>620 Grant Avenue (Chinatown) <\/span><br/>","<span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>Restaurant<\/span><br/><span style='font-family: Oswald; font-weight:700; font-size:20px; color: #111827'>Great Dim Sum<\/span><br/><span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>649 Jackson Street (Chinatown) <\/span><br/>","<span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>Restaurant<\/span><br/><span style='font-family: Oswald; font-weight:700; font-size:20px; color: #111827'>Oolong Noodles<\/span><br/><span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>646 Washington Street (Chinatown) <\/span><br/>","<span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>Restaurant<\/span><br/><span style='font-family: Oswald; font-weight:700; font-size:20px; color: #111827'>Yan's Kitchen<\/span><br/><span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>57 Columbus Avenue (Chinatown) <\/span><br/>","<span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>Restaurant<\/span><br/><span style='font-family: Oswald; font-weight:700; font-size:20px; color: #111827'>Trestle<\/span><br/><span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>351 Jackson Street (Chinatown) <\/span><br/>","<span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>Restaurant<\/span><br/><span style='font-family: Oswald; font-weight:700; font-size:20px; color: #111827'>Ocean Pearl Restaurant<\/span><br/><span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>785 Broadway (Chinatown) <\/span><br/>","<span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>Restaurant<\/span><br/><span style='font-family: Oswald; font-weight:700; font-size:20px; color: #111827'>Great Saigon<\/span><br/><span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>915 Kearny Street (Chinatown) <\/span><br/>","<span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>Restaurant<\/span><br/><span style='font-family: Oswald; font-weight:700; font-size:20px; color: #111827'>House of Xian Dumpling<\/span><br/><span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>925 Kearny Street (Chinatown) <\/span><br/>","<span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>Restaurant<\/span><br/><span style='font-family: Oswald; font-weight:700; font-size:20px; color: #111827'>Tandoori Mahal<\/span><br/><span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>941 Kearny Street (Chinatown) <\/span><br/>","<span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>Restaurant<\/span><br/><span style='font-family: Oswald; font-weight:700; font-size:20px; color: #111827'>Brandy Ho's Hunan Food<\/span><br/><span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>217 Columbus Avenue (Chinatown) <\/span><br/>","<span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>Restaurant<\/span><br/><span style='font-family: Oswald; font-weight:700; font-size:20px; color: #111827'>Washington Bakery & Restaurant<\/span><br/><span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>733 Washington Street (Chinatown) <\/span><br/>","<span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>Restaurant<\/span><br/><span style='font-family: Oswald; font-weight:700; font-size:20px; color: #111827'>Happy Chinese Restaurant<\/span><br/><span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>1326 Powell Street (Chinatown) <\/span><br/>","<span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>Restaurant<\/span><br/><span style='font-family: Oswald; font-weight:700; font-size:20px; color: #111827'>New Woey Loy Goey<\/span><br/><span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>699 Jackson Street (Chinatown) <\/span><br/>","<span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>Restaurant<\/span><br/><span style='font-family: Oswald; font-weight:700; font-size:20px; color: #111827'>Delicious Dim Sum<\/span><br/><span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>752 Jackson Street (Chinatown) <\/span><br/>","<span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>Restaurant<\/span><br/><span style='font-family: Oswald; font-weight:700; font-size:20px; color: #111827'>Golden Star Vietnamese Restaurant<\/span><br/><span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>11 Walter U. Lum Place (Chinatown) <\/span><br/>","<span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>Restaurant<\/span><br/><span style='font-family: Oswald; font-weight:700; font-size:20px; color: #111827'>Yin Du Wonton Noodle<\/span><br/><span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>648 Pacific Avenue (Chinatown) <\/span><br/>","<span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>Restaurant<\/span><br/><span style='font-family: Oswald; font-weight:700; font-size:20px; color: #111827'>Muracci's Japanese Curry and Grill<\/span><br/><span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>307 Kearny Street (Chinatown) <\/span><br/>","<span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>Restaurant<\/span><br/><span style='font-family: Oswald; font-weight:700; font-size:20px; color: #111827'>Gourmet Delight B.B.Q.<\/span><br/><span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>1045 Stockton Street (Chinatown) <\/span><br/>","<span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>Restaurant<\/span><br/><span style='font-family: Oswald; font-weight:700; font-size:20px; color: #111827'>Capital Restaurant<\/span><br/><span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>839 Clay Street (Chinatown) <\/span><br/>","<span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>Restaurant<\/span><br/><span style='font-family: Oswald; font-weight:700; font-size:20px; color: #111827'>Little Paris<\/span><br/><span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>1131 Stockton Street (Chinatown) <\/span><br/>","<span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>Restaurant<\/span><br/><span style='font-family: Oswald; font-weight:700; font-size:20px; color: #111827'>Mister Jiu's<\/span><br/><span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>28 Waverly Place (Chinatown) <\/span><br/>","<span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>Restaurant<\/span><br/><span style='font-family: Oswald; font-weight:700; font-size:20px; color: #111827'>House of Nanking<\/span><br/><span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>919 Kearny Street (Chinatown) <\/span><br/>","<span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>Restaurant<\/span><br/><span style='font-family: Oswald; font-weight:700; font-size:20px; color: #111827'>Sabra Grill<\/span><br/><span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>419 Grant Avenue (Chinatown) <\/span><br/>","<span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>Restaurant<\/span><br/><span style='font-family: Oswald; font-weight:700; font-size:20px; color: #111827'>Spicy King<\/span><br/><span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>Waverly Place (Chinatown) <\/span><br/>","<span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>Restaurant<\/span><br/><span style='font-family: Oswald; font-weight:700; font-size:20px; color: #111827'>Far East Cafe<\/span><br/><span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>631 Grant Avenue (Chinatown) <\/span><br/>","<span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>Restaurant<\/span><br/><span style='font-family: Oswald; font-weight:700; font-size:20px; color: #111827'>Sushi Boat Restaurant<\/span><br/><span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>700 Grant Avenue (Chinatown) <\/span><br/>","<span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>Restaurant<\/span><br/><span style='font-family: Oswald; font-weight:700; font-size:20px; color: #111827'>City View<\/span><br/><span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>662 Commercial Street (Chinatown) <\/span><br/>","<span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>Restaurant<\/span><br/><span style='font-family: Oswald; font-weight:700; font-size:20px; color: #111827'>Hunan House<\/span><br/><span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>826 Washington Street (Chinatown) <\/span><br/>","<span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>Restaurant<\/span><br/><span style='font-family: Oswald; font-weight:700; font-size:20px; color: #111827'>Golden King Vietnamese Restaurant<\/span><br/><span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>757 Clay Street (Chinatown) <\/span><br/>","<span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>Restaurant<\/span><br/><span style='font-family: Oswald; font-weight:700; font-size:20px; color: #111827'>Hinodeya Downtown<\/span><br/><span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>680 Clay Street (Chinatown) <\/span><br/>"],null,{"showCoverageOnHover":false,"zoomToBoundsOnClick":true,"spiderfyOnMaxZoom":true,"removeOutsideVisibleBounds":true,"spiderLegPolylineOptions":{"weight":1.5,"color":"#222","opacity":0.5},"freezeAtZoom":false},null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addMarkers","args":[[37.7943424,37.794495,37.7977076,37.7964224],[-122.4049519,-122.4039275,-122.4067101,-122.405347],{"iconUrl":{"data":"data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iMTIiIGN5PSIxMiIgcj0iMTIiIGZpbGw9IiNDOUQ3RTEiLz4KPGcgY2xpcC1wYXRoPSJ1cmwoI2NsaXAwKSI+CjxwYXRoIGQ9Ik0xMC42NjY5IDRDMTYuMTg5NSA0IDIwLjY2NjkgOC40NzczMyAyMC42NjY5IDE0IiBzdHJva2U9ImJsYWNrIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz4KPHBhdGggZD0iTTYuMDAwMiAxOC42NjY3TDE4LjAwMDIgMTQiIHN0cm9rZT0iYmxhY2siIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPgo8cGF0aCBkPSJNMTAuNjY2OSA2LjY2NjY3TDYuMDAwMiAxOC42NjY3IiBzdHJva2U9ImJsYWNrIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz4KPHBhdGggZD0iTTE0LjY2NjkgMTUuMzMzM1YxNy4zMzMzIiBzdHJva2U9ImJsYWNrIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz4KPHBhdGggZD0iTTEyLjAwMDIgMTguNjY2N1YxNi4zMzMzIiBzdHJva2U9ImJsYWNrIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz4KPHBhdGggZD0iTTEwLjY2NjkgMTQuMDA2NVYxMy45OTk5IiBzdHJva2U9ImJsYWNrIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz4KPHBhdGggZD0iTTE0LjY2NjkgMTIuMDA2NVYxMS45OTk5IiBzdHJva2U9ImJsYWNrIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz4KPHBhdGggZD0iTTEyLjY2NjkgOS4zMzk4N1Y5LjMzMzIiIHN0cm9rZT0iYmxhY2siIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPgo8L2c+CjxkZWZzPgo8Y2xpcFBhdGggaWQ9ImNsaXAwIj4KPHJlY3Qgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2IiBmaWxsPSJ3aGl0ZSIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoNS4zMzMzMyAzLjMzMzMzKSIvPgo8L2NsaXBQYXRoPgo8L2RlZnM+Cjwvc3ZnPgo=","index":[0,0,0,0]},"iconWidth":24,"iconHeight":24},null,"Restaurants (Fast Food)",{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},["<span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>Restaurants (Fast Food)<\/span><br/><span style='font-family: Oswald; font-weight:700; font-size:20px; color: #111827'>Subway<\/span><br/><span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>651 Kearny St (Chinatown) <\/span><br/>","<span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>Restaurants (Fast Food)<\/span><br/><span style='font-family: Oswald; font-weight:700; font-size:20px; color: #111827'>Munchboxx<\/span><br/><span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>645 Clay St (Chinatown) <\/span><br/>","<span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>Restaurants (Fast Food)<\/span><br/><span style='font-family: Oswald; font-weight:700; font-size:20px; color: #111827'>Nizario's<\/span><br/><span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>279 Columbus Avenue (Chinatown) <\/span><br/>","<span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>Restaurants (Fast Food)<\/span><br/><span style='font-family: Oswald; font-weight:700; font-size:20px; color: #111827'>Chong Qing Xiao Mian<\/span><br/><span style='font-family: Oswald; font-weight:400; font-size:14px; color: #6B7280;'>915 Kearny Street (Chinatown) <\/span><br/>"],null,{"showCoverageOnHover":false,"zoomToBoundsOnClick":true,"spiderfyOnMaxZoom":true,"removeOutsideVisibleBounds":true,"spiderLegPolylineOptions":{"weight":1.5,"color":"#222","opacity":0.5},"freezeAtZoom":false},null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addMarkers","args":[[],[],{"iconWidth":24,"iconHeight":24},null,"Supermarkets",{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},[],null,{"showCoverageOnHover":false,"zoomToBoundsOnClick":true,"spiderfyOnMaxZoom":true,"removeOutsideVisibleBounds":true,"spiderLegPolylineOptions":{"weight":1.5,"color":"#222","opacity":0.5},"freezeAtZoom":false},null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addLayersControl","args":[[],["Corner Stores","Drug Stores","Farmers Markets","Food Banks/Pantries","Food Pharmacies","Free Prepared Food or Hot Meals","International Grocery Stores","Liquor Stores","Restaurants","Restaurants (Fast Food)","Supermarkets"],{"collapsed":false,"autoZIndex":true,"position":"bottomleft"}]}],"limits":{"lat":[37.7903663109249,37.7978646119564],"lng":[-122.410263524311,-122.402957361312]}},"evals":[],"jsHooks":[]}</script>
+</div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<!--radix_placeholder_article_footer-->
+<!--/radix_placeholder_article_footer-->
+</div>
+
+<div class="d-appendix">
+</div>
+
+
+<!--radix_placeholder_site_after_body-->
+<!--/radix_placeholder_site_after_body-->
+<!--radix_placeholder_appendices-->
+<div class="appendix-bottom"></div>
+<!--/radix_placeholder_appendices-->
+<!--radix_placeholder_navigation_after_body-->
+<!--/radix_placeholder_navigation_after_body-->
+
+</body>
+
+</html>
