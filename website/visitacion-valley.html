@@ -2209,6 +2209,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
   d-article h2 {
     border-bottom: 0;
+    margin-bottom: 0;
   }
 
   /* Tailwind */
@@ -2742,16 +2743,16 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     display:      table;
   }
 
-  .grid{
-    display:      grid;
-  }
-
   .items-center{
     align-items:      center;
   }
 
   .font-bold{
     font-weight:      700;
+  }
+
+  .h-full{
+    height:      100%;
   }
 
   .text-4xl{
@@ -2794,10 +2795,6 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     padding-right:      0.5rem;
   }
 
-  .pl-4{
-    padding-left:      1rem;
-  }
-
   *{
     --tw-shadow:      0 0 #0000;
   }
@@ -2825,24 +2822,8 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     color:      rgba(75, 85, 99, var(--tw-text-opacity));
   }
 
-  .gap-8{
-    gap:      2rem;
-  }
-
-  .gap-16{
-    gap:      4rem;
-  }
-
-  .grid-cols-4{
-    grid-template-columns:      repeat(4, minmax(0, 1fr));
-  }
-
-  .grid-cols-5{
-    grid-template-columns:      repeat(5, minmax(0, 1fr));
-  }
-
-  .col-span-1{
-    grid-column:      span 1 / span 1;
+  .w-full{
+    width:      100%;
   }
 
   @-webkit-keyframes spin{
@@ -2916,39 +2897,65 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
       display:      grid;
     }
 
-    .sm\:mx-64{
-      margin-left:      16rem;
-      margin-right:      16rem;
-    }
-
-    .sm\:mb-16{
-      margin-bottom:      4rem;
-    }
-
-    .sm\:mt-24{
-      margin-top:      6rem;
+    .sm\:gap-4{
+      gap:      1rem;
     }
 
     .sm\:gap-16{
       gap:      4rem;
     }
 
-    .sm\:grid-cols-3{
-      grid-template-columns:      repeat(3, minmax(0, 1fr));
-    }
-
-    .sm\:col-span-2{
-      grid-column:      span 2 / span 2;
+    .sm\:grid-cols-2{
+      grid-template-columns:      repeat(2, minmax(0, 1fr));
     }
   }
 
   @media (min-width: 768px){
+    .md\:gap-8{
+      gap:      2rem;
+    }
   }
 
   @media (min-width: 1024px){
   }
 
   @media (min-width: 1280px){
+    .xl\:grid{
+      display:      grid;
+    }
+
+    .xl\:mx-64{
+      margin-left:      16rem;
+      margin-right:      16rem;
+    }
+
+    .xl\:mb-16{
+      margin-bottom:      4rem;
+    }
+
+    .xl\:gap-16{
+      gap:      4rem;
+    }
+
+    .xl\:grid-cols-3{
+      grid-template-columns:      repeat(3, minmax(0, 1fr));
+    }
+
+    .xl\:grid-cols-4{
+      grid-template-columns:      repeat(4, minmax(0, 1fr));
+    }
+
+    .xl\:grid-cols-5{
+      grid-template-columns:      repeat(5, minmax(0, 1fr));
+    }
+
+    .xl\:col-span-1{
+      grid-column:      span 1 / span 1;
+    }
+
+    .xl\:col-span-2{
+      grid-column:      span 2 / span 2;
+    }
   }
 
   @media (min-width: 1536px){
@@ -3205,8 +3212,11 @@ Visitaction Valley
 </h1>
 </div>
 <div class="layout-chunk" data-layout="l-screen-inset">
-<div id="htmlwidget-07252269c522bcf0e169" style="width:624px;height:768px;" class="leaflet html-widget"></div>
-<script type="application/json" data-for="htmlwidget-07252269c522bcf0e169">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addProviderTiles","args":["CartoDB.Positron",null,null,{"errorTileUrl":"","noWrap":false,"detectRetina":false}]},{"method":"addPolygons","args":[[],null,"<span style='border-bottom-width: 2px;border-bottom-style: solid #000;padding-bottom: 10px;'>Show API Population<br><\/span><br>",{"interactive":true,"className":"","stroke":true,"color":"#ffffff","weight":0.5,"opacity":1,"fill":true,"fillColor":[],"fillOpacity":0.8,"smoothFactor":1,"noClip":false},[],null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addMarkers","args":[[],[],{"iconWidth":24,"iconHeight":24},null,"Corner Stores",{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},[],null,{"showCoverageOnHover":false,"zoomToBoundsOnClick":true,"spiderfyOnMaxZoom":true,"removeOutsideVisibleBounds":true,"spiderLegPolylineOptions":{"weight":1.5,"color":"#222","opacity":0.5},"freezeAtZoom":false},null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addMarkers","args":[[],[],{"iconWidth":24,"iconHeight":24},null,"Drug Stores",{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},[],null,{"showCoverageOnHover":false,"zoomToBoundsOnClick":true,"spiderfyOnMaxZoom":true,"removeOutsideVisibleBounds":true,"spiderLegPolylineOptions":{"weight":1.5,"color":"#222","opacity":0.5},"freezeAtZoom":false},null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addMarkers","args":[[],[],{"iconWidth":24,"iconHeight":24},null,"Farmers Markets",{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},[],null,{"showCoverageOnHover":false,"zoomToBoundsOnClick":true,"spiderfyOnMaxZoom":true,"removeOutsideVisibleBounds":true,"spiderLegPolylineOptions":{"weight":1.5,"color":"#222","opacity":0.5},"freezeAtZoom":false},null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addMarkers","args":[[],[],{"iconWidth":24,"iconHeight":24},null,"Food Banks/Pantries",{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},[],null,{"showCoverageOnHover":false,"zoomToBoundsOnClick":true,"spiderfyOnMaxZoom":true,"removeOutsideVisibleBounds":true,"spiderLegPolylineOptions":{"weight":1.5,"color":"#222","opacity":0.5},"freezeAtZoom":false},null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addMarkers","args":[[],[],{"iconWidth":24,"iconHeight":24},null,"Food Pharmacies",{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},[],null,{"showCoverageOnHover":false,"zoomToBoundsOnClick":true,"spiderfyOnMaxZoom":true,"removeOutsideVisibleBounds":true,"spiderLegPolylineOptions":{"weight":1.5,"color":"#222","opacity":0.5},"freezeAtZoom":false},null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addMarkers","args":[[],[],{"iconWidth":24,"iconHeight":24},null,"Free Prepared Food or Hot Meals",{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},[],null,{"showCoverageOnHover":false,"zoomToBoundsOnClick":true,"spiderfyOnMaxZoom":true,"removeOutsideVisibleBounds":true,"spiderLegPolylineOptions":{"weight":1.5,"color":"#222","opacity":0.5},"freezeAtZoom":false},null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addMarkers","args":[[],[],{"iconWidth":24,"iconHeight":24},null,"International Grocery Stores",{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},[],null,{"showCoverageOnHover":false,"zoomToBoundsOnClick":true,"spiderfyOnMaxZoom":true,"removeOutsideVisibleBounds":true,"spiderLegPolylineOptions":{"weight":1.5,"color":"#222","opacity":0.5},"freezeAtZoom":false},null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addMarkers","args":[[],[],{"iconWidth":24,"iconHeight":24},null,"Liquor Stores",{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},[],null,{"showCoverageOnHover":false,"zoomToBoundsOnClick":true,"spiderfyOnMaxZoom":true,"removeOutsideVisibleBounds":true,"spiderLegPolylineOptions":{"weight":1.5,"color":"#222","opacity":0.5},"freezeAtZoom":false},null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addMarkers","args":[[],[],{"iconWidth":24,"iconHeight":24},null,"Restaurants",{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},[],null,{"showCoverageOnHover":false,"zoomToBoundsOnClick":true,"spiderfyOnMaxZoom":true,"removeOutsideVisibleBounds":true,"spiderLegPolylineOptions":{"weight":1.5,"color":"#222","opacity":0.5},"freezeAtZoom":false},null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addMarkers","args":[[],[],{"iconWidth":24,"iconHeight":24},null,"Restaurants (Fast Food)",{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},[],null,{"showCoverageOnHover":false,"zoomToBoundsOnClick":true,"spiderfyOnMaxZoom":true,"removeOutsideVisibleBounds":true,"spiderLegPolylineOptions":{"weight":1.5,"color":"#222","opacity":0.5},"freezeAtZoom":false},null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addMarkers","args":[[],[],{"iconWidth":24,"iconHeight":24},null,"Supermarkets",{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},[],null,{"showCoverageOnHover":false,"zoomToBoundsOnClick":true,"spiderfyOnMaxZoom":true,"removeOutsideVisibleBounds":true,"spiderLegPolylineOptions":{"weight":1.5,"color":"#222","opacity":0.5},"freezeAtZoom":false},null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addLayersControl","args":[[],["Corner Stores","Drug Stores","Farmers Markets","Food Banks/Pantries","Food Pharmacies","Free Prepared Food or Hot Meals","International Grocery Stores","Liquor Stores","Restaurants","Restaurants (Fast Food)","Supermarkets"],{"collapsed":false,"autoZIndex":true,"position":"bottomleft"}]}],"limits":[]},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-1c4d04b0325e4ad3e013" style="width:624px;height:768px;" class="leaflet html-widget"></div>
+<script type="application/json" data-for="htmlwidget-1c4d04b0325e4ad3e013">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addProviderTiles","args":["CartoDB.Positron",null,null,{"errorTileUrl":"","noWrap":false,"detectRetina":false}]},{"method":"addPolygons","args":[[],null,"<span style='border-bottom-width: 2px;border-bottom-style: solid #000;padding-bottom: 10px;'>Show API Population<br><\/span><br>",{"interactive":true,"className":"","stroke":true,"color":"#ffffff","weight":0.5,"opacity":1,"fill":true,"fillColor":[],"fillOpacity":0.8,"smoothFactor":1,"noClip":false},[],null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addMarkers","args":[[],[],{"iconWidth":24,"iconHeight":24},null,"Corner Stores",{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},[],null,{"showCoverageOnHover":false,"zoomToBoundsOnClick":true,"spiderfyOnMaxZoom":true,"removeOutsideVisibleBounds":true,"spiderLegPolylineOptions":{"weight":1.5,"color":"#222","opacity":0.5},"freezeAtZoom":false},null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addMarkers","args":[[],[],{"iconWidth":24,"iconHeight":24},null,"Drug Stores",{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},[],null,{"showCoverageOnHover":false,"zoomToBoundsOnClick":true,"spiderfyOnMaxZoom":true,"removeOutsideVisibleBounds":true,"spiderLegPolylineOptions":{"weight":1.5,"color":"#222","opacity":0.5},"freezeAtZoom":false},null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addMarkers","args":[[],[],{"iconWidth":24,"iconHeight":24},null,"Farmers Markets",{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},[],null,{"showCoverageOnHover":false,"zoomToBoundsOnClick":true,"spiderfyOnMaxZoom":true,"removeOutsideVisibleBounds":true,"spiderLegPolylineOptions":{"weight":1.5,"color":"#222","opacity":0.5},"freezeAtZoom":false},null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addMarkers","args":[[],[],{"iconWidth":24,"iconHeight":24},null,"Food Banks/Pantries",{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},[],null,{"showCoverageOnHover":false,"zoomToBoundsOnClick":true,"spiderfyOnMaxZoom":true,"removeOutsideVisibleBounds":true,"spiderLegPolylineOptions":{"weight":1.5,"color":"#222","opacity":0.5},"freezeAtZoom":false},null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addMarkers","args":[[],[],{"iconWidth":24,"iconHeight":24},null,"Food Pharmacies",{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},[],null,{"showCoverageOnHover":false,"zoomToBoundsOnClick":true,"spiderfyOnMaxZoom":true,"removeOutsideVisibleBounds":true,"spiderLegPolylineOptions":{"weight":1.5,"color":"#222","opacity":0.5},"freezeAtZoom":false},null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addMarkers","args":[[],[],{"iconWidth":24,"iconHeight":24},null,"Free Prepared Food or Hot Meals",{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},[],null,{"showCoverageOnHover":false,"zoomToBoundsOnClick":true,"spiderfyOnMaxZoom":true,"removeOutsideVisibleBounds":true,"spiderLegPolylineOptions":{"weight":1.5,"color":"#222","opacity":0.5},"freezeAtZoom":false},null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addMarkers","args":[[],[],{"iconWidth":24,"iconHeight":24},null,"International Grocery Stores",{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},[],null,{"showCoverageOnHover":false,"zoomToBoundsOnClick":true,"spiderfyOnMaxZoom":true,"removeOutsideVisibleBounds":true,"spiderLegPolylineOptions":{"weight":1.5,"color":"#222","opacity":0.5},"freezeAtZoom":false},null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addMarkers","args":[[],[],{"iconWidth":24,"iconHeight":24},null,"Liquor Stores",{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},[],null,{"showCoverageOnHover":false,"zoomToBoundsOnClick":true,"spiderfyOnMaxZoom":true,"removeOutsideVisibleBounds":true,"spiderLegPolylineOptions":{"weight":1.5,"color":"#222","opacity":0.5},"freezeAtZoom":false},null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addMarkers","args":[[],[],{"iconWidth":24,"iconHeight":24},null,"Restaurants",{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},[],null,{"showCoverageOnHover":false,"zoomToBoundsOnClick":true,"spiderfyOnMaxZoom":true,"removeOutsideVisibleBounds":true,"spiderLegPolylineOptions":{"weight":1.5,"color":"#222","opacity":0.5},"freezeAtZoom":false},null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addMarkers","args":[[],[],{"iconWidth":24,"iconHeight":24},null,"Restaurants (Fast Food)",{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},[],null,{"showCoverageOnHover":false,"zoomToBoundsOnClick":true,"spiderfyOnMaxZoom":true,"removeOutsideVisibleBounds":true,"spiderLegPolylineOptions":{"weight":1.5,"color":"#222","opacity":0.5},"freezeAtZoom":false},null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addMarkers","args":[[],[],{"iconWidth":24,"iconHeight":24},null,"Supermarkets",{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},[],null,{"showCoverageOnHover":false,"zoomToBoundsOnClick":true,"spiderfyOnMaxZoom":true,"removeOutsideVisibleBounds":true,"spiderLegPolylineOptions":{"weight":1.5,"color":"#222","opacity":0.5},"freezeAtZoom":false},null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addLayersControl","args":[[],["Corner Stores","Drug Stores","Farmers Markets","Food Banks/Pantries","Food Pharmacies","Free Prepared Food or Hot Meals","International Grocery Stores","Liquor Stores","Restaurants","Restaurants (Fast Food)","Supermarkets"],{"collapsed":false,"autoZIndex":true,"position":"bottomleft"}]}],"limits":[]},"evals":[],"jsHooks":[]}</script>
+</div>
+<div class="mx-auto inline text-gray-600">
+<img class="py-4 pr-2 inline" src="assets/accepts-snap-wic.svg"><span>Accepts SNAP/WIC</span>
 </div>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
