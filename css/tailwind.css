@@ -97,6 +97,7 @@ body > header > nav > div.nav-left > a {
 
 d-article h2 {
   border-bottom: 0;
+  margin-bottom: 0;
 }
 
 /* Tailwind */

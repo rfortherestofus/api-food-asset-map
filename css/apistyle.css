@@ -101,6 +101,7 @@ body > header > nav > div.nav-left > a {
 
 d-article h2 {
   border-bottom: 0;
+  margin-bottom: 0;
 }
 
 /* Tailwind */
@@ -822,10 +823,6 @@ video {
 
   .xl\:mb-16{
     margin-bottom:      4rem;
-  }
-
-  .xl\:mt-24{
-    margin-top:      6rem;
   }
 
   .xl\:gap-16{
