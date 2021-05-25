@@ -32,3 +32,5 @@ source(here::here("R", "interactive-maps.R"))
 ```{r map, layout = "l-screen-inset", fig.height = 8}
 draw_resource_map("Japantown")
 ```
+
+<div class="mx-auto inline text-gray-600"><img class="py-4 pr-2 inline" src="assets/accepts-snap-wic.svg"><span>Accepts SNAP/WIC</span></div>
