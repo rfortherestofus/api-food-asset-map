@@ -49,3 +49,32 @@ potential_matches_nearby <- potential_matches %>%
 
 
 write_rds(potential_matches_nearby, "data/final_potential_duplicates.rds")
+
+# I added "keep_left" by hand
+client_annotated_duplicates <- read_csv("data-raw/client_annotated_duplicates.csv")
+
+# find duplicates where we want the left store
+keep_left <- client_annotated_duplicates %>%
+  filter(str_detect(is_match, "x"),
+         str_detect(keep_left, "x"))
+
+# find duplicates where we want the right store
+keep_right <- client_annotated_duplicates %>%
+  filter(str_detect(is_match, "x")) %>%
+  anti_join(keep_left)
+
+# find duplicates where we want neither store
+both_closed <- client_annotated_duplicates %>%
+  filter(str_detect(is_match, "BOTH CLOSED"))
+
+duplicates_removed <- reverse_geocoded %>%
+  mutate(global_index = 1:n()) %>%
+  anti_join(keep_left, by = c("global_index" = "global_index_location_2")) %>%
+  anti_join(keep_right, by = c("global_index" = "global_index_location_1")) %>%
+  anti_join(both_closed, by = c("global_index" = "global_index_location_1")) %>%
+  anti_join(both_closed, by = c("global_index" = "global_index_location_2")) %>%
+  select(-global_index)
+
+
+write_rds(duplicates_removed, "data/final_dataset_no_dupes.rds")
+
