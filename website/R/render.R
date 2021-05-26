@@ -3,7 +3,6 @@ library(rmarkdown)
 library(beepr)
 
 
-
 # Generate Assets ---------------------------------------------------------
 
 source("R/icon-summaries.R")

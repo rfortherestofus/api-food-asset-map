@@ -22,6 +22,7 @@ source(here::here("R", "interactive-maps.R"))
 
 ::: {.xl:grid .xl:grid-cols-3 .xl:gap-16 .l-screen-inset .mt-24 .xl:mb-16 .xl:mx-64}
 ::: {.xl:col-span-2}
+
 <h1 class="text-4xl font-bold mb-4">
 
 API Food Assets Map
@@ -56,8 +57,7 @@ draw_resource_map()
 ```
 
 ::: {.mx-auto .inline .text-gray-600}
-<img src="assets/accepts-snap-wic.svg" class="py-4 pr-2 inline"/>Accepts
-SNAP/WIC
+<img src="assets/accepts-snap-wic.svg" class="py-4 pr-2 inline"/>Accepts SNAP/WIC
 :::
 
 ::: {.sm:grid .sm:grid-cols-2 .xl:grid-cols-4 .sm:gap-4 .md:gap-8 .l-page .my-16}

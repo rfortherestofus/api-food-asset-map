@@ -34,7 +34,7 @@ draw_resource_map <- function(neighborhoods = NULL) {
     mutate(nhood = fct_inorder(factor(nhood))) %>%
     st_transform(4326)
 
-  food_resources <- read_rds("data/reverse_geocoded.rds") %>%
+  food_resources <- read_rds("data/final_dataset_no_dupes.rds") %>%
     st_join(demographics %>% select(nhood)) %>%
     mutate(street_address = str_trim(street_address)) %>%
     filter(city == "San Francisco") %>%
