@@ -1,10 +1,11 @@
 ---
-title: "About this site"
-description: |
-  Some additional details about the website
+title: "Contact"
+site: distill::distill_website
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
+
+For more information about this map, to learn more about this project, or to join the conversation about food access and security for Asian Pacific Islanders, please contact API Council Executive Director, Cally Wong, at [cally.wong@apicouncil.org](mailto:cally.wong@apicouncil.org).

@@ -1,6 +1,9 @@
 ---
 title: "API Food Assets Map"
 site: distill::distill_website
+editor_options: 
+  markdown: 
+    wrap: 72
 ---
 
 ```{r setup, include=FALSE}
@@ -14,170 +17,241 @@ knitr::opts_chunk$set(echo = FALSE)
 <!-- <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet"> -->
 
 ```{r}
-source("R/interactive-maps.R")
+source(here::here("R", "interactive-maps.R"))
 ```
 
+::: {.xl:grid .xl:grid-cols-3 .xl:gap-16 .l-screen-inset .mt-24 .xl:mb-16 .xl:mx-64}
+::: {.xl:col-span-2}
+<h1 class="text-4xl font-bold mb-4">
 
+API Food Assets Map
 
-<div class="sm:grid sm:grid-cols-3 sm:gap-16 l-screen-inset sm:mt-24 sm:mb-16 sm:mx-64">
+</h1>
 
-<div class="sm:col-span-2">
+<p>
 
-<h1 class="text-4xl font-bold mb-4">API Food Assets Map</h1>
+This asset map visually depicts various food resources across San
+Francisco, with a special emphasis on regions with larger concentrations
+of Asian Pacific Islander (API) residents. The map aims to expand the
+understanding of food access and systems within and across API
+communities in San Francisco, serving as a starting point to explore how
+API community members access food, interact with various typologies of
+food (e.g., charitable food, grocery stores/markets, restaurants), and
+experience their community's food resources. Potential also exists for
+better understanding the nexus of cultural preservation, economic
+health, and transportation/mobility. This map was created with funds
+from the <a href="https://stupski.org/">Stupski Foundation</a>, as part
+of a larger food access and security project in April-June 2021.
 
-<p>The following asset map visually depicts various food resources across San Francisco, with a special emphasis on regions with larger concentrations of Asian Pacific Islander (API) residents. The existence of this map aims to expand the understanding of food access and systems within and across API communities in San Francisco, serving as a starting point to explore how API community members access food, interact with various typologies of food (e.g., charitable food, grocery stores/markets, restaurants), and experience their community’s food resources. Potential also exists for better understanding the nexus of cultural preservation, economic health, and transportation/mobility. This map was created with funds from the Stupski Foundation, as  a part of a larger food access and security project in April-June 2021.</p>
-</div>
+</p>
+:::
 
-<div class="col-span-1">
-<img class="rounded-md shadow-md items-center" src="assets/family.jpg" alt="Smiling Family">
-</div>
-
-
-
-
-
-</div>
-
-
+::: {.xl:col-span-1 .mx-auto}
+<img src="assets/family.jpg" alt="Smiling Family" class="rounded-md shadow-md items-center h-full w-full"/>
+:::
+:::
 
 ```{r map, layout = "l-screen-inset", fig.height = 8}
 draw_resource_map()
 ```
 
+::: {.mx-auto .inline .text-gray-600}
+<img src="assets/accepts-snap-wic.svg" class="py-4 pr-2 inline"/>Accepts
+SNAP/WIC
+:::
 
-<div class="mx-auto inline text-gray-600"><img class="py-4 pr-2 inline" src="assets/accepts-snap-wic.svg"><span>Accepts SNAP/WIC</span><img class="py-4 pr-2 pl-4 inline" src="assets/doesnt-accept-snap-wic.svg"><span>Does Not Accept SNAP/WIC</span></div>
-
-
-
-
-
-<div class="grid grid-cols-4 gap-8 l-page my-16">
-
+::: {.sm:grid .sm:grid-cols-2 .xl:grid-cols-4 .sm:gap-4 .md:gap-8 .l-page .my-16}
 <div>
-<img src="assets/corner-stores-icon-summary.svg" alt="Corner/Convenience Stores">
+
+<img src="assets/corner-stores-icon-summary.svg" alt="Corner/Convenience Stores"/>
+
 </div>
 
 <div>
-<img src="assets/drug-stores-icon-summary.svg" alt="Drug Stores">
+
+<img src="assets/drug-stores-icon-summary.svg" alt="Drug Stores"/>
+
 </div>
 
 <div>
-<img src="assets/farmers-market-icon-summary.svg" alt="Farmers Markets">
+
+<img src="assets/farmers-market-icon-summary.svg" alt="Farmers Markets"/>
+
 </div>
 
 <div>
-<img src="assets/food-banks-pantries-icon-summary.svg" alt="Food Banks/Pantries">
+
+<img src="assets/food-banks-pantries-icon-summary.svg" alt="Food Banks/Pantries"/>
+
 </div>
 
 <div>
-<img src="assets/food-pharmacy-icon-summary.svg" alt="Food Pharamcies">
+
+<img src="assets/food-pharmacy-icon-summary.svg" alt="Food Pharamcies"/>
+
 </div>
 
 <div>
-<img src="assets/free-prepared-hot-meals-icon-summary.svg" alt="Free or Prepared Hot Meals">
+
+<img src="assets/free-prepared-hot-meals-icon-summary.svg" alt="Free or Prepared Hot Meals"/>
+
 </div>
 
 <div>
-<img src="assets/international-grocery-stores-icon-summary.svg" alt="International Grocery Stores">
+
+<img src="assets/international-grocery-stores-icon-summary.svg" alt="International Grocery Stores"/>
+
 </div>
 
 <div>
-<img src="assets/liquor-stores-icon-summary.svg" alt="Liquor Stores">
+
+<img src="assets/liquor-stores-icon-summary.svg" alt="Liquor Stores"/>
+
 </div>
 
 <div>
-<img src="assets/restaurants-fast-food-icon-summary.svg" alt="Restaurants (Fast Food)">
+
+<img src="assets/restaurants-fast-food-icon-summary.svg" alt="Restaurants (Fast Food)"/>
+
 </div>
 
 <div>
-<img src="assets/restaurants-icon-summary.svg" alt="Restaurants">
+
+<img src="assets/restaurants-icon-summary.svg" alt="Restaurants"/>
+
 </div>
 
-
 <div>
-<img src="assets/supermarkets-icon-summary.svg" alt="Supermarkets/Grocery Stores">
-</div></div>
 
+<img src="assets/supermarkets-icon-summary.svg" alt="Supermarkets/Grocery Stores"/>
 
+</div>
+:::
 
+::: {.l-screen-inset .my-16}
+<h2 class="text-4xl text-center font-bold mb-16">
 
-<div class="l-screen-inset my-16">
+Neighborhoods
 
-<h2 class="text-4xl text-center font-bold mb-16">Neighborhoods</h2>
+</h2>
 
-<div class="grid grid-cols-5 gap-16">
-
+::: {.sm:grid .sm:grid-cols-2 .xl:grid-cols-5 .sm:gap-16}
 <div>
+
 <a href="bayview-hunters-point.html">
-<img src="assets/bayview-hunters-point.svg" alt="Bayview Hunters Point">
+<img src="assets/bayview-hunters-point.svg" alt="Bayview Hunters Point"/>
 </a>
+
 </div>
 
 <div>
+
 <a href="chinatown.html">
-<img src="assets/chinatown.svg" alt="Chinatown">
-</a>
+<img src="assets/chinatown.svg" alt="Chinatown"/> </a>
+
 </div>
 
 <div>
+
 <a href="excelsior.html">
-<img src="assets/excelsior.svg" alt="Excelsior">
-</a>
+<img src="assets/excelsior.svg" alt="Excelsior"/> </a>
+
 </div>
 
 <div>
+
 <a href="inner-sunset.html">
-<img src="assets/inner-sunset.svg" alt="Inner Sunset">
-</a>
+<img src="assets/inner-sunset.svg" alt="Inner Sunset"/> </a>
+
 </div>
 
 <div>
+
 <a href="japantown.html">
-<img src="assets/japantown.svg" alt="Japantown">
-</a>
+<img src="assets/japantown.svg" alt="Japantown"/> </a>
+
 </div>
 
 <div>
+
 <a href="outer-sunset.html">
-<img src="assets/outer-sunset.svg" alt="Outer Sunset">
-</a>
+<img src="assets/outer-sunset.svg" alt="Outer Sunset"/> </a>
+
 </div>
 
 <div>
-<a href="richmond.html">
-<img src="assets/richmond.svg" alt="Richmond">
+
+<a href="richmond.html"> <img src="assets/richmond.svg" alt="Richmond"/>
 </a>
+
 </div>
 
 <div>
-<a href="soma.html">
-<img src="assets/soma.svg" alt="SOMA">
-</a>
+
+<a href="soma.html"> <img src="assets/soma.svg" alt="SOMA"/> </a>
+
 </div>
 
 <div>
+
 <a href="tenderloin.html">
-<img src="assets/tenderloin.svg" alt="Tenderloin">
-</a>
+<img src="assets/tenderloin.svg" alt="Tenderloin"/> </a>
+
 </div>
 
 <div>
+
 <a href="visitacion-valley.html">
-<img src="assets/visitacion-valley.svg" alt="Visitacion Valley">
-</a>
-</div>
+<img src="assets/visitacion-valley.svg" alt="Visitacion Valley"/> </a>
 
 </div>
+:::
+:::
 
-</div>
-
-<div class="mt-24">
+::: {.mt-24}
 <h2 class="text-4xl font-bold">Data Sources</h2>
-</div>
+:::
 
+Data for this map comes from a variety of sources.
 
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Purus faucibus ornare suspendisse sed nisi lacus sed viverra tellus. Et ligula ullamcorper malesuada proin libero nunc consequat. Proin libero nunc consequat interdum varius sit. Maecenas pharetra convallis posuere morbi leo. Ipsum dolor sit amet consectetur. Dolor sit amet consectetur adipiscing elit duis tristique. Sit amet cursus sit amet dictum sit. Non sodales neque sodales ut etiam sit amet. Fermentum odio eu feugiat pretium nibh ipsum. Neque aliquam vestibulum morbi blandit cursus risus at ultrices mi. Maecenas pharetra convallis posuere morbi. Bibendum ut tristique et egestas quis ipsum suspendisse.</p>
+The neighborhood demographics data comes from the [2019 American
+Community Survey](https://www.census.gov/programs-surveys/acs) (5-year
+estimates).
 
+Much of the data on food resources (including corner stores/convenience
+stores, drug stores, farmers markets, liquor stores, restaurants, and
+supermarkets/grocery stores) comes from
+[OpenStreetMap](https://www.openstreetmap.org/).
 
+Many of the supermarkets/grocery stores identified using OpenStreetMap
+were manually tagged as international grocery stores. In addition, this
+category was supplemented by lists taken from [SF
+Gate](https://www.sfgate.com/food/article/The-Bay-Area-s-best-international-markets-11157138.php#taboola-9)
+and [this 2014 guide](https://ss-biggie.livejournal.com/42231.html).
 
+Additional data on farmers markets also comes from the [San Francisco
+Department of the
+Environment](https://sfenvironment.org/farmers-markets-in-sf).
+
+Data on food banks comes from the [San Francisco Marin Food Bank
+website](https://www.sfmfoodbank.org/find-food/) while data on food
+pantries comes from
+[foodpantries.org](https://www.sfmfoodbank.org/find-food/).
+
+Data on food pharmacies, a [novel
+program](https://www.sfproduce.org/food-pharmacy) led by the [The Food
+As Medicine
+Collaborative](https://www.hellmanfoundation.org/food-as-medicine-collaborative.html),
+was inputted manually.
+
+Data on stores that accept Supplmentary Nutrition Assistance Program
+(SNAP) comes from the [United States Department of Agriculture
+website](https://www.fns.usda.gov/snap/retailer-locator). The website
+[wicstorelocator.com was used to gather data on stores that participate
+in the Women, Infants and Children (WIC) supplemental nutrition
+program](https://www.wicstorelocator.com/ci/ca-san_francisco).
+
+Data on stores that accept SNAP/WIC was combined with data taken from
+other sources above. Efforts were made to remove duplicates, though some
+may have slipped through the cracks.
 

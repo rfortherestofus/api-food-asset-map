@@ -34,11 +34,18 @@ generate_static_neighborhood_map <- function(neighborhood_name) {
                 x_offset = 2,
                 y_offset = 2) +
     with_shadow(geom_sf_text(aes(label = str_wrap(neighborhood_name, 10)),
-                             hjust = if_else(neighborhood_name == "Bayview Hunters Point", 1.35, NaN),
+                             hjust = case_when(
+                               neighborhood_name == "Bayview Hunters Point" ~ 1.1,
+                               TRUE ~ NaN
+                             ),
+                             vjust = case_when(
+                               neighborhood_name == "Outer Sunset" ~ 0,
+                               TRUE ~ NaN
+                             ),
                              family = "Oswald",
                              fontface = "bold",
                              color = "white",
-                             size = 14),
+                             size = 12),
                 colour = "#806E6E",
                 x_offset = 1,
                 y_offset = 1) +
@@ -54,7 +61,7 @@ generate_static_neighborhood_map <- function(neighborhood_name) {
 }
 
 
-# generate_static_neighborhood_map(neighborhoods[1])
+generate_static_neighborhood_map(neighborhoods[6])
 
 walk(neighborhoods, generate_static_neighborhood_map)
 
