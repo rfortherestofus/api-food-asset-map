@@ -5,8 +5,8 @@ library(beepr)
 
 # Generate Assets ---------------------------------------------------------
 
-source("R/icon-summaries.R")
-source("R/static-maps.R")
+# source("R/icon-summaries.R")
+# source("R/static-maps.R")
 
 # Generate TailwindCSS ----------------------------------------------------
 
