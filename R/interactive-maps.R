@@ -156,7 +156,20 @@ draw_resource_map <- function(neighborhoods = NULL) {
           icon = makeIcon(iconUrl = ~icon_url, iconWidth = 24, iconHeight = 24),
           popup = ~popup,
           group = x,
-          clusterOptions = markerClusterOptions(showCoverageOnHover = FALSE)
+          clusterOptions = markerClusterOptions(showCoverageOnHover = FALSE,
+                                                iconCreateFunction=JS(glue::glue("function (cluster) {{
+    var childCount = cluster.getChildCount();
+    var c = ' marker-cluster-';
+    if (childCount <= {nrow(food_resources)}) {{
+      c += 'small';
+    }} else if (childCount > {nrow(food_resources)}) {{
+      c += 'medium';
+    }} else {{
+      c += 'large';
+    }}
+    return new L.DivIcon({{ html: '<div><span>' + childCount + '</span></div>', className: 'marker-cluster' + c, iconSize: new L.Point(40, 40) }});
+
+  }}")))
         )
     })
 
