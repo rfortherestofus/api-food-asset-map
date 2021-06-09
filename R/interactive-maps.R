@@ -156,6 +156,8 @@ draw_resource_map <- function(neighborhoods = NULL) {
           icon = makeIcon(iconUrl = ~icon_url, iconWidth = 24, iconHeight = 24),
           popup = ~popup,
           group = x,
+
+          # in order for all the clusters to be green, I edited the if else statement to put any cluster with less that or equal to the total number of rows in the `small` category. Since no cluster can be larger than the dataset, there can't be anything larger than `small`
           clusterOptions = markerClusterOptions(showCoverageOnHover = FALSE,
                                                 iconCreateFunction=JS(glue::glue("function (cluster) {{
     var childCount = cluster.getChildCount();
