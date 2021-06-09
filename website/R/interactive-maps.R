@@ -1,3 +1,7 @@
+# in order to update the category labels/icons shown on the map, you'll need to edit the code in 2 distinct places.
+# first, you'll need to edit the icon url in the case_when function around line 47 (this may change as other edits are made)
+# second, you'll need to edit the assignment in the `groups` object. This seems redundant, but it's important for the way the labels are rendered.
+
 draw_resource_map <- function(neighborhoods = NULL) {
 
   # Load packages
@@ -59,7 +63,6 @@ draw_resource_map <- function(neighborhoods = NULL) {
                                 category == "Farmers Markets" & accepts_snap_wic == FALSE ~ "assets/farmers-market.svg",
 
                                 ## SNAP/WIC has different color
-                                category == "Corner Stores" & accepts_snap_wic == TRUE ~ "assets/corner-stores-snap-wic.svg",
                                 category == "Drug Stores" & accepts_snap_wic == TRUE ~ "assets/drug-stores-snap-wic.svg",
                                 category == "Food Banks/Pantries" & accepts_snap_wic == TRUE ~ "assets/food-banks-pantries-snap-wic.svg",
                                 category == "Food Pharmacies" & accepts_snap_wic == TRUE ~ "assets/food-pharmacy-snap-wic.svg",
@@ -87,7 +90,7 @@ draw_resource_map <- function(neighborhoods = NULL) {
   show_api <- "<span style='border-bottom-width: 2px;border-bottom-style: solid #000;padding-bottom: 10px;'>Show API Population<br></span><br>"
 
   groups <- c(
-    "Corner Stores" <- "Corner Stores",
+    "Corner Stores/Convenience Stores" <- "Corner Stores/Convenience Stores",
     "Drug Stores" <- "Drug Stores",
     "Farmers Markets" <- "Farmers Markets",
     "Food Banks/Pantries" <- "Food Banks/Pantries",
@@ -97,7 +100,7 @@ draw_resource_map <- function(neighborhoods = NULL) {
     "Liquor Stores" <- "Liquor Stores",
     "Restaurants" <- "Restaurants",
     "Restaurants (Fast Food)" <- "Restaurants (Fast Food)",
-    "Supermarkets" <- "Supermarkets"
+    "Supermarkets/Grocery Stores" <- "Supermarkets/Grocery Stores"
   )
 
   ## color palettes

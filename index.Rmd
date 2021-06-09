@@ -14,7 +14,6 @@ knitr::opts_chunk$set(echo = FALSE)
 
 ```
 
-<!-- <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet"> -->
 
 ```{r}
 source(here::here("R", "interactive-maps.R"))
