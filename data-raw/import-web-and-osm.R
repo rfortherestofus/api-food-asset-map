@@ -7,7 +7,7 @@ library(leaflet)
 library(sf) # spatial data wrangling
 library(janitor)
 library(tigris) # census geography boundaries
-
+library(beepr) # notify when long process finishes
 
 # for web scraping
 library(rvest) # read in and extract data from html documents online
@@ -201,10 +201,10 @@ pop_up_get_addr <- function(url) {
   tibble(name = name, street_address = street_address, city_zip = city_zip)
 }
 
-siteElements <- remDr$findElement(using = "css selector", "h2:not(.text-nowrap")
-
 # grab data
 pop_up_addr <- map_df(pop_up_pantry_links$value, pop_up_get_addr)
+
+remDr$quit()
 
 pop_up_data <- pop_up_addr %>%
   unnest(cols = c(name, street_address, city_zip)) %>%
@@ -265,7 +265,7 @@ bay_area_crawl_agency <- function(url) {
 
   if(!inherits(agency_site, "error")) {
 
-    agency_nums <- bay_area_sec_html_test %>%
+    agency_nums <- agency_site %>%
       html_elements("#Sites a") %>%
       html_attr("id") %>%
       str_extract("[0-9]+")
@@ -375,7 +375,6 @@ food_services <- businesses %>%
 
 # look at the different categories of food services
 
-food_services %>% count(lic_code_description) %>% View()
 
 
 ## Stores that accept EBT/SNAP ---------------------------------------------
@@ -483,9 +482,9 @@ farmers_markets_names <- farmers_markets_html %>%
 farmers_market_zips <- farmers_markets_html %>%
   html_elements("p") %>%
   html_text() %>%
-  as_tibble() %>% View()
+  as_tibble() %>%
 # Keep only rows with zip codes
-filter(str_detect(value, "[0-9]{5}(?:-[0-9]{4})?")) %>%
+  filter(str_detect(value, "[0-9]{5}(?:-[0-9]{4})?")) %>%
   mutate(zip_code = str_extract(value, "[0-9]{5}(?:-[0-9]{4})?")) %>%
   pull(zip_code)
 
@@ -670,7 +669,7 @@ international_markets <- read_csv("https://docs.google.com/spreadsheets/d/e/2PAC
   mutate(category = "International Grocery Store")
 
 
-write_rds(ethnic_markets, "data/ethnic_markets.rds")
+write_rds(ethnic_markets, "data/international_markets.rds")
 
 
 # OSM Data --------------------------------------
@@ -747,10 +746,10 @@ supermarkets_clean <- supermarkets %>%
 
 # visually check data
 
-leaflet() %>%
-  addProviderTiles(providers$CartoDB.Positron) %>%
-  addPolygons(data = sf_boundary, fillOpacity = 0, opacity = 1, color = "#FFB55F", weight = 2) %>%
-  addCircleMarkers(data = supermarkets_clean, fillColor = "#840651", color = "#840651", opacity = 1, fillOpacity = 0.7, weight = 1, label = ~htmlEscape(name), radius = 2)
+# leaflet() %>%
+#   addProviderTiles(providers$CartoDB.Positron) %>%
+#   addPolygons(data = sf_boundary, fillOpacity = 0, opacity = 1, color = "#FFB55F", weight = 2) %>%
+#   addCircleMarkers(data = supermarkets_clean, fillColor = "#840651", color = "#840651", opacity = 1, fillOpacity = 0.7, weight = 1, label = ~htmlEscape(name), radius = 2)
 
 write_rds(supermarkets_clean, "data/supermarkets.rds")
 
@@ -790,10 +789,10 @@ convenience_stores_clean <- convenience_stores %>%
 
 # visually check data
 
-leaflet() %>%
-  addProviderTiles(providers$CartoDB.Positron) %>%
-  addPolygons(data = sf_boundary, fillOpacity = 0, opacity = 1, color = "#FFB55F", weight = 2) %>%
-  addCircleMarkers(data = convenience_stores_clean, fillColor = "#5F9AB6", color = "#5F9AB6", opacity = 1, fillOpacity = 0.7, weight = 1, radius = 2, label = ~htmlEscape(name))
+# leaflet() %>%
+#   addProviderTiles(providers$CartoDB.Positron) %>%
+#   addPolygons(data = sf_boundary, fillOpacity = 0, opacity = 1, color = "#FFB55F", weight = 2) %>%
+#   addCircleMarkers(data = convenience_stores_clean, fillColor = "#5F9AB6", color = "#5F9AB6", opacity = 1, fillOpacity = 0.7, weight = 1, radius = 2, label = ~htmlEscape(name))
 
 write_rds(convenience_stores_clean, "data/convenience_stores_osm.rds")
 
@@ -820,10 +819,10 @@ restaurants_clean <- restaurants %>%
 
 # visually check data
 
-leaflet() %>%
-  addProviderTiles(providers$CartoDB.Positron) %>%
-  addPolygons(data = sf_boundary, fillOpacity = 0, opacity = 1, color = "#FFB55F", weight = 2) %>%
-  addCircleMarkers(data = restaurants_clean, fillColor = "#5F9AB6", color = "#5F9AB6", opacity = 1, fillOpacity = 0.7, weight = 1, radius = 2, label = ~htmlEscape(name))
+# leaflet() %>%
+#   addProviderTiles(providers$CartoDB.Positron) %>%
+#   addPolygons(data = sf_boundary, fillOpacity = 0, opacity = 1, color = "#FFB55F", weight = 2) %>%
+#   addCircleMarkers(data = restaurants_clean, fillColor = "#5F9AB6", color = "#5F9AB6", opacity = 1, fillOpacity = 0.7, weight = 1, radius = 2, label = ~htmlEscape(name))
 
 write_rds(restaurants_clean, "data/restaurants_osm.rds")
 
@@ -850,10 +849,10 @@ fast_food_clean <- fast_food %>%
 
 # visually check data
 
-leaflet() %>%
-  addProviderTiles(providers$CartoDB.Positron) %>%
-  addPolygons(data = sf_boundary, fillOpacity = 0, opacity = 1, color = "#FFB55F", weight = 2) %>%
-  addCircleMarkers(data = fast_food_clean, fillColor = "#5F9AB6", color = "#5F9AB6", opacity = 1, fillOpacity = 0.7, weight = 1, radius = 2, label = ~htmlEscape(name))
+# leaflet() %>%
+#   addProviderTiles(providers$CartoDB.Positron) %>%
+#   addPolygons(data = sf_boundary, fillOpacity = 0, opacity = 1, color = "#FFB55F", weight = 2) %>%
+#   addCircleMarkers(data = fast_food_clean, fillColor = "#5F9AB6", color = "#5F9AB6", opacity = 1, fillOpacity = 0.7, weight = 1, radius = 2, label = ~htmlEscape(name))
 
 write_rds(fast_food_clean, "data/fast_food_osm.rds")
 
@@ -881,10 +880,10 @@ markets_clean <- markets %>%
 
 # visually check data
 
-leaflet() %>%
-  addProviderTiles(providers$CartoDB.Positron) %>%
-  addPolygons(data = sf_boundary, fillOpacity = 0, opacity = 1, color = "#FFB55F", weight = 2) %>%
-  addCircleMarkers(data = markets_clean, fillColor = "#5F9AB6", color = "#5F9AB6", opacity = 1, fillOpacity = 0.7, weight = 1, radius = 2, label = ~htmlEscape(name))
+# leaflet() %>%
+#   addProviderTiles(providers$CartoDB.Positron) %>%
+#   addPolygons(data = sf_boundary, fillOpacity = 0, opacity = 1, color = "#FFB55F", weight = 2) %>%
+#   addCircleMarkers(data = markets_clean, fillColor = "#5F9AB6", color = "#5F9AB6", opacity = 1, fillOpacity = 0.7, weight = 1, radius = 2, label = ~htmlEscape(name))
 
 write_rds(markets_clean, "data/markets_osm.rds")
 
@@ -920,10 +919,10 @@ drugstores_clean <- drugstores %>%
           transmute(osm_id, name, housenumber = addr.housenumber, street = addr.street , zip = addr.postcode, city = "San Francisco", state = "CA", business_type = "drugstore")) %>%
   drop_na(name)
 
-leaflet() %>%
-  addProviderTiles(providers$CartoDB.Positron) %>%
-  addPolygons(data = sf_boundary, fillOpacity = 0, opacity = 1, color = "#FFB55F", weight = 2) %>%
-  addCircleMarkers(data = drugstores_clean, fillColor = "#5F9AB6", color = "#5F9AB6", opacity = 1, fillOpacity = 0.7, weight = 1, radius = 2, label = ~htmlEscape(name))
+# leaflet() %>%
+#   addProviderTiles(providers$CartoDB.Positron) %>%
+#   addPolygons(data = sf_boundary, fillOpacity = 0, opacity = 1, color = "#FFB55F", weight = 2) %>%
+#   addCircleMarkers(data = drugstores_clean, fillColor = "#5F9AB6", color = "#5F9AB6", opacity = 1, fillOpacity = 0.7, weight = 1, radius = 2, label = ~htmlEscape(name))
 
 write_rds(drugstores_clean, "data/drugstores_osm.rds")
 
@@ -948,3 +947,7 @@ liquor_clean <- liquor_poly %>%
   drop_na(name)
 
 write_rds(liquor_clean, "data/liquor_stores_osm.rds")
+
+
+
+beep(5)

@@ -253,7 +253,7 @@ bay_area_crawl_agency <- function(url) {
 
   if(!inherits(agency_site, "error")) {
 
-    agency_nums <- bay_area_sec_html_test %>%
+    agency_nums <- agency_site %>%
       html_elements("#Sites a") %>%
       html_attr("id") %>%
       str_extract("[0-9]+")
