@@ -96,7 +96,7 @@ pantries_data <- map_df(pantries_urls, import_food_pantry_data)
 
 pantries_data_geocoded <- pantries_data %>%
   mutate(address = glue("{street_address}, {city}, {state} {zip_code}")) %>%
-  geocode(address, method = "arcgis", lat = latitude, long = longitude) %>%  #osm misses 3 addresses
+  geocode(address, method = "mapbox", lat = latitude, long = longitude) %>%  #osm misses 3 addresses
   select(-address)
 pantries_data_sf <- pantries_data_geocoded %>%
   mutate(category = "food bank/pantry") %>%
@@ -145,7 +145,7 @@ food_pharmacies <- tibble::tribble(
 # geocode the data
 food_pharmacies_geocoded <- food_pharmacies %>%
   mutate(address = glue("{street_address}, {city}, {state} {zip_code}")) %>%
-  geocode(address, method = "arcgis", lat = latitude, long = longitude) %>%
+  geocode(address, method = "mapbox", lat = latitude, long = longitude) %>%
   select(-address)
 
 food_pharmacies_sf <- food_pharmacies_geocoded %>%
@@ -219,7 +219,7 @@ pop_up_data <- pop_up_addr %>%
 # geocode the addresses
 pop_up_data_geocoded <- pop_up_data %>%
   mutate(address = glue("{street_address}, {city}, {state} {zip_code}")) %>%
-  geocode(address, method = "arcgis", lat = latitude, long = longitude) %>%  #osm misses 3 addresses
+  geocode(address, method = "mapbox", lat = latitude, long = longitude) %>%  #osm misses 3 addresses
   select(-address)
 
 pop_up_data_sf <- pop_up_data_geocoded %>%
@@ -339,7 +339,7 @@ full_bay_area_data <- map_df(bay_area_secondary_links, bay_area_crawl_agency)
 full_bay_area_data_geocoded <- full_bay_area_data %>%
   distinct() %>%
   mutate(address = glue("{street_address}, {city}, {state} {zip_code}")) %>%
-  geocode(address, method = "arcgis", lat = latitude, long = longitude) %>%  #osm misses 3 addresses
+  geocode(address, method = "mapbox", lat = latitude, long = longitude) %>%  #osm misses 3 addresses
   select(-address)
 
 full_bay_area_data_sf <- full_bay_area_data_geocoded %>%
@@ -449,7 +449,7 @@ wic_stores <- wic_stores_html %>%
 
 wic_stores_geocoded <- wic_stores %>%
   mutate(address = glue("{street_address}, {city}, {state} {zip_code}")) %>%
-  geocode(address, method = "arcgis", lat = latitude, long = longitude) %>%  #osm misses 3 addresses
+  geocode(address, method = "mapbox", lat = latitude, long = longitude) %>%  #osm misses 3 addresses
   select(-address)
 
 wic_stores_sf <- wic_stores_geocoded %>%
@@ -620,7 +620,7 @@ prepared_food <- tibble::tribble(
 
 prepared_food_geocoded <- prepared_food %>%
   mutate(address = glue("{street_address}, {city}, {state} {zip_code}")) %>%
-  geocode(address, method = "arcgis", lat = latitude, long = longitude) %>%  #osm misses 3 addresses
+  geocode(address, method = "mapbox", lat = latitude, long = longitude) %>%  #osm misses 3 addresses
   select(-address)
 
 prepared_food_sf <- prepared_food_geocoded %>%
@@ -648,7 +648,7 @@ food_banks <- tibble::tribble(~name, ~street_address, ~city, ~state, ~zip_code,
 # geocode
 food_banks_geocoded <- food_banks  %>%
   mutate(address = glue("{street_address}, {city}, {state} {zip_code}")) %>%
-  geocode(address, method = "arcgis", lat = latitude, long = longitude) %>%
+  geocode(address, method = "mapbox", lat = latitude, long = longitude) %>%
   select(-address)
 
 food_banks_sf <- food_banks_geocoded %>%
@@ -662,11 +662,12 @@ food_banks_sf <- food_banks_geocoded %>%
 
 write_rds(food_banks_sf, "data/food_banks.rds")
 
-## Ethnic food markets ---------------------------------------------------------
+## International food markets ---------------------------------------------------------
 
-ethnic_markets <- read_csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vSIv3qx7IXACIQFOp6jhyZ1-9LBHkBAdHE4WnS2diosy-hfWk9nF-GDPHqW-pYR1bf1XERgyAZ_L7bs/pub?output=csv") %>%
+international_markets <- read_csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vSIv3qx7IXACIQFOp6jhyZ1-9LBHkBAdHE4WnS2diosy-hfWk9nF-GDPHqW-pYR1bf1XERgyAZ_L7bs/pub?output=csv") %>%
   st_as_sf(coords = c("longitude", "latitude"), crs = 4326) %>%
-  mutate(zip_code = as.character(zip_code))
+  mutate(zip_code = as.character(zip_code)) %>%
+  mutate(category = "International Grocery Store")
 
 
 write_rds(ethnic_markets, "data/ethnic_markets.rds")
