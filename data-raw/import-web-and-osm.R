@@ -1,16 +1,25 @@
 
 # Load Packages -----------------------------------------------------------
 
+# packages used in web scarping and osm importing
 library(tidyverse)
-library(rvest)
+library(leaflet)
+library(sf) # spatial data wrangling
 library(janitor)
+library(tigris) # census geography boundaries
+
+
+# for web scraping
+library(rvest) # read in and extract data from html documents online
 library(stringr.plus)
-library(sf)
 library(tidygeocoder)
 library(glue)
-library(leaflet)
 library(RSelenium)
-library(tigris)
+
+# for osm
+library(osmdata) # OSM overpass API
+library(htmltools)
+library(sf) # spatial data wrangling
 
 
 # Web Scraping Data -------------------------------------------------------
@@ -665,4 +674,276 @@ write_rds(ethnic_markets, "data/ethnic_markets.rds")
 
 # OSM Data --------------------------------------
 
+## Supermarket query ----------------------------
 
+supermarket_q <- getbb("San Francisco") %>%
+  opq() %>%
+  add_osm_feature("shop", "supermarket") %>%
+  osmdata_sf()
+
+supermarkets <- supermarket_q$osm_polygons %>%
+  st_intersection(sf_boundary) %>% # the supermarket query includes some from outside of the city, so this limits the data to only supermarkets in SF
+  st_centroid()
+
+
+supermarkets_pts <- supermarket_q$osm_points %>%
+  st_intersection(sf_boundary) %>% # the supermarket query includes some from outside of the city, so this limits the data to only supermarkets in SF
+  st_centroid()
+
+seafood_q <- getbb("San Francisco") %>%
+  opq() %>%
+  add_osm_feature("shop", "seafood") %>%
+  osmdata_sf()
+
+seafood <- seafood_q$osm_polygons %>%
+  st_intersection(sf_boundary) %>% # the supermarket query includes some from outside of the city, so this limits the data to only supermarkets in SF
+  st_centroid()
+
+
+seafood_pts <- seafood_q$osm_points %>%
+  st_intersection(sf_boundary) %>% # the supermarket query includes some from outside of the city, so this limits the data to only supermarkets in SF
+  st_centroid()
+
+grocery_q <- getbb("San Francisco") %>%
+  opq() %>%
+  add_osm_feature("amenity", "grocery") %>%
+  osmdata_sf()
+
+
+grocery_pts <- grocery_q$osm_points %>%
+  st_intersection(sf_boundary) %>% # the supermarket query includes some from outside of the city, so this limits the data to only supermarkets in SF
+  st_centroid()
+
+greengrocery_q <- getbb("San Francisco") %>%
+  opq() %>%
+  add_osm_feature("shop", "greengrocer") %>%
+  osmdata_sf()
+
+
+greengrocery_pts <- greengrocery_q$osm_points %>%
+  st_intersection(sf_boundary) %>% # the supermarket query includes some from outside of the city, so this limits the data to only supermarkets in SF
+  st_centroid()
+
+greengrocery <- greengrocery_q$osm_polygons %>%
+  st_intersection(sf_boundary) %>% # the supermarket query includes some from outside of the city, so this limits the data to only supermarkets in SF
+  st_centroid()
+
+
+
+supermarkets_clean <- supermarkets %>%
+  transmute(osm_id, name, housenumber = addr.housenumber, street = addr.street, zip = addr.postcode, city = "San Francisco", state = "CA", business_type = "supermarket") %>%
+  rbind(supermarkets_pts %>%
+          transmute(osm_id, name, housenumber = addr.housenumber, street = addr.street, zip = addr.postcode, city = "San Francisco", state = "CA", business_type = "supermarket")) %>%
+  bind_rows(grocery_pts %>%
+              transmute(osm_id, name, city = "San Francisco", state = "CA", business_type = "supermarket")) %>%
+  rbind(greengrocery %>%
+          transmute(osm_id, name, housenumber = addr.housenumber, street = addr.street, zip = addr.postcode, city = "San Francisco", state = "CA", business_type = "supermarket")) %>%
+  rbind(greengrocery_pts %>%
+          transmute(osm_id, name, housenumber = addr.housenumber, street = addr.street, zip = addr.postcode, city = "San Francisco", state = "CA", business_type = "supermarket")) %>%
+  rbind(seafood_pts %>%
+          transmute(osm_id, name, housenumber = addr.housenumber, street = addr.street, zip = addr.postcode, city = "San Francisco", state = "CA", business_type = "supermarket")) %>%
+  drop_na(name)
+
+# visually check data
+
+leaflet() %>%
+  addProviderTiles(providers$CartoDB.Positron) %>%
+  addPolygons(data = sf_boundary, fillOpacity = 0, opacity = 1, color = "#FFB55F", weight = 2) %>%
+  addCircleMarkers(data = supermarkets_clean, fillColor = "#840651", color = "#840651", opacity = 1, fillOpacity = 0.7, weight = 1, label = ~htmlEscape(name), radius = 2)
+
+write_rds(supermarkets_clean, "data/supermarkets.rds")
+
+## Convenience store query -----------------------------------------------------------
+
+convenience_store_q <- getbb("San Francisco") %>%
+  opq() %>%
+  add_osm_feature("shop", "convenience") %>%
+  osmdata_sf()
+
+convenience_stores <- convenience_store_q$osm_polygons %>%
+  st_intersection(sf_boundary) %>% # the convenience store query includes some from outside of the city, so this limits the data to only supermarkets in SF
+  st_centroid()
+
+convenience_stores_pts <- convenience_store_q$osm_points %>%
+  st_intersection(sf_boundary) %>% # the convenience store query includes some from outside of the city, so this limits the data to only supermarkets in SF
+  st_centroid()
+
+fuel_q <- getbb("San Francisco") %>%
+  opq() %>%
+  add_osm_feature("amenity", "fuel") %>%
+  osmdata_sf()
+
+fuel <- fuel_q$osm_polygons %>%
+  st_intersection(sf_boundary) %>% # the convenience store query includes some from outside of the city, so this limits the data to only supermarkets in SF
+  st_centroid()
+
+fuel_pts <- fuel_q$osm_points %>%
+  st_intersection(sf_boundary) %>% # the convenience store query includes some from outside of the city, so this limits the data to only supermarkets in SF
+  st_centroid()
+
+convenience_stores_clean <- convenience_stores %>%
+  transmute(osm_id, name, housenumber = addr.housenumber, street = addr.street, zip = addr.postcode, city = "San Francisco", state = "CA", business_type = "convenience") %>%
+  rbind(convenience_stores_pts %>%
+          transmute(osm_id, name, housenumber = addr.housenumber, street = addr.street, zip = addr.postcode, city = "San Francisco", state = "CA", business_type = "convenience")) %>%
+  drop_na(name)
+
+# visually check data
+
+leaflet() %>%
+  addProviderTiles(providers$CartoDB.Positron) %>%
+  addPolygons(data = sf_boundary, fillOpacity = 0, opacity = 1, color = "#FFB55F", weight = 2) %>%
+  addCircleMarkers(data = convenience_stores_clean, fillColor = "#5F9AB6", color = "#5F9AB6", opacity = 1, fillOpacity = 0.7, weight = 1, radius = 2, label = ~htmlEscape(name))
+
+write_rds(convenience_stores_clean, "data/convenience_stores_osm.rds")
+
+## Restaurants query -------------------------------------------------------
+
+restaurant_q <- getbb("San Francisco") %>%
+  opq() %>%
+  add_osm_feature("amenity", "restaurant") %>%
+  osmdata_sf()
+
+restaurants <- restaurant_q$osm_polygons %>%
+  st_intersection(sf_boundary) %>%
+  st_centroid()
+
+restaurants_pts <- restaurant_q$osm_points %>%
+  st_intersection(sf_boundary) %>%
+  st_centroid()
+
+restaurants_clean <- restaurants %>%
+  transmute(osm_id, name, housenumber = addr.housenumber, street = addr.street, zip = addr.postcode, city = "San Francisco", state = "CA", business_type = "restaurant") %>%
+  rbind(restaurants_pts %>%
+          transmute(osm_id, name, housenumber = addr.housenumber, street = addr.street, zip = addr.postcode, city = "San Francisco", state = "CA", business_type = "restaurant")) %>%
+  drop_na(name)
+
+# visually check data
+
+leaflet() %>%
+  addProviderTiles(providers$CartoDB.Positron) %>%
+  addPolygons(data = sf_boundary, fillOpacity = 0, opacity = 1, color = "#FFB55F", weight = 2) %>%
+  addCircleMarkers(data = restaurants_clean, fillColor = "#5F9AB6", color = "#5F9AB6", opacity = 1, fillOpacity = 0.7, weight = 1, radius = 2, label = ~htmlEscape(name))
+
+write_rds(restaurants_clean, "data/restaurants_osm.rds")
+
+## Fast food query -------------------------------------------------------------------------
+
+fastfood_q <- getbb("San Francisco") %>%
+  opq() %>%
+  add_osm_feature("amenity", "fast_food") %>%
+  osmdata_sf()
+
+fast_food <- fastfood_q$osm_polygons %>%
+  st_intersection(sf_boundary) %>%
+  st_centroid()
+
+fast_food_pts <- fastfood_q$osm_points %>%
+  st_intersection(sf_boundary) %>%
+  st_centroid()
+
+fast_food_clean <- fast_food %>%
+  transmute(osm_id, name, housenumber = addr.housenumber, street = addr.street, zip = addr.postcode, city = "San Francisco", state = "CA", business_type = "fast food") %>%
+  rbind(fast_food_pts %>%
+          transmute(osm_id, name, housenumber = addr.housenumber, street = addr.street, zip = addr.postcode, city = "San Francisco", state = "CA", business_type = "fast food")) %>%
+  drop_na(name)
+
+# visually check data
+
+leaflet() %>%
+  addProviderTiles(providers$CartoDB.Positron) %>%
+  addPolygons(data = sf_boundary, fillOpacity = 0, opacity = 1, color = "#FFB55F", weight = 2) %>%
+  addCircleMarkers(data = fast_food_clean, fillColor = "#5F9AB6", color = "#5F9AB6", opacity = 1, fillOpacity = 0.7, weight = 1, radius = 2, label = ~htmlEscape(name))
+
+write_rds(fast_food_clean, "data/fast_food_osm.rds")
+
+
+## Farmers market query -----------------------------------------------------------------
+
+market_q <- getbb("San Francisco") %>%
+  opq() %>%
+  add_osm_feature("amenity", "marketplace") %>%
+  osmdata_sf()
+
+markets <- market_q$osm_polygons %>%
+  st_intersection(sf_boundary) %>%  # the convenience store query includes some from outside of the city, so this limits the data to only places in SF
+  st_centroid()
+
+markets_pts <- market_q$osm_points %>%
+  st_intersection(sf_boundary) %>%  # the convenience store query includes some from outside of the city, so this limits the data to only places in SF
+  st_centroid()
+
+markets_clean <- markets %>%
+  transmute(osm_id, name, housenumber = addr.housenumber, street = addr.street, city = "San Francisco", state = "CA", business_type = "market") %>%
+  rbind(markets_pts %>%
+          transmute(osm_id, name, housenumber = addr.housenumber, street = addr.street, city = "San Francisco", state = "CA", business_type = "market")) %>%
+  drop_na(name)
+
+# visually check data
+
+leaflet() %>%
+  addProviderTiles(providers$CartoDB.Positron) %>%
+  addPolygons(data = sf_boundary, fillOpacity = 0, opacity = 1, color = "#FFB55F", weight = 2) %>%
+  addCircleMarkers(data = markets_clean, fillColor = "#5F9AB6", color = "#5F9AB6", opacity = 1, fillOpacity = 0.7, weight = 1, radius = 2, label = ~htmlEscape(name))
+
+write_rds(markets_clean, "data/markets_osm.rds")
+
+## Drugstore query ---------------------------------------------------------------------------
+
+chemist_q <- getbb("San Francisco") %>%
+  opq() %>%
+  add_osm_feature("shop", "chemist") %>% # drugstore is deprecated, chemist returns subset of these results
+  osmdata_sf()
+
+chemist_pts <- chemist_q$osm_points %>%
+  st_intersection(sf_boundary) %>%
+  st_centroid()
+
+drugstore_q <- getbb("San Francisco") %>%
+  opq() %>%
+  add_osm_feature("amenity", "pharmacy") %>%
+  osmdata_sf()
+
+drugstores <- drugstore_q$osm_polygons %>%
+  st_intersection(sf_boundary) %>%
+  st_centroid()
+
+drugstores_pts <- drugstore_q$osm_points %>%
+  st_intersection(sf_boundary) %>%
+  st_centroid()
+
+drugstores_clean <- drugstores %>%
+  transmute(osm_id, name, housenumber = addr.housenumber, street = addr.street, zip = addr.postcode, city = "San Francisco", state = "CA", business_type = "drugstore") %>%
+  rbind(drugstores_pts %>%
+          transmute(osm_id, name, housenumber = addr.housenumber, street = addr.street , zip = addr.postcode, city = "San Francisco", state = "CA", business_type = "drugstore")) %>%
+  rbind(chemist_pts %>%
+          transmute(osm_id, name, housenumber = addr.housenumber, street = addr.street , zip = addr.postcode, city = "San Francisco", state = "CA", business_type = "drugstore")) %>%
+  drop_na(name)
+
+leaflet() %>%
+  addProviderTiles(providers$CartoDB.Positron) %>%
+  addPolygons(data = sf_boundary, fillOpacity = 0, opacity = 1, color = "#FFB55F", weight = 2) %>%
+  addCircleMarkers(data = drugstores_clean, fillColor = "#5F9AB6", color = "#5F9AB6", opacity = 1, fillOpacity = 0.7, weight = 1, radius = 2, label = ~htmlEscape(name))
+
+write_rds(drugstores_clean, "data/drugstores_osm.rds")
+
+
+## Liquor stores --------------------------------------------------------------------
+
+liquor_q <- getbb("San Francisco") %>%
+  opq() %>%
+  add_osm_feature("shop", "alcohol") %>%
+  osmdata_sf()
+
+liquor_pts <- liquor_q$osm_points
+
+liquor_poly <- liquor_q$osm_polygons %>%
+  st_centroid()
+
+
+liquor_clean <- liquor_poly %>%
+  transmute(osm_id, name, housenumber = addr.housenumber, street = addr.street, zip = addr.postcode, city = "San Francisco", state = "CA", category = "Liquor Store") %>%
+  rbind(liquor_pts %>%
+          transmute(osm_id, name, housenumber = addr.housenumber, street = addr.street , zip = addr.postcode, city = "San Francisco", state = "CA", category = "Liquor Store")) %>%
+  drop_na(name)
+
+write_rds(liquor_clean, "data/liquor_stores_osm.rds")
