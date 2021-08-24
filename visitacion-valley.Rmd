@@ -3,7 +3,7 @@ title: "Visitaction Valley"
 site: distill::distill_website
 ---
 
-  ```{r setup, include=FALSE}
+```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
 
 # Learn more about creating websites with Distill at:
