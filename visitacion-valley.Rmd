@@ -1,5 +1,5 @@
 ---
-title: "Visitaction Valley"
+title: "Visitacion Valley"
 site: distill::distill_website
 ---
 
@@ -20,7 +20,7 @@ source(here::here("R", "interactive-maps.R"))
 
 
 <div class="mt-16 mb-4">
-  <h1 class="text-4xl font-bold mb-4">Visitaction Valley</h1>
+  <h1 class="text-4xl font-bold mb-4">Visitacion Valley</h1>
   </div>
 
 
@@ -30,7 +30,7 @@ source(here::here("R", "interactive-maps.R"))
 
 
 ```{r map, layout = "l-screen-inset", fig.height = 8}
-draw_resource_map("Visitaction Valley")
+draw_resource_map("Visitacion Valley")
 ```
 
 <div class="mx-auto inline text-gray-600"><img class="py-4 pr-2 inline" src="assets/accepts-snap-wic.svg"><span>Accepts SNAP/WIC</span></div>
