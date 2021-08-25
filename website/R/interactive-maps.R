@@ -35,10 +35,15 @@ draw_resource_map <- function(neighborhoods = NULL) {
            pct_api_category = fct_relabel(pct_api_interval, clean_interval)) %>%
     rename(nhood = name) %>%
     arrange(nhood) %>%
-    mutate(nhood = fct_inorder(factor(nhood))) %>%
+    mutate(nhood = fct_inorder(factor(nhood)))
+
+  st_crs(demographics) <- 26910
+  demographics <- demographics %>%
     st_transform(4326)
 
-  food_resources <- read_rds("data/final_dataset_no_dupes.rds") %>%
+  food_resources <- read_rds("data/final_dataset_no_dupes.rds")
+  st_crs(food_resources) <- 4326
+  food_resources <- food_resources %>%
     st_join(demographics %>% select(nhood)) %>%
     mutate(street_address = str_trim(street_address)) %>%
     filter(city == "San Francisco") %>%
