@@ -8,4 +8,4 @@ knitr::opts_chunk$set(echo = FALSE)
 ```
 
 
-For more information about this map, to learn more about this project, or to join the conversation about food access and security for Asian Pacific Islanders, please contact API Council Executive Director, Cally Wong, at [cally.wong@apicouncil.org](mailto:cally.wong@apicouncil.org).
+For more information about this map, to learn more about this project, or to join the conversation about food access and security for Asian Pacific Islanders, please contact David Keyes, at [david@rfortherestofus.com](mailto:david@rfortherestofus.com).
